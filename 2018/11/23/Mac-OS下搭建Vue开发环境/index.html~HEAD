@@ -5,20 +5,20 @@
   
 
   
-  <title>Hexo blog test | 李明明的个人网站</title>
+  <title>Mac OS下搭建Vue开发环境 | 李明明的个人网站</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="测试[图片]">
+  <meta name="description" content="Welcome to my site! My name is Li MingMing(李明明). 欢迎来到我的博客网站，我的名字是李明明">
 <meta name="keywords" content="Welcome to my site! My name is Li MingMing(李明明). You can call me Kel. I was born in 1993s.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo blog test">
-<meta property="og:url" content="http://www.limingming.org/2018/11/20/Hexo-blog-test/index.html">
+<meta property="og:title" content="Mac OS下搭建Vue开发环境">
+<meta property="og:url" content="http://www.limingming.org/2018/11/23/Mac-OS下搭建Vue开发环境/index.html">
 <meta property="og:site_name" content="李明明的个人网站">
-<meta property="og:description" content="测试[图片]">
+<meta property="og:description" content="Welcome to my site! My name is Li MingMing(李明明). 欢迎来到我的博客网站，我的名字是李明明">
 <meta property="og:locale" content="中文">
-<meta property="og:updated_time" content="2018-11-20T03:04:22.551Z">
+<meta property="og:updated_time" content="2018-11-23T15:33:34.098Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo blog test">
-<meta name="twitter:description" content="测试[图片]">
+<meta name="twitter:title" content="Mac OS下搭建Vue开发环境">
+<meta name="twitter:description" content="Welcome to my site! My name is Li MingMing(李明明). 欢迎来到我的博客网站，我的名字是李明明">
   
     <link rel="alternate" href="/atom.xml" title="李明明的个人网站" type="application/atom+xml">
   
@@ -69,10 +69,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-Hexo-blog-test" class="article article-type-post" itemscope="" itemprop="blogPost">
+        <section id="main"><article id="post-Mac-OS下搭建Vue开发环境" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/11/20/Hexo-blog-test/" class="article-date">
-  <time datetime="2018-11-20T03:03:23.000Z" itemprop="datePublished">2018-11-20</time>
+    <a href="/2018/11/23/Mac-OS下搭建Vue开发环境/" class="article-date">
+  <time datetime="2018-11-23T15:33:34.000Z" itemprop="datePublished">2018-11-23</time>
 </a>
     
   </div>
@@ -83,7 +83,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Hexo blog test
+      Mac OS下搭建Vue开发环境
     </h1>
   
 
@@ -91,12 +91,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h1><p>[图片]</p>
-
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.limingming.org/2018/11/20/Hexo-blog-test/" data-id="cjopcx0s80001mf53zs8v7uwd" class="article-share-link">Share</a>
+      <a data-url="http://www.limingming.org/2018/11/23/Mac-OS下搭建Vue开发环境/" data-id="cjounauox0001mhjfuvwjswro" class="article-share-link">Share</a>
       
       
     </footer>
@@ -105,10 +104,19 @@
     
 <nav id="article-nav">
   
+    <a href="/2018/11/23/MAC-OS无法开机问题解决/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          苹果电脑无法开机
+        
+      </div>
+    </a>
   
-    <a href="/2018/11/20/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+  
+    <a href="/2018/11/23/wordpress无法连接到FTP解决/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Hello World1</div>
+      <div class="article-nav-title">wordpress无法连接到FTP解决</div>
     </a>
   
 </nav>
@@ -145,11 +153,19 @@
       <ul>
         
           <li>
-            <a href="/2018/11/20/Hexo-blog-test/">Hexo blog test</a>
+            <a href="/2018/11/23/MAC-OS无法开机问题解决/">苹果电脑无法开机</a>
           </li>
         
           <li>
-            <a href="/2018/11/20/hello-world/">Hello World1</a>
+            <a href="/2018/11/23/Mac-OS下搭建Vue开发环境/">Mac OS下搭建Vue开发环境</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/23/wordpress无法连接到FTP解决/">wordpress无法连接到FTP解决</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/20/hello-world/">Hello World</a>
           </li>
         
       </ul>
