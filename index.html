@@ -70,6 +70,89 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Mac-OS下搭建Vue开发环境" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/23/Mac-OS下搭建Vue开发环境/" class="article-date">
+  <time datetime="2018-11-23T15:33:34.000Z" itemprop="datePublished">2018-11-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/23/Mac-OS下搭建Vue开发环境/">Mac OS下搭建Vue开发环境</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.limingming.org/2018/11/23/Mac-OS下搭建Vue开发环境/" data-id="cjou71dxz0000rojexdrko210" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-wordpress无法连接到FTP解决" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/23/wordpress无法连接到FTP解决/" class="article-date">
+  <time datetime="2018-11-23T02:50:15.000Z" itemprop="datePublished">2018-11-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/23/wordpress无法连接到FTP解决/">wordpress无法连接到FTP解决</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><pre><code>未能连接到FTP服务器IP:21
+</code></pre><h1 id="原因分析"><a href="#原因分析" class="headerlink" title="原因分析"></a>原因分析</h1><p>为了安全起见，wordpress会在安装插件或者主题时增加一层FTP验证</p>
+<h1 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h1><ol>
+<li><p>修改wordpress 根目录下wp-config.php文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi wordpress/wp-config.php</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在文件最后添加一行内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">define(&apos;FS_METHOD&apos;, &quot;direct&quot;);</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>重新试试就可以了！</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.limingming.org/2018/11/23/wordpress无法连接到FTP解决/" data-id="cjou71dy80003rojeg1l5g7bz" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-MAC-OS无法开机问题解决" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/11/22/MAC-OS无法开机问题解决/" class="article-date">
@@ -110,7 +193,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.limingming.org/2018/11/22/MAC-OS无法开机问题解决/" data-id="cjosan2nk00007i53n3xwoy7x" class="article-share-link">Share</a>
+      <a data-url="http://www.limingming.org/2018/11/22/MAC-OS无法开机问题解决/" data-id="cjou71dy40001roje0u4onyv9" class="article-share-link">Share</a>
       
       
     </footer>
@@ -155,7 +238,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.limingming.org/2018/11/20/hello-world/" data-id="cjosan2nt00017i53h7zurw8v" class="article-share-link">Share</a>
+      <a data-url="http://www.limingming.org/2018/11/20/hello-world/" data-id="cjou71dy60002roje2uqux5eo" class="article-share-link">Share</a>
       
       
     </footer>
@@ -194,6 +277,14 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/11/23/Mac-OS下搭建Vue开发环境/">Mac OS下搭建Vue开发环境</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/23/wordpress无法连接到FTP解决/">wordpress无法连接到FTP解决</a>
+          </li>
         
           <li>
             <a href="/2018/11/22/MAC-OS无法开机问题解决/">苹果电脑无法开机</a>
