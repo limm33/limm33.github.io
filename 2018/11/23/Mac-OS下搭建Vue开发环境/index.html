@@ -7,18 +7,21 @@
   
   <title>Mac OS下搭建Vue开发环境 | 李明明的个人网站</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Welcome to my site! My name is Li MingMing(李明明). 欢迎来到我的博客网站，我的名字是李明明">
+  <meta name="description" content="前言原来一直学习使用React，现在因为工作的需要，对Vue进行学习和使用，现在比较流行的框架React,angular,vue，正好对于vue也进行些了解。 环境搭建 打开终端,安装brew  1usr/bin/ruby -e &amp;quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)">
 <meta name="keywords" content="Welcome to my site! My name is Li MingMing(李明明). You can call me Kel. I was born in 1993s.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mac OS下搭建Vue开发环境">
 <meta property="og:url" content="http://www.limingming.org/2018/11/23/Mac-OS下搭建Vue开发环境/index.html">
 <meta property="og:site_name" content="李明明的个人网站">
-<meta property="og:description" content="Welcome to my site! My name is Li MingMing(李明明). 欢迎来到我的博客网站，我的名字是李明明">
+<meta property="og:description" content="前言原来一直学习使用React，现在因为工作的需要，对Vue进行学习和使用，现在比较流行的框架React,angular,vue，正好对于vue也进行些了解。 环境搭建 打开终端,安装brew  1usr/bin/ruby -e &amp;quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)">
 <meta property="og:locale" content="中文">
-<meta property="og:updated_time" content="2018-11-23T15:41:33.658Z">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/15057824-4d28158a932647fa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/15057824-fe6001f5919a5ddc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-11-24T07:59:58.176Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mac OS下搭建Vue开发环境">
-<meta name="twitter:description" content="Welcome to my site! My name is Li MingMing(李明明). 欢迎来到我的博客网站，我的名字是李明明">
+<meta name="twitter:description" content="前言原来一直学习使用React，现在因为工作的需要，对Vue进行学习和使用，现在比较流行的框架React,angular,vue，正好对于vue也进行些了解。 环境搭建 打开终端,安装brew  1usr/bin/ruby -e &amp;quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/15057824-4d28158a932647fa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
   
     <link rel="alternate" href="/atom.xml" title="李明明的个人网站" type="application/atom+xml">
   
@@ -91,11 +94,42 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>原来一直学习使用React，现在因为工作的需要，对Vue进行学习和使用，现在比较流行的框架React,angular,vue，正好对于vue也进行些了解。</p>
+<h1 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h1><ol>
+<li>打开终端,安装brew</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;</span><br></pre></td></tr></table></figure>
+<p>安装成功后，使用查看版本，验证是否安装成功<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew -v</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/15057824-4d28158a932647fa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<ol start="2">
+<li>安装node.js<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install nodejs</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>也可以下载安装<a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">下载地址</a><br>安装成功后，使用验证<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">node -v</span><br><span class="line">```  </span><br><span class="line">* 给nodejs目录赋权限</span><br></pre></td></tr></table></figure></p>
+<p>　sudo chmod -R 777 /usr/local/lib/node_modules/<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* 安装 淘宝镜像 （npm）</span><br></pre></td></tr></table></figure></p>
+<p>npm install -g cnpm –registry=<a href="https://registry.npm.taobao.org" target="_blank" rel="noopener">https://registry.npm.taobao.org</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">* 安装webpack</span><br></pre></td></tr></table></figure></p>
+<p>cnpm install webpack -g<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">* 安装vue脚手架</span><br></pre></td></tr></table></figure></p>
+<p>npm install vue-cli -g<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># 开始Vue</span><br></pre></td></tr></table></figure></p>
+<h1 id="创建一个基于-webpack-模板的新项目"><a href="#创建一个基于-webpack-模板的新项目" class="headerlink" title="创建一个基于 webpack 模板的新项目"></a>创建一个基于 webpack 模板的新项目</h1><p>$ vue init webpack my-project</p>
+<h1 id="这里需要进行一些配置，默认回车即可"><a href="#这里需要进行一些配置，默认回车即可" class="headerlink" title="这里需要进行一些配置，默认回车即可"></a>这里需要进行一些配置，默认回车即可</h1><p>This will install Vue 2.x version of the template.</p>
+<p>For Vue 1.x use: vue init webpack#1.0 my-project</p>
+<p>? Project name my-project<br>? Project description A Vue.js project<br>? Author runoob <a href="mailto:&#116;&#101;&#x73;&#x74;&#64;&#114;&#x75;&#110;&#x6f;&#x6f;&#98;&#46;&#x63;&#111;&#109;" target="_blank" rel="noopener">&#116;&#101;&#x73;&#x74;&#64;&#114;&#x75;&#110;&#x6f;&#x6f;&#98;&#46;&#x63;&#111;&#109;</a><br>? Vue build standalone<br>? Use ESLint to lint your code? Yes<br>? Pick an ESLint preset Standard<br>? Setup unit tests with Karma + Mocha? Yes<br>? Setup e2e tests with Nightwatch? Yes</p>
+<p>   vue-cli · Generated “my-project”.</p>
+<p>   To get started:</p>
+<pre><code>cd my-project
+npm install
+npm run dev
+</code></pre><p>   Documentation can be found at <a href="https://vuejs-templates.github.io/webpack" target="_blank" rel="noopener">https://vuejs-templates.github.io/webpack</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">进入项目，安装并运行：</span><br></pre></td></tr></table></figure></p>
+<p>$ cd my-project<br>$ cnpm install<br>$ cnpm run dev<br> DONE  Compiled successfully in 4388ms</p>
+<blockquote>
+<p>Listening at <a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a><br><code>`</code></p>
+</blockquote>
+<p><img src="https://upload-images.jianshu.io/upload_images/15057824-fe6001f5919a5ddc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.limingming.org/2018/11/23/Mac-OS下搭建Vue开发环境/" data-id="cjou71dxz0000rojexdrko210" class="article-share-link">Share</a>
+      <a data-url="http://www.limingming.org/2018/11/23/Mac-OS下搭建Vue开发环境/" data-id="cjov62hef00012e53etmd5iye" class="article-share-link">Share</a>
       
       
     </footer>
