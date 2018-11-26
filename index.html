@@ -127,74 +127,26 @@
 <li>补充<br>如果在列表中使用引用,需要换行缩进，一般为四个空格：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">*  演示内容：</span><br><span class="line">    &gt; 引用部分1</span><br><span class="line">    &gt; 引用部分2</span><br><span class="line">    &gt; 引用部分3</span><br><span class="line">    &gt; 引用部分4</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<h2 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h2><p>使用`包裹代码块，并声明代码块的语言，一般会带有相关的解析插件，对代码进行高亮处理，对代码进行着色。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">  ```java</span><br><span class="line">if (!chatBotMap.containsKey(sessionId)) &#123;</span><br><span class="line">	chat = aimlBot.setChat(sessionId);</span><br><span class="line">	chatBotMap.put(sessionId, chat);</span><br><span class="line">	answer = chat.multisentenceRespond(request);</span><br><span class="line">&#125; else &#123;</span><br><span class="line">	chat = chatBotMap.get(sessionId);</span><br><span class="line">	answer = chat.multisentenceRespond(request);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">演示：</span><br><span class="line">![image.png](https:<span class="comment">//upload-images.jianshu.io/upload_images/15057824-651d2bd3d912d702.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)</span></span><br><span class="line"></span><br><span class="line">## 超链接</span><br><span class="line">方括号显示说明，圆括号内显示网址， Markdown 编辑器会自动把它转成链接；</span><br></pre></td></tr></table></figure>
-<p><a href="https://blog.csdn.net/limm33" target="_blank" rel="noopener">我的博客</a><br><a href="https://github.com/limm33/ProgrammerLeague/blob/master/ProgrammerLeague.jpg" target="_blank" rel="noopener">编程者联盟</a><br><a href="http://www.limingming.org">个人博客</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">演示：</span><br><span class="line">![image.png](https://upload-images.jianshu.io/upload_images/15057824-b7c5da60cf5c2f1c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)</span><br><span class="line"></span><br><span class="line">## 图片</span><br><span class="line">图片和超连接语法比较像，可以在方括号前面加一个！就变成了引用图片了；</span><br></pre></td></tr></table></figure></p>
-<p><img src="url" alt="编程者联盟"><br>  或者：<br><img src="/Users/limm/Pictures/火影忍者/30381-106.jpg" alt="卡卡西"><br> 相对路径也可以(./path/*.jpg)这种形式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">![image.png](https://upload-images.jianshu.io/upload_images/15057824-22b87c80a5aedcf9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)</span><br><span class="line"></span><br><span class="line">## 分割线</span><br><span class="line">使用 3 个以上  -  符号制作分割线：</span><br></pre></td></tr></table></figure></p>
-<h2 id="分割线以上内容"><a href="#分割线以上内容" class="headerlink" title="分割线以上内容"></a>分割线以上内容</h2><p>分割线以下内容<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">演示：</span><br><span class="line">![image.png](https://upload-images.jianshu.io/upload_images/15057824-6c4c999add1e038e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)</span><br><span class="line"></span><br><span class="line">## 表格</span><br><span class="line">markdown可以制作表格，方法也很简单</span><br><span class="line">例如：</span><br></pre></td></tr></table></figure></p>
-<table>
-<thead>
-<tr>
-<th>3</th>
-<th>3</th>
-<th>3</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>3</td>
-<td>3</td>
-<td>3</td>
-</tr>
-</tbody>
-</table>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">以上为最基本的结构，‘3’代表你编辑的内容，第一行为表头，但是有的编辑器 - 需要多个，有的需要至少三个，所以布局可以尽量美观：</span><br></pre></td></tr></table></figure>
-<table>
-<thead>
-<tr>
-<th>一列</th>
-<th>第二列</th>
-<th>第三列</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>  值1</td>
-<td>值2</td>
-<td>值3</td>
-</tr>
-</tbody>
-</table>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">演示：</span><br><span class="line"></span><br><span class="line">![image.png](https://upload-images.jianshu.io/upload_images/15057824-4978a862be9afaab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)</span><br><span class="line"></span><br><span class="line">可以设置对齐方式,使用  ：添加在列的左边左对齐，右边为右对齐，两边都添加就是中间对齐：</span><br></pre></td></tr></table></figure>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">一列</th>
-<th style="text-align:right">第二列</th>
-<th style="text-align:center">第三列</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">  值1</td>
-<td style="text-align:right">值2</td>
-<td style="text-align:center">值3</td>
-</tr>
-<tr>
-<td style="text-align:left">  值3</td>
-<td style="text-align:right">值4</td>
-<td style="text-align:center">值5</td>
-</tr>
-</tbody>
-</table>
-<p><code>`</code><br>演示：<br><img src="https://upload-images.jianshu.io/upload_images/15057824-d1de79054d05656a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h2 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h2><p>使用`包裹代码块，并声明代码块的语言，一般会带有相关的解析插件，对代码进行高亮处理，对代码进行着色。<br><img src="https://upload-images.jianshu.io/upload_images/15057824-651d2bd3d912d702.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h2 id="超链接"><a href="#超链接" class="headerlink" title="超链接"></a>超链接</h2><p>方括号显示说明，圆括号内显示网址， Markdown 编辑器会自动把它转成链接；<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[我的博客](https://blog.csdn.net/limm33)</span><br><span class="line">[编程者联盟](https://github.com/limm33/ProgrammerLeague/blob/master/ProgrammerLeague.jpg)</span><br><span class="line">[个人博客](http://www.limingming.org)</span><br></pre></td></tr></table></figure></p>
+<p>演示：<br><img src="https://upload-images.jianshu.io/upload_images/15057824-b7c5da60cf5c2f1c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h2 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h2><p>图片和超连接语法比较像，可以在方括号前面加一个！就变成了引用图片了；<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">![编程者联盟](url)</span><br><span class="line">  或者：</span><br><span class="line">![卡卡西](/Users/limm/Pictures/火影忍者/30381-106.jpg)</span><br><span class="line"> 相对路径也可以(./path/*.jpg)这种形式</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/15057824-22b87c80a5aedcf9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h2 id="分割线"><a href="#分割线" class="headerlink" title="分割线"></a>分割线</h2><p>使用 3 个以上  -  符号制作分割线：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">分割线以上内容</span><br><span class="line">------------------</span><br><span class="line">分割线以下内容</span><br></pre></td></tr></table></figure></p>
+<p>演示：<br><img src="https://upload-images.jianshu.io/upload_images/15057824-6c4c999add1e038e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h2 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h2><p>markdown可以制作表格，方法也很简单<br>例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">3 | 3 | 3</span><br><span class="line">-|-|-</span><br><span class="line">3| 3| 3</span><br></pre></td></tr></table></figure></p>
+<p>以上为最基本的结构，‘3’代表你编辑的内容，第一行为表头，但是有的编辑器 - 需要多个，有的需要至少三个，所以布局可以尽量美观：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">一列    |   第二列    | 第三列</span><br><span class="line">---------|---------------|----------</span><br><span class="line">  值1   |    值2        |   值3</span><br></pre></td></tr></table></figure></p>
+<p>演示：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/15057824-4978a862be9afaab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>可以设置对齐方式,使用  ：添加在列的左边左对齐，右边为右对齐，两边都添加就是中间对齐：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">一列    |   第二列    | 第三列</span><br><span class="line">:---------|---------------:|:----------:</span><br><span class="line">  值1   |    值2        |   值3</span><br><span class="line">  值3   |    值4        |   值5</span><br></pre></td></tr></table></figure></p>
+<p>演示：<br><img src="https://upload-images.jianshu.io/upload_images/15057824-d1de79054d05656a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
 <p>以上为总结的markdown的语法，希望对你的编写有所帮助。</p>
 <h2 id="联系我"><a href="#联系我" class="headerlink" title="联系我"></a>联系我</h2><p>原来一直在CSDN编写博客<a href="https://blog.csdn.net/limm33" target="_blank" rel="noopener">我的博客</a><br>我的微信公众号:<a href="https://github.com/limm33/ProgrammerLeague/blob/master/ProgrammerLeague.jpg" target="_blank" rel="noopener">编程者联盟</a><br>我的 <a href="http://www.limingming.org">个人博客</a><br>我的QQ群：115402375</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.limingming.org/2018/11/26/Markdown语法/" data-id="cjoxw0kf600007053362gwb4g" class="article-share-link">Share</a>
+      <a data-url="http://www.limingming.org/2018/11/26/Markdown语法/" data-id="cjoxw59cw0000af53wlip4ay2" class="article-share-link">Share</a>
       
       
     </footer>
@@ -306,7 +258,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.limingming.org/2018/11/25/mac下chromium源码编译笔记/" data-id="cjoxw0kfs00057053n141udt9" class="article-share-link">Share</a>
+      <a data-url="http://www.limingming.org/2018/11/25/mac下chromium源码编译笔记/" data-id="cjoxw59dl0004af53y75n124d" class="article-share-link">Share</a>
       
       
     </footer>
@@ -357,7 +309,7 @@
 <h1 id="创建一个基于-webpack-模板的新项目"><a href="#创建一个基于-webpack-模板的新项目" class="headerlink" title="创建一个基于 webpack 模板的新项目"></a>创建一个基于 webpack 模板的新项目</h1><p>$ vue init webpack my-project</p>
 <h1 id="这里需要进行一些配置，默认回车即可"><a href="#这里需要进行一些配置，默认回车即可" class="headerlink" title="这里需要进行一些配置，默认回车即可"></a>这里需要进行一些配置，默认回车即可</h1><p>This will install Vue 2.x version of the template.</p>
 <p>For Vue 1.x use: vue init webpack#1.0 my-project</p>
-<p>? Project name my-project<br>? Project description A Vue.js project<br>? Author runoob <a href="mailto:&#x74;&#101;&#x73;&#x74;&#x40;&#x72;&#117;&#110;&#111;&#x6f;&#98;&#46;&#x63;&#111;&#x6d;" target="_blank" rel="noopener">&#x74;&#101;&#x73;&#x74;&#x40;&#x72;&#117;&#110;&#111;&#x6f;&#98;&#46;&#x63;&#111;&#x6d;</a><br>? Vue build standalone<br>? Use ESLint to lint your code? Yes<br>? Pick an ESLint preset Standard<br>? Setup unit tests with Karma + Mocha? Yes<br>? Setup e2e tests with Nightwatch? Yes</p>
+<p>? Project name my-project<br>? Project description A Vue.js project<br>? Author runoob <a href="mailto:&#116;&#101;&#115;&#x74;&#x40;&#114;&#117;&#x6e;&#x6f;&#x6f;&#x62;&#x2e;&#x63;&#111;&#109;" target="_blank" rel="noopener">&#116;&#101;&#115;&#x74;&#x40;&#114;&#117;&#x6e;&#x6f;&#x6f;&#x62;&#x2e;&#x63;&#111;&#109;</a><br>? Vue build standalone<br>? Use ESLint to lint your code? Yes<br>? Pick an ESLint preset Standard<br>? Setup unit tests with Karma + Mocha? Yes<br>? Setup e2e tests with Nightwatch? Yes</p>
 <p>   vue-cli · Generated “my-project”.</p>
 <p>   To get started:</p>
 <pre><code>cd my-project
@@ -373,7 +325,7 @@ npm run dev
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.limingming.org/2018/11/23/Mac-OS下搭建Vue开发环境/" data-id="cjoxw0kff00027053lbr68cox" class="article-share-link">Share</a>
+      <a data-url="http://www.limingming.org/2018/11/23/Mac-OS下搭建Vue开发环境/" data-id="cjoxw59d30002af531z43p6ai" class="article-share-link">Share</a>
       
       
     </footer>
@@ -420,7 +372,7 @@ npm run dev
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.limingming.org/2018/11/23/wordpress无法连接到FTP解决/" data-id="cjoxw0kfj000470533zmisgqv" class="article-share-link">Share</a>
+      <a data-url="http://www.limingming.org/2018/11/23/wordpress无法连接到FTP解决/" data-id="cjoxw59dn0005af53g6kzbcck" class="article-share-link">Share</a>
       
       
     </footer>
@@ -470,7 +422,7 @@ npm run dev
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.limingming.org/2018/11/22/MAC-OS无法开机问题解决/" data-id="cjoxw0kfc00017053ktwczdz4" class="article-share-link">Share</a>
+      <a data-url="http://www.limingming.org/2018/11/22/MAC-OS无法开机问题解决/" data-id="cjoxw59d00001af53w97goj0d" class="article-share-link">Share</a>
       
       
     </footer>
@@ -515,7 +467,7 @@ npm run dev
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.limingming.org/2018/11/20/hello-world/" data-id="cjoxw0kfh00037053ywwag7kp" class="article-share-link">Share</a>
+      <a data-url="http://www.limingming.org/2018/11/20/hello-world/" data-id="cjoxw59d50003af53encyzx2n" class="article-share-link">Share</a>
       
       
     </footer>
