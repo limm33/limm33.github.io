@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/my-favicon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/my-favicon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/my-favicon.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/my-favicon.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Kel Lee">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="李明明的博客网站" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="作为一个自恋的程序员，我的imac升级了系统之后也变得傲娇起来，就是开机无法启动，进度条大约到五分之四的时候就卡住了，电脑也变黑屏了，之后进入了小圆圈一直转的无限循环的状态，暂时简称无限菊花状态。 问题导致原因原来mac系统为10.13.6，升级到了最新的系统之后10.14.8，虽然更新过程中没有任何问题，也能重新启动了电脑，有了新的黑色主题的imac并没有让我适应，总感觉还是原来的主题比较好，">
+<meta name="keywords" content="Welcome to my site! My name is Li MingMing(李明明). You can call me Kel. I was born in 1993s.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="苹果电脑无法开机">
+<meta property="og:url" content="http://www.limingming.org/2018/11/29/MAC-OS无法开机问题解决/index.html">
+<meta property="og:site_name" content="李明明的博客网站">
+<meta property="og:description" content="作为一个自恋的程序员，我的imac升级了系统之后也变得傲娇起来，就是开机无法启动，进度条大约到五分之四的时候就卡住了，电脑也变黑屏了，之后进入了小圆圈一直转的无限循环的状态，暂时简称无限菊花状态。 问题导致原因原来mac系统为10.13.6，升级到了最新的系统之后10.14.8，虽然更新过程中没有任何问题，也能重新启动了电脑，有了新的黑色主题的imac并没有让我适应，总感觉还是原来的主题比较好，">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-11-29T14:04:09.834Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="苹果电脑无法开机">
+<meta name="twitter:description" content="作为一个自恋的程序员，我的imac升级了系统之后也变得傲娇起来，就是开机无法启动，进度条大约到五分之四的时候就卡住了，电脑也变黑屏了，之后进入了小圆圈一直转的无限循环的状态，暂时简称无限菊花状态。 问题导致原因原来mac系统为10.13.6，升级到了最新的系统之后10.14.8，虽然更新过程中没有任何问题，也能重新启动了电脑，有了新的黑色主题的imac并没有让我适应，总感觉还是原来的主题比较好，">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.limingming.org/2018/11/29/MAC-OS无法开机问题解决/">
+
+
+
+
+
+  <title>苹果电脑无法开机 | 李明明的博客网站</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">李明明的博客网站</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Li MingMing's Personal Website</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+    <a href="https://github.com/limm33"><img style="position: absolute; top: 0; left: 0; border: 0;" src="http://limm33.github.io/source/images/forkme_left_darkblue_121621.png" alt="Fork me on GitHub"></a>
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.limingming.org/2018/11/29/MAC-OS无法开机问题解决/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="李明明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/my-photo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="李明明的博客网站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">苹果电脑无法开机</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-29T22:04:09+08:00">
+                2018-11-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>作为一个自恋的程序员，我的imac升级了系统之后也变得傲娇起来，就是开机无法启动，进度条大约到五分之四的时候就卡住了，电脑也变黑屏了，之后进入了小圆圈一直转的无限循环的状态，暂时简称无限菊花状态。</p>
+<h2 id="问题导致原因"><a href="#问题导致原因" class="headerlink" title="问题导致原因"></a>问题导致原因</h2><p>原来mac系统为10.13.6，升级到了最新的系统之后10.14.8，虽然更新过程中没有任何问题，也能重新启动了电脑，有了新的黑色主题的imac并没有让我适应，总感觉还是原来的主题比较好，再不高兴之余骂了它的主题，顺便关了机，所以它就闹起了小脾气。</p>
+<h2 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h2><ol>
+<li>首先想到的是“开机按住shift键进入安全模式，结果无法启动；</li>
+<li>所以无耻的google了一下，按照说明开机无法启动的情况下，按住电源按钮十秒；钟，当然我很坚持的按住了15秒钟，隐隐若若的听到了“嗒”的一个内部的声音，感觉有什么东西被重置了的感觉，但是也是无济于事；</li>
+<li>之后按照<a href="https://support.apple.com/zh-cn/HT201295" target="_blank" rel="noopener">重置 Mac 上的系统管理控制器 (SMC)</a>,按照配置重置了smc，结果仍然不能开机；</li>
+<li>按照<a href="https://support.apple.com/zh-cn/HT204063" target="_blank" rel="noopener">重置 Mac 上的 NVRAM 或 PRAM</a>重置了，原来电脑是静音状态，重置了之后生效了开机声音，可以听到开机声音了；</li>
+<li>经过了以上几个步骤还是不能开机，所以我觉得应该弄点大招了，所以开机使用“command+r”的方式进入恢复模式选择磁盘工具，进行急救，修复了文件权限和磁盘，当然我没有进行任何磁盘破坏的事情，我很确信是因为升级导致的无法启动，所以磁盘急救完成重新开机竟然还是不行；</li>
+<li>在磁盘急救不生效的情况下，用command+r进入恢复模式，重新安装系统，此种方式安装系统不会丢失任何文件和应用，可以放心安装，可能因为网络和时区的问题，导致无法正常安装，可以多试几次；但是重装覆盖系统之后还是不能开机。</li>
+<li>在恢复模式下磁盘工具中抹掉磁盘，当然要备份好重要数据后抹掉磁盘，然后再执行安装系统，完成后就可以正常开机了。</li>
+</ol>
+<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>以上几个步骤我在执行过程中可能没有生效，但是很多遇到这种情况的执行其中几步的时候都成功开机了，在万不得已的情况下可以抹掉磁盘重新安装系统。</p>
+<h2 id="联系我"><a href="#联系我" class="headerlink" title="联系我"></a>联系我</h2><p>原来一直在CSDN编写博客<a href="https://blog.csdn.net/limm33" target="_blank" rel="noopener">我的博客</a>，欢迎留言讨论，现在第一次更换为简书，竟然写的不是技术博客。<br>我的微信公众号:<a href="https://github.com/limm33/ProgrammerLeague/blob/master/ProgrammerLeague.jpg" target="_blank" rel="noopener">编程者联盟</a></p>
+<p>我的QQ群：115402375</p>
+
+      
+    </div>
+    <div>
+      
+          <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">
+                         <a href="http://www.limingming.org">李明明的个人网站</a>
+                         <br>
+              -------------本文结束<i class="fa fa-paw"></i>感谢阅读-------------
+              
+        </div>
+    
+</div>
+
+      
+    </div>
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/29/Java版本介绍/" rel="next" title="Java版本介绍">
+                <i class="fa fa-chevron-left"></i> Java版本介绍
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/29/Markdown语法/" rel="prev" title="Markdown语法">
+                Markdown语法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/my-photo.jpg" alt="李明明">
+            
+              <p class="site-author-name" itemprop="name">李明明</p>
+              <p class="site-description motion-element" itemprop="description">Welcome to my site! My name is Li MingMing(李明明). 欢迎来到我的博客网站，我的名字是李明明</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题导致原因"><span class="nav-number">1.</span> <span class="nav-text">问题导致原因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题解决"><span class="nav-number">2.</span> <span class="nav-text">问题解决</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#说明"><span class="nav-number">3.</span> <span class="nav-text">说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#联系我"><span class="nav-number">4.</span> <span class="nav-text">联系我</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="http://limm33.github.io/source/js/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">李明明</span>
+
+  
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_pv"></span>
+</span>
+</div>
+
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共字</span>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
