@@ -70,6 +70,48 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-mac下npm安装命令不生效" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/27/mac下npm安装命令不生效/" class="article-date">
+  <time datetime="2018-11-27T04:57:10.000Z" itemprop="datePublished">2018-11-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/27/mac下npm安装命令不生效/">mac下npm安装命令不生效</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>如果我们平时使用node进行开发的话，经常会使用node安装一些其他的命令，比如安装淘宝的cnpm（npm install -g cnpm –registry=<a href="https://registry.npm.taobao.org），安装vue（npm" target="_blank" rel="noopener">https://registry.npm.taobao.org），安装vue（npm</a> install vue）命令等等，按道理应该是命令可以直接使用的。<br> 我们在mac上安装完成nodejs，node的命令是在/usr/local/bin下面，可以直接使用，但是我们通过node命令安装的其他工具是在/usr/local/Cellar/node/10.8.0/lib/node_modules/vue-cli/bin/vue,我使用的10.8.0的版本，如果使用其他版本会在其他版本号路径下面，这个安装的路径一般都会统一创建链接到/usr/local/Cellar/node/10.8.0/bin下，所以我们把这个路径添加到我们的环境变量里面就可以了。</p>
+<h1 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h1><pre><code>添加到环境变量的一个方式，比如修改~/.bash_profile文件，添加：
+</code></pre><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">node安装包下的相关命令cnpm、node等命令</span></span><br><span class="line">export PATH="$PATH:/usr/local/Cellar/node/10.8.0/bin"</span><br></pre></td></tr></table></figure>
+<p>执行:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source ~/.bash_profile</span><br></pre></td></tr></table></figure>
+<p>就可以使用cnpm等命令了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.limingming.org/2018/11/27/mac下npm安装命令不生效/" data-id="cjp22ddr20004gw535oa8wy8m" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Markdown语法" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/11/26/Markdown语法/" class="article-date">
@@ -151,7 +193,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.limingming.org/2018/11/26/Markdown语法/" data-id="cjoxwyrj30002l353jhyecaws" class="article-share-link">Share</a>
+      <a data-url="http://www.limingming.org/2018/11/26/Markdown语法/" data-id="cjp22ddqz0002gw53tg05cj5e" class="article-share-link">Share</a>
       
       
     </footer>
@@ -263,7 +305,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.limingming.org/2018/11/25/mac下chromium源码编译笔记/" data-id="cjoxwyrk30005l353j8my2y65" class="article-share-link">Share</a>
+      <a data-url="http://www.limingming.org/2018/11/25/mac下chromium源码编译笔记/" data-id="cjp22ddre0006gw5338obj9qq" class="article-share-link">Share</a>
       
       
     </footer>
@@ -314,7 +356,7 @@
 <h1 id="创建一个基于-webpack-模板的新项目"><a href="#创建一个基于-webpack-模板的新项目" class="headerlink" title="创建一个基于 webpack 模板的新项目"></a>创建一个基于 webpack 模板的新项目</h1><p>$ vue init webpack my-project</p>
 <h1 id="这里需要进行一些配置，默认回车即可"><a href="#这里需要进行一些配置，默认回车即可" class="headerlink" title="这里需要进行一些配置，默认回车即可"></a>这里需要进行一些配置，默认回车即可</h1><p>This will install Vue 2.x version of the template.</p>
 <p>For Vue 1.x use: vue init webpack#1.0 my-project</p>
-<p>? Project name my-project<br>? Project description A Vue.js project<br>? Author runoob <a href="mailto:&#x74;&#101;&#115;&#x74;&#x40;&#x72;&#117;&#110;&#x6f;&#111;&#x62;&#46;&#x63;&#111;&#x6d;" target="_blank" rel="noopener">&#x74;&#101;&#115;&#x74;&#x40;&#x72;&#117;&#110;&#x6f;&#111;&#x62;&#46;&#x63;&#111;&#x6d;</a><br>? Vue build standalone<br>? Use ESLint to lint your code? Yes<br>? Pick an ESLint preset Standard<br>? Setup unit tests with Karma + Mocha? Yes<br>? Setup e2e tests with Nightwatch? Yes</p>
+<p>? Project name my-project<br>? Project description A Vue.js project<br>? Author runoob <a href="mailto:&#x74;&#101;&#115;&#116;&#x40;&#114;&#x75;&#x6e;&#x6f;&#111;&#x62;&#x2e;&#99;&#x6f;&#109;" target="_blank" rel="noopener">&#x74;&#101;&#115;&#116;&#x40;&#114;&#x75;&#x6e;&#x6f;&#111;&#x62;&#x2e;&#99;&#x6f;&#109;</a><br>? Vue build standalone<br>? Use ESLint to lint your code? Yes<br>? Pick an ESLint preset Standard<br>? Setup unit tests with Karma + Mocha? Yes<br>? Setup e2e tests with Nightwatch? Yes</p>
 <p>   vue-cli · Generated “my-project”.</p>
 <p>   To get started:</p>
 <pre><code>cd my-project
@@ -330,7 +372,7 @@ npm run dev
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.limingming.org/2018/11/23/Mac-OS下搭建Vue开发环境/" data-id="cjoxwyrj00001l353q5t2evlv" class="article-share-link">Share</a>
+      <a data-url="http://www.limingming.org/2018/11/23/Mac-OS下搭建Vue开发环境/" data-id="cjp22ddqw0001gw53ybyl4j4e" class="article-share-link">Share</a>
       
       
     </footer>
@@ -377,7 +419,7 @@ npm run dev
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.limingming.org/2018/11/23/wordpress无法连接到FTP解决/" data-id="cjoxwyrjm0004l353zr48vdpe" class="article-share-link">Share</a>
+      <a data-url="http://www.limingming.org/2018/11/23/wordpress无法连接到FTP解决/" data-id="cjp22ddr40005gw531bg5poi6" class="article-share-link">Share</a>
       
       
     </footer>
@@ -427,7 +469,7 @@ npm run dev
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.limingming.org/2018/11/22/MAC-OS无法开机问题解决/" data-id="cjoxwyriv0000l353n5mzrhg0" class="article-share-link">Share</a>
+      <a data-url="http://www.limingming.org/2018/11/22/MAC-OS无法开机问题解决/" data-id="cjp22ddqq0000gw53eqoxijdk" class="article-share-link">Share</a>
       
       
     </footer>
@@ -472,7 +514,7 @@ npm run dev
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.limingming.org/2018/11/20/hello-world/" data-id="cjoxwyrj50003l35382rj8f2l" class="article-share-link">Share</a>
+      <a data-url="http://www.limingming.org/2018/11/20/hello-world/" data-id="cjp22ddr00003gw53100hpdo4" class="article-share-link">Share</a>
       
       
     </footer>
@@ -513,6 +555,10 @@ npm run dev
       <ul>
         
           <li>
+            <a href="/2018/11/27/mac下npm安装命令不生效/">mac下npm安装命令不生效</a>
+          </li>
+        
+          <li>
             <a href="/2018/11/26/Markdown语法/">Markdown语法</a>
           </li>
         
@@ -526,10 +572,6 @@ npm run dev
         
           <li>
             <a href="/2018/11/23/wordpress无法连接到FTP解决/">wordpress无法连接到FTP解决</a>
-          </li>
-        
-          <li>
-            <a href="/2018/11/22/MAC-OS无法开机问题解决/">苹果电脑无法开机</a>
           </li>
         
       </ul>

@@ -5,20 +5,20 @@
   
 
   
-  <title>wordpress无法连接到FTP解决 | 李明明的个人网站</title>
+  <title>mac下npm安装命令不生效 | 李明明的个人网站</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="问题未能连接到FTP服务器IP:21 原因分析为了安全起见，wordpress会在安装插件或者主题时增加一层FTP验证 解决 修改wordpress 根目录下wp-config.php文件 1vi wordpress/wp-config.php  在文件最后添加一行内容 1define(&amp;apos;FS_METHOD&amp;apos;, &amp;quot;direct&amp;quot;);   重新试试就可以了！">
+  <meta name="description" content="介绍如果我们平时使用node进行开发的话，经常会使用node安装一些其他的命令，比如安装淘宝的cnpm（npm install -g cnpm –registry=https://registry.npm.taobao.org），安装vue（npm install vue）命令等等，按道理应该是命令可以直接使用的。 我们在mac上安装完成nodejs，node的命令是在/usr/local/bin">
 <meta name="keywords" content="Welcome to my site! My name is Li MingMing(李明明). You can call me Kel. I was born in 1993s.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="wordpress无法连接到FTP解决">
-<meta property="og:url" content="http://www.limingming.org/2018/11/23/wordpress无法连接到FTP解决/index.html">
+<meta property="og:title" content="mac下npm安装命令不生效">
+<meta property="og:url" content="http://www.limingming.org/2018/11/27/mac下npm安装命令不生效/index.html">
 <meta property="og:site_name" content="李明明的个人网站">
-<meta property="og:description" content="问题未能连接到FTP服务器IP:21 原因分析为了安全起见，wordpress会在安装插件或者主题时增加一层FTP验证 解决 修改wordpress 根目录下wp-config.php文件 1vi wordpress/wp-config.php  在文件最后添加一行内容 1define(&amp;apos;FS_METHOD&amp;apos;, &amp;quot;direct&amp;quot;);   重新试试就可以了！">
+<meta property="og:description" content="介绍如果我们平时使用node进行开发的话，经常会使用node安装一些其他的命令，比如安装淘宝的cnpm（npm install -g cnpm –registry=https://registry.npm.taobao.org），安装vue（npm install vue）命令等等，按道理应该是命令可以直接使用的。 我们在mac上安装完成nodejs，node的命令是在/usr/local/bin">
 <meta property="og:locale" content="中文">
-<meta property="og:updated_time" content="2018-11-23T02:51:10.606Z">
+<meta property="og:updated_time" content="2018-11-27T04:57:42.260Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="wordpress无法连接到FTP解决">
-<meta name="twitter:description" content="问题未能连接到FTP服务器IP:21 原因分析为了安全起见，wordpress会在安装插件或者主题时增加一层FTP验证 解决 修改wordpress 根目录下wp-config.php文件 1vi wordpress/wp-config.php  在文件最后添加一行内容 1define(&amp;apos;FS_METHOD&amp;apos;, &amp;quot;direct&amp;quot;);   重新试试就可以了！">
+<meta name="twitter:title" content="mac下npm安装命令不生效">
+<meta name="twitter:description" content="介绍如果我们平时使用node进行开发的话，经常会使用node安装一些其他的命令，比如安装淘宝的cnpm（npm install -g cnpm –registry=https://registry.npm.taobao.org），安装vue（npm install vue）命令等等，按道理应该是命令可以直接使用的。 我们在mac上安装完成nodejs，node的命令是在/usr/local/bin">
   
     <link rel="alternate" href="/atom.xml" title="李明明的个人网站" type="application/atom+xml">
   
@@ -69,10 +69,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-wordpress无法连接到FTP解决" class="article article-type-post" itemscope="" itemprop="blogPost">
+        <section id="main"><article id="post-mac下npm安装命令不生效" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/11/23/wordpress无法连接到FTP解决/" class="article-date">
-  <time datetime="2018-11-23T02:50:15.000Z" itemprop="datePublished">2018-11-23</time>
+    <a href="/2018/11/27/mac下npm安装命令不生效/" class="article-date">
+  <time datetime="2018-11-27T04:57:10.000Z" itemprop="datePublished">2018-11-27</time>
 </a>
     
   </div>
@@ -83,7 +83,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      wordpress无法连接到FTP解决
+      mac下npm安装命令不生效
     </h1>
   
 
@@ -91,22 +91,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><pre><code>未能连接到FTP服务器IP:21
-</code></pre><h1 id="原因分析"><a href="#原因分析" class="headerlink" title="原因分析"></a>原因分析</h1><p>为了安全起见，wordpress会在安装插件或者主题时增加一层FTP验证</p>
-<h1 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h1><ol>
-<li><p>修改wordpress 根目录下wp-config.php文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi wordpress/wp-config.php</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在文件最后添加一行内容</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">define(&apos;FS_METHOD&apos;, &quot;direct&quot;);</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>重新试试就可以了！</p>
+        <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>如果我们平时使用node进行开发的话，经常会使用node安装一些其他的命令，比如安装淘宝的cnpm（npm install -g cnpm –registry=<a href="https://registry.npm.taobao.org），安装vue（npm" target="_blank" rel="noopener">https://registry.npm.taobao.org），安装vue（npm</a> install vue）命令等等，按道理应该是命令可以直接使用的。<br> 我们在mac上安装完成nodejs，node的命令是在/usr/local/bin下面，可以直接使用，但是我们通过node命令安装的其他工具是在/usr/local/Cellar/node/10.8.0/lib/node_modules/vue-cli/bin/vue,我使用的10.8.0的版本，如果使用其他版本会在其他版本号路径下面，这个安装的路径一般都会统一创建链接到/usr/local/Cellar/node/10.8.0/bin下，所以我们把这个路径添加到我们的环境变量里面就可以了。</p>
+<h1 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h1><pre><code>添加到环境变量的一个方式，比如修改~/.bash_profile文件，添加：
+</code></pre><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">node安装包下的相关命令cnpm、node等命令</span></span><br><span class="line">export PATH="$PATH:/usr/local/Cellar/node/10.8.0/bin"</span><br></pre></td></tr></table></figure>
+<p>执行:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source ~/.bash_profile</span><br></pre></td></tr></table></figure>
+<p>就可以使用cnpm等命令了。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.limingming.org/2018/11/23/wordpress无法连接到FTP解决/" data-id="cjp22ddr40005gw531bg5poi6" class="article-share-link">Share</a>
+      <a data-url="http://www.limingming.org/2018/11/27/mac下npm安装命令不生效/" data-id="cjp22ddr20004gw535oa8wy8m" class="article-share-link">Share</a>
       
       
     </footer>
@@ -115,19 +110,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2018/11/23/Mac-OS下搭建Vue开发环境/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Mac OS下搭建Vue开发环境
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/11/22/MAC-OS无法开机问题解决/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2018/11/26/Markdown语法/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">苹果电脑无法开机</div>
+      <div class="article-nav-title">Markdown语法</div>
     </a>
   
 </nav>
