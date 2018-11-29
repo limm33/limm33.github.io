@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="中文">
+<html class="theme-next muse use-motion" lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -74,7 +74,7 @@
 
 
 
-  <link rel="alternate" href="/atom.xml" title="李明明的个人网站" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="李明明的博客网站" type="application/atom+xml">
 
 
 
@@ -86,9 +86,9 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="mac下chromium源码编译笔记">
 <meta property="og:url" content="http://www.limingming.org/2018/11/25/mac下chromium源码编译笔记/index.html">
-<meta property="og:site_name" content="李明明的个人网站">
+<meta property="og:site_name" content="李明明的博客网站">
 <meta property="og:description" content="作者 李明明 转载请注明出处： https://www.jianshu.com/p/654741524cc4背景因为项目需要，需要对chromium进行了解，对chromium进行编译，在官网上可以通过：网址，找到各个平台相关详细的介绍，介绍文档这个是mac下编译chromium的讲解，本篇文章是针对于官方介绍文档的中文版，对其中编译过程中遇到的问题进行记录。 因为国内特殊的原因，谷歌相关的网络">
-<meta property="og:locale" content="中文">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/15057824-1814a4b3dc7e51d9?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/15057824-da562f678121c99b.gif?imageMogr2/auto-orient/strip">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/15057824-d28d444c7ae5b57e?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
@@ -121,7 +121,7 @@
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
-      author: 'Author'
+      author: '博主'
     },
     algolia: {
       applicationID: '',
@@ -141,7 +141,7 @@
 
 
 
-  <title>mac下chromium源码编译笔记 | 李明明的个人网站</title>
+  <title>mac下chromium源码编译笔记 | 李明明的博客网站</title>
   
 
 
@@ -153,7 +153,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="中文">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -171,7 +171,7 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">李明明的个人网站</span>
+        <span class="site-title">李明明的博客网站</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -201,7 +201,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
-            Home
+            首页
           </a>
         </li>
       
@@ -211,7 +211,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
-            Archives
+            归档
           </a>
         </li>
       
@@ -227,7 +227,7 @@
 
  </div>
     </header>
-
+    <a href="https://github.com/limm33"><img style="position: absolute; top: 0; left: 0; border: 0;" src="http://limm33.github.io/source/images/forkme_left_darkblue_121621.png" alt="Fork me on GitHub"></a>
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
@@ -257,7 +257,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="李明明的个人网站">
+      <meta itemprop="name" content="李明明的博客网站">
     </span>
 
     
@@ -275,9 +275,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-25T00:34:56+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-25T00:34:56+08:00">
                 2018-11-25
               </time>
             
@@ -394,6 +394,22 @@
 
       
     </div>
+    <div>
+      
+          <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">
+                         <a href="http://www.limingming.org">李明明的个人网站</a>
+                         <br>
+              -------------本文结束<i class="fa fa-paw"></i>感谢阅读-------------
+              
+        </div>
+    
+</div>
+
+      
+    </div>
+
     
     
     
@@ -481,10 +497,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
+            文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
+            站点概览
           </li>
         </ul>
       
@@ -504,8 +520,8 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">7</span>
-                  <span class="site-state-item-name">posts</span>
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">日志</span>
                 </a>
               </div>
             
@@ -568,7 +584,8 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <script async src="http://limm33.github.io/source/js/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -577,19 +594,19 @@
   
 </div>
 
-
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
-
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_pv"></span>
+</span>
+</div>
 
 
 
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共4.2k字</span>
+</div>
 
         
 
