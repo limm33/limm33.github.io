@@ -413,214 +413,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.limingming.org/2018/11/29/Java/Java版本介绍/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="李明明">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/my-photo.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="李明明的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/29/Java/Java版本介绍/" itemprop="url">未命名</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-29T22:04:09+08:00">
-                2018-11-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <hr>
-<p>title: Java版本介绍<br>作者: 李明明<br>网站: ‘<a href="http://www.limingming.org&#39;">http://www.limingming.org&#39;</a><br>date: 2018-11-29 18:40:40<br>tags:</p>
-<h2 id="copyright-true"><a href="#copyright-true" class="headerlink" title="copyright: true"></a>copyright: true</h2><p>作者: 李明明<br><a href="http://limingming.org/index.php/2018/11/30/jdk-and-openjdk-version/" target="_blank" rel="noopener">http://limingming.org/index.php/2018/11/30/jdk-and-openjdk-version/</a></p>
-<h1 id="道听途说"><a href="#道听途说" class="headerlink" title="道听途说"></a>道听途说</h1><p>最近浪潮公司内部除了持之以恒的宣扬“奋进者精神”之外，可能最大的一件事情就是JDK要收费了，观望着是不是要更换为openJDK，9月20多号Oracle发布了java 11，同时也发布后续更新策略，那是怎么收费的呢？</p>
-<h1 id="追根溯源"><a href="#追根溯源" class="headerlink" title="追根溯源"></a>追根溯源</h1><p>oracle jdk 和open jdk有什么区别？</p>
-<ol>
-<li>Java 11授权使用BCL协议，没有个人、商业版了，也就是说，如果要使用的必须要付出代价，代价就是Money，不禁想说一句：万恶的资本主义。</li>
-<li>Open jdk使用GPL协议</li>
-</ol>
-<p>两种协议有什么区别呢？<br>首先BCL不是开源协议，简要来介绍BCL协议的话，就是你一点也不能更改我的jdk，也不能基于我开发周边类库发布，如果基于我这个BCL开发，需要判断你是个人版还是商业版，再收钱！<br>GPL是开源协议，JDK是可以更改的，基于这个GPL开发的东西也是属于GPL协议的，也要开源出来。</p>
-<p>补充：<br>由于历史原因，OpenJDK是JDK的开放源码版本，也就是上面我们说的GPL协议的，但是到了JDK7的时候OpenJDK已经为jdk的主干开发，oracle jdk是在openjdk基础上进行封板发布的，所以大部分的源代码是相同的，只不过其中有部分少量的源代码被替换掉，使用JRL发布，以上jdk7的过程中就产生了微妙的变化，openjdk 是GPL协议的，完全可以商用，但是JRL只允许个人使用不允许商用。</p>
-<h1 id="版本更迭"><a href="#版本更迭" class="headerlink" title="版本更迭"></a>版本更迭</h1><p>大体梳理一下JDK版本更迭过程中产生了那些新特性，也借此机会梳理一下自己JAVA的知识脉络。</p>
-<h2 id="JDK5"><a href="#JDK5" class="headerlink" title="JDK5"></a>JDK5</h2><ol>
-<li><p>泛型“</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ArrayList list=<span class="keyword">new</span> ArrayList()</span><br><span class="line">------&gt;</span><br><span class="line">ArrayList&lt;Integer&gt;list=<span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>枚举</p>
-</li>
-<li><p>静态导入</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> java.lang.System.out</span><br><span class="line">```  </span><br><span class="line"></span><br><span class="line"><span class="number">3</span>. 可变参数（Varargs）</span><br><span class="line"><span class="number">4</span>. 内省（Introspector），主要用于操作JavaBean中的属性，通过getXxx/setXxx。一般的做法是通过类Introspector来获取某个对象的BeanInfo信息，然后通过BeanInfo来获取属性的描述器（PropertyDescriptor），通过这个属性描述器就可以获取某个属性对应的getter/setter方法，然后我们就可以通过反射机制来调用这些方法。</span><br><span class="line">泛型(Generic)（包括通配类型/边界类型等）</span><br><span class="line"><span class="number">5</span>. For-Each循环  </span><br><span class="line"></span><br><span class="line">```java</span><br><span class="line">i=<span class="number">0</span>;i&lt;a.length;i++</span><br><span class="line">------------&gt;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i:a)&#123;......&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>注解</p>
-</li>
-<li>协变返回类型：实际返回类型可以是要求的返回类型的一个子类型 </li>
-<li>自动装箱拆箱：  </li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i=list.get(<span class="number">0</span>).parseInt();</span><br><span class="line">--------&gt;</span><br><span class="line"><span class="keyword">int</span> i=list.get(<span class="number">0</span>);</span><br></pre></td></tr></table></figure>
-<p>我们经常阅读的编程思想也是在jdk5的版本上进行编写的，可惜作者忙别的事情去了，没有更新了，可能觉得java更新至此也应该很全面了吧。</p>
-<h2 id="JDK6"><a href="#JDK6" class="headerlink" title="JDK6"></a>JDK6</h2><ol>
-<li>AWT新增加了两个类:Desktop和SystemTray，其中前者用来通过系统默认程序来执行一个操作，如使用默认浏览器浏览指定的URL,用默认邮件客户端给指定的邮箱发邮件,用默认应用程序打开或编辑文件(比如,用记事本打开以txt为后缀名的文件),用系统默认的打印机打印文档等。后者可以用来在系统托盘区创建一个托盘程序。</li>
-<li>使用JAXB2来实现对象与XML之间的映射，可以将一个Java对象转变成为XML格式，反之亦然 </li>
-<li>StAX，一种利用拉模式解析(pull-parsing)XML文档的API。类似于SAX，也基于事件驱动模型。之所以将StAX加入到JAXP家族，是因为JDK6中的JAXB2和JAX-WS 2.0中都会用StAX。 </li>
-<li>使用Compiler API，动态编译Java源文件，如JSP编译引擎就是动态的，所以修改后无需重启服务器。（刚知道是从这里开始可以动态编译的） </li>
-<li>轻量级Http Server API，据此可以构建自己的嵌入式HttpServer,它支持Http和Https协议。 </li>
-<li>插入式注解处理API(PluggableAnnotation Processing API) </li>
-<li>提供了Console类用以开发控制台程序，位于java.io包中。据此可方便与Windows下的cmd或Linux下的Terminal等交互。 </li>
-<li>对脚本语言的支持如: ruby,groovy, javascript </li>
-<li>Common Annotations，原是J2EE 5.0规范的一部分，现在把它的一部分放到了J2SE 6.0中 </li>
-<li>嵌入式数据库 Derby</li>
-<li>增强的for循环语句      </li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Integer[] numbers = computeNumbers();</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i &lt; numbers.length ; i++)</span><br><span class="line">sum += numbers[i];</span><br><span class="line">||</span><br><span class="line"><span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> ( <span class="keyword">int</span> number: computeNumbers() )</span><br><span class="line">sum += number;</span><br></pre></td></tr></table></figure>
-<ol start="12">
-<li>监视和管理<br>Java SE 6中对内存泄漏增强了分析以及诊断能力。当遇到java.lang.OutOfMemory异常的时候，可以得到一个完整的堆栈信息，<br>并且当堆已经满了的时候，会产生一个Log文件来记录这个致命错误。另外，JVM还添加了一个选项，允许你在堆满的时候运行脚本。</li>
-<li>插入式注解处理<br>插入式注解处理API(JSR 269)提供一套标准API来处理Annotations</li>
-<li>安全性</li>
-</ol>
-<p>如果你细细想来jdk6用到的新特性的确很少</p>
-<h2 id="JDK7"><a href="#JDK7" class="headerlink" title="JDK7"></a>JDK7</h2><ol>
-<li>对Java集合（Collections）的增强支持，可直接采用[]、{}的形式存入对象，采用[]的形式按照索引、键值来获取集合中的对象。如：</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt;list=[“item1”,”item2”];<span class="comment">//存</span></span><br><span class="line">Stringitem=list[<span class="number">0</span>];<span class="comment">//直接取</span></span><br><span class="line">Set&lt;String&gt;set=&#123;“item1”,”item2”,”item3”&#125;;<span class="comment">//存</span></span><br><span class="line">Map&lt;String,Integer&gt; map=&#123;“key1”:<span class="number">1</span>,”key2”:<span class="number">2</span>&#125;;<span class="comment">//存</span></span><br><span class="line">Intvalue=map[“key1”];</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>在Switch中可用String </li>
-<li>数值可加下划线用作分隔符（编译时自动被忽略） </li>
-<li><p>支持二进制数字，如：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> binary= <span class="number">0b1001_1001</span>; </span><br><span class="line">```  </span><br><span class="line"></span><br><span class="line"><span class="number">5</span>. 简化了可变参数方法的调用 </span><br><span class="line"><span class="number">6</span>. 调用泛型类的构造方法时，可以省去泛型参数，编译器会自动判断。      </span><br><span class="line"><span class="number">7</span>. Boolean类型反转，空指针安全,参与位运算 </span><br><span class="line"><span class="number">8</span>. <span class="keyword">char</span>类型的equals方法:   </span><br><span class="line"></span><br><span class="line">```java</span><br><span class="line">booleanCharacter.equalsIgnoreCase(<span class="keyword">char</span> ch1, <span class="keyword">char</span> ch2)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>安全的加减乘除:   </p>
-</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Math.safeToInt(longv); Math.safeNegate(<span class="keyword">int</span> v); Math.safeSubtract(<span class="keyword">long</span> v1, <span class="keyword">int</span> v2);Math.safeMultiply(<span class="keyword">int</span> v1, <span class="keyword">int</span> v2);</span><br></pre></td></tr></table></figure>
-<ol start="10">
-<li>Map集合支持并发请求，注HashTable是线程安全的，Map是非线程安全的。但此处更新使得其也支持并发。另外，Map对象可这样定义：  </li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Map map = &#123;name:”xxx”,age:<span class="number">18</span>&#125;;</span><br></pre></td></tr></table></figure>
-<h2 id="JDK8"><a href="#JDK8" class="headerlink" title="JDK8"></a>JDK8</h2><ol>
-<li>接口的默认方法：即接口中可以声明一个非抽象的方法做为默认的实现，但只能声明一个，且在方法的返回类型前要加上“default”关键字。<br>2.Lambda 表达式：是对匿名比较器的简化，如： </li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Collections.sort(names,(String a, String b) -&gt; &#123;    returnb.compareTo(a);&#125;);</span><br></pre></td></tr></table></figure>
-<p>对于函数体只有一行代码的，你可以去掉大括号{}以及return关键字。如：   </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Collections.sort(names,(String a, String b) -&gt; b.compareTo(a));</span><br><span class="line">```  </span><br><span class="line"></span><br><span class="line">或：</span><br><span class="line">```java</span><br><span class="line">Collections.sort(names, (a, b) -&gt; b.compareTo(a));</span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li>函数式接口：是指仅仅只包含一个抽象方法的接口，要加@FunctionalInterface注解 </li>
-<li>使用 :: 关键字来传递方法或者构造函数引用 </li>
-<li>多重注解 </li>
-<li>还增加了很多与函数式接口类似的接口以及与Map相关的API等</li>
-</ol>
-<p>其实以上的只不过是对于各个版本功能的简要摘录，如果想要详细了解的话可以看官方文档，平时用到的就是到jdk8，从jdk5到现在用jdk8，jdk9、和10还从来没有接触过。</p>
-<p>最后附上相关项目的地址：</p>
-<ol>
-<li><a href="http://openjdk.java.net/" target="_blank" rel="noopener">OpenJDK官网:http://openjdk.java.net/</a>  </li>
-<li><a href="http://openjdk.java.net/" target="_blank" rel="noopener">OpenJDK源码库：http://hg.openjdk.java.net/</a>  </li>
-<li><a href="http://openjdk.java.net/" target="_blank" rel="noopener">OpenJDK源码库：http://hg.openjdk.java.net/</a> </li>
-</ol>
-
-          
-        
-      
-    </div>
-    <div>
-      
-    </div>
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.limingming.org/2018/11/29/杂谈/MAC-OS无法开机问题解决/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -706,6 +498,212 @@
 <h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>以上几个步骤我在执行过程中可能没有生效，但是很多遇到这种情况的执行其中几步的时候都成功开机了，在万不得已的情况下可以抹掉磁盘重新安装系统。</p>
 <h2 id="联系我"><a href="#联系我" class="headerlink" title="联系我"></a>联系我</h2><p>原来一直在CSDN编写博客<a href="https://blog.csdn.net/limm33" target="_blank" rel="noopener">我的博客</a>，欢迎留言讨论，现在第一次更换为简书，竟然写的不是技术博客。<br>我的微信公众号:<a href="https://github.com/limm33/ProgrammerLeague/blob/master/ProgrammerLeague.jpg" target="_blank" rel="noopener">编程者联盟</a></p>
 <p>我的QQ群：115402375</p>
+
+          
+        
+      
+    </div>
+    <div>
+      
+    </div>
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.limingming.org/2018/11/29/Java/Java版本介绍/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="李明明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/my-photo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="李明明的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/29/Java/Java版本介绍/" itemprop="url">JDK及openJDK版本更迭</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-29T18:40:40+08:00">
+                2018-11-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>作者: 李明明<br><a href="http://limingming.org/index.php/2018/11/30/jdk-and-openjdk-version/" target="_blank" rel="noopener">http://limingming.org/index.php/2018/11/30/jdk-and-openjdk-version/</a></p>
+<h1 id="道听途说"><a href="#道听途说" class="headerlink" title="道听途说"></a>道听途说</h1><p>最近浪潮公司内部除了持之以恒的宣扬“奋进者精神”之外，可能最大的一件事情就是JDK要收费了，观望着是不是要更换为openJDK，9月20多号Oracle发布了java 11，同时也发布后续更新策略，那是怎么收费的呢？</p>
+<h1 id="追根溯源"><a href="#追根溯源" class="headerlink" title="追根溯源"></a>追根溯源</h1><p>oracle jdk 和open jdk有什么区别？</p>
+<ol>
+<li>Java 11授权使用BCL协议，没有个人、商业版了，也就是说，如果要使用的必须要付出代价，代价就是Money，不禁想说一句：万恶的资本主义。</li>
+<li>Open jdk使用GPL协议</li>
+</ol>
+<p>两种协议有什么区别呢？<br>首先BCL不是开源协议，简要来介绍BCL协议的话，就是你一点也不能更改我的jdk，也不能基于我开发周边类库发布，如果基于我这个BCL开发，需要判断你是个人版还是商业版，再收钱！<br>GPL是开源协议，JDK是可以更改的，基于这个GPL开发的东西也是属于GPL协议的，也要开源出来。</p>
+<p>补充：<br>由于历史原因，OpenJDK是JDK的开放源码版本，也就是上面我们说的GPL协议的，但是到了JDK7的时候OpenJDK已经为jdk的主干开发，oracle jdk是在openjdk基础上进行封板发布的，所以大部分的源代码是相同的，只不过其中有部分少量的源代码被替换掉，使用JRL发布，以上jdk7的过程中就产生了微妙的变化，openjdk 是GPL协议的，完全可以商用，但是JRL只允许个人使用不允许商用。</p>
+<h1 id="版本更迭"><a href="#版本更迭" class="headerlink" title="版本更迭"></a>版本更迭</h1><p>大体梳理一下JDK版本更迭过程中产生了那些新特性，也借此机会梳理一下自己JAVA的知识脉络。</p>
+<h2 id="JDK5"><a href="#JDK5" class="headerlink" title="JDK5"></a>JDK5</h2><ol>
+<li><p>泛型“</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ArrayList list=<span class="keyword">new</span> ArrayList()</span><br><span class="line">------&gt;</span><br><span class="line">ArrayList&lt;Integer&gt;list=<span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>枚举</p>
+</li>
+<li><p>静态导入</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> java.lang.System.out</span><br><span class="line">```  </span><br><span class="line"></span><br><span class="line"><span class="number">3</span>. 可变参数（Varargs）</span><br><span class="line"><span class="number">4</span>. 内省（Introspector），主要用于操作JavaBean中的属性，通过getXxx/setXxx。一般的做法是通过类Introspector来获取某个对象的BeanInfo信息，然后通过BeanInfo来获取属性的描述器（PropertyDescriptor），通过这个属性描述器就可以获取某个属性对应的getter/setter方法，然后我们就可以通过反射机制来调用这些方法。</span><br><span class="line">泛型(Generic)（包括通配类型/边界类型等）</span><br><span class="line"><span class="number">5</span>. For-Each循环  </span><br><span class="line"></span><br><span class="line">```java</span><br><span class="line">i=<span class="number">0</span>;i&lt;a.length;i++</span><br><span class="line">------------&gt;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i:a)&#123;......&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>注解</p>
+</li>
+<li>协变返回类型：实际返回类型可以是要求的返回类型的一个子类型 </li>
+<li>自动装箱拆箱：  </li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i=list.get(<span class="number">0</span>).parseInt();</span><br><span class="line">--------&gt;</span><br><span class="line"><span class="keyword">int</span> i=list.get(<span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+<p>我们经常阅读的编程思想也是在jdk5的版本上进行编写的，可惜作者忙别的事情去了，没有更新了，可能觉得java更新至此也应该很全面了吧。</p>
+<h2 id="JDK6"><a href="#JDK6" class="headerlink" title="JDK6"></a>JDK6</h2><ol>
+<li>AWT新增加了两个类:Desktop和SystemTray，其中前者用来通过系统默认程序来执行一个操作，如使用默认浏览器浏览指定的URL,用默认邮件客户端给指定的邮箱发邮件,用默认应用程序打开或编辑文件(比如,用记事本打开以txt为后缀名的文件),用系统默认的打印机打印文档等。后者可以用来在系统托盘区创建一个托盘程序。</li>
+<li>使用JAXB2来实现对象与XML之间的映射，可以将一个Java对象转变成为XML格式，反之亦然 </li>
+<li>StAX，一种利用拉模式解析(pull-parsing)XML文档的API。类似于SAX，也基于事件驱动模型。之所以将StAX加入到JAXP家族，是因为JDK6中的JAXB2和JAX-WS 2.0中都会用StAX。 </li>
+<li>使用Compiler API，动态编译Java源文件，如JSP编译引擎就是动态的，所以修改后无需重启服务器。（刚知道是从这里开始可以动态编译的） </li>
+<li>轻量级Http Server API，据此可以构建自己的嵌入式HttpServer,它支持Http和Https协议。 </li>
+<li>插入式注解处理API(PluggableAnnotation Processing API) </li>
+<li>提供了Console类用以开发控制台程序，位于java.io包中。据此可方便与Windows下的cmd或Linux下的Terminal等交互。 </li>
+<li>对脚本语言的支持如: ruby,groovy, javascript </li>
+<li>Common Annotations，原是J2EE 5.0规范的一部分，现在把它的一部分放到了J2SE 6.0中 </li>
+<li>嵌入式数据库 Derby</li>
+<li>增强的for循环语句      </li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Integer[] numbers = computeNumbers();</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i &lt; numbers.length ; i++)</span><br><span class="line">sum += numbers[i];</span><br><span class="line">||</span><br><span class="line"><span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> ( <span class="keyword">int</span> number: computeNumbers() )</span><br><span class="line">sum += number;</span><br></pre></td></tr></table></figure>
+<ol start="12">
+<li>监视和管理<br>Java SE 6中对内存泄漏增强了分析以及诊断能力。当遇到java.lang.OutOfMemory异常的时候，可以得到一个完整的堆栈信息，<br>并且当堆已经满了的时候，会产生一个Log文件来记录这个致命错误。另外，JVM还添加了一个选项，允许你在堆满的时候运行脚本。</li>
+<li>插入式注解处理<br>插入式注解处理API(JSR 269)提供一套标准API来处理Annotations</li>
+<li>安全性</li>
+</ol>
+<p>如果你细细想来jdk6用到的新特性的确很少</p>
+<h2 id="JDK7"><a href="#JDK7" class="headerlink" title="JDK7"></a>JDK7</h2><ol>
+<li>对Java集合（Collections）的增强支持，可直接采用[]、{}的形式存入对象，采用[]的形式按照索引、键值来获取集合中的对象。如：</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt;list=[“item1”,”item2”];<span class="comment">//存</span></span><br><span class="line">Stringitem=list[<span class="number">0</span>];<span class="comment">//直接取</span></span><br><span class="line">Set&lt;String&gt;set=&#123;“item1”,”item2”,”item3”&#125;;<span class="comment">//存</span></span><br><span class="line">Map&lt;String,Integer&gt; map=&#123;“key1”:<span class="number">1</span>,”key2”:<span class="number">2</span>&#125;;<span class="comment">//存</span></span><br><span class="line">Intvalue=map[“key1”];</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>在Switch中可用String </li>
+<li>数值可加下划线用作分隔符（编译时自动被忽略） </li>
+<li><p>支持二进制数字，如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> binary= <span class="number">0b1001_1001</span>; </span><br><span class="line">```  </span><br><span class="line"></span><br><span class="line"><span class="number">5</span>. 简化了可变参数方法的调用 </span><br><span class="line"><span class="number">6</span>. 调用泛型类的构造方法时，可以省去泛型参数，编译器会自动判断。      </span><br><span class="line"><span class="number">7</span>. Boolean类型反转，空指针安全,参与位运算 </span><br><span class="line"><span class="number">8</span>. <span class="keyword">char</span>类型的equals方法:   </span><br><span class="line"></span><br><span class="line">```java</span><br><span class="line">booleanCharacter.equalsIgnoreCase(<span class="keyword">char</span> ch1, <span class="keyword">char</span> ch2)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安全的加减乘除:   </p>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Math.safeToInt(longv); Math.safeNegate(<span class="keyword">int</span> v); Math.safeSubtract(<span class="keyword">long</span> v1, <span class="keyword">int</span> v2);Math.safeMultiply(<span class="keyword">int</span> v1, <span class="keyword">int</span> v2);</span><br></pre></td></tr></table></figure>
+<ol start="10">
+<li>Map集合支持并发请求，注HashTable是线程安全的，Map是非线程安全的。但此处更新使得其也支持并发。另外，Map对象可这样定义：  </li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Map map = &#123;name:”xxx”,age:<span class="number">18</span>&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="JDK8"><a href="#JDK8" class="headerlink" title="JDK8"></a>JDK8</h2><ol>
+<li>接口的默认方法：即接口中可以声明一个非抽象的方法做为默认的实现，但只能声明一个，且在方法的返回类型前要加上“default”关键字。<br>2.Lambda 表达式：是对匿名比较器的简化，如： </li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Collections.sort(names,(String a, String b) -&gt; &#123;    returnb.compareTo(a);&#125;);</span><br></pre></td></tr></table></figure>
+<p>对于函数体只有一行代码的，你可以去掉大括号{}以及return关键字。如：   </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Collections.sort(names,(String a, String b) -&gt; b.compareTo(a));</span><br><span class="line">```  </span><br><span class="line"></span><br><span class="line">或：</span><br><span class="line">```java</span><br><span class="line">Collections.sort(names, (a, b) -&gt; b.compareTo(a));</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>函数式接口：是指仅仅只包含一个抽象方法的接口，要加@FunctionalInterface注解 </li>
+<li>使用 :: 关键字来传递方法或者构造函数引用 </li>
+<li>多重注解 </li>
+<li>还增加了很多与函数式接口类似的接口以及与Map相关的API等</li>
+</ol>
+<p>其实以上的只不过是对于各个版本功能的简要摘录，如果想要详细了解的话可以看官方文档，平时用到的就是到jdk8，从jdk5到现在用jdk8，jdk9、和10还从来没有接触过。</p>
+<p>最后附上相关项目的地址：</p>
+<ol>
+<li><a href="http://openjdk.java.net/" target="_blank" rel="noopener">OpenJDK官网:http://openjdk.java.net/</a>  </li>
+<li><a href="http://openjdk.java.net/" target="_blank" rel="noopener">OpenJDK源码库：http://hg.openjdk.java.net/</a>  </li>
+<li><a href="http://openjdk.java.net/" target="_blank" rel="noopener">OpenJDK源码库：http://hg.openjdk.java.net/</a> </li>
+</ol>
 
           
         
@@ -1176,7 +1174,7 @@
 <h1 id="创建一个基于-webpack-模板的新项目"><a href="#创建一个基于-webpack-模板的新项目" class="headerlink" title="创建一个基于 webpack 模板的新项目"></a>创建一个基于 webpack 模板的新项目</h1><p>$ vue init webpack my-project</p>
 <h1 id="这里需要进行一些配置，默认回车即可"><a href="#这里需要进行一些配置，默认回车即可" class="headerlink" title="这里需要进行一些配置，默认回车即可"></a>这里需要进行一些配置，默认回车即可</h1><p>This will install Vue 2.x version of the template.</p>
 <p>For Vue 1.x use: vue init webpack#1.0 my-project</p>
-<p>? Project name my-project<br>? Project description A Vue.js project<br>? Author runoob <a href="mailto:&#116;&#x65;&#x73;&#116;&#64;&#x72;&#117;&#x6e;&#111;&#x6f;&#x62;&#46;&#99;&#111;&#x6d;" target="_blank" rel="noopener">&#116;&#x65;&#x73;&#116;&#64;&#x72;&#117;&#x6e;&#111;&#x6f;&#x62;&#46;&#99;&#111;&#x6d;</a><br>? Vue build standalone<br>? Use ESLint to lint your code? Yes<br>? Pick an ESLint preset Standard<br>? Setup unit tests with Karma + Mocha? Yes<br>? Setup e2e tests with Nightwatch? Yes</p>
+<p>? Project name my-project<br>? Project description A Vue.js project<br>? Author runoob <a href="mailto:&#x74;&#101;&#115;&#x74;&#64;&#x72;&#x75;&#x6e;&#111;&#111;&#x62;&#x2e;&#99;&#111;&#x6d;" target="_blank" rel="noopener">&#x74;&#101;&#115;&#x74;&#64;&#x72;&#x75;&#x6e;&#111;&#111;&#x62;&#x2e;&#99;&#111;&#x6d;</a><br>? Vue build standalone<br>? Use ESLint to lint your code? Yes<br>? Pick an ESLint preset Standard<br>? Setup unit tests with Karma + Mocha? Yes<br>? Setup e2e tests with Nightwatch? Yes</p>
 <p>   vue-cli · Generated “my-project”.</p>
 <p>   To get started:</p>
 <pre><code>cd my-project
@@ -1478,7 +1476,7 @@ npm run dev
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共6.1k字</span>
+  <span class="post-count">博客全站共6k字</span>
 </div>
 
         
