@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/my-favicon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/my-favicon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/my-favicon.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/my-favicon.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Kel Lee">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="李明明的博客" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="作者 李明明 转载请注明出处： http://limingming.org/index.php/2018/11/28/mac-compile-chromium/背景因为项目需要，需要对chromium进行了解，对chromium进行编译，在官网上可以通过：网址，找到各个平台相关详细的介绍，介绍文档这个是mac下编译chromium的讲解，本篇文章是针对于官方介绍文档的中文版，对其中编译过程中遇到">
+<meta name="keywords" content="Welcome to my site! My name is Li MingMing(李明明). You can call me Kel. I was born in 1993s.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mac下chromium源码编译笔记">
+<meta property="og:url" content="http://www.limingming.org/2018/11/25/开发工具/mac下chromium源码编译笔记/index.html">
+<meta property="og:site_name" content="李明明的博客">
+<meta property="og:description" content="作者 李明明 转载请注明出处： http://limingming.org/index.php/2018/11/28/mac-compile-chromium/背景因为项目需要，需要对chromium进行了解，对chromium进行编译，在官网上可以通过：网址，找到各个平台相关详细的介绍，介绍文档这个是mac下编译chromium的讲解，本篇文章是针对于官方介绍文档的中文版，对其中编译过程中遇到">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/15057824-1814a4b3dc7e51d9?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/15057824-da562f678121c99b.gif?imageMogr2/auto-orient/strip">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/15057824-d28d444c7ae5b57e?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/15057824-ba455d67a9a2e1d4.gif?imageMogr2/auto-orient/strip">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/15057824-fd71f81bf5dca49e.gif?imageMogr2/auto-orient/strip">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/15057824-8dd7b3dd7fe9283a.gif?imageMogr2/auto-orient/strip">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/15057824-d9fbdb0ef7494bfe?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/15057824-fe94110ae63bfa66.gif?imageMogr2/auto-orient/strip">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/15057824-c10cfdf813cff587.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/15057824-c4f169c3af11b97e?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/15057824-e990f045c1f1bea8.gif?imageMogr2/auto-orient/strip">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/15057824-1463f3718187a5ec.gif?imageMogr2/auto-orient/strip">
+<meta property="og:updated_time" content="2018-11-30T15:12:59.313Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="mac下chromium源码编译笔记">
+<meta name="twitter:description" content="作者 李明明 转载请注明出处： http://limingming.org/index.php/2018/11/28/mac-compile-chromium/背景因为项目需要，需要对chromium进行了解，对chromium进行编译，在官网上可以通过：网址，找到各个平台相关详细的介绍，介绍文档这个是mac下编译chromium的讲解，本篇文章是针对于官方介绍文档的中文版，对其中编译过程中遇到">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/15057824-1814a4b3dc7e51d9?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.limingming.org/2018/11/25/开发工具/mac下chromium源码编译笔记/">
+
+
+
+
+
+  <title>mac下chromium源码编译笔记 | 李明明的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">李明明的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Li MingMing's blog site</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+    <a href="https://github.com/limm33"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://blog.limingming.org/source/images/forkme_left_darkblue_121621.png" alt="Fork me on GitHub"></a>
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.limingming.org/2018/11/25/开发工具/mac下chromium源码编译笔记/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="李明明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/my-photo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="李明明的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">mac下chromium源码编译笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-25T00:34:56+08:00">
+                2018-11-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<p>作者 李明明</p>
+<h2 id="转载请注明出处：-http-limingming-org-index-php-2018-11-28-mac-compile-chromium"><a href="#转载请注明出处：-http-limingming-org-index-php-2018-11-28-mac-compile-chromium" class="headerlink" title="转载请注明出处： http://limingming.org/index.php/2018/11/28/mac-compile-chromium/"></a>转载请注明出处： <a href="http://limingming.org/index.php/2018/11/28/mac-compile-chromium/" target="_blank" rel="noopener">http://limingming.org/index.php/2018/11/28/mac-compile-chromium/</a></h2><h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>因为项目需要，需要对chromium进行了解，对chromium进行编译，在官网上可以通过：<a href="https://www.chromium.org/developers/how-tos/get-the-code" target="_blank" rel="noopener">网址</a>，找到各个平台相关详细的介绍，<a href="https://chromium.googlesource.com/chromium/src/+/master/docs/mac_build_instructions.md" target="_blank" rel="noopener">介绍文档</a>这个是mac下编译chromium的讲解，本篇文章是针对于官方介绍文档的中文版，对其中编译过程中遇到的问题进行记录。</p>
+<p>因为国内特殊的原因，谷歌相关的网络请求被墙掉了，所有需要配置科学上网能够翻墙的工具，我使用的是自己搭建的shadowsocks，shadowsocks搭建在这里就不细说了，由于需要chromium源码及depots_tools工具需要git命令下载，所以设置http_proxy，通过搭建好的shadowsocks可以通过下图中的方式获取到设置方式在终端中执行就行了，就可以在终端中请求被墙的网络地址了，具体设置git请求的设置和让终端走代理的设置大家可以百度一下，看一下详细的配置，自己设置一下，</p>
+<p>export http_proxy=<a href="http://127.0.0.1:1087;export" target="_blank" rel="noopener">http://127.0.0.1:1087;export</a> https_proxy=<a href="http://127.0.0.1:1087" target="_blank" rel="noopener">http://127.0.0.1:1087</a>;</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/15057824-1814a4b3dc7e51d9?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/15057824-da562f678121c99b.gif?imageMogr2/auto-orient/strip" alt="image.gif"> ​</p>
+<h1 id="系统要求："><a href="#系统要求：" class="headerlink" title="系统要求："></a>系统要求：</h1><h2 id="64位mac-系统版本10-11"><a href="#64位mac-系统版本10-11" class="headerlink" title="64位mac,系统版本10.11+"></a>64位mac,系统版本10.11+</h2><p>系统版本，屏幕左上角 苹果图标 -&gt; 关于本机 -&gt; 概览</p>
+<h2 id="Xcode-7-3"><a href="#Xcode-7-3" class="headerlink" title="Xcode 7.3+"></a>Xcode 7.3+</h2><p>在 App Store搜索下载</p>
+<h2 id="OSX-10-10-SDK"><a href="#OSX-10-10-SDK" class="headerlink" title="OSX 10.10 SDK"></a>OSX 10.10 SDK</h2><p>装完Xcode以后在终端输入下面的代码，如下图所示应该就可以了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ls `xcode-select -p`/Platforms/MacOSX.platform/Developer/SDKs</span><br></pre></td></tr></table></figure>
+<p><img src="http://upload-images.jianshu.io/upload_images/15057824-d28d444c7ae5b57e?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/15057824-ba455d67a9a2e1d4.gif?imageMogr2/auto-orient/strip" alt="image.gif"> ​</p>
+<h1 id="安装depot-tools"><a href="#安装depot-tools" class="headerlink" title="安装depot_tools"></a>安装depot_tools</h1><p>用git复制 depot_tools 资源，如果一直下载不成功，检查一下http_proxy是否设置成功</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git</span><br></pre></td></tr></table></figure>
+<p>把depot_tools加入路径,假设你放在<code>/path/to/depot_tools</code>路径下面，那么就在终端输入，不过这是临时的，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ export PATH=&quot;$PATH:/path/to/depot_tools&quot;</span><br></pre></td></tr></table></figure>
+<h1 id="获取代码"><a href="#获取代码" class="headerlink" title="获取代码"></a>获取代码</h1><p>创建一个新的<code>chromium</code>文件夹并进入文件夹，你可以叫它别的名字，可以放在任意的位置，但是要保证路径没有空格</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir chromium &amp;&amp; cd chromium</span><br></pre></td></tr></table></figure>
+<p>使用fetch来检出代码和依赖（这个代码我现在下大概是7.2GB，如果不想要所有的历史记录可以加–no-history，下载会快一点）</p>
+<p>带历史记录的源码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ fetch chromium</span><br></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/15057824-fd71f81bf5dca49e.gif?imageMogr2/auto-orient/strip" alt="image.gif"> </p>
+<p>不带历史记录的源码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ fetch --no-history  chromium</span><br></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/15057824-8dd7b3dd7fe9283a.gif?imageMogr2/auto-orient/strip" alt="image.gif"> </p>
+<p>会产生隐藏的.gclient的文件，如果下载失败，可以把这个文件删了重新执行</p>
+<p>中间不会有任何的提示，请安静地等待~<br>这种应该是下载成功了吧</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/15057824-d9fbdb0ef7494bfe?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/15057824-fe94110ae63bfa66.gif?imageMogr2/auto-orient/strip" alt="image.gif"> ​<br>然后你就会发现目录下面有src文件夹，进入文件夹，这里有提示<a href="https://link.jianshu.com?t=https%3A%2F%2Fwww.chromium.org%2Fdevelopers%2Fhow-tos%2Fapi-keys" target="_blank" rel="noopener">install API keys</a> ，但是对大多数的开发者不是必选项，所以就先跳过。在官网上没有详细介绍，</p>
+<p>开始编译：</p>
+<p>在编译之前要执行gclient sync和gclient runhooks，进入到src目录下，在src目录啊下编译，之前装了depot_tools，那么就可以用下面的代码开新建一个build的目录文件夹，（build可以换名字，但是out文件夹是必需的）</p>
+<p>gn gen out/build</p>
+<h2 id="更快地编译"><a href="#更快地编译" class="headerlink" title="更快地编译"></a>更快地编译</h2><p>官网给了三个配置可以加快build，分别是is_debug，is_component_build，symbol_level，配置方式如下(<a href="https://link.jianshu.com?t=https%3A%2F%2Fwww.chromium.org%2Fdevelopers%2Fgn-build-configuration" target="_blank" rel="noopener">关于配置的说明</a>)</p>
+<ol>
+<li>输入下面的命令行会打开一个配置文件</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gn args out/build</span><br></pre></td></tr></table></figure>
+<ol>
+<li>可以在文件里面输入配置，像下面展示的这样</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">is_component_build = true</span><br><span class="line">is_debug = false</span><br><span class="line">symbol_level = 0</span><br></pre></td></tr></table></figure>
+<p>其实他们应该保存在src/out/build/args.gn这边</p>
+<ol>
+<li>输入下面的代码你能够查看所有可配置的参数以及他们的默认值</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gn args --list out/my_build</span><br></pre></td></tr></table></figure>
+<p>同时也可以通过<a href="https://link.jianshu.com?t=https%3A%2F%2Fchromium.googlesource.com%2Fchromium%2Fsrc%2F%2B%2Fmaster%2Fdocs%2Fccache_mac.md" target="_blank" rel="noopener">install ccache</a> ，在再次compile的时候会更快，会增量编译不会重复编译</p>
+<h1 id="build-chromium"><a href="#build-chromium" class="headerlink" title="build chromium"></a>build chromium</h1><p>使用Ninja来build chromium，这个过程会比较耗时，虽然很多人说等2个小时，我第一次编译用了5个小时</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ninja -C out/Default chrome</span><br></pre></td></tr></table></figure>
+<h1 id="运行chromium"><a href="#运行chromium" class="headerlink" title="运行chromium"></a>运行chromium</h1><p>输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ out/Default/chrome</span><br></pre></td></tr></table></figure>
+<h1 id="Debugging-调试"><a href="#Debugging-调试" class="headerlink" title="Debugging 调试"></a>Debugging 调试</h1><p><a href="https://link.jianshu.com?t=https%3A%2F%2Fdev.chromium.org%2Fdevelopers%2Fhow-tos%2Fdebugging-on-os-x" target="_blank" rel="noopener">debug资料</a><br>这里的意思是用图形化的环境不用在xcode里面配置<br><a href="https://link.jianshu.com?t=https%3A%2F%2Fwww.chromium.org%2Fdevelopers%2Fhow-tos%2Fdebugging-on-os-x%2Fbuilding-with-ninja-debugging-with-xcode" target="_blank" rel="noopener">Debugging in Xcode</a><br>前面按照教程取消了crash的记录</p>
+<p>最后的配置是在生成的文件夹下面找到products.xcodeproj，然后双击就会用xcode打开，然后配置scheme,<br>第一次应该没有scheme配置，选择New Scheme，然后Info这边，Executable选择Chromium.app，‘</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/15057824-c10cfdf813cff587.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>然后启动chromium , Debug -》Attach to Processes -&gt;</p>
+<p>选择Chomium程序</p>
+<h2 id="首先是第一个资料"><a href="#首先是第一个资料" class="headerlink" title="首先是第一个资料"></a>首先是第一个资料</h2><p>推荐苹果开发者阅读的<a href="https://link.jianshu.com?t=http%3A%2F%2Fdeveloper.apple.com%2Ftechnotes%2Ftn2004%2Ftn2124.html" target="_blank" rel="noopener">Mac OS X Debugging Magic Technote</a><br><strong>重要提醒</strong>：</p>
+<ol>
+<li>在xcode里面，为了让断点生效，Debugging面板中取消Load Symbols Lazily</li>
+<li><p>GYP_DEFINES的fast_build如果是1的话，那么你想要的断点可能拿不到，如果你去掉它，要重新运行gyp_chromium以及rebuild<br>禁用ReportCrash，在终端输入<code>man ReportCrash</code>，然后找到这一行<br><img src="http://upload-images.jianshu.io/upload_images/15057824-c4f169c3af11b97e?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/15057824-e990f045c1f1bea8.gif?imageMogr2/auto-orient/strip" alt="image.gif"> ​</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">launchctl unload -w /System/Library/LaunchAgents/com.apple.ReportCrash.plist</span><br><span class="line">sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.ReportCrash.Root.plist</span><br></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/15057824-1463f3718187a5ec.gif?imageMogr2/auto-orient/strip" alt="image.gif"> </p>
+<h2 id="调试渲染进程"><a href="#调试渲染进程" class="headerlink" title="调试渲染进程"></a>调试渲染进程</h2><p>XCode本身不支持多于一个的进程，对子进程的支持也不友好，有两种方法应付。</p>
+<h2 id="a-单进程运行chrome"><a href="#a-单进程运行chrome" class="headerlink" title="(a)单进程运行chrome"></a>(a)单进程运行chrome</h2><p>（不被推荐）</p>
+<h1 id="CCache"><a href="#CCache" class="headerlink" title="CCache"></a>CCache</h1><p>据说是加速recompilation的，他通过存储原来的compilation，当compilations相同的时候，能够有一个显著的加速，特别是切换分支的时候。<br>首先用brew下载<br>在环境变量里面配置 ，下面是临时的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Export PATH=“$PATH:/usr/local/opt/ccache/libexec ccahe”</span><br></pre></td></tr></table></figure>
+<p>然后要让gn配置使用<br>配置环境变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export CCACHE_CPP2=yes</span><br><span class="line">export CCACHE_SLOPPINESS=time_macros</span><br><span class="line">export PATH=`pwd`/third_party/llvm-build/Release+Asserts/bin:$PATH</span><br></pre></td></tr></table></figure>
+<p>运行 ninja</p>
+<p>ninja -C out/Release chrome</p>
+<p>推荐大家可以看一下《webkit技术内幕》</p>
+<h2 id="联系我"><a href="#联系我" class="headerlink" title="联系我"></a>联系我</h2><p>原来一直在CSDN编写博客<a href="https://blog.csdn.net/limm33" target="_blank" rel="noopener">我的博客</a><br>我的微信公众号:<a href="https://github.com/limm33/ProgrammerLeague/blob/master/ProgrammerLeague.jpg" target="_blank" rel="noopener">编程者联盟</a><br>我的 <a href="http://www.limingming.org">个人博客</a><br>我的QQ群：115402375</p>
+
+      
+    </div>
+    <div>
+      
+          <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">
+                         <a href="http://www.limingming.org">李明明的个人网站</a>
+                         <br>
+              -------------本文结束<i class="fa fa-paw"></i>感谢阅读-------------
+              
+        </div>
+    
+</div>
+
+      
+    </div>
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/23/vue/Mac-OS下搭建Vue开发环境/" rel="next" title="Mac OS下搭建Vue开发环境">
+                <i class="fa fa-chevron-left"></i> Mac OS下搭建Vue开发环境
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/27/开发工具/mac下npm安装命令不生效/" rel="prev" title="mac下npm安装命令不生效">
+                mac下npm安装命令不生效 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/my-photo.jpg" alt="李明明">
+            
+              <p class="site-author-name" itemprop="name">李明明</p>
+              <p class="site-description motion-element" itemprop="description">Welcome to my site! My name is Li MingMing(李明明). 欢迎来到我的博客网站，我的名字是李明明</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#转载请注明出处：-http-limingming-org-index-php-2018-11-28-mac-compile-chromium"><span class="nav-number">1.</span> <span class="nav-text">转载请注明出处： http://limingming.org/index.php/2018/11/28/mac-compile-chromium/</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#背景"><span class="nav-number"></span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#系统要求："><span class="nav-number"></span> <span class="nav-text">系统要求：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#64位mac-系统版本10-11"><span class="nav-number">1.</span> <span class="nav-text">64位mac,系统版本10.11+</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Xcode-7-3"><span class="nav-number">2.</span> <span class="nav-text">Xcode 7.3+</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OSX-10-10-SDK"><span class="nav-number">3.</span> <span class="nav-text">OSX 10.10 SDK</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装depot-tools"><span class="nav-number"></span> <span class="nav-text">安装depot_tools</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#获取代码"><span class="nav-number"></span> <span class="nav-text">获取代码</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#更快地编译"><span class="nav-number">1.</span> <span class="nav-text">更快地编译</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#build-chromium"><span class="nav-number"></span> <span class="nav-text">build chromium</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#运行chromium"><span class="nav-number"></span> <span class="nav-text">运行chromium</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Debugging-调试"><span class="nav-number"></span> <span class="nav-text">Debugging 调试</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#首先是第一个资料"><span class="nav-number">1.</span> <span class="nav-text">首先是第一个资料</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#调试渲染进程"><span class="nav-number">2.</span> <span class="nav-text">调试渲染进程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#a-单进程运行chrome"><span class="nav-number">3.</span> <span class="nav-text">(a)单进程运行chrome</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CCache"><span class="nav-number"></span> <span class="nav-text">CCache</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#联系我"><span class="nav-number">1.</span> <span class="nav-text">联系我</span></a></li></ol></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="http://limm33.github.io/source/js/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">李明明</span>
+
+  
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_pv"></span>
+</span>
+</div>
+
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共4.1k字</span>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
