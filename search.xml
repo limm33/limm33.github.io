@@ -1,21 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[苹果电脑无法开机]]></title>
-    <url>%2F2018%2F12%2F01%2F%E6%9D%82%E8%B0%88%2FMAC-OS%E6%97%A0%E6%B3%95%E5%BC%80%E6%9C%BA%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%2F</url>
-    <content type="text"><![CDATA[作为一个自恋的程序员，我的imac升级了系统之后也变得傲娇起来，就是开机无法启动，进度条大约到五分之四的时候就卡住了，电脑也变黑屏了，之后进入了小圆圈一直转的无限循环的状态，暂时简称无限菊花状态。 问题导致原因原来mac系统为10.13.6，升级到了最新的系统之后10.14.8，虽然更新过程中没有任何问题，也能重新启动了电脑，有了新的黑色主题的imac并没有让我适应，总感觉还是原来的主题比较好，再不高兴之余骂了它的主题，顺便关了机，所以它就闹起了小脾气。 问题解决 首先想到的是“开机按住shift键进入安全模式，结果无法启动； 所以无耻的google了一下，按照说明开机无法启动的情况下，按住电源按钮十秒；钟，当然我很坚持的按住了15秒钟，隐隐若若的听到了“嗒”的一个内部的声音，感觉有什么东西被重置了的感觉，但是也是无济于事； 之后按照重置 Mac 上的系统管理控制器 (SMC),按照配置重置了smc，结果仍然不能开机； 按照重置 Mac 上的 NVRAM 或 PRAM重置了，原来电脑是静音状态，重置了之后生效了开机声音，可以听到开机声音了； 经过了以上几个步骤还是不能开机，所以我觉得应该弄点大招了，所以开机使用“command+r”的方式进入恢复模式选择磁盘工具，进行急救，修复了文件权限和磁盘，当然我没有进行任何磁盘破坏的事情，我很确信是因为升级导致的无法启动，所以磁盘急救完成重新开机竟然还是不行； 在磁盘急救不生效的情况下，用command+r进入恢复模式，重新安装系统，此种方式安装系统不会丢失任何文件和应用，可以放心安装，可能因为网络和时区的问题，导致无法正常安装，可以多试几次；但是重装覆盖系统之后还是不能开机。 在恢复模式下磁盘工具中抹掉磁盘，当然要备份好重要数据后抹掉磁盘，然后再执行安装系统，完成后就可以正常开机了。 说明以上几个步骤我在执行过程中可能没有生效，但是很多遇到这种情况的执行其中几步的时候都成功开机了，在万不得已的情况下可以抹掉磁盘重新安装系统。 联系我原来一直在CSDN编写博客我的博客，欢迎留言讨论，现在第一次更换为简书，竟然写的不是技术博客。我的微信公众号:编程者联盟 我的QQ群：115402375]]></content>
-      <categories>
-        <category>杂谈</category>
-      </categories>
-      <tags>
-        <tag>Mac OS</tag>
-        <tag>升级</tag>
-        <tag>无法开发</tag>
-        <tag>转圈</tag>
-        <tag>苹果电脑</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[Maven依赖管理]]></title>
     <url>%2F2018%2F12%2F01%2Fmaven%2FMaven%08%E4%BE%9D%E8%B5%96%E7%AE%A1%E7%90%86%2F</url>
     <content type="text"><![CDATA[作者：李明明原文地址 直接依赖和间接依赖mane最大的好处就是能够方便的声明第三方的jar包，只需要在pom中进行简单的声明就可以将此jar包依赖到项目中，那什么是直接依赖呢？就是在项目中直接声明的这些依赖： 123&lt;dependency&gt; &lt;groupId&gt;org.springframework&lt;/groupId&gt; &lt;artifactId&gt;spring-core&lt;/artifactId&gt; &lt;version&gt;4.1.4.RELEASE&lt;/version&gt; &lt;/dependency&gt; 排除依赖间接依赖是由直接依赖间接依赖到项目的那些jar包，当项目依赖于某一第三方Jar包，而这一第三方Jar包又给我们间接性的带来了大量的依赖,这种间接性的依赖，不仅浪费了磁盘空间，而且也可能带来潜在的冲突,因此我们需要将这些不需要的依赖从项目中排除，对项目进行一个瘦身，这时我们需要对Pom进行优化,再或者，通过间接性依赖获得的Jar包版本过低，而这些低版本的Jar包无法满足我们项目的需求，这时我们也需要将这些低版本的Jar包排除掉，也就是下面的exclusion标签 12345678910111213141516171819202122232425&lt;dependency&gt; &lt;groupId&gt;net.sf.spring-json&lt;/groupId&gt; &lt;artifactId&gt;spring-json&lt;/artifactId&gt; &lt;version&gt;1.3.1&lt;/version&gt; &lt;exclusions&gt; &lt;exclusion&gt; &lt;groupId&gt;org.springframework&lt;/groupId&gt; &lt;artifactId&gt;spring&lt;/artifactId&gt; &lt;/exclusion&gt; &lt;exclusion&gt; &lt;groupId&gt;cglib&lt;/groupId&gt; &lt;artifactId&gt;cglib-full&lt;/artifactId&gt; &lt;/exclusion&gt; &lt;/exclusions&gt;&lt;/dependency&gt;&lt;dependency&gt; &lt;groupId&gt;org.springframework&lt;/groupId&gt; &lt;artifactId&gt;spring-core&lt;/artifactId&gt; &lt;version&gt;2.5.6&lt;/version&gt; &lt;exclusions&gt; &lt;exclusion&gt; &lt;groupId&gt;commons-logging&lt;/groupId&gt; &lt;artifactId&gt;commons-logging&lt;/artifactId&gt; &lt;/exclusion&gt; &lt;/exclusions&gt; &lt;/dependency&gt; 工具筛选Maven没有任何声明排除jar包的情况下，默认是将全部jar包引入进来，有时候当前项目使用的jar包与依赖的第三方的jar包不同，会出现同个项目构建后出现一个jar包几个不同版本同时存在的问题，有时会引发jar包冲突可以通过命令或者是在IDE中查看依赖树，排查依赖关系： 1mvn dependency : list 经过Maven解析之后，就会构成一个依赖树也可以使用命令查看当前项目的依赖树： 1mvn dependency : tree 使用命令分析当前当前项目的依赖： 1mvn dependency : analyze 该命令执行结果的两个重要部分：Used undeclared dependencies: 表示项目中使用到的，但是没有显示声明的依赖Unused declared dependencies: 表示项目中未使用的，但显示声明的依赖该命令只会分析编译主代码和测试代码需要用到的依赖，一些执行测试和运行时需要的依赖它无法发现。 ps:exclusions是在某个具体依赖里面配置的，也就是说要找到需排除的jar包的依赖坐标 以下是eclipse中的通过配置工具查看依赖、删除依赖的位置： 大开pom.xml,选中下发Dependency Hierarchy，选中右侧jar包，右键排除依赖就可以了。 配置可选maven还有个可选依赖的设置，在当前项目A设置对某个依赖是可选的: 12345678&lt;optional&gt;true&lt;/optional&gt;&lt;dependency&gt; &lt;groupId&gt;sample.ProjectB&lt;/groupId&gt; &lt;artifactId&gt;Project-B&lt;/artifactId&gt; &lt;version&gt;1.0&lt;/version&gt; &lt;scope&gt;compile&lt;/scope&gt; &lt;optional&gt;true&lt;/optional&gt;&lt;/dependency&gt; 这样设置后，再有个项目X依赖A时，如果X中没有B中的类路径，则不会把B依赖加进来。 依赖规则大家看到直接依赖和间接依赖之后可能会有疑问，由不同的直接依赖产生的同一jar包不同版本的jar包之间的间接依赖怎么进行排除？这就要讲到maven的规则： 第一声明者优先（对于简介依赖） 例如：A项目依赖B、C两个项目，B和C又同时依赖D项目（依赖的D项目版本可能还是不同的），那就按照第一声明者优先的规则，谁先声明就用谁的，也就是对于间接依赖，路径相同的情况下，第一声明优先。 最后声明者优先（对于同一pom中直接依赖的同一jar包的不同版本间） 在pom中声明了同一jar包的不同版本，谁声明在后面就采用谁。 最短路径优先（对于间接依赖） 从名称就可以看出对于间接依赖的jar包，谁的间接依赖的路径短就采用谁的，例如A依赖B，B依赖D，而A依赖C，C依赖E，E依赖F，F依赖D，采用最短的依赖A-&gt;B-&gt;D的依赖版本。 dependencyManagement与dependenciesMaven已经具备了面向对象的思想，面向对象的三要素就是多态、继承、封装，dependencies与dependencyManagement就涉及到的是继承的思想。 多模块项目中，各个模块一般均需要Junit测试Jar包，因此在父Pom配置文件中，我们可以将这个依赖写入： 12345678&lt;dependencies&gt; &lt;dependency&gt; &lt;groupId&gt;junit&lt;/groupId&gt; &lt;artifactId&gt;junit&lt;/artifactId&gt; &lt;version&gt;$&#123;junit.version&#125;&lt;/version&gt; &lt;scope&gt;test&lt;/scope&gt; &lt;/dependency&gt;&lt;/dependencies&gt; 此模块的各个子模块就可以直接继承此jar包了。 再想想，有一些依赖，是各个子模块所特有的，如果放在父模块的POM中进行定义,那么所有继承了该父模块的子模块均会存在该依赖，这样的结果是啥，项目中存在大量冗余Jar包，不但浪费了磁盘，而且也不利于管理，所以： 12345678910111213141516171819dependencyManagement&gt; &lt;!-- 配置项目依赖 --&gt; &lt;dependencies&gt; &lt;dependency&gt; &lt;groupId&gt;org.apache.zookeeper&lt;/groupId&gt; &lt;artifactId&gt;zookeeper&lt;/artifactId&gt; &lt;version&gt;$&#123;zookeeper.version&#125;&lt;/version&gt; &lt;/dependency&gt; &lt;dependency&gt; &lt;groupId&gt;org.opensymphony.quartz&lt;/groupId&gt; &lt;artifactId&gt;quartz-all&lt;/artifactId&gt; &lt;version&gt;$&#123;quartz.version&#125;&lt;/version&gt; &lt;/dependency&gt; &lt;dependency&gt; &lt;groupId&gt;oro&lt;/groupId&gt; &lt;artifactId&gt;oro&lt;/artifactId&gt; &lt;version&gt;$&#123;oro.version&#125;&lt;/version&gt; &lt;/dependency&gt;&lt;/dependencyManagement&gt; 我们可以这样定义jar包在父模块，这样子模块就不会继承了，如果子模块需要用到jar包就需要重新声明： 1234567&lt;!-- 配置项目依赖 --&gt;&lt;dependencies&gt; &lt;dependency&gt; &lt;groupId&gt;org.apache.zookeeper&lt;/groupId&gt; &lt;artifactId&gt;zookeeper&lt;/artifactId&gt; &lt;/dependency&gt;&lt;/dependencies&gt; 可以省略版本，这样有利于控制版本，当然也可以自己定义在子模块中版本，这样将采用子模块中的版本。]]></content>
@@ -92,7 +77,7 @@
   <entry>
     <title><![CDATA[Mac OS下搭建Vue开发环境]]></title>
     <url>%2F2018%2F11%2F23%2Fvue%2FMac-OS%E4%B8%8B%E6%90%AD%E5%BB%BAVue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%2F</url>
-    <content type="text"><![CDATA[前言原来一直学习使用React，现在因为工作的需要，对Vue进行学习和使用，现在比较流行的框架React,angular,vue，正好对于vue也进行些了解。 环境搭建 打开终端,安装brew 1usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot; 安装成功后，使用查看版本，验证是否安装成功1brew -v 安装node.js1brew install nodejs 也可以下载安装下载地址安装成功后，使用验证123node -v``` * 给nodejs目录赋权限 sudo chmod -R 777 /usr/local/lib/node_modules/1* 安装 淘宝镜像 （npm） npm install -g cnpm –registry=https://registry.npm.taobao.org12* 安装webpack cnpm install webpack -g12* 安装vue脚手架 npm install vue-cli -g12# 开始Vue 创建一个基于 webpack 模板的新项目$ vue init webpack my-project 这里需要进行一些配置，默认回车即可This will install Vue 2.x version of the template. For Vue 1.x use: vue init webpack#1.0 my-project ? Project name my-project? Project description A Vue.js project? Author runoob &#116;&#x65;&#115;&#x74;&#64;&#114;&#117;&#x6e;&#x6f;&#x6f;&#x62;&#46;&#99;&#x6f;&#x6d;? Vue build standalone? Use ESLint to lint your code? Yes? Pick an ESLint preset Standard? Setup unit tests with Karma + Mocha? Yes? Setup e2e tests with Nightwatch? Yes vue-cli · Generated “my-project”. To get started: cd my-project npm install npm run dev Documentation can be found at https://vuejs-templates.github.io/webpack1进入项目，安装并运行： $ cd my-project$ cnpm install$ cnpm run dev DONE Compiled successfully in 4388ms Listening at http://localhost:8080`]]></content>
+    <content type="text"><![CDATA[前言原来一直学习使用React，现在因为工作的需要，对Vue进行学习和使用，现在比较流行的框架React,angular,vue，正好对于vue也进行些了解。 环境搭建 打开终端,安装brew 1usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot; 安装成功后，使用查看版本，验证是否安装成功1brew -v 安装node.js1brew install nodejs 也可以下载安装下载地址安装成功后，使用验证123node -v``` * 给nodejs目录赋权限 sudo chmod -R 777 /usr/local/lib/node_modules/1* 安装 淘宝镜像 （npm） npm install -g cnpm –registry=https://registry.npm.taobao.org12* 安装webpack cnpm install webpack -g12* 安装vue脚手架 npm install vue-cli -g12# 开始Vue 创建一个基于 webpack 模板的新项目$ vue init webpack my-project 这里需要进行一些配置，默认回车即可This will install Vue 2.x version of the template. For Vue 1.x use: vue init webpack#1.0 my-project ? Project name my-project? Project description A Vue.js project? Author runoob &#116;&#x65;&#x73;&#x74;&#x40;&#x72;&#x75;&#110;&#111;&#x6f;&#x62;&#46;&#x63;&#111;&#109;? Vue build standalone? Use ESLint to lint your code? Yes? Pick an ESLint preset Standard? Setup unit tests with Karma + Mocha? Yes? Setup e2e tests with Nightwatch? Yes vue-cli · Generated “my-project”. To get started: cd my-project npm install npm run dev Documentation can be found at https://vuejs-templates.github.io/webpack1进入项目，安装并运行： $ cd my-project$ cnpm install$ cnpm run dev DONE Compiled successfully in 4388ms Listening at http://localhost:8080`]]></content>
       <categories>
         <category>Vue</category>
       </categories>
@@ -111,11 +96,25 @@
         <category>杂谈</category>
       </categories>
       <tags>
+        <tag>解决</tag>
         <tag>wordpress</tag>
         <tag>无法连接</tag>
         <tag>FTP</tag>
         <tag>下载插件</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[MAC-OS无法开机问题解决]]></title>
+    <url>%2F2018%2F11%2F11%2F%E6%9D%82%E8%B0%88%2FMAC-OS%E6%97%A0%E6%B3%95%E5%BC%80%E6%9C%BA%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%2F</url>
+    <content type="text"><![CDATA[作为一个自恋的程序员，我的imac升级了系统之后也变得傲娇起来，就是开机无法启动，进度条大约到五分之四的时候就卡住了，电脑也变黑屏了，之后进入了小圆圈一直转的无限循环的状态，暂时简称无限菊花状态。 问题导致原因原来mac系统为10.13.6，升级到了最新的系统之后10.14.8，虽然更新过程中没有任何问题，也能重新启动了电脑，有了新的黑色主题的imac并没有让我适应，总感觉还是原来的主题比较好，再不高兴之余骂了它的主题，顺便关了机，所以它就闹起了小脾气。 问题解决 首先想到的是“开机按住shift键进入安全模式，结果无法启动； 所以无耻的google了一下，按照说明开机无法启动的情况下，按住电源按钮十秒；钟，当然我很坚持的按住了15秒钟，隐隐若若的听到了“嗒”的一个内部的声音，感觉有什么东西被重置了的感觉，但是也是无济于事； 之后按照重置 Mac 上的系统管理控制器 (SMC),按照配置重置了smc，结果仍然不能开机； 按照重置 Mac 上的 NVRAM 或 PRAM重置了，原来电脑是静音状态，重置了之后生效了开机声音，可以听到开机声音了； 经过了以上几个步骤还是不能开机，所以我觉得应该弄点大招了，所以开机使用“command+r”的方式进入恢复模式选择磁盘工具，进行急救，修复了文件权限和磁盘，当然我没有进行任何磁盘破坏的事情，我很确信是因为升级导致的无法启动，所以磁盘急救完成重新开机竟然还是不行； 在磁盘急救不生效的情况下，用command+r进入恢复模式，重新安装系统，此种方式安装系统不会丢失任何文件和应用，可以放心安装，可能因为网络和时区的问题，导致无法正常安装，可以多试几次；但是重装覆盖系统之后还是不能开机。 在恢复模式下磁盘工具中抹掉磁盘，当然要备份好重要数据后抹掉磁盘，然后再执行安装系统，完成后就可以正常开机了。 说明以上几个步骤我在执行过程中可能没有生效，但是很多遇到这种情况的执行其中几步的时候都成功开机了，在万不得已的情况下可以抹掉磁盘重新安装系统。 联系我原来一直在CSDN编写博客我的博客，欢迎留言讨论，现在第一次更换为简书，竟然写的不是技术博客。我的微信公众号:编程者联盟 我的QQ群：115402375]]></content>
+      <categories>
+        <category>杂谈</category>
+      </categories>
+      <tags>
+        <tag>苹果电脑</tag>
+        <tag>无法开机</tag>
         <tag>解决</tag>
+        <tag>转圈</tag>
       </tags>
   </entry>
 </search>
