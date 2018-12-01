@@ -193,12 +193,12 @@
         </li>
       
         
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
-            标签
+            分类
           </a>
         </li>
       
@@ -212,11 +212,53 @@
           </a>
         </li>
       
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
 
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
       
     </ul>
   
 
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
   
 </nav>
 
@@ -224,7 +266,7 @@
 
  </div>
     </header>
-    <a href="https://github.com/limm33"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://blog.limingming.org/source/images/forkme_left_darkblue_121621.png" alt="Fork me on GitHub"></a>
+   <!-- <a href="https://github.com/limm33"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://blog.limingming.org/source/images/forkme_left_darkblue_121621.png" alt="Fork me on GitHub"></a> -->
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
@@ -286,6 +328,28 @@
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/杂谈/" itemprop="url" rel="index">
+                    <span itemprop="name">杂谈</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -382,184 +446,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.limingming.org/2018/12/01/开发工具/Markdown语法/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="李明明">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/my-photo.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="李明明的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/01/开发工具/Markdown语法/" itemprop="url">Markdown语法</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-01T09:24:35+08:00">
-                2018-12-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <hr>
-<p>作者 李明明</p>
-<h2 id="转载请注明出处：-http-limingming-org-index-php-2018-11-28-markdown-grammar"><a href="#转载请注明出处：-http-limingming-org-index-php-2018-11-28-markdown-grammar" class="headerlink" title="转载请注明出处：  http://limingming.org/index.php/2018/11/28/markdown-grammar/"></a>转载请注明出处：  <a href="http://limingming.org/index.php/2018/11/28/markdown-grammar/" target="_blank" rel="noopener">http://limingming.org/index.php/2018/11/28/markdown-grammar/</a></h2><h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p> Markdown 是一种轻量级标记语言，它允许人们使用易读易写的纯文本格式编写文档，然后转换成格式丰富的HTML页面。    —— <a href="https://zh.wikipedia.org/wiki/Markdown" target="_blank" rel="noopener">维基百科</a>;<br>Markdown 是一种轻量级标记语言，让写作者专注于写作而不用关注样式。很多有编程基础的程序员比较喜欢使用Markdown进行编写，github项目中README.md都是markdown编写的；以下我讲述通用的语法，保留各个编辑器通用的，还有很多markdown语法是各个编辑器独有的，大家使用过程中可以注意一下，平时使用mac上的编辑器,也为大家分享一下。<br><img src="https://upload-images.jianshu.io/upload_images/15057824-796d33dcb31298a9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="MacDown编辑器"></p>
-<h1 id="语法介绍"><a href="#语法介绍" class="headerlink" title="语法介绍"></a>语法介绍</h1><h2 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 一级标题</span><br><span class="line">## 二级标题</span><br><span class="line">### 三级标题</span><br></pre></td></tr></table></figure>
-<p>演示图效果：<br><img src="https://upload-images.jianshu.io/upload_images/15057824-12bb31dda97f68ee.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="标题语法演示图"></p>
-<h2 id="强调"><a href="#强调" class="headerlink" title="强调"></a>强调</h2><ol>
-<li>在Markdown中，可以使用 * 或  _  来表示斜体和加粗。</li>
-<li>使用一个*或者_来表示斜体，两个来表示加粗。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">A： *我是斜体*</span><br><span class="line">B:  _我也是斜体_</span><br><span class="line">C：**我是粗体**</span><br><span class="line">D: __我也是粗体__</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>演示图效果：</p>
-<ul>
-<li><img src="https://upload-images.jianshu.io/upload_images/15057824-e6bb52a04f15091a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png">   </li>
-</ul>
-<ol start="3">
-<li>例子（摘抄于<a href="https://maxiang.io/" target="_blank" rel="noopener">马克飞象</a>“案例，马克飞象是一个很不错的markdown编辑器，为markdown各种类型的语法提供了一个良好的支持）<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">**马克飞象**是一款专为印象笔记（Evernote）打造的Markdown编辑器，通过精心的设计与技术实现，配合印象笔记强大的存储和同步功能，带来前所未有的书写体验。特点概述：</span><br><span class="line"> </span><br><span class="line">- **功能丰富** ：支持高亮代码块、*LaTeX* 公式、流程图，本地图片以及附件上传，甚至截图粘贴，工作学习好帮手；</span><br><span class="line">- **得心应手** ：简洁高效的编辑器，提供[桌面客户端][1]以及[离线Chrome App][2]，支持移动端 Web；</span><br><span class="line">- **深度整合** ：支持选择笔记本和添加标签，支持从印象笔记跳转编辑，轻松管理。</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h2 id="锚点"><a href="#锚点" class="headerlink" title="锚点"></a>锚点</h2><p>markdown会针对每个标题，在解析时都会添加锚点 id，例如：     </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 介绍</span><br><span class="line"># 介绍1</span><br><span class="line">那我们就可以使用“[访问介绍标题的锚点](#介绍)”,来定义锚点</span><br></pre></td></tr></table></figure>
-<p>测试：</p>
-<h2 id="访问介绍标题的锚点"><a href="#访问介绍标题的锚点" class="headerlink" title="访问介绍标题的锚点;  "></a><a href="#介绍">访问介绍标题的锚点</a>;  </h2><h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><p>Markdown 标记区块引用和 email 中用 『&gt;』的引用方式类似，只需要在整个段落的第一行最前面加上 『&gt;』 ：   </p>
-<p>演示：  </p>
-<p><img src="https://upload-images.jianshu.io/upload_images/15057824-9954368fcafabbcc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-<h2 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h2><p>标记通常放在句子最左边，项目标记后面要接一个字符的空格。</p>
-<ol>
-<li>无序列表：使用星号、加号或是减号作为列表标记<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">* 我是无序列表A </span><br><span class="line">+ 我是无序列表B </span><br><span class="line">- 我是无序列表C</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p><img src="https://upload-images.jianshu.io/upload_images/15057824-b73cf4d802578856.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-<ol start="2">
-<li>有序列表：使用数字接着一个英文句点<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1. 我是无序列表1</span><br><span class="line">2. 我是无序列表2 </span><br><span class="line">3. 我是无序列表3</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p><img src="https://upload-images.jianshu.io/upload_images/15057824-271c4c58e22b3522.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-<p>3.代办列表(简书暂不支持此方式）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- [ ] 不勾选</span><br><span class="line">- [x] 勾选</span><br></pre></td></tr></table></figure></p>
-<ol start="4">
-<li>补充<br>如果在列表中使用引用,需要换行缩进，一般为四个空格：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">*  演示内容：</span><br><span class="line">    &gt; 引用部分1</span><br><span class="line">    &gt; 引用部分2</span><br><span class="line">    &gt; 引用部分3</span><br><span class="line">    &gt; 引用部分4</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h2 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h2><p>使用`包裹代码块，并声明代码块的语言，一般会带有相关的解析插件，对代码进行高亮处理，对代码进行着色。<br><img src="https://upload-images.jianshu.io/upload_images/15057824-651d2bd3d912d702.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-<h2 id="超链接"><a href="#超链接" class="headerlink" title="超链接"></a>超链接</h2><p>方括号显示说明，圆括号内显示网址， Markdown 编辑器会自动把它转成链接；<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[我的博客](https://blog.csdn.net/limm33)</span><br><span class="line">[编程者联盟](https://github.com/limm33/ProgrammerLeague/blob/master/ProgrammerLeague.jpg)</span><br><span class="line">[个人博客](http://www.limingming.org)</span><br></pre></td></tr></table></figure></p>
-<p>演示：<br><img src="https://upload-images.jianshu.io/upload_images/15057824-b7c5da60cf5c2f1c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-<h2 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h2><p>图片和超连接语法比较像，可以在方括号前面加一个！就变成了引用图片了；<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">![编程者联盟](url)</span><br><span class="line">  或者：</span><br><span class="line">![卡卡西](/Users/limm/Pictures/火影忍者/30381-106.jpg)</span><br><span class="line"> 相对路径也可以(./path/*.jpg)这种形式</span><br></pre></td></tr></table></figure></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/15057824-22b87c80a5aedcf9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-<h2 id="分割线"><a href="#分割线" class="headerlink" title="分割线"></a>分割线</h2><p>使用 3 个以上  -  符号制作分割线：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">分割线以上内容</span><br><span class="line">------------------</span><br><span class="line">分割线以下内容</span><br></pre></td></tr></table></figure></p>
-<p>演示：<br><img src="https://upload-images.jianshu.io/upload_images/15057824-6c4c999add1e038e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-<h2 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h2><p>markdown可以制作表格，方法也很简单<br>例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">3 | 3 | 3</span><br><span class="line">-|-|-</span><br><span class="line">3| 3| 3</span><br></pre></td></tr></table></figure></p>
-<p>以上为最基本的结构，‘3’代表你编辑的内容，第一行为表头，但是有的编辑器 - 需要多个，有的需要至少三个，所以布局可以尽量美观：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">一列    |   第二列    | 第三列</span><br><span class="line">---------|---------------|----------</span><br><span class="line">  值1   |    值2        |   值3</span><br></pre></td></tr></table></figure></p>
-<p>演示：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/15057824-4978a862be9afaab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-<p>可以设置对齐方式,使用  ：添加在列的左边左对齐，右边为右对齐，两边都添加就是中间对齐：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">一列    |   第二列    | 第三列</span><br><span class="line">:---------|---------------:|:----------:</span><br><span class="line">  值1   |    值2        |   值3</span><br><span class="line">  值3   |    值4        |   值5</span><br></pre></td></tr></table></figure></p>
-<p>演示：<br><img src="https://upload-images.jianshu.io/upload_images/15057824-d1de79054d05656a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-<p>以上为总结的markdown的语法，希望对你的编写有所帮助。</p>
-<h2 id="联系我"><a href="#联系我" class="headerlink" title="联系我"></a>联系我</h2><p>原来一直在CSDN编写博客<a href="https://blog.csdn.net/limm33" target="_blank" rel="noopener">我的博客</a><br>我的微信公众号:<a href="https://github.com/limm33/ProgrammerLeague/blob/master/ProgrammerLeague.jpg" target="_blank" rel="noopener">编程者联盟</a><br>我的 <a href="http://www.limingming.org">个人博客</a><br>我的QQ群：115402375</p>
-
-          
-        
-      
-    </div>
-    <div>
-      
-    </div>
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.limingming.org/2018/12/01/maven/Maven依赖管理/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -601,6 +487,28 @@
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Maven/" itemprop="url" rel="index">
+                    <span itemprop="name">Maven</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -766,6 +674,28 @@
           </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -930,6 +860,205 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.limingming.org/2018/11/27/开发工具/Markdown语法/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="李明明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/my-photo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="李明明的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/27/开发工具/Markdown语法/" itemprop="url">Markdown语法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-27T12:57:10+08:00">
+                2018-11-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/开发工具/" itemprop="url" rel="index">
+                    <span itemprop="name">开发工具</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>作者 李明明<br>转载请注明出处：  <a href="http://limingming.org/index.php/2018/11/28/markdown-grammar/" target="_blank" rel="noopener">http://limingming.org/index.php/2018/11/28/markdown-grammar/</a></p>
+<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p> Markdown 是一种轻量级标记语言，它允许人们使用易读易写的纯文本格式编写文档，然后转换成格式丰富的HTML页面。    —— <a href="https://zh.wikipedia.org/wiki/Markdown" target="_blank" rel="noopener">维基百科</a>;<br>Markdown 是一种轻量级标记语言，让写作者专注于写作而不用关注样式。很多有编程基础的程序员比较喜欢使用Markdown进行编写，github项目中README.md都是markdown编写的；以下我讲述通用的语法，保留各个编辑器通用的，还有很多markdown语法是各个编辑器独有的，大家使用过程中可以注意一下，平时使用mac上的编辑器,也为大家分享一下。<br><img src="https://upload-images.jianshu.io/upload_images/15057824-796d33dcb31298a9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="MacDown编辑器"></p>
+<h1 id="语法介绍"><a href="#语法介绍" class="headerlink" title="语法介绍"></a>语法介绍</h1><h2 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 一级标题</span><br><span class="line">## 二级标题</span><br><span class="line">### 三级标题</span><br></pre></td></tr></table></figure>
+<p>演示图效果：<br><img src="https://upload-images.jianshu.io/upload_images/15057824-12bb31dda97f68ee.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="标题语法演示图"></p>
+<h2 id="强调"><a href="#强调" class="headerlink" title="强调"></a>强调</h2><ol>
+<li>在Markdown中，可以使用 * 或  _  来表示斜体和加粗。</li>
+<li>使用一个*或者_来表示斜体，两个来表示加粗。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">A： *我是斜体*</span><br><span class="line">B:  _我也是斜体_</span><br><span class="line">C：**我是粗体**</span><br><span class="line">D: __我也是粗体__</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>演示图效果：</p>
+<ul>
+<li><img src="https://upload-images.jianshu.io/upload_images/15057824-e6bb52a04f15091a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png">   </li>
+</ul>
+<ol start="3">
+<li>例子（摘抄于<a href="https://maxiang.io/" target="_blank" rel="noopener">马克飞象</a>“案例，马克飞象是一个很不错的markdown编辑器，为markdown各种类型的语法提供了一个良好的支持）<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">**马克飞象**是一款专为印象笔记（Evernote）打造的Markdown编辑器，通过精心的设计与技术实现，配合印象笔记强大的存储和同步功能，带来前所未有的书写体验。特点概述：</span><br><span class="line"> </span><br><span class="line">- **功能丰富** ：支持高亮代码块、*LaTeX* 公式、流程图，本地图片以及附件上传，甚至截图粘贴，工作学习好帮手；</span><br><span class="line">- **得心应手** ：简洁高效的编辑器，提供[桌面客户端][1]以及[离线Chrome App][2]，支持移动端 Web；</span><br><span class="line">- **深度整合** ：支持选择笔记本和添加标签，支持从印象笔记跳转编辑，轻松管理。</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="锚点"><a href="#锚点" class="headerlink" title="锚点"></a>锚点</h2><p>markdown会针对每个标题，在解析时都会添加锚点 id，例如：     </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 介绍</span><br><span class="line"># 介绍1</span><br><span class="line">那我们就可以使用“[访问介绍标题的锚点](#介绍)”,来定义锚点</span><br></pre></td></tr></table></figure>
+<p>测试：</p>
+<h2 id="访问介绍标题的锚点"><a href="#访问介绍标题的锚点" class="headerlink" title="访问介绍标题的锚点;  "></a><a href="#介绍">访问介绍标题的锚点</a>;  </h2><h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><p>Markdown 标记区块引用和 email 中用 『&gt;』的引用方式类似，只需要在整个段落的第一行最前面加上 『&gt;』 ：   </p>
+<p>演示：  </p>
+<p><img src="https://upload-images.jianshu.io/upload_images/15057824-9954368fcafabbcc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h2 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h2><p>标记通常放在句子最左边，项目标记后面要接一个字符的空格。</p>
+<ol>
+<li>无序列表：使用星号、加号或是减号作为列表标记<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">* 我是无序列表A </span><br><span class="line">+ 我是无序列表B </span><br><span class="line">- 我是无序列表C</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><img src="https://upload-images.jianshu.io/upload_images/15057824-b73cf4d802578856.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<ol start="2">
+<li>有序列表：使用数字接着一个英文句点<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1. 我是无序列表1</span><br><span class="line">2. 我是无序列表2 </span><br><span class="line">3. 我是无序列表3</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><img src="https://upload-images.jianshu.io/upload_images/15057824-271c4c58e22b3522.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>3.代办列表(简书暂不支持此方式）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- [ ] 不勾选</span><br><span class="line">- [x] 勾选</span><br></pre></td></tr></table></figure></p>
+<ol start="4">
+<li>补充<br>如果在列表中使用引用,需要换行缩进，一般为四个空格：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">*  演示内容：</span><br><span class="line">    &gt; 引用部分1</span><br><span class="line">    &gt; 引用部分2</span><br><span class="line">    &gt; 引用部分3</span><br><span class="line">    &gt; 引用部分4</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h2><p>使用`包裹代码块，并声明代码块的语言，一般会带有相关的解析插件，对代码进行高亮处理，对代码进行着色。<br><img src="https://upload-images.jianshu.io/upload_images/15057824-651d2bd3d912d702.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h2 id="超链接"><a href="#超链接" class="headerlink" title="超链接"></a>超链接</h2><p>方括号显示说明，圆括号内显示网址， Markdown 编辑器会自动把它转成链接；<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[我的博客](https://blog.csdn.net/limm33)</span><br><span class="line">[编程者联盟](https://github.com/limm33/ProgrammerLeague/blob/master/ProgrammerLeague.jpg)</span><br><span class="line">[个人博客](http://www.limingming.org)</span><br></pre></td></tr></table></figure></p>
+<p>演示：<br><img src="https://upload-images.jianshu.io/upload_images/15057824-b7c5da60cf5c2f1c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h2 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h2><p>图片和超连接语法比较像，可以在方括号前面加一个！就变成了引用图片了；<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">![编程者联盟](url)</span><br><span class="line">  或者：</span><br><span class="line">![卡卡西](/Users/limm/Pictures/火影忍者/30381-106.jpg)</span><br><span class="line"> 相对路径也可以(./path/*.jpg)这种形式</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/15057824-22b87c80a5aedcf9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h2 id="分割线"><a href="#分割线" class="headerlink" title="分割线"></a>分割线</h2><p>使用 3 个以上  -  符号制作分割线：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">分割线以上内容</span><br><span class="line">------------------</span><br><span class="line">分割线以下内容</span><br></pre></td></tr></table></figure></p>
+<p>演示：<br><img src="https://upload-images.jianshu.io/upload_images/15057824-6c4c999add1e038e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h2 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h2><p>markdown可以制作表格，方法也很简单<br>例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">3 | 3 | 3</span><br><span class="line">-|-|-</span><br><span class="line">3| 3| 3</span><br></pre></td></tr></table></figure></p>
+<p>以上为最基本的结构，‘3’代表你编辑的内容，第一行为表头，但是有的编辑器 - 需要多个，有的需要至少三个，所以布局可以尽量美观：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">一列    |   第二列    | 第三列</span><br><span class="line">---------|---------------|----------</span><br><span class="line">  值1   |    值2        |   值3</span><br></pre></td></tr></table></figure></p>
+<p>演示：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/15057824-4978a862be9afaab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>可以设置对齐方式,使用  ：添加在列的左边左对齐，右边为右对齐，两边都添加就是中间对齐：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">一列    |   第二列    | 第三列</span><br><span class="line">:---------|---------------:|:----------:</span><br><span class="line">  值1   |    值2        |   值3</span><br><span class="line">  值3   |    值4        |   值5</span><br></pre></td></tr></table></figure></p>
+<p>演示：<br><img src="https://upload-images.jianshu.io/upload_images/15057824-d1de79054d05656a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>以上为总结的markdown的语法，希望对你的编写有所帮助。</p>
+<h2 id="联系我"><a href="#联系我" class="headerlink" title="联系我"></a>联系我</h2><p>原来一直在CSDN编写博客<a href="https://blog.csdn.net/limm33" target="_blank" rel="noopener">我的博客</a><br>我的微信公众号:<a href="https://github.com/limm33/ProgrammerLeague/blob/master/ProgrammerLeague.jpg" target="_blank" rel="noopener">编程者联盟</a><br>我的 <a href="http://www.limingming.org">个人博客</a><br>我的QQ群：115402375</p>
+
+          
+        
+      
+    </div>
+    <div>
+      
+    </div>
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.limingming.org/2018/11/27/开发工具/mac下npm安装命令不生效/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -971,6 +1100,28 @@
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/开发工具/" itemprop="url" rel="index">
+                    <span itemprop="name">开发工具</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -1101,6 +1252,28 @@
           </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/开发工具/" itemprop="url" rel="index">
+                    <span itemprop="name">开发工具</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -1130,9 +1303,8 @@
       
         
           
-            <hr>
-<p>作者 李明明</p>
-<h2 id="转载请注明出处：-http-limingming-org-index-php-2018-11-28-mac-compile-chromium"><a href="#转载请注明出处：-http-limingming-org-index-php-2018-11-28-mac-compile-chromium" class="headerlink" title="转载请注明出处： http://limingming.org/index.php/2018/11/28/mac-compile-chromium/"></a>转载请注明出处： <a href="http://limingming.org/index.php/2018/11/28/mac-compile-chromium/" target="_blank" rel="noopener">http://limingming.org/index.php/2018/11/28/mac-compile-chromium/</a></h2><h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>因为项目需要，需要对chromium进行了解，对chromium进行编译，在官网上可以通过：<a href="https://www.chromium.org/developers/how-tos/get-the-code" target="_blank" rel="noopener">网址</a>，找到各个平台相关详细的介绍，<a href="https://chromium.googlesource.com/chromium/src/+/master/docs/mac_build_instructions.md" target="_blank" rel="noopener">介绍文档</a>这个是mac下编译chromium的讲解，本篇文章是针对于官方介绍文档的中文版，对其中编译过程中遇到的问题进行记录。</p>
+            <p>作者 李明明<br>转载请注明出处： <a href="http://limingming.org/index.php/2018/11/28/mac-compile-chromium/" target="_blank" rel="noopener">http://limingming.org/index.php/2018/11/28/mac-compile-chromium/</a></p>
+<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>因为项目需要，需要对chromium进行了解，对chromium进行编译，在官网上可以通过：<a href="https://www.chromium.org/developers/how-tos/get-the-code" target="_blank" rel="noopener">网址</a>，找到各个平台相关详细的介绍，<a href="https://chromium.googlesource.com/chromium/src/+/master/docs/mac_build_instructions.md" target="_blank" rel="noopener">介绍文档</a>这个是mac下编译chromium的讲解，本篇文章是针对于官方介绍文档的中文版，对其中编译过程中遇到的问题进行记录。</p>
 <p>因为国内特殊的原因，谷歌相关的网络请求被墙掉了，所有需要配置科学上网能够翻墙的工具，我使用的是自己搭建的shadowsocks，shadowsocks搭建在这里就不细说了，由于需要chromium源码及depots_tools工具需要git命令下载，所以设置http_proxy，通过搭建好的shadowsocks可以通过下图中的方式获取到设置方式在终端中执行就行了，就可以在终端中请求被墙的网络地址了，具体设置git请求的设置和让终端走代理的设置大家可以百度一下，看一下详细的配置，自己设置一下，</p>
 <p>export http_proxy=<a href="http://127.0.0.1:1087;export" target="_blank" rel="noopener">http://127.0.0.1:1087;export</a> https_proxy=<a href="http://127.0.0.1:1087" target="_blank" rel="noopener">http://127.0.0.1:1087</a>;</p>
 <p><img src="http://upload-images.jianshu.io/upload_images/15057824-1814a4b3dc7e51d9?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
@@ -1300,6 +1472,28 @@
           </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Vue/" itemprop="url" rel="index">
+                    <span itemprop="name">Vue</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -1348,7 +1542,7 @@
 <h1 id="创建一个基于-webpack-模板的新项目"><a href="#创建一个基于-webpack-模板的新项目" class="headerlink" title="创建一个基于 webpack 模板的新项目"></a>创建一个基于 webpack 模板的新项目</h1><p>$ vue init webpack my-project</p>
 <h1 id="这里需要进行一些配置，默认回车即可"><a href="#这里需要进行一些配置，默认回车即可" class="headerlink" title="这里需要进行一些配置，默认回车即可"></a>这里需要进行一些配置，默认回车即可</h1><p>This will install Vue 2.x version of the template.</p>
 <p>For Vue 1.x use: vue init webpack#1.0 my-project</p>
-<p>? Project name my-project<br>? Project description A Vue.js project<br>? Author runoob <a href="mailto:&#116;&#x65;&#115;&#116;&#x40;&#x72;&#117;&#110;&#x6f;&#111;&#x62;&#46;&#x63;&#x6f;&#109;" target="_blank" rel="noopener">&#116;&#x65;&#115;&#116;&#x40;&#x72;&#117;&#110;&#x6f;&#111;&#x62;&#46;&#x63;&#x6f;&#109;</a><br>? Vue build standalone<br>? Use ESLint to lint your code? Yes<br>? Pick an ESLint preset Standard<br>? Setup unit tests with Karma + Mocha? Yes<br>? Setup e2e tests with Nightwatch? Yes</p>
+<p>? Project name my-project<br>? Project description A Vue.js project<br>? Author runoob <a href="mailto:&#x74;&#101;&#x73;&#116;&#x40;&#x72;&#x75;&#x6e;&#x6f;&#111;&#98;&#x2e;&#x63;&#111;&#109;" target="_blank" rel="noopener">&#x74;&#101;&#x73;&#116;&#x40;&#x72;&#x75;&#x6e;&#x6f;&#111;&#98;&#x2e;&#x63;&#111;&#109;</a><br>? Vue build standalone<br>? Use ESLint to lint your code? Yes<br>? Pick an ESLint preset Standard<br>? Setup unit tests with Karma + Mocha? Yes<br>? Setup e2e tests with Nightwatch? Yes</p>
 <p>   vue-cli · Generated “my-project”.</p>
 <p>   To get started:</p>
 <pre><code>cd my-project
@@ -1453,6 +1647,28 @@ npm run dev
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/杂谈/" itemprop="url" rel="index">
+                    <span itemprop="name">杂谈</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -1588,15 +1804,24 @@ npm run dev
             
 
             
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
 
             
               
               
               <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">1</span>
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">35</span>
                   <span class="site-state-item-name">标签</span>
-                
+                </a>
               </div>
             
 
@@ -1611,6 +1836,58 @@ npm run dev
             </div>
           
 
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/limm33" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://www.limingming.org" target="_blank" title="个人网站">
+                      
+                        <i class="fa fa-fw fa-crosshairs"></i>个人网站</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://blog.csdn.net/limm33" target="_blank" title="CSDN">
+                      
+                        <i class="fa fa-fw fa-book"></i>CSDN</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.jianshu.com/u/0ea8ec2aa0d1" target="_blank" title="简书">
+                      
+                        <i class="fa fa-fw fa-heartbeat"></i>简书</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://www.linkedin.com/in/李明明-kel" target="_blank" title="LinkIn">
+                      
+                        <i class="fa fa-fw fa-meh-o"></i>LinkIn</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/limm33" target="_blank" title="微博">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>微博</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.facebook.com/limm33" target="_blank" title="facebook">
+                      
+                        <i class="fa fa-fw fa-facebook"></i>facebook</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/limm333" target="_blank" title="twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>twitter</a>
+                  </span>
+                
+            </div>
           
 
           
@@ -1800,6 +2077,323 @@ npm run dev
 
 
   
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
 
 
 
