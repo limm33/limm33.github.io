@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[Maven依赖管理]]></title>
+    <url>%2F2018%2F12%2F01%2Fmaven%2FMaven%E4%BE%9D%E8%B5%96%E7%AE%A1%E7%90%86%2F</url>
+    <content type="text"><![CDATA[作者：李明明原文地址 直接依赖和间接依赖mane最大的好处就是能够方便的声明第三方的jar包，只需要在pom中进行简单的声明就可以将此jar包依赖到项目中，那什么是直接依赖呢？就是在项目中直接声明的这些依赖： 12345&lt;dependency&gt; &lt;groupId&gt;org.springframework&lt;/groupId&gt; &lt;artifactId&gt;spring-core&lt;/artifactId&gt; &lt;version&gt;4.1.4.RELEASE&lt;/version&gt; &lt;/dependency&gt; 排除依赖间接依赖是由直接依赖间接依赖到项目的那些jar包，当项目依赖于某一第三方Jar包，而这一第三方Jar包又给我们间接性的带来了大量的依赖,这种间接性的依赖，不仅浪费了磁盘空间，而且也可能带来潜在的冲突,因此我们需要将这些不需要的依赖从项目中排除，对项目进行一个瘦身，这时我们需要对Pom进行优化,再或者，通过间接性依赖获得的Jar包版本过低，而这些低版本的Jar包无法满足我们项目的需求，这时我们也需要将这些低版本的Jar包排除掉，也就是下面的exclusion标签 12345678910111213141516171819202122232425&lt;dependency&gt; &lt;groupId&gt;net.sf.spring-json&lt;/groupId&gt; &lt;artifactId&gt;spring-json&lt;/artifactId&gt; &lt;version&gt;1.3.1&lt;/version&gt; &lt;exclusions&gt; &lt;exclusion&gt; &lt;groupId&gt;org.springframework&lt;/groupId&gt; &lt;artifactId&gt;spring&lt;/artifactId&gt; &lt;/exclusion&gt; &lt;exclusion&gt; &lt;groupId&gt;cglib&lt;/groupId&gt; &lt;artifactId&gt;cglib-full&lt;/artifactId&gt; &lt;/exclusion&gt; &lt;/exclusions&gt;&lt;/dependency&gt;&lt;dependency&gt; &lt;groupId&gt;org.springframework&lt;/groupId&gt; &lt;artifactId&gt;spring-core&lt;/artifactId&gt; &lt;version&gt;2.5.6&lt;/version&gt; &lt;exclusions&gt; &lt;exclusion&gt; &lt;groupId&gt;commons-logging&lt;/groupId&gt; &lt;artifactId&gt;commons-logging&lt;/artifactId&gt; &lt;/exclusion&gt; &lt;/exclusions&gt; &lt;/dependency&gt; 工具筛选Maven没有任何声明排除jar包的情况下，默认是将全部jar包引入进来，有时候当前项目使用的jar包与依赖的第三方的jar包不同，会出现同个项目构建后出现一个jar包几个不同版本同时存在的问题，有时会引发jar包冲突可以通过命令或者是在IDE中查看依赖树，排查依赖关系： 1mvn dependency : list 经过Maven解析之后，就会构成一个依赖树也可以使用命令查看当前项目的依赖树： 1mvn dependency : tree 使用命令分析当前当前项目的依赖： 1mvn dependency : analyze 该命令执行结果的两个重要部分：Used undeclared dependencies: 表示项目中使用到的，但是没有显示声明的依赖Unused declared dependencies: 表示项目中未使用的，但显示声明的依赖该命令只会分析编译主代码和测试代码需要用到的依赖，一些执行测试和运行时需要的依赖它无法发现。 ps:exclusions是在某个具体依赖里面配置的，也就是说要找到需排除的jar包的依赖坐标 以下是eclipse中的通过配置工具查看依赖、删除依赖的位置： 大开pom.xml,选中下发Dependency Hierarchy，选中右侧jar包，右键排除依赖就可以了。 配置可选maven还有个可选依赖的设置，在当前项目A设置对某个依赖是可选的: 12345678&lt;optional&gt;true&lt;/optional&gt;&lt;dependency&gt; &lt;groupId&gt;sample.ProjectB&lt;/groupId&gt; &lt;artifactId&gt;Project-B&lt;/artifactId&gt; &lt;version&gt;1.0&lt;/version&gt; &lt;scope&gt;compile&lt;/scope&gt; &lt;optional&gt;true&lt;/optional&gt;&lt;/dependency&gt; 这样设置后，再有个项目X依赖A时，如果X中没有B中的类路径，则不会把B依赖加进来。 依赖规则大家看到直接依赖和间接依赖之后可能会有疑问，由不同的直接依赖产生的同一jar包不同版本的jar包之间的间接依赖怎么进行排除？这就要讲到maven的规则： 第一声明者优先（对于简介依赖） 例如：A项目依赖B、C两个项目，B和C又同时依赖D项目（依赖的D项目版本可能还是不同的），那就按照第一声明者优先的规则，谁先声明就用谁的，也就是对于间接依赖，路径相同的情况下，第一声明优先。 最后声明者优先（对于同一pom中直接依赖的同一jar包的不同版本间） 在pom中声明了同一jar包的不同版本，谁声明在后面就采用谁。 最短路径优先（对于间接依赖） 从名称就可以看出对于间接依赖的jar包，谁的间接依赖的路径短就采用谁的，例如A依赖B，B依赖D，而A依赖C，C依赖E，E依赖F，F依赖D，采用最短的依赖A-&gt;B-&gt;D的依赖版本。 dependencyManagement与dependenciesMaven已经具备了面向对象的思想，面向对象的三要素就是多态、继承、封装，dependencies与dependencyManagement就涉及到的是继承的思想。 多模块项目中，各个模块一般均需要Junit测试Jar包，因此在父Pom配置文件中，我们可以将这个依赖写入： 12345678&lt;dependencies&gt; &lt;dependency&gt; &lt;groupId&gt;junit&lt;/groupId&gt; &lt;artifactId&gt;junit&lt;/artifactId&gt; &lt;version&gt;$&#123;junit.version&#125;&lt;/version&gt; &lt;scope&gt;test&lt;/scope&gt; &lt;/dependency&gt;&lt;/dependencies&gt; 此模块的各个子模块就可以直接继承此jar包了。 再想想，有一些依赖，是各个子模块所特有的，如果放在父模块的POM中进行定义,那么所有继承了该父模块的子模块均会存在该依赖，这样的结果是啥，项目中存在大量冗余Jar包，不但浪费了磁盘，而且也不利于管理，所以： 12345678910111213141516171819dependencyManagement&gt; &lt;!-- 配置项目依赖 --&gt; &lt;dependencies&gt; &lt;dependency&gt; &lt;groupId&gt;org.apache.zookeeper&lt;/groupId&gt; &lt;artifactId&gt;zookeeper&lt;/artifactId&gt; &lt;version&gt;$&#123;zookeeper.version&#125;&lt;/version&gt; &lt;/dependency&gt; &lt;dependency&gt; &lt;groupId&gt;org.opensymphony.quartz&lt;/groupId&gt; &lt;artifactId&gt;quartz-all&lt;/artifactId&gt; &lt;version&gt;$&#123;quartz.version&#125;&lt;/version&gt; &lt;/dependency&gt; &lt;dependency&gt; &lt;groupId&gt;oro&lt;/groupId&gt; &lt;artifactId&gt;oro&lt;/artifactId&gt; &lt;version&gt;$&#123;oro.version&#125;&lt;/version&gt; &lt;/dependency&gt;&lt;/dependencyManagement&gt; 我们可以这样定义jar包在父模块，这样子模块就不会继承了，如果子模块需要用到jar包就需要重新声明： 1234567&lt;!-- 配置项目依赖 --&gt;&lt;dependencies&gt; &lt;dependency&gt; &lt;groupId&gt;org.apache.zookeeper&lt;/groupId&gt; &lt;artifactId&gt;zookeeper&lt;/artifactId&gt; &lt;/dependency&gt;&lt;/dependencies&gt; 可以省略版本，这样有利于控制版本，当然也可以自己定义在子模块中版本，这样将采用子模块中的版本。]]></content>
+      <categories>
+        <category>Maven</category>
+      </categories>
+      <tags>
+        <tag>Maven</tag>
+        <tag>依赖管理</tag>
+        <tag>排除</tag>
+        <tag>依赖</tag>
+        <tag>方法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[JDK及openJDK版本更迭]]></title>
+    <url>%2F2018%2F12%2F01%2FJava%2FJDK%E5%8F%8AopenJDK%E7%89%88%E6%9C%AC%E6%9B%B4%E8%BF%AD%2F</url>
+    <content type="text"><![CDATA[作者: 李明明http://limingming.org/index.php/2018/11/30/jdk-and-openjdk-version/ 道听途说最近浪潮公司内部除了持之以恒的宣扬“奋进者精神”之外，可能最大的一件事情就是JDK要收费了，观望着是不是要更换为openJDK，9月20多号Oracle发布了java 11，同时也发布后续更新策略，那是怎么收费的呢？ 追根溯源oracle jdk 和open jdk有什么区别？ Java 11授权使用BCL协议，没有个人、商业版了，也就是说，如果要使用的必须要付出代价，代价就是Money，不禁想说一句：万恶的资本主义。 Open jdk使用GPL协议 两种协议有什么区别呢？首先BCL不是开源协议，简要来介绍BCL协议的话，就是你一点也不能更改我的jdk，也不能基于我开发周边类库发布，如果基于我这个BCL开发，需要判断你是个人版还是商业版，再收钱！GPL是开源协议，JDK是可以更改的，基于这个GPL开发的东西也是属于GPL协议的，也要开源出来。 补充：由于历史原因，OpenJDK是JDK的开放源码版本，也就是上面我们说的GPL协议的，但是到了JDK7的时候OpenJDK已经为jdk的主干开发，oracle jdk是在openjdk基础上进行封板发布的，所以大部分的源代码是相同的，只不过其中有部分少量的源代码被替换掉，使用JRL发布，以上jdk7的过程中就产生了微妙的变化，openjdk 是GPL协议的，完全可以商用，但是JRL只允许个人使用不允许商用。 版本更迭大体梳理一下JDK版本更迭过程中产生了那些新特性，也借此机会梳理一下自己JAVA的知识脉络。 JDK5 泛型“ 123ArrayList list=new ArrayList()------&gt;ArrayList&lt;Integer&gt;list=new ArrayList&lt;Integer&gt;(); 枚举 静态导入 123456789101112import static java.lang.System.out``` 3. 可变参数（Varargs）4. 内省（Introspector），主要用于操作JavaBean中的属性，通过getXxx/setXxx。一般的做法是通过类Introspector来获取某个对象的BeanInfo信息，然后通过BeanInfo来获取属性的描述器（PropertyDescriptor），通过这个属性描述器就可以获取某个属性对应的getter/setter方法，然后我们就可以通过反射机制来调用这些方法。泛型(Generic)（包括通配类型/边界类型等）5. For-Each循环 ```javai=0;i&lt;a.length;i++------------&gt;for(int i:a)&#123;......&#125; 注解 协变返回类型：实际返回类型可以是要求的返回类型的一个子类型 自动装箱拆箱： 123int i=list.get(0).parseInt();--------&gt;int i=list.get(0); 我们经常阅读的编程思想也是在jdk5的版本上进行编写的，可惜作者忙别的事情去了，没有更新了，可能觉得java更新至此也应该很全面了吧。 JDK6 AWT新增加了两个类:Desktop和SystemTray，其中前者用来通过系统默认程序来执行一个操作，如使用默认浏览器浏览指定的URL,用默认邮件客户端给指定的邮箱发邮件,用默认应用程序打开或编辑文件(比如,用记事本打开以txt为后缀名的文件),用系统默认的打印机打印文档等。后者可以用来在系统托盘区创建一个托盘程序。 使用JAXB2来实现对象与XML之间的映射，可以将一个Java对象转变成为XML格式，反之亦然 StAX，一种利用拉模式解析(pull-parsing)XML文档的API。类似于SAX，也基于事件驱动模型。之所以将StAX加入到JAXP家族，是因为JDK6中的JAXB2和JAX-WS 2.0中都会用StAX。 使用Compiler API，动态编译Java源文件，如JSP编译引擎就是动态的，所以修改后无需重启服务器。（刚知道是从这里开始可以动态编译的） 轻量级Http Server API，据此可以构建自己的嵌入式HttpServer,它支持Http和Https协议。 插入式注解处理API(PluggableAnnotation Processing API) 提供了Console类用以开发控制台程序，位于java.io包中。据此可方便与Windows下的cmd或Linux下的Terminal等交互。 对脚本语言的支持如: ruby,groovy, javascript Common Annotations，原是J2EE 5.0规范的一部分，现在把它的一部分放到了J2SE 6.0中 嵌入式数据库 Derby 增强的for循环语句 1234567Integer[] numbers = computeNumbers();for (int i=0; i &lt; numbers.length ; i++)sum += numbers[i];||int sum = 0;for ( int number: computeNumbers() )sum += number; 监视和管理Java SE 6中对内存泄漏增强了分析以及诊断能力。当遇到java.lang.OutOfMemory异常的时候，可以得到一个完整的堆栈信息，并且当堆已经满了的时候，会产生一个Log文件来记录这个致命错误。另外，JVM还添加了一个选项，允许你在堆满的时候运行脚本。 插入式注解处理插入式注解处理API(JSR 269)提供一套标准API来处理Annotations 安全性 如果你细细想来jdk6用到的新特性的确很少 JDK7 对Java集合（Collections）的增强支持，可直接采用[]、{}的形式存入对象，采用[]的形式按照索引、键值来获取集合中的对象。如： 12345List&lt;String&gt;list=[“item1”,”item2”];//存Stringitem=list[0];//直接取Set&lt;String&gt;set=&#123;“item1”,”item2”,”item3”&#125;;//存Map&lt;String,Integer&gt; map=&#123;“key1”:1,”key2”:2&#125;;//存Intvalue=map[“key1”]; 在Switch中可用String 数值可加下划线用作分隔符（编译时自动被忽略） 支持二进制数字，如： 12345678910int binary= 0b1001_1001; ``` 5. 简化了可变参数方法的调用 6. 调用泛型类的构造方法时，可以省去泛型参数，编译器会自动判断。 7. Boolean类型反转，空指针安全,参与位运算 8. char类型的equals方法: ```javabooleanCharacter.equalsIgnoreCase(char ch1, char ch2) 安全的加减乘除: 1Math.safeToInt(longv); Math.safeNegate(int v); Math.safeSubtract(long v1, int v2);Math.safeMultiply(int v1, int v2); Map集合支持并发请求，注HashTable是线程安全的，Map是非线程安全的。但此处更新使得其也支持并发。另外，Map对象可这样定义： 1Map map = &#123;name:”xxx”,age:18&#125;; JDK8 接口的默认方法：即接口中可以声明一个非抽象的方法做为默认的实现，但只能声明一个，且在方法的返回类型前要加上“default”关键字。2.Lambda 表达式：是对匿名比较器的简化，如： 1Collections.sort(names,(String a, String b) -&gt; &#123; returnb.compareTo(a);&#125;); 对于函数体只有一行代码的，你可以去掉大括号{}以及return关键字。如： 123456Collections.sort(names,(String a, String b) -&gt; b.compareTo(a));``` 或：```javaCollections.sort(names, (a, b) -&gt; b.compareTo(a)); 函数式接口：是指仅仅只包含一个抽象方法的接口，要加@FunctionalInterface注解 使用 :: 关键字来传递方法或者构造函数引用 多重注解 还增加了很多与函数式接口类似的接口以及与Map相关的API等 其实以上的只不过是对于各个版本功能的简要摘录，如果想要详细了解的话可以看官方文档，平时用到的就是到jdk8，从jdk5到现在用jdk8，jdk9、和10还从来没有接触过。 最后附上相关项目的地址： OpenJDK官网:http://openjdk.java.net/ OpenJDK源码库：http://hg.openjdk.java.net/ OpenJDK源码库：http://hg.openjdk.java.net/]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>open jdk</tag>
+        <tag>版本</tag>
+        <tag>功能</tag>
+        <tag>区别</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Markdown语法]]></title>
+    <url>%2F2018%2F11%2F27%2F%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7%2FMarkdown%E8%AF%AD%E6%B3%95%2F</url>
+    <content type="text"><![CDATA[作者 李明明转载请注明出处： http://limingming.org/index.php/2018/11/28/markdown-grammar/ 介绍 Markdown 是一种轻量级标记语言，它允许人们使用易读易写的纯文本格式编写文档，然后转换成格式丰富的HTML页面。 —— 维基百科;Markdown 是一种轻量级标记语言，让写作者专注于写作而不用关注样式。很多有编程基础的程序员比较喜欢使用Markdown进行编写，github项目中README.md都是markdown编写的；以下我讲述通用的语法，保留各个编辑器通用的，还有很多markdown语法是各个编辑器独有的，大家使用过程中可以注意一下，平时使用mac上的编辑器,也为大家分享一下。 语法介绍标题123# 一级标题## 二级标题### 三级标题 演示图效果： 强调 在Markdown中，可以使用 * 或 _ 来表示斜体和加粗。 使用一个*或者_来表示斜体，两个来表示加粗。1234A： *我是斜体*B: _我也是斜体_C：**我是粗体**D: __我也是粗体__ 演示图效果： 例子（摘抄于马克飞象“案例，马克飞象是一个很不错的markdown编辑器，为markdown各种类型的语法提供了一个良好的支持）12345**马克飞象**是一款专为印象笔记（Evernote）打造的Markdown编辑器，通过精心的设计与技术实现，配合印象笔记强大的存储和同步功能，带来前所未有的书写体验。特点概述： - **功能丰富** ：支持高亮代码块、*LaTeX* 公式、流程图，本地图片以及附件上传，甚至截图粘贴，工作学习好帮手；- **得心应手** ：简洁高效的编辑器，提供[桌面客户端][1]以及[离线Chrome App][2]，支持移动端 Web；- **深度整合** ：支持选择笔记本和添加标签，支持从印象笔记跳转编辑，轻松管理。 锚点markdown会针对每个标题，在解析时都会添加锚点 id，例如： 123# 介绍# 介绍1那我们就可以使用“[访问介绍标题的锚点](#介绍)”,来定义锚点 测试： 访问介绍标题的锚点; 引用Markdown 标记区块引用和 email 中用 『&gt;』的引用方式类似，只需要在整个段落的第一行最前面加上 『&gt;』 ： 演示： 列表标记通常放在句子最左边，项目标记后面要接一个字符的空格。 无序列表：使用星号、加号或是减号作为列表标记123* 我是无序列表A + 我是无序列表B - 我是无序列表C 有序列表：使用数字接着一个英文句点1231. 我是无序列表12. 我是无序列表2 3. 我是无序列表3 3.代办列表(简书暂不支持此方式）12- [ ] 不勾选- [x] 勾选 补充如果在列表中使用引用,需要换行缩进，一般为四个空格：12345* 演示内容： &gt; 引用部分1 &gt; 引用部分2 &gt; 引用部分3 &gt; 引用部分4 代码块使用`包裹代码块，并声明代码块的语言，一般会带有相关的解析插件，对代码进行高亮处理，对代码进行着色。 超链接方括号显示说明，圆括号内显示网址， Markdown 编辑器会自动把它转成链接；123[我的博客](https://blog.csdn.net/limm33)[编程者联盟](https://github.com/limm33/ProgrammerLeague/blob/master/ProgrammerLeague.jpg)[个人博客](http://www.limingming.org) 演示： 图片图片和超连接语法比较像，可以在方括号前面加一个！就变成了引用图片了；1234![编程者联盟](url) 或者：![卡卡西](/Users/limm/Pictures/火影忍者/30381-106.jpg) 相对路径也可以(./path/*.jpg)这种形式 分割线使用 3 个以上 - 符号制作分割线：123分割线以上内容------------------分割线以下内容 演示： 表格markdown可以制作表格，方法也很简单例如：1233 | 3 | 3-|-|-3| 3| 3 以上为最基本的结构，‘3’代表你编辑的内容，第一行为表头，但是有的编辑器 - 需要多个，有的需要至少三个，所以布局可以尽量美观：123一列 | 第二列 | 第三列---------|---------------|---------- 值1 | 值2 | 值3 演示： 可以设置对齐方式,使用 ：添加在列的左边左对齐，右边为右对齐，两边都添加就是中间对齐：1234一列 | 第二列 | 第三列:---------|---------------:|:----------: 值1 | 值2 | 值3 值3 | 值4 | 值5 演示： 以上为总结的markdown的语法，希望对你的编写有所帮助。 联系我原来一直在CSDN编写博客我的博客我的微信公众号:编程者联盟我的 个人博客我的QQ群：115402375]]></content>
+      <categories>
+        <category>开发工具</category>
+      </categories>
+      <tags>
+        <tag>markdown</tag>
+        <tag>语法</tag>
+        <tag>介绍</tag>
+        <tag>怎么</tag>
+        <tag>如何</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[mac下npm安装命令不生效]]></title>
+    <url>%2F2018%2F11%2F27%2F%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7%2Fmac%E4%B8%8Bnpm%E5%AE%89%E8%A3%85%E5%91%BD%E4%BB%A4%E4%B8%8D%E7%94%9F%E6%95%88%2F</url>
+    <content type="text"><![CDATA[介绍如果我们平时使用node进行开发的话，经常会使用node安装一些其他的命令，比如安装淘宝的cnpm（npm install -g cnpm –registry=https://registry.npm.taobao.org），安装vue（npm install vue）命令等等，按道理应该是命令可以直接使用的。 我们在mac上安装完成nodejs，node的命令是在/usr/local/bin下面，可以直接使用，但是我们通过node命令安装的其他工具是在/usr/local/Cellar/node/10.8.0/lib/node_modules/vue-cli/bin/vue,我使用的10.8.0的版本，如果使用其他版本会在其他版本号路径下面，这个安装的路径一般都会统一创建链接到/usr/local/Cellar/node/10.8.0/bin下，所以我们把这个路径添加到我们的环境变量里面就可以了。 解决办法添加到环境变量的一个方式，比如修改~/.bash_profile文件，添加： 12#node安装包下的相关命令cnpm、node等命令export PATH="$PATH:/usr/local/Cellar/node/10.8.0/bin" 执行: 1source ~/.bash_profile 就可以使用cnpm等命令了。]]></content>
+      <categories>
+        <category>开发工具</category>
+      </categories>
+      <tags>
+        <tag>Mac</tag>
+        <tag>npm</tag>
+        <tag>安装</tag>
+        <tag>命令</tag>
+        <tag>不生效</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[mac下chromium源码编译笔记]]></title>
+    <url>%2F2018%2F11%2F25%2F%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7%2Fmac%E4%B8%8Bchromium%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E7%AC%94%E8%AE%B0%2F</url>
+    <content type="text"><![CDATA[作者 李明明转载请注明出处： http://limingming.org/index.php/2018/11/28/mac-compile-chromium/ 背景因为项目需要，需要对chromium进行了解，对chromium进行编译，在官网上可以通过：网址，找到各个平台相关详细的介绍，介绍文档这个是mac下编译chromium的讲解，本篇文章是针对于官方介绍文档的中文版，对其中编译过程中遇到的问题进行记录。 因为国内特殊的原因，谷歌相关的网络请求被墙掉了，所有需要配置科学上网能够翻墙的工具，我使用的是自己搭建的shadowsocks，shadowsocks搭建在这里就不细说了，由于需要chromium源码及depots_tools工具需要git命令下载，所以设置http_proxy，通过搭建好的shadowsocks可以通过下图中的方式获取到设置方式在终端中执行就行了，就可以在终端中请求被墙的网络地址了，具体设置git请求的设置和让终端走代理的设置大家可以百度一下，看一下详细的配置，自己设置一下， export http_proxy=http://127.0.0.1:1087;export https_proxy=http://127.0.0.1:1087; ​ 系统要求：64位mac,系统版本10.11+系统版本，屏幕左上角 苹果图标 -&gt; 关于本机 -&gt; 概览 Xcode 7.3+在 App Store搜索下载 OSX 10.10 SDK装完Xcode以后在终端输入下面的代码，如下图所示应该就可以了 1$ ls `xcode-select -p`/Platforms/MacOSX.platform/Developer/SDKs ​ 安装depot_tools用git复制 depot_tools 资源，如果一直下载不成功，检查一下http_proxy是否设置成功 1$ git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git 把depot_tools加入路径,假设你放在/path/to/depot_tools路径下面，那么就在终端输入，不过这是临时的， 1$ export PATH=&quot;$PATH:/path/to/depot_tools&quot; 获取代码创建一个新的chromium文件夹并进入文件夹，你可以叫它别的名字，可以放在任意的位置，但是要保证路径没有空格 1$ mkdir chromium &amp;&amp; cd chromium 使用fetch来检出代码和依赖（这个代码我现在下大概是7.2GB，如果不想要所有的历史记录可以加–no-history，下载会快一点） 带历史记录的源码 1$ fetch chromium 不带历史记录的源码 1$ fetch --no-history chromium 会产生隐藏的.gclient的文件，如果下载失败，可以把这个文件删了重新执行 中间不会有任何的提示，请安静地等待~这种应该是下载成功了吧 ​然后你就会发现目录下面有src文件夹，进入文件夹，这里有提示install API keys ，但是对大多数的开发者不是必选项，所以就先跳过。在官网上没有详细介绍， 开始编译： 在编译之前要执行gclient sync和gclient runhooks，进入到src目录下，在src目录啊下编译，之前装了depot_tools，那么就可以用下面的代码开新建一个build的目录文件夹，（build可以换名字，但是out文件夹是必需的） gn gen out/build 更快地编译官网给了三个配置可以加快build，分别是is_debug，is_component_build，symbol_level，配置方式如下(关于配置的说明) 输入下面的命令行会打开一个配置文件 1gn args out/build 可以在文件里面输入配置，像下面展示的这样 123is_component_build = trueis_debug = falsesymbol_level = 0 其实他们应该保存在src/out/build/args.gn这边 输入下面的代码你能够查看所有可配置的参数以及他们的默认值 1gn args --list out/my_build 同时也可以通过install ccache ，在再次compile的时候会更快，会增量编译不会重复编译 build chromium使用Ninja来build chromium，这个过程会比较耗时，虽然很多人说等2个小时，我第一次编译用了5个小时 1$ ninja -C out/Default chrome 运行chromium输入 1$ out/Default/chrome Debugging 调试debug资料这里的意思是用图形化的环境不用在xcode里面配置Debugging in Xcode前面按照教程取消了crash的记录 最后的配置是在生成的文件夹下面找到products.xcodeproj，然后双击就会用xcode打开，然后配置scheme,第一次应该没有scheme配置，选择New Scheme，然后Info这边，Executable选择Chromium.app，‘ 然后启动chromium , Debug -》Attach to Processes -&gt; 选择Chomium程序 首先是第一个资料推荐苹果开发者阅读的Mac OS X Debugging Magic Technote重要提醒： 在xcode里面，为了让断点生效，Debugging面板中取消Load Symbols Lazily GYP_DEFINES的fast_build如果是1的话，那么你想要的断点可能拿不到，如果你去掉它，要重新运行gyp_chromium以及rebuild禁用ReportCrash，在终端输入man ReportCrash，然后找到这一行 ​ 12launchctl unload -w /System/Library/LaunchAgents/com.apple.ReportCrash.plistsudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.ReportCrash.Root.plist 调试渲染进程XCode本身不支持多于一个的进程，对子进程的支持也不友好，有两种方法应付。 (a)单进程运行chrome（不被推荐） CCache据说是加速recompilation的，他通过存储原来的compilation，当compilations相同的时候，能够有一个显著的加速，特别是切换分支的时候。首先用brew下载在环境变量里面配置 ，下面是临时的 1Export PATH=“$PATH:/usr/local/opt/ccache/libexec ccahe” 然后要让gn配置使用配置环境变量 123export CCACHE_CPP2=yesexport CCACHE_SLOPPINESS=time_macrosexport PATH=`pwd`/third_party/llvm-build/Release+Asserts/bin:$PATH 运行 ninja ninja -C out/Release chrome 推荐大家可以看一下《webkit技术内幕》 联系我原来一直在CSDN编写博客我的博客我的微信公众号:编程者联盟我的 个人博客我的QQ群：115402375]]></content>
+      <categories>
+        <category>开发工具</category>
+      </categories>
+      <tags>
+        <tag>Mac</tag>
+        <tag>搭建</tag>
+        <tag>源码</tag>
+        <tag>chromium</tag>
+        <tag>谷歌浏览器</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Mac OS下搭建Vue开发环境]]></title>
+    <url>%2F2018%2F11%2F23%2Fvue%2FMac-OS%E4%B8%8B%E6%90%AD%E5%BB%BAVue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%2F</url>
+    <content type="text"><![CDATA[前言原来一直学习使用React，现在因为工作的需要，对Vue进行学习和使用，现在比较流行的框架React,angular,vue，正好对于vue也进行些了解。 环境搭建 打开终端,安装brew 1usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot; 安装成功后，使用查看版本，验证是否安装成功1brew -v 安装node.js1brew install nodejs 也可以下载安装下载地址安装成功后，使用验证123node -v``` * 给nodejs目录赋权限 sudo chmod -R 777 /usr/local/lib/node_modules/1* 安装 淘宝镜像 （npm） npm install -g cnpm –registry=https://registry.npm.taobao.org12* 安装webpack cnpm install webpack -g12* 安装vue脚手架 npm install vue-cli -g12# 开始Vue 创建一个基于 webpack 模板的新项目$ vue init webpack my-project 这里需要进行一些配置，默认回车即可This will install Vue 2.x version of the template. For Vue 1.x use: vue init webpack#1.0 my-project ? Project name my-project? Project description A Vue.js project? Author runoob &#116;&#x65;&#x73;&#116;&#64;&#114;&#117;&#110;&#x6f;&#111;&#98;&#46;&#99;&#111;&#109;? Vue build standalone? Use ESLint to lint your code? Yes? Pick an ESLint preset Standard? Setup unit tests with Karma + Mocha? Yes? Setup e2e tests with Nightwatch? Yes vue-cli · Generated “my-project”. To get started: cd my-project npm install npm run dev Documentation can be found at https://vuejs-templates.github.io/webpack1进入项目，安装并运行： $ cd my-project$ cnpm install$ cnpm run dev DONE Compiled successfully in 4388ms Listening at http://localhost:8080`]]></content>
+      <categories>
+        <category>Vue</category>
+      </categories>
+      <tags>
+        <tag>Mac</tag>
+        <tag>搭建</tag>
+        <tag>Vue</tag>
+        <tag>开发环境</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[wordpress无法连接到FTP解决]]></title>
+    <url>%2F2018%2F11%2F23%2F%E6%9D%82%E8%B0%88%2Fwordpress%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5%E5%88%B0FTP%E8%A7%A3%E5%86%B3%2F</url>
+    <content type="text"><![CDATA[问题未能连接到FTP服务器IP:21 原因分析为了安全起见，wordpress会在安装插件或者主题时增加一层FTP验证 解决 修改wordpress 根目录下wp-config.php文件 1vi wordpress/wp-config.php 在文件最后添加一行内容 1define(&apos;FS_METHOD&apos;, &quot;direct&quot;); 重新试试就可以了！]]></content>
+      <categories>
+        <category>杂谈</category>
+      </categories>
+      <tags>
+        <tag>解决</tag>
+        <tag>wordpress</tag>
+        <tag>无法连接</tag>
+        <tag>FTP</tag>
+        <tag>下载插件</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[MAC-OS无法开机问题解决]]></title>
+    <url>%2F2018%2F11%2F11%2F%E6%9D%82%E8%B0%88%2FMAC-OS%E6%97%A0%E6%B3%95%E5%BC%80%E6%9C%BA%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%2F</url>
+    <content type="text"><![CDATA[作为一个自恋的程序员，我的imac升级了系统之后也变得傲娇起来，就是开机无法启动，进度条大约到五分之四的时候就卡住了，电脑也变黑屏了，之后进入了小圆圈一直转的无限循环的状态，暂时简称无限菊花状态。 问题导致原因原来mac系统为10.13.6，升级到了最新的系统之后10.14.8，虽然更新过程中没有任何问题，也能重新启动了电脑，有了新的黑色主题的imac并没有让我适应，总感觉还是原来的主题比较好，再不高兴之余骂了它的主题，顺便关了机，所以它就闹起了小脾气。 问题解决 首先想到的是“开机按住shift键进入安全模式，结果无法启动； 所以无耻的google了一下，按照说明开机无法启动的情况下，按住电源按钮十秒；钟，当然我很坚持的按住了15秒钟，隐隐若若的听到了“嗒”的一个内部的声音，感觉有什么东西被重置了的感觉，但是也是无济于事； 之后按照重置 Mac 上的系统管理控制器 (SMC),按照配置重置了smc，结果仍然不能开机； 按照重置 Mac 上的 NVRAM 或 PRAM重置了，原来电脑是静音状态，重置了之后生效了开机声音，可以听到开机声音了； 经过了以上几个步骤还是不能开机，所以我觉得应该弄点大招了，所以开机使用“command+r”的方式进入恢复模式选择磁盘工具，进行急救，修复了文件权限和磁盘，当然我没有进行任何磁盘破坏的事情，我很确信是因为升级导致的无法启动，所以磁盘急救完成重新开机竟然还是不行； 在磁盘急救不生效的情况下，用command+r进入恢复模式，重新安装系统，此种方式安装系统不会丢失任何文件和应用，可以放心安装，可能因为网络和时区的问题，导致无法正常安装，可以多试几次；但是重装覆盖系统之后还是不能开机。 在恢复模式下磁盘工具中抹掉磁盘，当然要备份好重要数据后抹掉磁盘，然后再执行安装系统，完成后就可以正常开机了。 说明以上几个步骤我在执行过程中可能没有生效，但是很多遇到这种情况的执行其中几步的时候都成功开机了，在万不得已的情况下可以抹掉磁盘重新安装系统。 联系我原来一直在CSDN编写博客我的博客，欢迎留言讨论，现在第一次更换为简书，竟然写的不是技术博客。我的微信公众号:编程者联盟 我的QQ群：115402375]]></content>
+      <categories>
+        <category>杂谈</category>
+      </categories>
+      <tags>
+        <tag>苹果电脑</tag>
+        <tag>无法开机</tag>
+        <tag>解决</tag>
+        <tag>转圈</tag>
+      </tags>
+  </entry>
+</search>

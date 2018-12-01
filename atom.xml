@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.limingming.org/"/>
-  <updated>2018-12-01T13:32:10.793Z</updated>
+  <updated>2018-12-01T15:38:08.149Z</updated>
   <id>http://www.limingming.org/</id>
   
   <author>
@@ -18,10 +18,10 @@
   
   <entry>
     <title>Maven依赖管理</title>
-    <link href="http://www.limingming.org/2018/12/01/maven/Maven%08%E4%BE%9D%E8%B5%96%E7%AE%A1%E7%90%86/"/>
-    <id>http://www.limingming.org/2018/12/01/maven/Maven依赖管理/</id>
-    <published>2018-11-30T23:13:08.000Z</published>
-    <updated>2018-12-01T13:32:10.793Z</updated>
+    <link href="http://www.limingming.org/2018/12/01/maven/Maven%E4%BE%9D%E8%B5%96%E7%AE%A1%E7%90%86/"/>
+    <id>http://www.limingming.org/2018/12/01/maven/Maven依赖管理/</id>
+    <published>2018-12-01T15:36:49.000Z</published>
+    <updated>2018-12-01T15:38:08.149Z</updated>
     
     <summary type="html">
     
@@ -38,13 +38,15 @@
       <category term="Maven" scheme="http://www.limingming.org/categories/Maven/"/>
     
     
-      <category term="maven" scheme="http://www.limingming.org/tags/maven/"/>
+      <category term="Maven" scheme="http://www.limingming.org/tags/Maven/"/>
+    
+      <category term="依赖管理" scheme="http://www.limingming.org/tags/%E4%BE%9D%E8%B5%96%E7%AE%A1%E7%90%86/"/>
     
       <category term="排除" scheme="http://www.limingming.org/tags/%E6%8E%92%E9%99%A4/"/>
     
       <category term="依赖" scheme="http://www.limingming.org/tags/%E4%BE%9D%E8%B5%96/"/>
     
-      <category term="管理" scheme="http://www.limingming.org/tags/%E7%AE%A1%E7%90%86/"/>
+      <category term="方法" scheme="http://www.limingming.org/tags/%E6%96%B9%E6%B3%95/"/>
     
   </entry>
   
