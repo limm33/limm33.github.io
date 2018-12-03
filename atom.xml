@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.limingming.org/"/>
-  <updated>2018-12-03T04:55:52.662Z</updated>
+  <updated>2018-12-03T05:12:10.076Z</updated>
   <id>http://www.limingming.org/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>在maven的web项目中内嵌tomcat插件执行war包</title>
-    <link href="http://www.limingming.org/2018/12/03/maven/%E5%9C%A8maven%E7%9A%84web%E9%A1%B9%E7%9B%AE%E4%B8%AD%E5%86%85%E5%B5%8Ctomcat%E6%8F%92%E4%BB%B6%E6%89%A7%E8%A1%8Cwar%E5%8C%85/"/>
-    <id>http://www.limingming.org/2018/12/03/maven/在maven的web项目中内嵌tomcat插件执行war包/</id>
-    <published>2018-12-03T04:51:21.000Z</published>
-    <updated>2018-12-03T04:55:52.662Z</updated>
+    <title>Maven多WEB模块打包排除jar包冲突的配置建议</title>
+    <link href="http://www.limingming.org/2018/12/03/maven/Maven%E5%A4%9AWEB%E6%A8%A1%E5%9D%97%E6%89%93%E5%8C%85%E6%8E%92%E9%99%A4jar%E5%8C%85%E5%86%B2%E7%AA%81%E7%9A%84%E9%85%8D%E7%BD%AE%E5%BB%BA%E8%AE%AE/"/>
+    <id>http://www.limingming.org/2018/12/03/maven/Maven多WEB模块打包排除jar包冲突的配置建议/</id>
+    <published>2018-12-03T05:09:00.000Z</published>
+    <updated>2018-12-03T05:12:10.076Z</updated>
     
     <summary type="html">
     
@@ -35,8 +35,52 @@
     
     </summary>
     
-      <category term="未分类" scheme="http://www.limingming.org/categories/%E6%9C%AA%E5%88%86%E7%B1%BB/"/>
+      <category term="Maven" scheme="http://www.limingming.org/categories/Maven/"/>
     
+    
+      <category term="多模块" scheme="http://www.limingming.org/tags/%E5%A4%9A%E6%A8%A1%E5%9D%97/"/>
+    
+      <category term="web" scheme="http://www.limingming.org/tags/web/"/>
+    
+      <category term="合并" scheme="http://www.limingming.org/tags/%E5%90%88%E5%B9%B6/"/>
+    
+      <category term="排除" scheme="http://www.limingming.org/tags/%E6%8E%92%E9%99%A4/"/>
+    
+      <category term="冲突" scheme="http://www.limingming.org/tags/%E5%86%B2%E7%AA%81/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>在maven的web项目中内嵌tomcat插件执行war包</title>
+    <link href="http://www.limingming.org/2018/12/03/maven/%E5%9C%A8maven%E7%9A%84web%E9%A1%B9%E7%9B%AE%E4%B8%AD%E5%86%85%E5%B5%8Ctomcat%E6%8F%92%E4%BB%B6%E6%89%A7%E8%A1%8Cwar%E5%8C%85/"/>
+    <id>http://www.limingming.org/2018/12/03/maven/在maven的web项目中内嵌tomcat插件执行war包/</id>
+    <published>2018-12-03T04:51:21.000Z</published>
+    <updated>2018-12-03T05:10:00.107Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="Maven" scheme="http://www.limingming.org/categories/Maven/"/>
+    
+    
+      <category term="tomcat" scheme="http://www.limingming.org/tags/tomcat/"/>
+    
+      <category term="插件" scheme="http://www.limingming.org/tags/%E6%8F%92%E4%BB%B6/"/>
+    
+      <category term="内嵌" scheme="http://www.limingming.org/tags/%E5%86%85%E5%B5%8C/"/>
+    
+      <category term="可执行" scheme="http://www.limingming.org/tags/%E5%8F%AF%E6%89%A7%E8%A1%8C/"/>
+    
+      <category term="war" scheme="http://www.limingming.org/tags/war/"/>
     
   </entry>
   
@@ -98,13 +142,13 @@
     
       <category term="Maven" scheme="http://www.limingming.org/tags/Maven/"/>
     
+      <category term="插件" scheme="http://www.limingming.org/tags/%E6%8F%92%E4%BB%B6/"/>
+    
       <category term="构建" scheme="http://www.limingming.org/tags/%E6%9E%84%E5%BB%BA/"/>
     
       <category term="执行" scheme="http://www.limingming.org/tags/%E6%89%A7%E8%A1%8C/"/>
     
       <category term="WEB" scheme="http://www.limingming.org/tags/WEB/"/>
-    
-      <category term="插件" scheme="http://www.limingming.org/tags/%E6%8F%92%E4%BB%B6/"/>
     
   </entry>
   
@@ -130,11 +174,11 @@
       <category term="Maven" scheme="http://www.limingming.org/categories/Maven/"/>
     
     
+      <category term="排除" scheme="http://www.limingming.org/tags/%E6%8E%92%E9%99%A4/"/>
+    
       <category term="Maven" scheme="http://www.limingming.org/tags/Maven/"/>
     
       <category term="依赖管理" scheme="http://www.limingming.org/tags/%E4%BE%9D%E8%B5%96%E7%AE%A1%E7%90%86/"/>
-    
-      <category term="排除" scheme="http://www.limingming.org/tags/%E6%8E%92%E9%99%A4/"/>
     
       <category term="依赖" scheme="http://www.limingming.org/tags/%E4%BE%9D%E8%B5%96/"/>
     

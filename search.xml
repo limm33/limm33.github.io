@@ -1,12 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Maven多WEB模块打包排除jar包冲突的配置建议]]></title>
+    <url>%2F2018%2F12%2F03%2Fmaven%2FMaven%E5%A4%9AWEB%E6%A8%A1%E5%9D%97%E6%89%93%E5%8C%85%E6%8E%92%E9%99%A4jar%E5%8C%85%E5%86%B2%E7%AA%81%E7%9A%84%E9%85%8D%E7%BD%AE%E5%BB%BA%E8%AE%AE%2F</url>
+    <content type="text"><![CDATA[原文 前提在原有的web项目基础上拆分出了多个web项目，后台代码还是在各个web模块中，现在的需求是要合并多个web模块整合到一个war中部署。 配置建议新建打包的web模块用以合并多个web模块项目，在pom中声明合并打包的各个模块，例如要合并A模块和B模块，如下： 123456789101112131415161718192021222324252627&lt;dependencies&gt;&lt;dependency&gt;&lt;groupId&gt;com.inspur.test&lt;/groupId&gt;&lt;artifactId&gt;A&lt;/artifactId&gt;&lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;&lt;type&gt;war&lt;/type&gt;&lt;/dependency&gt;&lt;dependency&gt;&lt;groupId&gt;com.inspur.test&lt;/groupId&gt;&lt;artifactId&gt;A&lt;/artifactId&gt;&lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;&lt;type&gt;pom&lt;/type&gt;&lt;/dependency&gt;&lt;dependency&gt;&lt;groupId&gt;com.inspur.test&lt;/groupId&gt;&lt;artifactId&gt;B&lt;/artifactId&gt;&lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;&lt;type&gt;war&lt;/type&gt;&lt;/dependency&gt;&lt;dependency&gt;&lt;groupId&gt;com.inspur.test&lt;/groupId&gt;&lt;artifactId&gt;B&lt;/artifactId&gt;&lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;&lt;type&gt;pom&lt;/type&gt;&lt;/dependency&gt;&lt;/dependencies&gt; 我们需要在合并打包的项目中依赖要合并的各个war包和各个模块的pom。 排除各个模块的lib： 排除各个模块的lib 123456789101112131415161718192021222324252627282930&lt;build&gt;&lt;finalName&gt;B&lt;/finalName&gt;&lt;plugins&gt; &lt;!-- 合并多个war --&gt;&lt;plugin&gt;&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;&lt;artifactId&gt;maven-war-plugin&lt;/artifactId&gt;&lt;version&gt;2.6&lt;/version&gt;&lt;configuration&gt;&lt;overlays&gt; &lt;!-- 声明合并war --&gt;&lt;overlay&gt;&lt;groupId&gt;com.inspur.test&lt;/groupId&gt;&lt;artifactId&gt;A&lt;/artifactId&gt;&lt;excludes&gt;&lt;!-- 声明排除war包中的部分 --&gt;&lt;exclude&gt;WEB-INF/lib/*&lt;/exclude&gt;&lt;/excludes&gt;&lt;/overlay&gt;&lt;/overlays&gt;&lt;overlays&gt; &lt;!-- 声明合并war --&gt;&lt;overlay&gt;&lt;groupId&gt;com.inspur.test&lt;/groupId&gt;&lt;artifactId&gt;B&lt;/artifactId&gt;&lt;excludes&gt;&lt;!-- 声明排除war包中的部分 --&gt;&lt;exclude&gt;WEB-INF/lib/*&lt;/exclude&gt;&lt;/excludes&gt;&lt;/overlay&gt;&lt;/overlays&gt;&lt;/configuration&gt;&lt;/plugin&gt;&lt;/plugins&gt;&lt;/build&gt; 大家有哪些多模块开发构建的规范，很希望能给出你的建议到原文评论，谢谢。]]></content>
+      <categories>
+        <category>Maven</category>
+      </categories>
+      <tags>
+        <tag>多模块</tag>
+        <tag>web</tag>
+        <tag>合并</tag>
+        <tag>排除</tag>
+        <tag>冲突</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[在maven的web项目中内嵌tomcat插件执行war包]]></title>
     <url>%2F2018%2F12%2F03%2Fmaven%2F%E5%9C%A8maven%E7%9A%84web%E9%A1%B9%E7%9B%AE%E4%B8%AD%E5%86%85%E5%B5%8Ctomcat%E6%8F%92%E4%BB%B6%E6%89%A7%E8%A1%8Cwar%E5%8C%85%2F</url>
     <content type="text"><![CDATA[原文地址 环境要求Unix System\windwos\macOSJDK 1.7+Maven 3.0 or later 我测试的编译环境是：macOS10.11.6和windows10jdk1.8/jdk1.7Maven 3.3.9 我的本机开发环境：MacOS 10.11.6eclipse Mars.2 在pom中配置tomcat-maven-plugin123456789101112131415161718192021222324&lt;project&gt; ... &lt;packaging&gt;war&lt;/packaging&gt; ... &lt;build&gt; ... &lt;plugins&gt; ... &lt;plugin&gt; &lt;groupId&gt;org.apache.tomcat.maven&lt;/groupId&gt; &lt;artifactId&gt;tomcat6-maven-plugin&lt;/artifactId&gt; &lt;version&gt;2.2&lt;/version&gt; &lt;/plugin&gt; &lt;plugin&gt; &lt;groupId&gt;org.apache.tomcat.maven&lt;/groupId&gt; &lt;artifactId&gt;tomcat7-maven-plugin&lt;/artifactId&gt; &lt;version&gt;2.2&lt;/version&gt; &lt;/plugin&gt; ... &lt;/plugins&gt; ... &lt;/build&gt; ...&lt;/project&gt; 运行war包执行 tomcat7:run-war或者tomca6:run-war 如果想要修改其他配置可以在标签下添加如下等配置 1234567&lt;configuration&gt; &lt;port&gt;8080&lt;/port&gt; &lt;path&gt;/demo&lt;/path&gt; &lt;uriEncoding&gt;UTF-8&lt;/uriEncoding&gt; &lt;finalName&gt;demo&lt;/finalName&gt; &lt;server&gt;tomcat7&lt;/server&gt; &lt;/configuration&gt; 参考：http://tomcat.apache.org/maven-plugin-2.2/]]></content>
       <categories>
-        <category>未分类</category>
+        <category>Maven</category>
       </categories>
+      <tags>
+        <tag>tomcat</tag>
+        <tag>插件</tag>
+        <tag>内嵌</tag>
+        <tag>可执行</tag>
+        <tag>war</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[Maven项目中WEB模块中后台代码打成jar包]]></title>
@@ -32,10 +54,10 @@
       </categories>
       <tags>
         <tag>Maven</tag>
+        <tag>插件</tag>
         <tag>构建</tag>
         <tag>执行</tag>
         <tag>WEB</tag>
-        <tag>插件</tag>
       </tags>
   </entry>
   <entry>
@@ -46,9 +68,9 @@
         <category>Maven</category>
       </categories>
       <tags>
+        <tag>排除</tag>
         <tag>Maven</tag>
         <tag>依赖管理</tag>
-        <tag>排除</tag>
         <tag>依赖</tag>
         <tag>方法</tag>
       </tags>
@@ -116,7 +138,7 @@
   <entry>
     <title><![CDATA[Mac OS下搭建Vue开发环境]]></title>
     <url>%2F2018%2F11%2F23%2Fvue%2FMac-OS%E4%B8%8B%E6%90%AD%E5%BB%BAVue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%2F</url>
-    <content type="text"><![CDATA[前言原来一直学习使用React，现在因为工作的需要，对Vue进行学习和使用，现在比较流行的框架React,angular,vue，正好对于vue也进行些了解。 环境搭建 打开终端,安装brew 1usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot; 安装成功后，使用查看版本，验证是否安装成功1brew -v 安装node.js1brew install nodejs 也可以下载安装下载地址安装成功后，使用验证123node -v``` * 给nodejs目录赋权限 sudo chmod -R 777 /usr/local/lib/node_modules/1* 安装 淘宝镜像 （npm） npm install -g cnpm –registry=https://registry.npm.taobao.org12* 安装webpack cnpm install webpack -g12* 安装vue脚手架 npm install vue-cli -g12# 开始Vue 创建一个基于 webpack 模板的新项目$ vue init webpack my-project 这里需要进行一些配置，默认回车即可This will install Vue 2.x version of the template. For Vue 1.x use: vue init webpack#1.0 my-project ? Project name my-project? Project description A Vue.js project? Author runoob &#x74;&#x65;&#x73;&#116;&#64;&#x72;&#x75;&#110;&#111;&#x6f;&#x62;&#46;&#99;&#x6f;&#109;? Vue build standalone? Use ESLint to lint your code? Yes? Pick an ESLint preset Standard? Setup unit tests with Karma + Mocha? Yes? Setup e2e tests with Nightwatch? Yes vue-cli · Generated “my-project”. To get started: cd my-project npm install npm run dev Documentation can be found at https://vuejs-templates.github.io/webpack1进入项目，安装并运行： $ cd my-project$ cnpm install$ cnpm run dev DONE Compiled successfully in 4388ms Listening at http://localhost:8080`]]></content>
+    <content type="text"><![CDATA[前言原来一直学习使用React，现在因为工作的需要，对Vue进行学习和使用，现在比较流行的框架React,angular,vue，正好对于vue也进行些了解。 环境搭建 打开终端,安装brew 1usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot; 安装成功后，使用查看版本，验证是否安装成功1brew -v 安装node.js1brew install nodejs 也可以下载安装下载地址安装成功后，使用验证123node -v``` * 给nodejs目录赋权限 sudo chmod -R 777 /usr/local/lib/node_modules/1* 安装 淘宝镜像 （npm） npm install -g cnpm –registry=https://registry.npm.taobao.org12* 安装webpack cnpm install webpack -g12* 安装vue脚手架 npm install vue-cli -g12# 开始Vue 创建一个基于 webpack 模板的新项目$ vue init webpack my-project 这里需要进行一些配置，默认回车即可This will install Vue 2.x version of the template. For Vue 1.x use: vue init webpack#1.0 my-project ? Project name my-project? Project description A Vue.js project? Author runoob &#116;&#x65;&#x73;&#116;&#x40;&#x72;&#x75;&#110;&#x6f;&#x6f;&#x62;&#x2e;&#x63;&#x6f;&#109;? Vue build standalone? Use ESLint to lint your code? Yes? Pick an ESLint preset Standard? Setup unit tests with Karma + Mocha? Yes? Setup e2e tests with Nightwatch? Yes vue-cli · Generated “my-project”. To get started: cd my-project npm install npm run dev Documentation can be found at https://vuejs-templates.github.io/webpack1进入项目，安装并运行： $ cd my-project$ cnpm install$ cnpm run dev DONE Compiled successfully in 4388ms Listening at http://localhost:8080`]]></content>
       <categories>
         <category>Vue</category>
       </categories>
