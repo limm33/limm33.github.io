@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.limingming.org/"/>
-  <updated>2018-12-03T12:29:23.995Z</updated>
+  <updated>2018-12-03T12:32:39.587Z</updated>
   <id>http://www.limingming.org/</id>
   
   <author>
@@ -21,14 +21,28 @@
     <link href="http://www.limingming.org/2018/12/03/maven/maven%E5%B7%A5%E5%85%B7%E5%8C%85%E7%9B%AE%E5%BD%95%E4%BB%8B%E7%BB%8D/"/>
     <id>http://www.limingming.org/2018/12/03/maven/maven工具包目录介绍/</id>
     <published>2018-12-03T12:28:33.000Z</published>
-    <updated>2018-12-03T12:29:23.995Z</updated>
+    <updated>2018-12-03T12:32:39.587Z</updated>
     
     <summary type="html">
     
+      
+      
+        
+        
+          
+        
+      
+    
     </summary>
     
-      <category term="未分类" scheme="http://www.limingming.org/categories/%E6%9C%AA%E5%88%86%E7%B1%BB/"/>
+      <category term="Maven" scheme="http://www.limingming.org/categories/Maven/"/>
     
+    
+      <category term="工具包" scheme="http://www.limingming.org/tags/%E5%B7%A5%E5%85%B7%E5%8C%85/"/>
+    
+      <category term="目录" scheme="http://www.limingming.org/tags/%E7%9B%AE%E5%BD%95/"/>
+    
+      <category term="介绍" scheme="http://www.limingming.org/tags/%E4%BB%8B%E7%BB%8D/"/>
     
   </entry>
   
@@ -116,9 +130,9 @@
       <category term="Maven" scheme="http://www.limingming.org/categories/Maven/"/>
     
     
-      <category term="安装" scheme="http://www.limingming.org/tags/%E5%AE%89%E8%A3%85/"/>
-    
       <category term="maven" scheme="http://www.limingming.org/tags/maven/"/>
+    
+      <category term="安装" scheme="http://www.limingming.org/tags/%E5%AE%89%E8%A3%85/"/>
     
       <category term="nexus" scheme="http://www.limingming.org/tags/nexus/"/>
     
@@ -148,9 +162,9 @@
       <category term="Maven" scheme="http://www.limingming.org/categories/Maven/"/>
     
     
-      <category term="nexus" scheme="http://www.limingming.org/tags/nexus/"/>
-    
       <category term="介绍" scheme="http://www.limingming.org/tags/%E4%BB%8B%E7%BB%8D/"/>
+    
+      <category term="nexus" scheme="http://www.limingming.org/tags/nexus/"/>
     
       <category term="私服" scheme="http://www.limingming.org/tags/%E7%A7%81%E6%9C%8D/"/>
     
@@ -550,11 +564,11 @@
       <category term="开发工具" scheme="http://www.limingming.org/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"/>
     
     
+      <category term="介绍" scheme="http://www.limingming.org/tags/%E4%BB%8B%E7%BB%8D/"/>
+    
       <category term="markdown" scheme="http://www.limingming.org/tags/markdown/"/>
     
       <category term="语法" scheme="http://www.limingming.org/tags/%E8%AF%AD%E6%B3%95/"/>
-    
-      <category term="介绍" scheme="http://www.limingming.org/tags/%E4%BB%8B%E7%BB%8D/"/>
     
       <category term="怎么" scheme="http://www.limingming.org/tags/%E6%80%8E%E4%B9%88/"/>
     

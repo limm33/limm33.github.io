@@ -3,10 +3,15 @@
   <entry>
     <title><![CDATA[maven工具包目录介绍]]></title>
     <url>%2F2018%2F12%2F03%2Fmaven%2Fmaven%E5%B7%A5%E5%85%B7%E5%8C%85%E7%9B%AE%E5%BD%95%E4%BB%8B%E7%BB%8D%2F</url>
-    <content type="text"></content>
+    <content type="text"><![CDATA[maven的安装目录结构如下：12345678910111213binbootconflibLICENSE.txtNOTICE.txtREADME.txt 介绍 Bin 该目录包含了mvn运行的脚本，这些脚本用来配置Java命令，准备好classpath和相关的Java系统属性，然后执行Java命令。其中mvn是基于UNIX平台的shell脚本，mvn.bat是基于Windows平台的bat脚本。在命令行输入任何一条mvn命令时，实际上就是在调用这些脚本。该目录还包含了mvnDebug和mvnDebug.bat两个文件，同样，前者是UNIX平台的shell脚本，后者是windows的bat脚本。那么mvn和mvnDebug有什么区别和关系呢？打开文件我们就可以看到，两者基本是一样的，只是mvnDebug多了一条MAVEN_DEBUG_OPTS配置，作用就是在运行Maven时开启debug，以便调试Maven本身。此外，该目录还包含m2.conf文件，这是classworlds的配置文件。 Boot 该目录只包含一个文件，以maven 3.0为例，该文件为plexus-classworlds-2.2.3.jar。plexus-classworlds是一个类加载器框架，相对于默认的java类加载器，它提供了更丰富的语法以方便配置，Maven使用该框架加载自己的类库。更多关于classworlds的信息请参考http://classworlds.codehaus.org/。对于一般的Maven用户来说，不必关心该文件。 Conf该目录包含了一个非常重要的文件settings.xml。直接修改该文件，就能在机器上全局地定制Maven的行为。一般情况下，我们更偏向于复制该文件至~/.m2/目录下（这里~表示用户目录），然后修改该文件，在用户范围定制Maven的行为。 Lib 该目录包含了所有Maven运行时需要的Java类库，Maven本身是分模块开发的，因此用户能看到诸如mavn-core-3.0.jar、maven-model-3.0.jar之类的文件，此外这里还包含一些Maven用到的第三方依赖如common-cli-1.2.jar、google-collection-1.0.jar等等。可以说，这个lib目录就是真正的Maven。关于该文件，还有一点值得一提的是，用户可以在这个目录中找到Maven内置的超级POM， 其他： LICENSE.txt记录了Maven使用的软件许可证Apache License Version 2.0； NOTICE.txt记录了Maven包含的第三方软件；而README.txt则包含了Maven的简要介绍，包括安装需求及如何安装的简要指令等等。]]></content>
       <categories>
-        <category>未分类</category>
+        <category>Maven</category>
       </categories>
+      <tags>
+        <tag>工具包</tag>
+        <tag>目录</tag>
+        <tag>介绍</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[Maven核心概念]]></title>
@@ -43,8 +48,8 @@
         <category>Maven</category>
       </categories>
       <tags>
-        <tag>安装</tag>
         <tag>maven</tag>
+        <tag>安装</tag>
         <tag>nexus</tag>
         <tag>文档</tag>
       </tags>
@@ -57,8 +62,8 @@
         <category>Maven</category>
       </categories>
       <tags>
-        <tag>nexus</tag>
         <tag>介绍</tag>
+        <tag>nexus</tag>
         <tag>私服</tag>
       </tags>
   </entry>
@@ -234,9 +239,9 @@
         <category>开发工具</category>
       </categories>
       <tags>
+        <tag>介绍</tag>
         <tag>markdown</tag>
         <tag>语法</tag>
-        <tag>介绍</tag>
         <tag>怎么</tag>
         <tag>如何</tag>
       </tags>
@@ -274,7 +279,7 @@
   <entry>
     <title><![CDATA[Mac OS下搭建Vue开发环境]]></title>
     <url>%2F2018%2F11%2F23%2Fvue%2FMac-OS%E4%B8%8B%E6%90%AD%E5%BB%BAVue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%2F</url>
-    <content type="text"><![CDATA[前言原来一直学习使用React，现在因为工作的需要，对Vue进行学习和使用，现在比较流行的框架React,angular,vue，正好对于vue也进行些了解。 环境搭建 打开终端,安装brew 1usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot; 安装成功后，使用查看版本，验证是否安装成功1brew -v 安装node.js1brew install nodejs 也可以下载安装下载地址安装成功后，使用验证123node -v``` * 给nodejs目录赋权限 sudo chmod -R 777 /usr/local/lib/node_modules/1* 安装 淘宝镜像 （npm） npm install -g cnpm –registry=https://registry.npm.taobao.org12* 安装webpack cnpm install webpack -g12* 安装vue脚手架 npm install vue-cli -g12# 开始Vue 创建一个基于 webpack 模板的新项目$ vue init webpack my-project 这里需要进行一些配置，默认回车即可This will install Vue 2.x version of the template. For Vue 1.x use: vue init webpack#1.0 my-project ? Project name my-project? Project description A Vue.js project? Author runoob &#116;&#101;&#x73;&#116;&#64;&#114;&#117;&#110;&#x6f;&#x6f;&#x62;&#x2e;&#99;&#111;&#x6d;? Vue build standalone? Use ESLint to lint your code? Yes? Pick an ESLint preset Standard? Setup unit tests with Karma + Mocha? Yes? Setup e2e tests with Nightwatch? Yes vue-cli · Generated “my-project”. To get started: cd my-project npm install npm run dev Documentation can be found at https://vuejs-templates.github.io/webpack1进入项目，安装并运行： $ cd my-project$ cnpm install$ cnpm run dev DONE Compiled successfully in 4388ms Listening at http://localhost:8080`]]></content>
+    <content type="text"><![CDATA[前言原来一直学习使用React，现在因为工作的需要，对Vue进行学习和使用，现在比较流行的框架React,angular,vue，正好对于vue也进行些了解。 环境搭建 打开终端,安装brew 1usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot; 安装成功后，使用查看版本，验证是否安装成功1brew -v 安装node.js1brew install nodejs 也可以下载安装下载地址安装成功后，使用验证123node -v``` * 给nodejs目录赋权限 sudo chmod -R 777 /usr/local/lib/node_modules/1* 安装 淘宝镜像 （npm） npm install -g cnpm –registry=https://registry.npm.taobao.org12* 安装webpack cnpm install webpack -g12* 安装vue脚手架 npm install vue-cli -g12# 开始Vue 创建一个基于 webpack 模板的新项目$ vue init webpack my-project 这里需要进行一些配置，默认回车即可This will install Vue 2.x version of the template. For Vue 1.x use: vue init webpack#1.0 my-project ? Project name my-project? Project description A Vue.js project? Author runoob &#116;&#x65;&#115;&#x74;&#64;&#x72;&#x75;&#110;&#x6f;&#111;&#98;&#46;&#x63;&#111;&#109;? Vue build standalone? Use ESLint to lint your code? Yes? Pick an ESLint preset Standard? Setup unit tests with Karma + Mocha? Yes? Setup e2e tests with Nightwatch? Yes vue-cli · Generated “my-project”. To get started: cd my-project npm install npm run dev Documentation can be found at https://vuejs-templates.github.io/webpack1进入项目，安装并运行： $ cd my-project$ cnpm install$ cnpm run dev DONE Compiled successfully in 4388ms Listening at http://localhost:8080`]]></content>
       <categories>
         <category>Vue</category>
       </categories>
