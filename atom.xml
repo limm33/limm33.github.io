@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.limingming.org/"/>
-  <updated>2018-12-03T12:32:39.587Z</updated>
+  <updated>2018-12-04T06:02:18.786Z</updated>
   <id>http://www.limingming.org/</id>
   
   <author>
@@ -17,9 +17,39 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>github删除仓库</title>
+    <link href="http://www.limingming.org/2018/12/04/Git/github%E5%88%A0%E9%99%A4%E4%BB%93%E5%BA%93/"/>
+    <id>http://www.limingming.org/2018/12/04/Git/github删除仓库/</id>
+    <published>2018-12-04T06:00:16.000Z</published>
+    <updated>2018-12-04T06:02:18.786Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="Git" scheme="http://www.limingming.org/categories/Git/"/>
+    
+    
+      <category term="github" scheme="http://www.limingming.org/tags/github/"/>
+    
+      <category term="删除" scheme="http://www.limingming.org/tags/%E5%88%A0%E9%99%A4/"/>
+    
+      <category term="仓库" scheme="http://www.limingming.org/tags/%E4%BB%93%E5%BA%93/"/>
+    
+  </entry>
+  
+  <entry>
     <title>maven工具包目录介绍</title>
-    <link href="http://www.limingming.org/2018/12/03/maven/maven%E5%B7%A5%E5%85%B7%E5%8C%85%E7%9B%AE%E5%BD%95%E4%BB%8B%E7%BB%8D/"/>
-    <id>http://www.limingming.org/2018/12/03/maven/maven工具包目录介绍/</id>
+    <link href="http://www.limingming.org/2018/12/03/Maven/maven%E5%B7%A5%E5%85%B7%E5%8C%85%E7%9B%AE%E5%BD%95%E4%BB%8B%E7%BB%8D/"/>
+    <id>http://www.limingming.org/2018/12/03/Maven/maven工具包目录介绍/</id>
     <published>2018-12-03T12:28:33.000Z</published>
     <updated>2018-12-03T12:32:39.587Z</updated>
     
@@ -48,8 +78,8 @@
   
   <entry>
     <title>Maven核心概念</title>
-    <link href="http://www.limingming.org/2018/12/03/maven/Maven%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/"/>
-    <id>http://www.limingming.org/2018/12/03/maven/Maven核心概念/</id>
+    <link href="http://www.limingming.org/2018/12/03/Maven/Maven%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/"/>
+    <id>http://www.limingming.org/2018/12/03/Maven/Maven核心概念/</id>
     <published>2018-12-03T12:18:09.000Z</published>
     <updated>2018-12-03T12:20:59.024Z</updated>
     
@@ -80,8 +110,8 @@
   
   <entry>
     <title>Maven配置使用nexus私服</title>
-    <link href="http://www.limingming.org/2018/12/03/maven/Maven%E9%85%8D%E7%BD%AE%E4%BD%BF%E7%94%A8nexus%E7%A7%81%E6%9C%8D/"/>
-    <id>http://www.limingming.org/2018/12/03/maven/Maven配置使用nexus私服/</id>
+    <link href="http://www.limingming.org/2018/12/03/Maven/Maven%E9%85%8D%E7%BD%AE%E4%BD%BF%E7%94%A8nexus%E7%A7%81%E6%9C%8D/"/>
+    <id>http://www.limingming.org/2018/12/03/Maven/Maven配置使用nexus私服/</id>
     <published>2018-12-03T12:12:47.000Z</published>
     <updated>2018-12-03T12:20:59.024Z</updated>
     
@@ -110,8 +140,8 @@
   
   <entry>
     <title>安装nexus</title>
-    <link href="http://www.limingming.org/2018/12/03/maven/%E5%AE%89%E8%A3%85nexus/"/>
-    <id>http://www.limingming.org/2018/12/03/maven/安装nexus/</id>
+    <link href="http://www.limingming.org/2018/12/03/Maven/%E5%AE%89%E8%A3%85nexus/"/>
+    <id>http://www.limingming.org/2018/12/03/Maven/安装nexus/</id>
     <published>2018-12-03T12:09:05.000Z</published>
     <updated>2018-12-03T12:09:33.943Z</updated>
     
@@ -130,9 +160,9 @@
       <category term="Maven" scheme="http://www.limingming.org/categories/Maven/"/>
     
     
-      <category term="maven" scheme="http://www.limingming.org/tags/maven/"/>
-    
       <category term="安装" scheme="http://www.limingming.org/tags/%E5%AE%89%E8%A3%85/"/>
+    
+      <category term="maven" scheme="http://www.limingming.org/tags/maven/"/>
     
       <category term="nexus" scheme="http://www.limingming.org/tags/nexus/"/>
     
@@ -142,8 +172,8 @@
   
   <entry>
     <title>介绍maven私服-Nexus</title>
-    <link href="http://www.limingming.org/2018/12/03/maven/%E4%BB%8B%E7%BB%8Dmaven%E7%A7%81%E6%9C%8D-Nexus/"/>
-    <id>http://www.limingming.org/2018/12/03/maven/介绍maven私服-Nexus/</id>
+    <link href="http://www.limingming.org/2018/12/03/Maven/%E4%BB%8B%E7%BB%8Dmaven%E7%A7%81%E6%9C%8D-Nexus/"/>
+    <id>http://www.limingming.org/2018/12/03/Maven/介绍maven私服-Nexus/</id>
     <published>2018-12-03T12:00:04.000Z</published>
     <updated>2018-12-03T12:00:44.570Z</updated>
     
@@ -172,8 +202,8 @@
   
   <entry>
     <title>Maven项目命名规范</title>
-    <link href="http://www.limingming.org/2018/12/03/maven/Maven%E9%A1%B9%E7%9B%AE%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83/"/>
-    <id>http://www.limingming.org/2018/12/03/maven/Maven项目命名规范/</id>
+    <link href="http://www.limingming.org/2018/12/03/Maven/Maven%E9%A1%B9%E7%9B%AE%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83/"/>
+    <id>http://www.limingming.org/2018/12/03/Maven/Maven项目命名规范/</id>
     <published>2018-12-03T11:34:45.000Z</published>
     <updated>2018-12-03T11:35:48.882Z</updated>
     
@@ -204,8 +234,8 @@
   
   <entry>
     <title>Maven清除LastUpdated文件</title>
-    <link href="http://www.limingming.org/2018/12/03/maven/Maven%E6%B8%85%E9%99%A4LastUpdated%E6%96%87%E4%BB%B6/"/>
-    <id>http://www.limingming.org/2018/12/03/maven/Maven清除LastUpdated文件/</id>
+    <link href="http://www.limingming.org/2018/12/03/Maven/Maven%E6%B8%85%E9%99%A4LastUpdated%E6%96%87%E4%BB%B6/"/>
+    <id>http://www.limingming.org/2018/12/03/Maven/Maven清除LastUpdated文件/</id>
     <published>2018-12-03T11:28:13.000Z</published>
     <updated>2018-12-03T11:29:18.591Z</updated>
     
@@ -238,8 +268,8 @@
   
   <entry>
     <title>Maven安装jar包到仓库</title>
-    <link href="http://www.limingming.org/2018/12/03/maven/Maven%E5%AE%89%E8%A3%85jar%E5%8C%85%E5%88%B0%E4%BB%93%E5%BA%93/"/>
-    <id>http://www.limingming.org/2018/12/03/maven/Maven安装jar包到仓库/</id>
+    <link href="http://www.limingming.org/2018/12/03/Maven/Maven%E5%AE%89%E8%A3%85jar%E5%8C%85%E5%88%B0%E4%BB%93%E5%BA%93/"/>
+    <id>http://www.limingming.org/2018/12/03/Maven/Maven安装jar包到仓库/</id>
     <published>2018-12-03T11:22:31.000Z</published>
     <updated>2018-12-03T11:23:11.166Z</updated>
     
@@ -258,11 +288,11 @@
       <category term="Maven" scheme="http://www.limingming.org/categories/Maven/"/>
     
     
+      <category term="仓库" scheme="http://www.limingming.org/tags/%E4%BB%93%E5%BA%93/"/>
+    
       <category term="Maven" scheme="http://www.limingming.org/tags/Maven/"/>
     
       <category term="安装" scheme="http://www.limingming.org/tags/%E5%AE%89%E8%A3%85/"/>
-    
-      <category term="仓库" scheme="http://www.limingming.org/tags/%E4%BB%93%E5%BA%93/"/>
     
       <category term="命令" scheme="http://www.limingming.org/tags/%E5%91%BD%E4%BB%A4/"/>
     
@@ -270,8 +300,8 @@
   
   <entry>
     <title>maven多web模块打包问题</title>
-    <link href="http://www.limingming.org/2018/12/03/maven/maven%E5%A4%9Aweb%E6%A8%A1%E5%9D%97%E6%89%93%E5%8C%85%E9%97%AE%E9%A2%98/"/>
-    <id>http://www.limingming.org/2018/12/03/maven/maven多web模块打包问题/</id>
+    <link href="http://www.limingming.org/2018/12/03/Maven/maven%E5%A4%9Aweb%E6%A8%A1%E5%9D%97%E6%89%93%E5%8C%85%E9%97%AE%E9%A2%98/"/>
+    <id>http://www.limingming.org/2018/12/03/Maven/maven多web模块打包问题/</id>
     <published>2018-12-03T11:14:14.000Z</published>
     <updated>2018-12-03T11:15:43.235Z</updated>
     
@@ -304,8 +334,8 @@
   
   <entry>
     <title>Maven的Scope类型及引用本地jar包方式</title>
-    <link href="http://www.limingming.org/2018/12/03/maven/Maven%E7%9A%84Scope%E7%B1%BB%E5%9E%8B%E5%8F%8A%E5%BC%95%E7%94%A8%E6%9C%AC%E5%9C%B0jar%E5%8C%85%E6%96%B9%E5%BC%8F/"/>
-    <id>http://www.limingming.org/2018/12/03/maven/Maven的Scope类型及引用本地jar包方式/</id>
+    <link href="http://www.limingming.org/2018/12/03/Maven/Maven%E7%9A%84Scope%E7%B1%BB%E5%9E%8B%E5%8F%8A%E5%BC%95%E7%94%A8%E6%9C%AC%E5%9C%B0jar%E5%8C%85%E6%96%B9%E5%BC%8F/"/>
+    <id>http://www.limingming.org/2018/12/03/Maven/Maven的Scope类型及引用本地jar包方式/</id>
     <published>2018-12-03T10:55:51.000Z</published>
     <updated>2018-12-03T11:06:25.834Z</updated>
     
@@ -326,6 +356,8 @@
     
       <category term="Maven" scheme="http://www.limingming.org/tags/Maven/"/>
     
+      <category term="jar" scheme="http://www.limingming.org/tags/jar/"/>
+    
       <category term="scope" scheme="http://www.limingming.org/tags/scope/"/>
     
       <category term="类型" scheme="http://www.limingming.org/tags/%E7%B1%BB%E5%9E%8B/"/>
@@ -334,14 +366,12 @@
     
       <category term="本地" scheme="http://www.limingming.org/tags/%E6%9C%AC%E5%9C%B0/"/>
     
-      <category term="jar" scheme="http://www.limingming.org/tags/jar/"/>
-    
   </entry>
   
   <entry>
     <title>Maven多WEB模块打包排除jar包冲突的配置建议</title>
-    <link href="http://www.limingming.org/2018/12/03/maven/Maven%E5%A4%9AWEB%E6%A8%A1%E5%9D%97%E6%89%93%E5%8C%85%E6%8E%92%E9%99%A4jar%E5%8C%85%E5%86%B2%E7%AA%81%E7%9A%84%E9%85%8D%E7%BD%AE%E5%BB%BA%E8%AE%AE/"/>
-    <id>http://www.limingming.org/2018/12/03/maven/Maven多WEB模块打包排除jar包冲突的配置建议/</id>
+    <link href="http://www.limingming.org/2018/12/03/Maven/Maven%E5%A4%9AWEB%E6%A8%A1%E5%9D%97%E6%89%93%E5%8C%85%E6%8E%92%E9%99%A4jar%E5%8C%85%E5%86%B2%E7%AA%81%E7%9A%84%E9%85%8D%E7%BD%AE%E5%BB%BA%E8%AE%AE/"/>
+    <id>http://www.limingming.org/2018/12/03/Maven/Maven多WEB模块打包排除jar包冲突的配置建议/</id>
     <published>2018-12-03T05:09:00.000Z</published>
     <updated>2018-12-03T05:12:10.076Z</updated>
     
@@ -374,8 +404,8 @@
   
   <entry>
     <title>在maven的web项目中内嵌tomcat插件执行war包</title>
-    <link href="http://www.limingming.org/2018/12/03/maven/%E5%9C%A8maven%E7%9A%84web%E9%A1%B9%E7%9B%AE%E4%B8%AD%E5%86%85%E5%B5%8Ctomcat%E6%8F%92%E4%BB%B6%E6%89%A7%E8%A1%8Cwar%E5%8C%85/"/>
-    <id>http://www.limingming.org/2018/12/03/maven/在maven的web项目中内嵌tomcat插件执行war包/</id>
+    <link href="http://www.limingming.org/2018/12/03/Maven/%E5%9C%A8maven%E7%9A%84web%E9%A1%B9%E7%9B%AE%E4%B8%AD%E5%86%85%E5%B5%8Ctomcat%E6%8F%92%E4%BB%B6%E6%89%A7%E8%A1%8Cwar%E5%8C%85/"/>
+    <id>http://www.limingming.org/2018/12/03/Maven/在maven的web项目中内嵌tomcat插件执行war包/</id>
     <published>2018-12-03T04:51:21.000Z</published>
     <updated>2018-12-03T05:10:00.107Z</updated>
     
@@ -408,8 +438,8 @@
   
   <entry>
     <title>Maven项目中WEB模块中后台代码打成jar包</title>
-    <link href="http://www.limingming.org/2018/12/03/maven/Maven%E9%A1%B9%E7%9B%AE%E4%B8%ADWEB%E6%A8%A1%E5%9D%97%E4%B8%AD%E5%90%8E%E5%8F%B0%E4%BB%A3%E7%A0%81%E6%89%93%E6%88%90jar%E5%8C%85/"/>
-    <id>http://www.limingming.org/2018/12/03/maven/Maven项目中WEB模块中后台代码打成jar包/</id>
+    <link href="http://www.limingming.org/2018/12/03/Maven/Maven%E9%A1%B9%E7%9B%AE%E4%B8%ADWEB%E6%A8%A1%E5%9D%97%E4%B8%AD%E5%90%8E%E5%8F%B0%E4%BB%A3%E7%A0%81%E6%89%93%E6%88%90jar%E5%8C%85/"/>
+    <id>http://www.limingming.org/2018/12/03/Maven/Maven项目中WEB模块中后台代码打成jar包/</id>
     <published>2018-12-02T23:26:53.000Z</published>
     <updated>2018-12-03T04:44:28.698Z</updated>
     
@@ -428,13 +458,13 @@
       <category term="Maven" scheme="http://www.limingming.org/categories/Maven/"/>
     
     
-      <category term="jar" scheme="http://www.limingming.org/tags/jar/"/>
-    
       <category term="后台" scheme="http://www.limingming.org/tags/%E5%90%8E%E5%8F%B0/"/>
     
       <category term="程序" scheme="http://www.limingming.org/tags/%E7%A8%8B%E5%BA%8F/"/>
     
       <category term="代码" scheme="http://www.limingming.org/tags/%E4%BB%A3%E7%A0%81/"/>
+    
+      <category term="jar" scheme="http://www.limingming.org/tags/jar/"/>
     
       <category term="lib" scheme="http://www.limingming.org/tags/lib/"/>
     
@@ -442,8 +472,8 @@
   
   <entry>
     <title>构建WEB可执行的jar包</title>
-    <link href="http://www.limingming.org/2018/12/02/maven/%E6%9E%84%E5%BB%BAWEB%E5%8F%AF%E6%89%A7%E8%A1%8C%E7%9A%84jar%E5%8C%85/"/>
-    <id>http://www.limingming.org/2018/12/02/maven/构建WEB可执行的jar包/</id>
+    <link href="http://www.limingming.org/2018/12/02/Maven/%E6%9E%84%E5%BB%BAWEB%E5%8F%AF%E6%89%A7%E8%A1%8C%E7%9A%84jar%E5%8C%85/"/>
+    <id>http://www.limingming.org/2018/12/02/Maven/构建WEB可执行的jar包/</id>
     <published>2018-12-02T15:24:18.000Z</published>
     <updated>2018-12-03T04:44:28.698Z</updated>
     
@@ -476,10 +506,10 @@
   
   <entry>
     <title>Maven依赖管理</title>
-    <link href="http://www.limingming.org/2018/12/01/maven/Maven%E4%BE%9D%E8%B5%96%E7%AE%A1%E7%90%86/"/>
-    <id>http://www.limingming.org/2018/12/01/maven/Maven依赖管理/</id>
+    <link href="http://www.limingming.org/2018/12/01/Maven/Maven%E4%BE%9D%E8%B5%96%E7%AE%A1%E7%90%86/"/>
+    <id>http://www.limingming.org/2018/12/01/Maven/Maven依赖管理/</id>
     <published>2018-12-01T15:36:49.000Z</published>
-    <updated>2018-12-03T06:07:59.454Z</updated>
+    <updated>2018-12-03T12:34:50.739Z</updated>
     
     <summary type="html">
     
@@ -641,38 +671,6 @@
       <category term="chromium" scheme="http://www.limingming.org/tags/chromium/"/>
     
       <category term="谷歌浏览器" scheme="http://www.limingming.org/tags/%E8%B0%B7%E6%AD%8C%E6%B5%8F%E8%A7%88%E5%99%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Mac OS下搭建Vue开发环境</title>
-    <link href="http://www.limingming.org/2018/11/23/vue/Mac-OS%E4%B8%8B%E6%90%AD%E5%BB%BAVue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/"/>
-    <id>http://www.limingming.org/2018/11/23/vue/Mac-OS下搭建Vue开发环境/</id>
-    <published>2018-11-23T15:33:34.000Z</published>
-    <updated>2018-12-03T04:44:28.699Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-      <category term="Vue" scheme="http://www.limingming.org/categories/Vue/"/>
-    
-    
-      <category term="Mac" scheme="http://www.limingming.org/tags/Mac/"/>
-    
-      <category term="搭建" scheme="http://www.limingming.org/tags/%E6%90%AD%E5%BB%BA/"/>
-    
-      <category term="Vue" scheme="http://www.limingming.org/tags/Vue/"/>
-    
-      <category term="开发环境" scheme="http://www.limingming.org/tags/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/"/>
     
   </entry>
   
