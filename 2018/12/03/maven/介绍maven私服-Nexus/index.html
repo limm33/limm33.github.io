@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/my-favicon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/my-favicon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/my-favicon.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/my-favicon.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="介绍,nexus,私服,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="李明明的博客" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="原文         什么是私服私服是架设在局域网的一种特殊的远程仓库，目的是代理远程仓库及部署第三方构件。有了私服之后，当Maven 需要下载构件时，直接请求私服，私服上存在则下载到本地仓库；否则，私服请求外部的远程仓库，将构件下载到私服，再提供给本地仓库下载。      以下是有无私服的对比： Nexus下载与安装 Nexus安装的先决条件不管是NexusOpen Source还是Nexus">
+<meta name="keywords" content="介绍,nexus,私服">
+<meta property="og:type" content="article">
+<meta property="og:title" content="介绍maven私服-Nexus">
+<meta property="og:url" content="http://www.limingming.org/2018/12/03/maven/介绍maven私服-Nexus/index.html">
+<meta property="og:site_name" content="李明明的博客">
+<meta property="og:description" content="原文         什么是私服私服是架设在局域网的一种特殊的远程仓库，目的是代理远程仓库及部署第三方构件。有了私服之后，当Maven 需要下载构件时，直接请求私服，私服上存在则下载到本地仓库；否则，私服请求外部的远程仓库，将构件下载到私服，再提供给本地仓库下载。      以下是有无私服的对比： Nexus下载与安装 Nexus安装的先决条件不管是NexusOpen Source还是Nexus">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://limingming.org/wp-content/uploads/2018/12/1234-300x115.png">
+<meta property="og:image" content="http://limingming.org/wp-content/uploads/2018/12/2342-300x180.png">
+<meta property="og:image" content="http://limingming.org/wp-content/uploads/2018/12/345-300x163.png">
+<meta property="og:image" content="http://limingming.org/wp-content/uploads/2018/12/456-300x136.png">
+<meta property="og:image" content="http://limingming.org/wp-content/uploads/2018/12/56787-300x115.png">
+<meta property="og:image" content="http://limingming.org/wp-content/uploads/2018/12/678-300x113.png">
+<meta property="og:image" content="http://limingming.org/wp-content/uploads/2018/12/789-300x161.png">
+<meta property="og:updated_time" content="2018-12-03T23:55:24.604Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="介绍maven私服-Nexus">
+<meta name="twitter:description" content="原文         什么是私服私服是架设在局域网的一种特殊的远程仓库，目的是代理远程仓库及部署第三方构件。有了私服之后，当Maven 需要下载构件时，直接请求私服，私服上存在则下载到本地仓库；否则，私服请求外部的远程仓库，将构件下载到私服，再提供给本地仓库下载。      以下是有无私服的对比： Nexus下载与安装 Nexus安装的先决条件不管是NexusOpen Source还是Nexus">
+<meta name="twitter:image" content="http://limingming.org/wp-content/uploads/2018/12/1234-300x115.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.limingming.org/2018/12/03/maven/介绍maven私服-Nexus/">
+
+
+
+
+
+  <title>介绍maven私服-Nexus | 李明明的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">李明明的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Li MingMing's blog site</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+   <!-- <a href="https://github.com/limm33"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://blog.limingming.org/source/images/forkme_left_darkblue_121621.png" alt="Fork me on GitHub"></a> -->
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.limingming.org/2018/12/03/maven/介绍maven私服-Nexus/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="李明明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/my-photo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="李明明的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">介绍maven私服-Nexus</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-03T20:00:04+08:00">
+                2018-12-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Maven/" itemprop="url" rel="index">
+                    <span itemprop="name">Maven</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="http://limingming.org/index.php/2018/12/03/maven-nexus-2/" target="_blank" rel="noopener">原文</a>        </p>
+<h1 id="什么是私服"><a href="#什么是私服" class="headerlink" title="什么是私服"></a>什么是私服</h1><p>私服是架设在局域网的一种特殊的远程仓库，目的是代理远程仓库及部署第三方构件。有了私服之后，当Maven 需要下载构件时，直接请求私服，私服上存在则下载到本地仓库；否则，私服请求外部的远程仓库，将构件下载到私服，再提供给本地仓库下载。     </p>
+<p>以下是有无私服的对比：<br><img src="http://limingming.org/wp-content/uploads/2018/12/1234-300x115.png" alt=""></p>
+<h1 id="Nexus下载与安装"><a href="#Nexus下载与安装" class="headerlink" title="Nexus下载与安装"></a>Nexus下载与安装</h1><ol>
+<li>Nexus安装的先决条件<br>不管是NexusOpen Source还是Nexus Professional，他们只有一个先决条件就是必须有一个JavaRuntime Environment，且必须是Java 5或更高。   </li>
+<li>下载Nexus：<br>Nexus有2个版本，Nexus Open Source 和 NexusProfessional。<br>NexusOpen Source是可基于EPL协议免费使用修改分发的全功能仓库管理系统。Nexus Professional主要用于需要复杂大型企业或组织。   </li>
+</ol>
+<p>本文只介绍NexusOpen Source，下文简称Nexus。<br>Nexus<a href="http://www.sonatype.org/nexus/go" target="_blank" rel="noopener">下载地址</a>，有完整版，有war版。前者可以单独运行为一个基于jetty的服务，后者是运行在ServletConstainer的Web应用。    </p>
+<ol start="3">
+<li><p>安装Nexus<br>安装Nexus非常简单。解压下载的文件到任意目录，不过要小心权限问题已经Windows下带空格文件夹引起的问题。然后配置NEXUS_HOME。<br>解压出来的目录下除了nexus外，还有一个sonatype-work文件夹。这个文件夹包含了所有nexus的仓库以及配置数据，这么做使得更加容易更新到新版的nexus。当然，这个目录的路径也能通过NEXUS_HOME/conf/nexus.properties修改。       </p>
+</li>
+<li><p>运行Nexus<br>当你运行Nexus时，你实际运行的是一个运行在0.0.0.0:8081的web server。Nexus运行在一个Jetty的servlet容器内，然后通过一个本地的封装服务Tanuki Java Service Wrapper来启动。它可以通过配置将nexus运行为一个unix或者windows的一个服务。bin目录下的nexus或者nexus.bat就是服务的起点，通过你的系统来选择对应的版本。       </p>
+</li>
+<li><p>启动后，你就能通过浏览器访问<a href="http://localhost:8081/nexus" target="_blank" rel="noopener">http://localhost:8081/nexus</a> </p>
+</li>
+<li><p>配置Nexus为服务</p>
+</li>
+</ol>
+<p>当你把Nexus用于生产环境时，你应该将Nexus配置为一个服务，让他在后台运行以及在服务器重启后恢复服务。方法是 bin/nexus start</p>
+<h1 id="常用功能"><a href="#常用功能" class="headerlink" title="常用功能"></a>常用功能</h1><p>Nexus常用功能就是：指定私服的中央地址、将自己的Maven项目指定到私服地址、从私服下载中央库的项目索引、从私服仓库下载依赖组件、将第三方项目jar上传到私服供其他项目组使用。<br>开启Nexus服务后访问url地址<a href="http://localhost:8081/nexus" target="_blank" rel="noopener">http://localhost:8081/nexus</a>, (推荐使用自己的ip地址)，之后登录系统，用户名密码分别是：admin/admin123.        </p>
+<p>仓库类别：<br><img src="http://limingming.org/wp-content/uploads/2018/12/2342-300x180.png" alt=""><br>Hosted代表宿主仓库，用来发布一些第三方不允许的组件，其中自带仓库类型中3rd一般用来发布第三方无法在中央仓库获取的jar包，比如oracle的jdbc的jar包，Releases一般存放公司内的封版的项目，Snapshots用来存放正在开发的版本。<br>Proxy代表代理远程的仓库，最典型的就是Maven官方中央仓库、JBoss仓库等等。如果构建的Maven项目本地仓库没有依赖包，那么就会去这个代理站点去下载，那么如果代理站点也没有此依赖包，就回去远程中央仓库下载依赖，这些中央仓库就是proxy。代理站点下载成功后再下载至本机。笔者认为，其实Maven这个自带的默认仓库一般情况下已经够大多数项目使用了。<br>group 仓库是一个“仓库组”，为开发人员便于开发设置的仓库，可以将多个已存在的其他仓库配置其中提供给大家使用，在nexus中配置的时候注意的是左侧是配置仓库组使用的仓库。<br><img src="http://limingming.org/wp-content/uploads/2018/12/345-300x163.png" alt=""><br>virtual仓库是用于提供中央仓库中M1格式的发布版本的构件镜像仓库，即在当此M2仓库中为M1格式的仓库构件缓存提供出来的。            </p>
+<p>maven项目索引:    </p>
+<p>下载Maven项目索引，项目索引是为了使用者能够在私服站点查找依赖使用的功能<br>例如：<br><img src="http://limingming.org/wp-content/uploads/2018/12/456-300x136.png" alt=""><br>就可以检索出它的相关信息，包括怎么配置依赖信息。我们要想使用这个私服仓库，先在项目pom中配置相关私服信息</p>
+<h1 id="使用配置"><a href="#使用配置" class="headerlink" title="使用配置"></a>使用配置</h1><p>以下为在pom中声明指定使用私服的方式：</p>
+<p>指定仓库</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">repositories</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">repository</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">id</span>&gt;</span>nexus<span class="tag">&lt;/<span class="name">id</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">name</span>&gt;</span>nexus<span class="tag">&lt;/<span class="name">name</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">url</span>&gt;</span>http://192.168.1.103:8081/nexus/content/groups/public/<span class="tag">&lt;/<span class="name">url</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">releases</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">enabled</span>&gt;</span>true<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">releases</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">snapshots</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">enabled</span>&gt;</span>true<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">snapshots</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">repository</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">repositories</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>指定插件仓库</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">pluginRepositories</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">pluginRepository</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">id</span>&gt;</span>nexus<span class="tag">&lt;/<span class="name">id</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">name</span>&gt;</span>nexus<span class="tag">&lt;/<span class="name">name</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">url</span>&gt;</span>http://192.168.1.103:8081/nexus/content/groups/public/<span class="tag">&lt;/<span class="name">url</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">releases</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">enabled</span>&gt;</span>true<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">releases</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">snapshots</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">enabled</span>&gt;</span>true<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">snapshots</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">pluginRepository</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">pluginRepositories</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这样只有本项目才在私服下载组件   </p>
+<p>这样这个Maven项目构建的时候会从私服下载相关依赖，当构建项目的时候，maven会从私服将构件下载到本地仓库，当然这个配置仅仅是在此项目中生效，对于其他项目还是不起作用。如果相对Maven的其他项目也生效的话。需要修改全局的settings.xml文件。</p>
+<p>修改settings.xml为</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">profiles</span>&gt;</span></span><br><span class="line">……………</span><br><span class="line"><span class="tag">&lt;<span class="name">profile</span>&gt;</span> </span><br><span class="line">         <span class="tag">&lt;<span class="name">id</span>&gt;</span>myprofile<span class="tag">&lt;/<span class="name">id</span>&gt;</span> </span><br><span class="line">         <span class="tag">&lt;<span class="name">repositories</span>&gt;</span> </span><br><span class="line">               <span class="tag">&lt;<span class="name">repository</span>&gt;</span> </span><br><span class="line">                   <span class="tag">&lt;<span class="name">id</span>&gt;</span>central<span class="tag">&lt;/<span class="name">id</span>&gt;</span>                                    </span><br><span class="line">                   <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://10.110.13.14:8081/nexus/content/groups/inspur-jszx/<span class="tag">&lt;/<span class="name">url</span>&gt;</span>                       </span><br><span class="line">                   <span class="tag">&lt;<span class="name">releases</span>&gt;</span> </span><br><span class="line">                       <span class="tag">&lt;<span class="name">enabled</span>&gt;</span>true<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span> </span><br><span class="line">                   <span class="tag">&lt;/<span class="name">releases</span>&gt;</span> </span><br><span class="line">                   <span class="tag">&lt;<span class="name">snapshots</span>&gt;</span> </span><br><span class="line">                       <span class="tag">&lt;<span class="name">enabled</span>&gt;</span>true<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span> </span><br><span class="line">                   <span class="tag">&lt;/<span class="name">snapshots</span>&gt;</span> </span><br><span class="line">               <span class="tag">&lt;/<span class="name">repository</span>&gt;</span> </span><br><span class="line">           <span class="tag">&lt;/<span class="name">repositories</span>&gt;</span>    </span><br><span class="line">            <span class="tag">&lt;<span class="name">pluginRepositories</span>&gt;</span> </span><br><span class="line">               <span class="tag">&lt;<span class="name">pluginRepository</span>&gt;</span> </span><br><span class="line">                 <span class="tag">&lt;<span class="name">id</span>&gt;</span>central<span class="tag">&lt;/<span class="name">id</span>&gt;</span> </span><br><span class="line">                 <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://10.110.13.14:8081/nexus/content/groups/inspur-jszx/<span class="tag">&lt;/<span class="name">url</span>&gt;</span> </span><br><span class="line">                 <span class="tag">&lt;<span class="name">releases</span>&gt;</span> </span><br><span class="line">                   <span class="tag">&lt;<span class="name">enabled</span>&gt;</span>true<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span> </span><br><span class="line">                 <span class="tag">&lt;/<span class="name">releases</span>&gt;</span> </span><br><span class="line">                 <span class="tag">&lt;<span class="name">snapshots</span>&gt;</span> </span><br><span class="line">                   <span class="tag">&lt;<span class="name">enabled</span>&gt;</span>false<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span> </span><br><span class="line">                 <span class="tag">&lt;/<span class="name">snapshots</span>&gt;</span> </span><br><span class="line">               <span class="tag">&lt;/<span class="name">pluginRepository</span>&gt;</span> </span><br><span class="line">           <span class="tag">&lt;/<span class="name">pluginRepositories</span>&gt;</span> </span><br><span class="line">       <span class="tag">&lt;/<span class="name">profile</span>&gt;</span></span><br><span class="line">……………</span><br><span class="line"><span class="tag">&lt;<span class="name">profiles</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>追加激活profile</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">activeProfiles</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">activeProfile</span>&gt;</span>central<span class="tag">&lt;/<span class="name">activeProfile</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">activeProfiles</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>之后所有本机的Maven项目就在私服下载组件。</p>
+<p>项目的发布:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">distributionManagement</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">repository</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">id</span>&gt;</span>user-release<span class="tag">&lt;/<span class="name">id</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">name</span>&gt;</span>UserProject Release<span class="tag">&lt;/<span class="name">name</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">url</span>&gt;</span>http://192.168.1.103:8081/nexus/content/repositories/releases/<span class="tag">&lt;/<span class="name">url</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">repository</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">snapshotRepository</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">id</span>&gt;</span>user-snapshots<span class="tag">&lt;/<span class="name">id</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">name</span>&gt;</span>UserProject SNAPSHOTS<span class="tag">&lt;/<span class="name">name</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">url</span>&gt;</span>http://192.168.1.103:8081/nexus/content/repositories/snapshots/<span class="tag">&lt;/<span class="name">url</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">snapshotRepository</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">distributionManagement</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>注意配置了还是发布项目到私服失败，原因为没有权限，会出现401错误码，原因就是权限不够。</p>
+<p>配置权限在settings.xml</p>
+<p><img src="http://limingming.org/wp-content/uploads/2018/12/56787-300x115.png" alt=""><br><img src="http://limingming.org/wp-content/uploads/2018/12/678-300x113.png" alt=""></p>
+<p>注意Respository中的id一定要和server下的id一致，切记！！否则出现权限问题。</p>
+<p>然后运行发布</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn clean deploy</span><br></pre></td></tr></table></figure>
+<p>在控制台发布成功</p>
+<p>然后进入到私服上的仓库中，看一下确实存在刚刚发布的项目</p>
+<h1 id="手动上传"><a href="#手动上传" class="headerlink" title="手动上传"></a>手动上传</h1><p>用admin管理员权限用户登录，找到相应的上传配置，分别选中填写信息就最后Upload构件就可以了</p>
+<p><img src="http://limingming.org/wp-content/uploads/2018/12/789-300x161.png" alt=""></p>
+
+      
+    </div>
+    <div>
+      
+          <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">
+                         <a href="http://www.limingming.org">李明明的个人网站</a>
+                         <br>
+              -------------本文结束<i class="fa fa-paw"></i>感谢阅读-------------
+              
+        </div>
+    
+</div>
+
+      
+    </div>
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/介绍/" rel="tag"># 介绍</a>
+          
+            <a href="/tags/nexus/" rel="tag"># nexus</a>
+          
+            <a href="/tags/私服/" rel="tag"># 私服</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/03/maven/Maven项目命名规范/" rel="next" title="Maven项目命名规范">
+                <i class="fa fa-chevron-left"></i> Maven项目命名规范
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/03/maven/安装nexus/" rel="prev" title="安装nexus">
+                安装nexus <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/my-photo.jpg" alt="李明明">
+            
+              <p class="site-author-name" itemprop="name">李明明</p>
+              <p class="site-description motion-element" itemprop="description">Welcome to my site! My name is Li MingMing(李明明). 欢迎来到我的博客网站，我的名字是李明明</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">80</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/limm33" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://www.limingming.org" target="_blank" title="个人网站">
+                      
+                        <i class="fa fa-fw fa-crosshairs"></i>个人网站</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://blog.csdn.net/limm33" target="_blank" title="CSDN">
+                      
+                        <i class="fa fa-fw fa-book"></i>CSDN</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.jianshu.com/u/0ea8ec2aa0d1" target="_blank" title="简书">
+                      
+                        <i class="fa fa-fw fa-heartbeat"></i>简书</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://www.linkedin.com/in/李明明-kel" target="_blank" title="LinkIn">
+                      
+                        <i class="fa fa-fw fa-meh-o"></i>LinkIn</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/limm33" target="_blank" title="微博">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>微博</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.facebook.com/limm33" target="_blank" title="facebook">
+                      
+                        <i class="fa fa-fw fa-facebook"></i>facebook</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/limm333" target="_blank" title="twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>twitter</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是私服"><span class="nav-number">1.</span> <span class="nav-text">什么是私服</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Nexus下载与安装"><span class="nav-number">2.</span> <span class="nav-text">Nexus下载与安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常用功能"><span class="nav-number">3.</span> <span class="nav-text">常用功能</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用配置"><span class="nav-number">4.</span> <span class="nav-text">使用配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#手动上传"><span class="nav-number">5.</span> <span class="nav-text">手动上传</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="http://limm33.github.io/source/js/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">李明明</span>
+
+  
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_pv"></span>
+</span>
+</div>
+
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共19.4k字</span>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
