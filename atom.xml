@@ -160,9 +160,9 @@
       <category term="Maven" scheme="http://www.limingming.org/categories/Maven/"/>
     
     
-      <category term="maven" scheme="http://www.limingming.org/tags/maven/"/>
-    
       <category term="安装" scheme="http://www.limingming.org/tags/%E5%AE%89%E8%A3%85/"/>
+    
+      <category term="maven" scheme="http://www.limingming.org/tags/maven/"/>
     
       <category term="nexus" scheme="http://www.limingming.org/tags/nexus/"/>
     
@@ -573,40 +573,6 @@
   </entry>
   
   <entry>
-    <title>Markdown语法</title>
-    <link href="http://www.limingming.org/2018/11/27/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/Markdown%E8%AF%AD%E6%B3%95/"/>
-    <id>http://www.limingming.org/2018/11/27/开发工具/Markdown语法/</id>
-    <published>2018-11-27T04:57:10.000Z</published>
-    <updated>2018-12-02T15:04:16.900Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-      <category term="开发工具" scheme="http://www.limingming.org/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"/>
-    
-    
-      <category term="介绍" scheme="http://www.limingming.org/tags/%E4%BB%8B%E7%BB%8D/"/>
-    
-      <category term="markdown" scheme="http://www.limingming.org/tags/markdown/"/>
-    
-      <category term="语法" scheme="http://www.limingming.org/tags/%E8%AF%AD%E6%B3%95/"/>
-    
-      <category term="怎么" scheme="http://www.limingming.org/tags/%E6%80%8E%E4%B9%88/"/>
-    
-      <category term="如何" scheme="http://www.limingming.org/tags/%E5%A6%82%E4%BD%95/"/>
-    
-  </entry>
-  
-  <entry>
     <title>mac下npm安装命令不生效</title>
     <link href="http://www.limingming.org/2018/11/27/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/mac%E4%B8%8Bnpm%E5%AE%89%E8%A3%85%E5%91%BD%E4%BB%A4%E4%B8%8D%E7%94%9F%E6%95%88/"/>
     <id>http://www.limingming.org/2018/11/27/开发工具/mac下npm安装命令不生效/</id>
@@ -637,6 +603,40 @@
       <category term="npm" scheme="http://www.limingming.org/tags/npm/"/>
     
       <category term="不生效" scheme="http://www.limingming.org/tags/%E4%B8%8D%E7%94%9F%E6%95%88/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Markdown语法</title>
+    <link href="http://www.limingming.org/2018/11/27/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/Markdown%E8%AF%AD%E6%B3%95/"/>
+    <id>http://www.limingming.org/2018/11/27/开发工具/Markdown语法/</id>
+    <published>2018-11-27T04:57:10.000Z</published>
+    <updated>2018-12-02T15:04:16.900Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="开发工具" scheme="http://www.limingming.org/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"/>
+    
+    
+      <category term="介绍" scheme="http://www.limingming.org/tags/%E4%BB%8B%E7%BB%8D/"/>
+    
+      <category term="markdown" scheme="http://www.limingming.org/tags/markdown/"/>
+    
+      <category term="语法" scheme="http://www.limingming.org/tags/%E8%AF%AD%E6%B3%95/"/>
+    
+      <category term="怎么" scheme="http://www.limingming.org/tags/%E6%80%8E%E4%B9%88/"/>
+    
+      <category term="如何" scheme="http://www.limingming.org/tags/%E5%A6%82%E4%BD%95/"/>
     
   </entry>
   
