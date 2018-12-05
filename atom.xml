@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.limingming.org/"/>
-  <updated>2018-12-04T06:17:34.704Z</updated>
+  <updated>2018-12-05T07:24:04.478Z</updated>
   <id>http://www.limingming.org/</id>
   
   <author>
@@ -15,6 +15,38 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Maven仓库存在jar包但依旧提示无法下载</title>
+    <link href="http://www.limingming.org/2018/12/05/Maven/Maven%E4%BB%93%E5%BA%93%E5%AD%98%E5%9C%A8jar%E5%8C%85%E4%BD%86%E4%BE%9D%E6%97%A7%E6%8F%90%E7%A4%BA%E6%97%A0%E6%B3%95%E4%B8%8B%E8%BD%BD/"/>
+    <id>http://www.limingming.org/2018/12/05/Maven/Maven仓库存在jar包但依旧提示无法下载/</id>
+    <published>2018-12-05T07:05:20.000Z</published>
+    <updated>2018-12-05T07:24:04.478Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="Maven" scheme="http://www.limingming.org/categories/Maven/"/>
+    
+    
+      <category term="maven" scheme="http://www.limingming.org/tags/maven/"/>
+    
+      <category term="存在" scheme="http://www.limingming.org/tags/%E5%AD%98%E5%9C%A8/"/>
+    
+      <category term="依然" scheme="http://www.limingming.org/tags/%E4%BE%9D%E7%84%B6/"/>
+    
+      <category term="报错" scheme="http://www.limingming.org/tags/%E6%8A%A5%E9%94%99/"/>
+    
+  </entry>
   
   <entry>
     <title>github删除仓库</title>
@@ -160,9 +192,9 @@
       <category term="Maven" scheme="http://www.limingming.org/categories/Maven/"/>
     
     
-      <category term="安装" scheme="http://www.limingming.org/tags/%E5%AE%89%E8%A3%85/"/>
-    
       <category term="maven" scheme="http://www.limingming.org/tags/maven/"/>
+    
+      <category term="安装" scheme="http://www.limingming.org/tags/%E5%AE%89%E8%A3%85/"/>
     
       <category term="nexus" scheme="http://www.limingming.org/tags/nexus/"/>
     
@@ -390,13 +422,13 @@
       <category term="Maven" scheme="http://www.limingming.org/categories/Maven/"/>
     
     
+      <category term="排除" scheme="http://www.limingming.org/tags/%E6%8E%92%E9%99%A4/"/>
+    
       <category term="多模块" scheme="http://www.limingming.org/tags/%E5%A4%9A%E6%A8%A1%E5%9D%97/"/>
     
       <category term="web" scheme="http://www.limingming.org/tags/web/"/>
     
       <category term="合并" scheme="http://www.limingming.org/tags/%E5%90%88%E5%B9%B6/"/>
-    
-      <category term="排除" scheme="http://www.limingming.org/tags/%E6%8E%92%E9%99%A4/"/>
     
       <category term="冲突" scheme="http://www.limingming.org/tags/%E5%86%B2%E7%AA%81/"/>
     
@@ -526,11 +558,11 @@
       <category term="Maven" scheme="http://www.limingming.org/categories/Maven/"/>
     
     
-      <category term="排除" scheme="http://www.limingming.org/tags/%E6%8E%92%E9%99%A4/"/>
-    
       <category term="Maven" scheme="http://www.limingming.org/tags/Maven/"/>
     
       <category term="依赖管理" scheme="http://www.limingming.org/tags/%E4%BE%9D%E8%B5%96%E7%AE%A1%E7%90%86/"/>
+    
+      <category term="排除" scheme="http://www.limingming.org/tags/%E6%8E%92%E9%99%A4/"/>
     
       <category term="依赖" scheme="http://www.limingming.org/tags/%E4%BE%9D%E8%B5%96/"/>
     
@@ -637,40 +669,6 @@
       <category term="npm" scheme="http://www.limingming.org/tags/npm/"/>
     
       <category term="不生效" scheme="http://www.limingming.org/tags/%E4%B8%8D%E7%94%9F%E6%95%88/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>mac下chromium源码编译笔记</title>
-    <link href="http://www.limingming.org/2018/11/25/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/mac%E4%B8%8Bchromium%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E7%AC%94%E8%AE%B0/"/>
-    <id>http://www.limingming.org/2018/11/25/开发工具/mac下chromium源码编译笔记/</id>
-    <published>2018-11-24T16:34:56.000Z</published>
-    <updated>2018-12-03T04:44:28.700Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-      <category term="开发工具" scheme="http://www.limingming.org/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"/>
-    
-    
-      <category term="Mac" scheme="http://www.limingming.org/tags/Mac/"/>
-    
-      <category term="搭建" scheme="http://www.limingming.org/tags/%E6%90%AD%E5%BB%BA/"/>
-    
-      <category term="源码" scheme="http://www.limingming.org/tags/%E6%BA%90%E7%A0%81/"/>
-    
-      <category term="chromium" scheme="http://www.limingming.org/tags/chromium/"/>
-    
-      <category term="谷歌浏览器" scheme="http://www.limingming.org/tags/%E8%B0%B7%E6%AD%8C%E6%B5%8F%E8%A7%88%E5%99%A8/"/>
     
   </entry>
   
