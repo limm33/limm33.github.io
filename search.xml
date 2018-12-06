@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[mac上安装部署nginx]]></title>
+    <url>%2F2018%2F12%2F06%2F%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7%2Fmac%E4%B8%8A%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2nginx%2F</url>
+    <content type="text"><![CDATA[原文 介绍Nginx（发音同engine x）是异步框架的 Web服务器，也可以用作反向代理，负载平衡器 和 HTTP缓存。该软件由 Igor Sysoev 创建，并于2004年首次公开发布。同名公司成立于2011年，以提供支持。Nginx是免费的开源软件，根据类BSD许可证的条款发布。一大部分Web服务器使用Nginx,通常作为负载均衡器。 –维基百科 环境搭建 打开终端,安装brew 1usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot; 安装成功后，使用查看版本，验证是否安装成功1brew -v 安装ngnix 1brew install nginx 我安装完成的版本是：12$ nginx -vnginx version: nginx/1.15.6 中间安装过程中可能会出现warning,为了不必要的麻烦执行以下安装命令 1sudo xcode-select --install 会出现如下提示安装的工具，稍等几分钟就安装成功了。 启动关闭nginx 启动nginx1brew services start nginx 使用浏览器访问http://localhost:8080 ，应该可以看到 wlecom to nginx 的欢迎界面。 关闭 1234$ ps -ef | grep nginx 502 82708 1 0 6:22下午 ?? 0:00.02 nginx: master process /usr/local/opt/nginx/bin/nginx -g daemon off; 502 82709 82708 0 6:22下午 ?? 0:00.00 nginx: worker process 502 82712 82200 0 6:22下午 ttys000 0:00.00 grep nginx 找到它的进程号 82708 ，杀死！ 1kill -QUIT 82708 kill -QUIT 15800 (慢慢停止，不会立刻停止)Kill -TERM 15800 （立刻停止）Kill -INT 15800 （和上面一样，也是立刻停止） 重启 12cd /usr/local/Cellar/nginx/1.15.6/bin./nexus reload nexus 各个参数 123456789101112131415./nginx -hnginx version: nginx/1.15.6Usage: nginx [-?hvVtTq] [-s signal] [-c filename] [-p prefix] [-g directives]Options: -?,-h : this help -v : show version and exit -V : show version and configure options then exit -t : test configuration and exit -T : test configuration, dump it and exit -q : suppress non-error messages during configuration testing -s signal : send signal to a master process: stop, quit, reopen, reload -p prefix : set prefix path (default: /usr/local/Cellar/nginx/1.15.6/) -c filename : set configuration file (default: /usr/local/etc/nginx/nginx.conf) -g directives : set global directives out of configuration file 大家可以根据自己的需要执相应的命令.]]></content>
+      <categories>
+        <category>开发工具</category>
+      </categories>
+      <tags>
+        <tag>安装</tag>
+        <tag>mac</tag>
+        <tag>部署</tag>
+        <tag>nginx</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Maven仓库存在jar包但依旧提示无法下载]]></title>
     <url>%2F2018%2F12%2F05%2FMaven%2FMaven%E4%BB%93%E5%BA%93%E5%AD%98%E5%9C%A8jar%E5%8C%85%E4%BD%86%E4%BE%9D%E6%97%A7%E6%8F%90%E7%A4%BA%E6%97%A0%E6%B3%95%E4%B8%8B%E8%BD%BD%2F</url>
     <content type="text"><![CDATA[原文 介绍最近服务器的迁移，把原来服务器的地址都更改了，所以私服的地址也改动了，原来项目下载到本地仓库的包，但是重新构建过程中竟然发现依然要提示下载，本地仓库里面明明有包，为什么还要下载？ 解决去maven仓库包下面你会发现有_remote.repositories文件，下载不下来问题就是因为这个文件导致的。你可能会发现nexus=的信息在这个文件中，这个文件中已经连接不上原来的nexus私服了，所有会报错依然会生成lastUpdatedw文件，如果你可以从新的服务地址中下载，你可以选择删除掉这个包，重新下载，如果不能的话可以选择改掉nexus=的信息，改成可以连接的地址，那它就不会重新下载了，例如改成 central=，这代表从远程中央仓库下载。 结果最后当然会成功，如果不成功的话重新检查一下网络情况！]]></content>
@@ -306,7 +320,7 @@
   <entry>
     <title><![CDATA[Mac OS下搭建Vue开发环境]]></title>
     <url>%2F2018%2F11%2F23%2FVue%2FMac-OS%E4%B8%8B%E6%90%AD%E5%BB%BAVue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%2F</url>
-    <content type="text"><![CDATA[前言原来一直学习使用React，现在因为工作的需要，对Vue进行学习和使用，现在比较流行的框架React,angular,vue，正好对于vue也进行些了解。 环境搭建 打开终端,安装brew 1usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot; 安装成功后，使用查看版本，验证是否安装成功1brew -v 安装node.js1brew install nodejs 也可以下载安装下载地址安装成功后，使用验证123node -v``` * 给nodejs目录赋权限 sudo chmod -R 777 /usr/local/lib/node_modules/1* 安装 淘宝镜像 （npm） npm install -g cnpm –registry=https://registry.npm.taobao.org12* 安装webpack cnpm install webpack -g12* 安装vue脚手架 npm install vue-cli -g12# 开始Vue 创建一个基于 webpack 模板的新项目$ vue init webpack my-project 这里需要进行一些配置，默认回车即可This will install Vue 2.x version of the template. For Vue 1.x use: vue init webpack#1.0 my-project ? Project name my-project? Project description A Vue.js project? Author runoob &#116;&#x65;&#x73;&#x74;&#x40;&#114;&#117;&#110;&#x6f;&#x6f;&#x62;&#x2e;&#x63;&#x6f;&#109;? Vue build standalone? Use ESLint to lint your code? Yes? Pick an ESLint preset Standard? Setup unit tests with Karma + Mocha? Yes? Setup e2e tests with Nightwatch? Yes vue-cli · Generated “my-project”. To get started: cd my-project npm install npm run dev Documentation can be found at https://vuejs-templates.github.io/webpack1进入项目，安装并运行： $ cd my-project$ cnpm install$ cnpm run dev DONE Compiled successfully in 4388ms Listening at http://localhost:8080`]]></content>
+    <content type="text"><![CDATA[前言原来一直学习使用React，现在因为工作的需要，对Vue进行学习和使用，现在比较流行的框架React,angular,vue，正好对于vue也进行些了解。 环境搭建 打开终端,安装brew 1usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot; 安装成功后，使用查看版本，验证是否安装成功1brew -v 安装node.js1brew install nodejs 也可以下载安装下载地址安装成功后，使用验证123node -v``` * 给nodejs目录赋权限 sudo chmod -R 777 /usr/local/lib/node_modules/1* 安装 淘宝镜像 （npm） npm install -g cnpm –registry=https://registry.npm.taobao.org12* 安装webpack cnpm install webpack -g12* 安装vue脚手架 npm install vue-cli -g12# 开始Vue 创建一个基于 webpack 模板的新项目$ vue init webpack my-project 这里需要进行一些配置，默认回车即可This will install Vue 2.x version of the template. For Vue 1.x use: vue init webpack#1.0 my-project ? Project name my-project? Project description A Vue.js project? Author runoob &#x74;&#x65;&#x73;&#116;&#64;&#x72;&#117;&#110;&#x6f;&#x6f;&#x62;&#x2e;&#x63;&#x6f;&#x6d;? Vue build standalone? Use ESLint to lint your code? Yes? Pick an ESLint preset Standard? Setup unit tests with Karma + Mocha? Yes? Setup e2e tests with Nightwatch? Yes vue-cli · Generated “my-project”. To get started: cd my-project npm install npm run dev Documentation can be found at https://vuejs-templates.github.io/webpack1进入项目，安装并运行： $ cd my-project$ cnpm install$ cnpm run dev DONE Compiled successfully in 4388ms Listening at http://localhost:8080`]]></content>
       <categories>
         <category>Vue</category>
       </categories>

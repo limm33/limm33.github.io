@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.limingming.org/"/>
-  <updated>2018-12-05T07:24:04.478Z</updated>
+  <updated>2018-12-06T10:40:51.675Z</updated>
   <id>http://www.limingming.org/</id>
   
   <author>
@@ -15,6 +15,38 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>mac上安装部署nginx</title>
+    <link href="http://www.limingming.org/2018/12/06/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/mac%E4%B8%8A%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2nginx/"/>
+    <id>http://www.limingming.org/2018/12/06/开发工具/mac上安装部署nginx/</id>
+    <published>2018-12-06T09:41:19.000Z</published>
+    <updated>2018-12-06T10:40:51.675Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="开发工具" scheme="http://www.limingming.org/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"/>
+    
+    
+      <category term="安装" scheme="http://www.limingming.org/tags/%E5%AE%89%E8%A3%85/"/>
+    
+      <category term="mac" scheme="http://www.limingming.org/tags/mac/"/>
+    
+      <category term="部署" scheme="http://www.limingming.org/tags/%E9%83%A8%E7%BD%B2/"/>
+    
+      <category term="nginx" scheme="http://www.limingming.org/tags/nginx/"/>
+    
+  </entry>
   
   <entry>
     <title>Maven仓库存在jar包但依旧提示无法下载</title>
@@ -635,40 +667,6 @@
       <category term="怎么" scheme="http://www.limingming.org/tags/%E6%80%8E%E4%B9%88/"/>
     
       <category term="如何" scheme="http://www.limingming.org/tags/%E5%A6%82%E4%BD%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>mac下npm安装命令不生效</title>
-    <link href="http://www.limingming.org/2018/11/27/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/mac%E4%B8%8Bnpm%E5%AE%89%E8%A3%85%E5%91%BD%E4%BB%A4%E4%B8%8D%E7%94%9F%E6%95%88/"/>
-    <id>http://www.limingming.org/2018/11/27/开发工具/mac下npm安装命令不生效/</id>
-    <published>2018-11-27T04:57:10.000Z</published>
-    <updated>2018-12-01T08:27:13.245Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-      <category term="开发工具" scheme="http://www.limingming.org/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"/>
-    
-    
-      <category term="安装" scheme="http://www.limingming.org/tags/%E5%AE%89%E8%A3%85/"/>
-    
-      <category term="命令" scheme="http://www.limingming.org/tags/%E5%91%BD%E4%BB%A4/"/>
-    
-      <category term="Mac" scheme="http://www.limingming.org/tags/Mac/"/>
-    
-      <category term="npm" scheme="http://www.limingming.org/tags/npm/"/>
-    
-      <category term="不生效" scheme="http://www.limingming.org/tags/%E4%B8%8D%E7%94%9F%E6%95%88/"/>
     
   </entry>
   
