@@ -81,19 +81,19 @@
 
 
 
-<meta name="description" content="原文     介绍Nginx（发音同engine x）是异步框架的 Web服务器，也可以用作反向代理，负载平衡器 和 HTTP缓存。该软件由 Igor Sysoev 创建，并于2004年首次公开发布。同名公司成立于2011年，以提供支持。Nginx是免费的开源软件，根据类BSD许可证的条款发布。一大部分Web服务器使用Nginx,通常作为负载均衡器。 –维基百科    环境搭建 打开终端,安装br">
+<meta name="description" content="原文 介绍Nginx（发音同engine x）是异步框架的 Web服务器，也可以用作反向代理，负载平衡器 和 HTTP缓存。该软件由 Igor Sysoev 创建，并于2004年首次公开发布。同名公司成立于2011年，以提供支持。Nginx是免费的开源软件，根据类BSD许可证的条款发布。一大部分Web服务器使用Nginx,通常作为负载均衡器。 –维基百科    环境搭建 打开终端,安装brew">
 <meta name="keywords" content="安装,mac,部署,nginx">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mac上安装部署nginx">
 <meta property="og:url" content="http://www.limingming.org/2018/12/06/开发工具/mac上安装部署nginx/index.html">
 <meta property="og:site_name" content="李明明的博客">
-<meta property="og:description" content="原文     介绍Nginx（发音同engine x）是异步框架的 Web服务器，也可以用作反向代理，负载平衡器 和 HTTP缓存。该软件由 Igor Sysoev 创建，并于2004年首次公开发布。同名公司成立于2011年，以提供支持。Nginx是免费的开源软件，根据类BSD许可证的条款发布。一大部分Web服务器使用Nginx,通常作为负载均衡器。 –维基百科    环境搭建 打开终端,安装br">
+<meta property="og:description" content="原文 介绍Nginx（发音同engine x）是异步框架的 Web服务器，也可以用作反向代理，负载平衡器 和 HTTP缓存。该软件由 Igor Sysoev 创建，并于2004年首次公开发布。同名公司成立于2011年，以提供支持。Nginx是免费的开源软件，根据类BSD许可证的条款发布。一大部分Web服务器使用Nginx,通常作为负载均衡器。 –维基百科    环境搭建 打开终端,安装brew">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://limingming.org/wp-content/uploads/2018/12/123.png">
-<meta property="og:updated_time" content="2018-12-06T10:40:51.675Z">
+<meta property="og:updated_time" content="2018-12-06T10:51:12.215Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mac上安装部署nginx">
-<meta name="twitter:description" content="原文     介绍Nginx（发音同engine x）是异步框架的 Web服务器，也可以用作反向代理，负载平衡器 和 HTTP缓存。该软件由 Igor Sysoev 创建，并于2004年首次公开发布。同名公司成立于2011年，以提供支持。Nginx是免费的开源软件，根据类BSD许可证的条款发布。一大部分Web服务器使用Nginx,通常作为负载均衡器。 –维基百科    环境搭建 打开终端,安装br">
+<meta name="twitter:description" content="原文 介绍Nginx（发音同engine x）是异步框架的 Web服务器，也可以用作反向代理，负载平衡器 和 HTTP缓存。该软件由 Igor Sysoev 创建，并于2004年首次公开发布。同名公司成立于2011年，以提供支持。Nginx是免费的开源软件，根据类BSD许可证的条款发布。一大部分Web服务器使用Nginx,通常作为负载均衡器。 –维基百科    环境搭建 打开终端,安装brew">
 <meta name="twitter:image" content="http://limingming.org/wp-content/uploads/2018/12/123.png">
 
 
@@ -388,7 +388,7 @@
       
 
       
-        <p><a href="http://limingming.org/index.php/2018/12/mac-nginx-install/" target="_blank" rel="noopener">原文</a>    </p>
+        <p><a href="http://limingming.org/index.php/2018/12/mac-nginx-install/" target="_blank" rel="noopener">原文</a></p>
 <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>Nginx（发音同engine x）是异步框架的 Web服务器，也可以用作反向代理，负载平衡器 和 HTTP缓存。该软件由 Igor Sysoev 创建，并于2004年首次公开发布。同名公司成立于2011年，以提供支持。<br>Nginx是免费的开源软件，根据类BSD许可证的条款发布。一大部分Web服务器使用Nginx,通常作为负载均衡器。 –<a href="https://zh.wikipedia.org/wiki/Nginx" target="_blank" rel="noopener">维基百科</a>   </p>
 <h1 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h1><ol>
 <li>打开终端,安装brew</li>
@@ -406,13 +406,14 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo xcode-select --install</span><br></pre></td></tr></table></figure>
 <p>会出现如下提示安装的工具，稍等几分钟就安装成功了。<br><img src="http://limingming.org/wp-content/uploads/2018/12/123.png" alt="提示安装"></p>
 <h1 id="启动关闭nginx"><a href="#启动关闭nginx" class="headerlink" title="启动关闭nginx"></a>启动关闭nginx</h1><ol>
-<li>启动nginx<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew services start nginx</span><br></pre></td></tr></table></figure>
+<li>启动nginx<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">brew services start nginx</span><br><span class="line"><span class="meta">#</span> 或者更常用的：</span><br><span class="line">nginx</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <p>使用浏览器访问<a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a> ，应该可以看到 wlecom to nginx 的欢迎界面。</p>
 <ol start="2">
-<li>关闭</li>
+<li>关闭<br>命令：<br>nginx -s quit</li>
 </ol>
+<p>或者：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> ps -ef | grep nginx</span><br><span class="line">  502 82708     1   0  6:22下午 ??         0:00.02 nginx: master process /usr/local/opt/nginx/bin/nginx -g daemon off;  </span><br><span class="line">  502 82709 82708   0  6:22下午 ??         0:00.00 nginx: worker process  </span><br><span class="line">  502 82712 82200   0  6:22下午 ttys000    0:00.00 grep nginx</span><br></pre></td></tr></table></figure>
 <p>找到它的进程号 82708 ，杀死！</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kill -QUIT 82708</span><br></pre></td></tr></table></figure>
@@ -426,6 +427,18 @@
 </ol>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">./nginx -h</span><br><span class="line">nginx version: nginx/1.15.6</span><br><span class="line">Usage: nginx [-?hvVtTq] [-s signal] [-c filename] [-p prefix] [-g directives]</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line">  -?,-h         : this help</span><br><span class="line">  -v            : show version and exit</span><br><span class="line">  -V            : show version and configure options then exit</span><br><span class="line">  -t            : test configuration and exit</span><br><span class="line">  -T            : test configuration, dump it and exit</span><br><span class="line">  -q            : suppress non-error messages during configuration testing</span><br><span class="line">  -s signal     : send signal to a master process: stop, quit, reopen, reload</span><br><span class="line">  -p prefix     : set prefix path (default: /usr/local/Cellar/nginx/1.15.6/)</span><br><span class="line">  -c filename   : set configuration file (default: /usr/local/etc/nginx/nginx.conf)</span><br><span class="line">  -g directives : set global directives out of configuration file</span><br></pre></td></tr></table></figure>
 <p>大家可以根据自己的需要执相应的命令.</p>
+<h1 id="补充-amp-强调"><a href="#补充-amp-强调" class="headerlink" title="补充&amp;强调"></a>补充&amp;强调</h1><ol>
+<li>nginx安装文件目录</li>
+</ol>
+<p>/usr/local/Cellar/nginx</p>
+<ol start="2">
+<li>nginx配置文件目录<br>/usr/local/etc/nginx</li>
+<li>config文件目录<br>/usr/local/etc/nginx/nginx.conf</li>
+<li>系统hosts位置<br>/private/etc/hosts</li>
+<li>nginx常用命令</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">nginx  #启动nginx</span><br><span class="line">nginx -V #查看版本，以及配置文件地址</span><br><span class="line">nginx -v #查看版本</span><br><span class="line">nginx -s reload|reopen|stop|quit   #重新加载配置|重启|快速停止|安全关闭nginx</span><br><span class="line">nginx -h #帮助</span><br></pre></td></tr></table></figure>
+<h1 id="卸载nginx"><a href="#卸载nginx" class="headerlink" title="卸载nginx"></a>卸载nginx</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew uninstall nginx</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -679,7 +692,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#介绍"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#环境搭建"><span class="nav-number">2.</span> <span class="nav-text">环境搭建</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#启动关闭nginx"><span class="nav-number">3.</span> <span class="nav-text">启动关闭nginx</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#介绍"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#环境搭建"><span class="nav-number">2.</span> <span class="nav-text">环境搭建</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#启动关闭nginx"><span class="nav-number">3.</span> <span class="nav-text">启动关闭nginx</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#补充-amp-强调"><span class="nav-number">4.</span> <span class="nav-text">补充&amp;强调</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#卸载nginx"><span class="nav-number">5.</span> <span class="nav-text">卸载nginx</span></a></li></ol></div>
             
 
           </div>
@@ -720,7 +733,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共20.2k字</span>
+  <span class="post-count">博客全站共20.3k字</span>
 </div>
 
         
