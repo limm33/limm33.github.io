@@ -1,6 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[nexus3配置yum源]]></title>
+    <url>%2F2018%2F12%2F08%2FLinux%2Fnexus3%E9%85%8D%E7%BD%AEyum%E6%BA%90%2F</url>
+    <content type="text"><![CDATA[原文 使用在生产环境中，或者在隔离外网的服务器环境中，不能在线更新下载RPM包，所以借助有一台Linux服务器可以连接外网，剩余的服务器通过这台YUM服务器更新就可以了。 开篇以前的做法是先把包下载到内网中的YUM服务器上，然后通过createrepo命令生成本地仓库，其余服务器通过HTTP访问这个链接，这种方式比较费时费力，而且工作效率不高，在这也简要的把这种方式介绍一下，这种方式下一般应用到本地为开发环境可以联网但是开发环境并不可以的情况，如果是简单部署单个应用不是很多应用的话，这种方式还是有可取之处的。 开发环境下： 12345yum install createrepo -yyum install -y createrepo --downloadonly --downloaddir=/root/rpmcache/Packagesrm -rf /root/rpmcache/repodata/cd /root/rpmcache &amp;&amp; createrepo . 详细的每一个命令就不一一介绍了，执行完成这些这样开发环境下我们就准备好了相关的依赖。 生产环境我们将/root/rpmcache 复制到到生产环境下 123456vi /etc/yum.repos/aaa.repo# 写入以下内容，files为路径[aaa]baseurl = files:///root/rpmcachegpgcheck = 0name = aaa 执行123yum clean allyum repolist 这样就可以使用了。 配置Nexus当然neuxs的方式更通用一些，将nexus放到能链接外网的服务器上，通过nexus暴露服务就可以了。 使用浏览器打开neuxs的网站，输入管理员密码 点击配置-&gt;Repositories-&gt;选择类型（yum proxy） 自定义一个名字，例如：yum-proxy 输入URL: http://mirrors.163.com/centos/centos可以用http://mirror.centos.org/centos/ ，可以参考yum源地址创建完成后得到源的私服地址,如果有必要的话，把用到的源统一通过group的方式暴露出来就可以了。 配置使用因为服务器无法链接内网可以将/etc/yum.repos.d/下的repo文件备份，如果有必要恢复的话，例如CentOS-Base.repo 等在/etc/yum.repos.d/下创建neuxs.repo文件写入： 123456# cat nexus.repo[nexus]name=Nexus Repositorybaseurl=http://IP:8081/repository/yum-proxy/$releasever/os/$basearch/enabled=1gpgcheck=0 在你的nexus服务URL后要加上“$releasever/os/$basearch/”执行1yum clean all 接下来就可以使用配置的yum源了。]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>yum</tag>
+        <tag>源</tag>
+        <tag>nexus3</tag>
+        <tag>配置</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[国内yum源地址]]></title>
+    <url>%2F2018%2F12%2F07%2FLinux%2F%E5%9B%BD%E5%86%85yum%E6%BA%90%E5%9C%B0%E5%9D%80%2F</url>
+    <content type="text"><![CDATA[原文 最近公司内服务器迁移，需要配置一些能代理外网的yum源地址，以下是一些yum源的总结： 企业阿里云：https://opsx.alibaba.com/mirror搜狐开源镜像站：http://mirrors.sohu.com/ 网易开源镜像站：http://mirrors.163.com/ 大学 北京理工大学 http://mirror.bit.edu.cn (IPv4 only)http://mirror.bit6.edu.cn (IPv6 only) 北京交通大学 http://mirror.bjtu.edu.cn (IPv4 only)http://mirror6.bjtu.edu.cn (IPv6 only)http://debian.bjtu.edu.cn (IPv4+IPv6) 兰州大学 http://mirror.lzu.edu.cn/ 厦门大学http://mirrors.xmu.edu.cn/ 清华大学 http://mirrors.tuna.tsinghua.edu.cn/ (IPv4+IPv6)http://mirrors.6.tuna.tsinghua.edu.cn/ (IPv6 only)http://mirrors.4.tuna.tsinghua.edu.cn/ (IPv4 only) 天津大学 http://mirror.tju.edu.cn/ 中国科学技术大学http://mirrors.ustc.edu.cn/ (IPv4+IPv6)http://mirrors4.ustc.edu.cn/http://mirrors6.ustc.edu.cn/ 东北大学 http://mirror.neu.edu.cn/ (IPv4 only)http://mirror.neu6.edu.cn/ (IPv6 only) 电子科技大学 http://ubuntu.uestc.edu.cn/]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>国内</tag>
+        <tag>yum</tag>
+        <tag>仓库</tag>
+        <tag>源</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[mac上安装部署nginx]]></title>
     <url>%2F2018%2F12%2F06%2F%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7%2Fmac%E4%B8%8A%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2nginx%2F</url>
     <content type="text"><![CDATA[原文 介绍Nginx（发音同engine x）是异步框架的 Web服务器，也可以用作反向代理，负载平衡器 和 HTTP缓存。该软件由 Igor Sysoev 创建，并于2004年首次公开发布。同名公司成立于2011年，以提供支持。Nginx是免费的开源软件，根据类BSD许可证的条款发布。一大部分Web服务器使用Nginx,通常作为负载均衡器。 –维基百科 环境搭建 打开终端,安装brew 1usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot; 安装成功后，使用查看版本，验证是否安装成功1brew -v 安装ngnix 1brew install nginx 我安装完成的版本是：12$ nginx -vnginx version: nginx/1.15.6 中间安装过程中可能会出现warning,为了不必要的麻烦执行以下安装命令 1sudo xcode-select --install 会出现如下提示安装的工具，稍等几分钟就安装成功了。 启动关闭nginx 启动nginx123brew services start nginx# 或者更常用的：nginx 使用浏览器访问http://localhost:8080 ，应该可以看到 wlecom to nginx 的欢迎界面。 关闭命令：nginx -s quit 或者： 1234$ ps -ef | grep nginx 502 82708 1 0 6:22下午 ?? 0:00.02 nginx: master process /usr/local/opt/nginx/bin/nginx -g daemon off; 502 82709 82708 0 6:22下午 ?? 0:00.00 nginx: worker process 502 82712 82200 0 6:22下午 ttys000 0:00.00 grep nginx 找到它的进程号 82708 ，杀死！ 1kill -QUIT 82708 kill -QUIT 15800 (慢慢停止，不会立刻停止)Kill -TERM 15800 （立刻停止）Kill -INT 15800 （和上面一样，也是立刻停止） 重启 12cd /usr/local/Cellar/nginx/1.15.6/bin./nexus reload nexus 各个参数 123456789101112131415./nginx -hnginx version: nginx/1.15.6Usage: nginx [-?hvVtTq] [-s signal] [-c filename] [-p prefix] [-g directives]Options: -?,-h : this help -v : show version and exit -V : show version and configure options then exit -t : test configuration and exit -T : test configuration, dump it and exit -q : suppress non-error messages during configuration testing -s signal : send signal to a master process: stop, quit, reopen, reload -p prefix : set prefix path (default: /usr/local/Cellar/nginx/1.15.6/) -c filename : set configuration file (default: /usr/local/etc/nginx/nginx.conf) -g directives : set global directives out of configuration file 大家可以根据自己的需要执相应的命令. 补充&amp;强调 nginx安装文件目录 /usr/local/Cellar/nginx nginx配置文件目录/usr/local/etc/nginx config文件目录/usr/local/etc/nginx/nginx.conf 系统hosts位置/private/etc/hosts nginx常用命令 12345nginx #启动nginxnginx -V #查看版本，以及配置文件地址nginx -v #查看版本nginx -s reload|reopen|stop|quit #重新加载配置|重启|快速停止|安全关闭nginxnginx -h #帮助 卸载nginx1brew uninstall nginx]]></content>
@@ -36,9 +64,9 @@
         <category>Git</category>
       </categories>
       <tags>
+        <tag>仓库</tag>
         <tag>github</tag>
         <tag>删除</tag>
-        <tag>仓库</tag>
       </tags>
   </entry>
   <entry>
@@ -76,9 +104,9 @@
         <category>Maven</category>
       </categories>
       <tags>
+        <tag>配置</tag>
         <tag>maven</tag>
         <tag>使用私服</tag>
-        <tag>配置</tag>
       </tags>
   </entry>
   <entry>
@@ -320,7 +348,7 @@
   <entry>
     <title><![CDATA[Mac OS下搭建Vue开发环境]]></title>
     <url>%2F2018%2F11%2F23%2FVue%2FMac-OS%E4%B8%8B%E6%90%AD%E5%BB%BAVue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%2F</url>
-    <content type="text"><![CDATA[前言原来一直学习使用React，现在因为工作的需要，对Vue进行学习和使用，现在比较流行的框架React,angular,vue，正好对于vue也进行些了解。 环境搭建 打开终端,安装brew 1usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot; 安装成功后，使用查看版本，验证是否安装成功1brew -v 安装node.js1brew install nodejs 也可以下载安装下载地址安装成功后，使用验证123node -v``` * 给nodejs目录赋权限 sudo chmod -R 777 /usr/local/lib/node_modules/1* 安装 淘宝镜像 （npm） npm install -g cnpm –registry=https://registry.npm.taobao.org12* 安装webpack cnpm install webpack -g12* 安装vue脚手架 npm install vue-cli -g12# 开始Vue 创建一个基于 webpack 模板的新项目$ vue init webpack my-project 这里需要进行一些配置，默认回车即可This will install Vue 2.x version of the template. For Vue 1.x use: vue init webpack#1.0 my-project ? Project name my-project? Project description A Vue.js project? Author runoob &#116;&#101;&#x73;&#116;&#64;&#114;&#x75;&#x6e;&#111;&#x6f;&#x62;&#46;&#99;&#x6f;&#x6d;? Vue build standalone? Use ESLint to lint your code? Yes? Pick an ESLint preset Standard? Setup unit tests with Karma + Mocha? Yes? Setup e2e tests with Nightwatch? Yes vue-cli · Generated “my-project”. To get started: cd my-project npm install npm run dev Documentation can be found at https://vuejs-templates.github.io/webpack1进入项目，安装并运行： $ cd my-project$ cnpm install$ cnpm run dev DONE Compiled successfully in 4388ms Listening at http://localhost:8080`]]></content>
+    <content type="text"><![CDATA[前言原来一直学习使用React，现在因为工作的需要，对Vue进行学习和使用，现在比较流行的框架React,angular,vue，正好对于vue也进行些了解。 环境搭建 打开终端,安装brew 1usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot; 安装成功后，使用查看版本，验证是否安装成功1brew -v 安装node.js1brew install nodejs 也可以下载安装下载地址安装成功后，使用验证123node -v``` * 给nodejs目录赋权限 sudo chmod -R 777 /usr/local/lib/node_modules/1* 安装 淘宝镜像 （npm） npm install -g cnpm –registry=https://registry.npm.taobao.org12* 安装webpack cnpm install webpack -g12* 安装vue脚手架 npm install vue-cli -g12# 开始Vue 创建一个基于 webpack 模板的新项目$ vue init webpack my-project 这里需要进行一些配置，默认回车即可This will install Vue 2.x version of the template. For Vue 1.x use: vue init webpack#1.0 my-project ? Project name my-project? Project description A Vue.js project? Author runoob &#x74;&#101;&#x73;&#x74;&#64;&#114;&#117;&#x6e;&#x6f;&#111;&#98;&#x2e;&#99;&#x6f;&#109;? Vue build standalone? Use ESLint to lint your code? Yes? Pick an ESLint preset Standard? Setup unit tests with Karma + Mocha? Yes? Setup e2e tests with Nightwatch? Yes vue-cli · Generated “my-project”. To get started: cd my-project npm install npm run dev Documentation can be found at https://vuejs-templates.github.io/webpack1进入项目，安装并运行： $ cd my-project$ cnpm install$ cnpm run dev DONE Compiled successfully in 4388ms Listening at http://localhost:8080`]]></content>
       <categories>
         <category>Vue</category>
       </categories>
