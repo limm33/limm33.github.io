@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[mysql 数据库修改密码及更改远程访问权限]]></title>
+    <url>%2F2018%2F12%2F08%2FDB%2Fmysql-%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BF%AE%E6%94%B9%E5%AF%86%E7%A0%81%E5%8F%8A%E6%9B%B4%E6%94%B9%E8%BF%9C%E7%A8%8B%E8%AE%BF%E9%97%AE%E6%9D%83%E9%99%90%2F</url>
+    <content type="text"><![CDATA[转载请声明原文地址,谢谢 mysql修改密码 方式一 1set password for 'user_name'@'host_name'=password('new_pwd') 方式二使用update系统表方式 123use mysql;update user set password=password('passwd') where user='user_name';flush privileges; 补充：对于user表password类，如果不用password函数的话，导致更新后无法登陆。 也可以在用户创建后直接使用grant方式来更新用户密码 1grant usage on *.* to '用户名'@'localhost' identified by '密码'; 忘记mysql密码重制密码过程 123456789101112131415161718192021222324# 停止mysql服务 service mysql stop # 使用--skip-grant-tables选项跳过授权表验证 #获取mysqld帮助信息mysqld --help --verbose --skip-grant-tables# 使用--skip-grant-tables启动mysql服务器mysqld --skip-grant-tables --user=mysql &amp;ps -ef | grep mysqlmysql select user,host,password from mysql.user where user='root'; --更新mysql账户密码为NULL或设定为新密码，注设定为空密码时可以直接设置update mysql.user set password='' where user='root';select user,host,password from mysql.user where user='root';exit# 再次停止mysql数据库服务器service mysql stopservice mysql startmysql #重启后再次登陆，不再需要任何密码 设置允许远程连接 开启远程访问 12grant all privileges on *.* to 'root'@'%' identified by 'password';flush privileges; 命令语句中第一个*代表数据库，可以改成允许访问的数据库名称 命令中第二个 是数据库的表名称，代表允许访问任意的表 root代表远程登录使用的用户名，可以自定义 %代表允许任意ip登录，如果你想指定特定的IP，可以把%替换成具体的IP就可以了 password代表远程登录时使用的密码，可以自定义 flush privileges;这是让权限立即生效 修改配置文件my.cnf是mysql的配置文件，路径是/etc/my.cnf如果寻找文件寻找不到的话，可以用linux搜索的命令 1find /* -name my.cnf 通过vim编辑该文件，找到bind-address = 127.0.0.1这一句，然后在前面加个#号注释掉，保存退出然后重新启动服务。 1service mysql restart 在终端输入：mysql -h 服务器ip地址 -P 3306 -u root -p 如果可以访问就证明成功了]]></content>
+      <categories>
+        <category>DB</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+        <tag>修改</tag>
+        <tag>密码</tag>
+        <tag>设置</tag>
+        <tag>远程</tag>
+        <tag>访问</tag>
+        <tag>权限</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[nexus3配置yum源]]></title>
     <url>%2F2018%2F12%2F08%2FLinux%2Fnexus3%E9%85%8D%E7%BD%AEyum%E6%BA%90%2F</url>
     <content type="text"><![CDATA[原文 使用在生产环境中，或者在隔离外网的服务器环境中，不能在线更新下载RPM包，所以借助有一台Linux服务器可以连接外网，剩余的服务器通过这台YUM服务器更新就可以了。 开篇以前的做法是先把包下载到内网中的YUM服务器上，然后通过createrepo命令生成本地仓库，其余服务器通过HTTP访问这个链接，这种方式比较费时费力，而且工作效率不高，在这也简要的把这种方式介绍一下，这种方式下一般应用到本地为开发环境可以联网但是开发环境并不可以的情况，如果是简单部署单个应用不是很多应用的话，这种方式还是有可取之处的。 开发环境下： 12345yum install createrepo -yyum install -y createrepo --downloadonly --downloaddir=/root/rpmcache/Packagesrm -rf /root/rpmcache/repodata/cd /root/rpmcache &amp;&amp; createrepo . 详细的每一个命令就不一一介绍了，执行完成这些这样开发环境下我们就准备好了相关的依赖。 生产环境我们将/root/rpmcache 复制到到生产环境下 123456vi /etc/yum.repos/aaa.repo# 写入以下内容，files为路径[aaa]baseurl = files:///root/rpmcachegpgcheck = 0name = aaa 执行123yum clean allyum repolist 这样就可以使用了。 配置Nexus当然neuxs的方式更通用一些，将nexus放到能链接外网的服务器上，通过nexus暴露服务就可以了。 使用浏览器打开neuxs的网站，输入管理员密码 点击配置-&gt;Repositories-&gt;选择类型（yum proxy） 自定义一个名字，例如：yum-proxy 输入URL: http://mirrors.163.com/centos/centos可以用http://mirror.centos.org/centos/ ，可以参考yum源地址创建完成后得到源的私服地址,如果有必要的话，把用到的源统一通过group的方式暴露出来就可以了。 配置使用因为服务器无法链接内网可以将/etc/yum.repos.d/下的repo文件备份，如果有必要恢复的话，例如CentOS-Base.repo 等在/etc/yum.repos.d/下创建neuxs.repo文件写入： 123456# cat nexus.repo[nexus]name=Nexus Repositorybaseurl=http://IP:8081/repository/yum-proxy/$releasever/os/$basearch/enabled=1gpgcheck=0 在你的nexus服务URL后要加上“$releasever/os/$basearch/”执行1yum clean all 接下来就可以使用配置的yum源了。]]></content>
@@ -8,10 +25,10 @@
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>yum</tag>
-        <tag>源</tag>
         <tag>nexus3</tag>
         <tag>配置</tag>
+        <tag>yum</tag>
+        <tag>源</tag>
       </tags>
   </entry>
   <entry>
@@ -22,10 +39,10 @@
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>国内</tag>
-        <tag>yum</tag>
         <tag>仓库</tag>
+        <tag>yum</tag>
         <tag>源</tag>
+        <tag>国内</tag>
       </tags>
   </entry>
   <entry>
@@ -64,9 +81,9 @@
         <category>Git</category>
       </categories>
       <tags>
-        <tag>仓库</tag>
         <tag>github</tag>
         <tag>删除</tag>
+        <tag>仓库</tag>
       </tags>
   </entry>
   <entry>
@@ -348,7 +365,7 @@
   <entry>
     <title><![CDATA[Mac OS下搭建Vue开发环境]]></title>
     <url>%2F2018%2F11%2F23%2FVue%2FMac-OS%E4%B8%8B%E6%90%AD%E5%BB%BAVue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%2F</url>
-    <content type="text"><![CDATA[前言原来一直学习使用React，现在因为工作的需要，对Vue进行学习和使用，现在比较流行的框架React,angular,vue，正好对于vue也进行些了解。 环境搭建 打开终端,安装brew 1usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot; 安装成功后，使用查看版本，验证是否安装成功1brew -v 安装node.js1brew install nodejs 也可以下载安装下载地址安装成功后，使用验证123node -v``` * 给nodejs目录赋权限 sudo chmod -R 777 /usr/local/lib/node_modules/1* 安装 淘宝镜像 （npm） npm install -g cnpm –registry=https://registry.npm.taobao.org12* 安装webpack cnpm install webpack -g12* 安装vue脚手架 npm install vue-cli -g12# 开始Vue 创建一个基于 webpack 模板的新项目$ vue init webpack my-project 这里需要进行一些配置，默认回车即可This will install Vue 2.x version of the template. For Vue 1.x use: vue init webpack#1.0 my-project ? Project name my-project? Project description A Vue.js project? Author runoob &#x74;&#101;&#x73;&#x74;&#64;&#114;&#117;&#x6e;&#x6f;&#111;&#98;&#x2e;&#99;&#x6f;&#109;? Vue build standalone? Use ESLint to lint your code? Yes? Pick an ESLint preset Standard? Setup unit tests with Karma + Mocha? Yes? Setup e2e tests with Nightwatch? Yes vue-cli · Generated “my-project”. To get started: cd my-project npm install npm run dev Documentation can be found at https://vuejs-templates.github.io/webpack1进入项目，安装并运行： $ cd my-project$ cnpm install$ cnpm run dev DONE Compiled successfully in 4388ms Listening at http://localhost:8080`]]></content>
+    <content type="text"><![CDATA[前言原来一直学习使用React，现在因为工作的需要，对Vue进行学习和使用，现在比较流行的框架React,angular,vue，正好对于vue也进行些了解。 环境搭建 打开终端,安装brew 1usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot; 安装成功后，使用查看版本，验证是否安装成功1brew -v 安装node.js1brew install nodejs 也可以下载安装下载地址安装成功后，使用验证123node -v``` * 给nodejs目录赋权限 sudo chmod -R 777 /usr/local/lib/node_modules/1* 安装 淘宝镜像 （npm） npm install -g cnpm –registry=https://registry.npm.taobao.org12* 安装webpack cnpm install webpack -g12* 安装vue脚手架 npm install vue-cli -g12# 开始Vue 创建一个基于 webpack 模板的新项目$ vue init webpack my-project 这里需要进行一些配置，默认回车即可This will install Vue 2.x version of the template. For Vue 1.x use: vue init webpack#1.0 my-project ? Project name my-project? Project description A Vue.js project? Author runoob &#x74;&#101;&#x73;&#x74;&#x40;&#114;&#117;&#110;&#x6f;&#x6f;&#x62;&#x2e;&#99;&#111;&#x6d;? Vue build standalone? Use ESLint to lint your code? Yes? Pick an ESLint preset Standard? Setup unit tests with Karma + Mocha? Yes? Setup e2e tests with Nightwatch? Yes vue-cli · Generated “my-project”. To get started: cd my-project npm install npm run dev Documentation can be found at https://vuejs-templates.github.io/webpack1进入项目，安装并运行： $ cd my-project$ cnpm install$ cnpm run dev DONE Compiled successfully in 4388ms Listening at http://localhost:8080`]]></content>
       <categories>
         <category>Vue</category>
       </categories>
