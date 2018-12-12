@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="李明明的博客">
 <meta property="og:description" content="转载请声明原文地址,谢谢      mysql修改密码 方式一  1set password for &apos;user_name&apos;@&apos;host_name&apos;=password(&apos;new_pwd&apos;)  方式二使用update系统表方式  123use mysql;update user set password=password(&apos;passwd&apos;) where user=&apos;user_name&apos;;flush">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-08T06:01:59.881Z">
+<meta property="og:updated_time" content="2018-12-12T23:34:22.794Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mysql 数据库修改密码及更改远程访问权限">
 <meta name="twitter:description" content="转载请声明原文地址,谢谢      mysql修改密码 方式一  1set password for &apos;user_name&apos;@&apos;host_name&apos;=password(&apos;new_pwd&apos;)  方式二使用update系统表方式  123use mysql;update user set password=password(&apos;passwd&apos;) where user=&apos;user_name&apos;;flush">
@@ -423,7 +423,7 @@
 <p>通过vim编辑该文件，找到bind-address = 127.0.0.1这一句，然后在前面加个#号注释掉，保存退出然后重新启动服务。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service mysql restart</span><br></pre></td></tr></table></figure>
 <p>在终端输入：<br>mysql -h 服务器ip地址 -P 3306 -u root -p</p>
-<p>如果可以访问就证明成功了</p>
+<p>如果可以访问就证明成功了，如果还不可以，查看一下防火墙，开发3306端口。<br>可以参考<a href="http://limingming.org/index.php/2018/12/centos7-firewall-config/" target="_blank" rel="noopener">CentOS7修改防火墙配置开放端口</a></p>
 
       
     </div>
@@ -492,7 +492,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/12/10/通过yum安装Ansible/" rel="prev" title="通过yum安装Ansible">
+              <a href="/2018/12/10/Linux/通过yum安装Ansible/" rel="prev" title="通过yum安装Ansible">
                 通过yum安装Ansible <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -573,7 +573,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -595,7 +595,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">98</span>
+                  <span class="site-state-item-count">105</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -728,7 +728,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共21.8k字</span>
+  <span class="post-count">博客全站共24.4k字</span>
 </div>
 
         
