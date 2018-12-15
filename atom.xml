@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.limingming.org/"/>
-  <updated>2018-12-13T14:29:06.548Z</updated>
+  <updated>2018-12-15T14:34:03.625Z</updated>
   <id>http://www.limingming.org/</id>
   
   <author>
@@ -15,6 +15,70 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>jenkins中SSH remote hosts配置</title>
+    <link href="http://www.limingming.org/2018/12/15/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/jenkins%E4%B8%ADSSH-remote-hosts%E9%85%8D%E7%BD%AE/"/>
+    <id>http://www.limingming.org/2018/12/15/开发工具/jenkins中SSH-remote-hosts配置/</id>
+    <published>2018-12-15T08:11:07.000Z</published>
+    <updated>2018-12-15T14:34:03.625Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="开发工具" scheme="http://www.limingming.org/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"/>
+    
+    
+      <category term="远程" scheme="http://www.limingming.org/tags/%E8%BF%9C%E7%A8%8B/"/>
+    
+      <category term="ssh" scheme="http://www.limingming.org/tags/ssh/"/>
+    
+      <category term="jenkins" scheme="http://www.limingming.org/tags/jenkins/"/>
+    
+      <category term="连接" scheme="http://www.limingming.org/tags/%E8%BF%9E%E6%8E%A5/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>This account is currently not available问题</title>
+    <link href="http://www.limingming.org/2018/12/15/Linux/This-account-is-currently-not-available%E9%97%AE%E9%A2%98/"/>
+    <id>http://www.limingming.org/2018/12/15/Linux/This-account-is-currently-not-available问题/</id>
+    <published>2018-12-15T07:43:02.000Z</published>
+    <updated>2018-12-15T14:34:03.625Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="Linux" scheme="http://www.limingming.org/categories/Linux/"/>
+    
+    
+      <category term="解决" scheme="http://www.limingming.org/tags/%E8%A7%A3%E5%86%B3/"/>
+    
+      <category term="用户" scheme="http://www.limingming.org/tags/%E7%94%A8%E6%88%B7/"/>
+    
+      <category term="无法" scheme="http://www.limingming.org/tags/%E6%97%A0%E6%B3%95/"/>
+    
+      <category term="切换" scheme="http://www.limingming.org/tags/%E5%88%87%E6%8D%A2/"/>
+    
+  </entry>
   
   <entry>
     <title>Git常用命令</title>
@@ -168,9 +232,9 @@
       <category term="Linux" scheme="http://www.limingming.org/categories/Linux/"/>
     
     
-      <category term="yum" scheme="http://www.limingming.org/tags/yum/"/>
-    
       <category term="安装" scheme="http://www.limingming.org/tags/%E5%AE%89%E8%A3%85/"/>
+    
+      <category term="yum" scheme="http://www.limingming.org/tags/yum/"/>
     
       <category term="ansible" scheme="http://www.limingming.org/tags/ansible/"/>
     
@@ -242,9 +306,9 @@
     
       <category term="源" scheme="http://www.limingming.org/tags/%E6%BA%90/"/>
     
-      <category term="nexus3" scheme="http://www.limingming.org/tags/nexus3/"/>
-    
       <category term="配置" scheme="http://www.limingming.org/tags/%E9%85%8D%E7%BD%AE/"/>
+    
+      <category term="nexus3" scheme="http://www.limingming.org/tags/nexus3/"/>
     
   </entry>
   
@@ -460,9 +524,9 @@
     
       <category term="maven" scheme="http://www.limingming.org/tags/maven/"/>
     
-      <category term="配置" scheme="http://www.limingming.org/tags/%E9%85%8D%E7%BD%AE/"/>
-    
       <category term="使用私服" scheme="http://www.limingming.org/tags/%E4%BD%BF%E7%94%A8%E7%A7%81%E6%9C%8D/"/>
+    
+      <category term="配置" scheme="http://www.limingming.org/tags/%E9%85%8D%E7%BD%AE/"/>
     
   </entry>
   
@@ -488,9 +552,9 @@
       <category term="Maven" scheme="http://www.limingming.org/categories/Maven/"/>
     
     
-      <category term="maven" scheme="http://www.limingming.org/tags/maven/"/>
-    
       <category term="安装" scheme="http://www.limingming.org/tags/%E5%AE%89%E8%A3%85/"/>
+    
+      <category term="maven" scheme="http://www.limingming.org/tags/maven/"/>
     
       <category term="nexus" scheme="http://www.limingming.org/tags/nexus/"/>
     
@@ -591,72 +655,6 @@
       <category term="脚本" scheme="http://www.limingming.org/tags/%E8%84%9A%E6%9C%AC/"/>
     
       <category term="无法构建" scheme="http://www.limingming.org/tags/%E6%97%A0%E6%B3%95%E6%9E%84%E5%BB%BA/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Maven安装jar包到仓库</title>
-    <link href="http://www.limingming.org/2018/12/03/maven/Maven%E5%AE%89%E8%A3%85jar%E5%8C%85%E5%88%B0%E4%BB%93%E5%BA%93/"/>
-    <id>http://www.limingming.org/2018/12/03/maven/Maven安装jar包到仓库/</id>
-    <published>2018-12-03T11:22:31.000Z</published>
-    <updated>2018-12-03T23:55:24.601Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-      <category term="Maven" scheme="http://www.limingming.org/categories/Maven/"/>
-    
-    
-      <category term="仓库" scheme="http://www.limingming.org/tags/%E4%BB%93%E5%BA%93/"/>
-    
-      <category term="命令" scheme="http://www.limingming.org/tags/%E5%91%BD%E4%BB%A4/"/>
-    
-      <category term="安装" scheme="http://www.limingming.org/tags/%E5%AE%89%E8%A3%85/"/>
-    
-      <category term="Maven" scheme="http://www.limingming.org/tags/Maven/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>maven多web模块打包问题</title>
-    <link href="http://www.limingming.org/2018/12/03/maven/maven%E5%A4%9Aweb%E6%A8%A1%E5%9D%97%E6%89%93%E5%8C%85%E9%97%AE%E9%A2%98/"/>
-    <id>http://www.limingming.org/2018/12/03/maven/maven多web模块打包问题/</id>
-    <published>2018-12-03T11:14:14.000Z</published>
-    <updated>2018-12-03T23:55:24.603Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-      <category term="Maven" scheme="http://www.limingming.org/categories/Maven/"/>
-    
-    
-      <category term="问题" scheme="http://www.limingming.org/tags/%E9%97%AE%E9%A2%98/"/>
-    
-      <category term="web" scheme="http://www.limingming.org/tags/web/"/>
-    
-      <category term="模块" scheme="http://www.limingming.org/tags/%E6%A8%A1%E5%9D%97/"/>
-    
-      <category term="打包" scheme="http://www.limingming.org/tags/%E6%89%93%E5%8C%85/"/>
-    
-      <category term="总结" scheme="http://www.limingming.org/tags/%E6%80%BB%E7%BB%93/"/>
     
   </entry>
   
