@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="安装,yum,ansible,部署,">
+  <meta name="keywords" content="部署,安装,yum,ansible,">
 
 
 
@@ -82,14 +82,14 @@
 
 
 <meta name="description" content="原文     介绍Fedora 用户可直接安装Ansible, 但RHEL或CentOS用户,需要 配置 EPEL       yum安装我的是CentOS7.2:   1234567# 建议执行，如果没有subscription-manager命令先安装subscription-manager repos --enable &quot;rhel-*-optional-rpms&quot; --enable &quot;rhe">
-<meta name="keywords" content="安装,yum,ansible,部署">
+<meta name="keywords" content="部署,安装,yum,ansible">
 <meta property="og:type" content="article">
 <meta property="og:title" content="通过yum安装Ansible">
 <meta property="og:url" content="http://www.limingming.org/2018/12/10/Linux/通过yum安装Ansible/index.html">
 <meta property="og:site_name" content="李明明的博客">
 <meta property="og:description" content="原文     介绍Fedora 用户可直接安装Ansible, 但RHEL或CentOS用户,需要 配置 EPEL       yum安装我的是CentOS7.2:   1234567# 建议执行，如果没有subscription-manager命令先安装subscription-manager repos --enable &quot;rhel-*-optional-rpms&quot; --enable &quot;rhe">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-11T14:30:57.587Z">
+<meta property="og:updated_time" content="2018-12-18T14:08:10.334Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="通过yum安装Ansible">
 <meta name="twitter:description" content="原文     介绍Fedora 用户可直接安装Ansible, 但RHEL或CentOS用户,需要 配置 EPEL       yum安装我的是CentOS7.2:   1234567# 建议执行，如果没有subscription-manager命令先安装subscription-manager repos --enable &quot;rhel-*-optional-rpms&quot; --enable &quot;rhe">
@@ -392,6 +392,14 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 建议执行，如果没有subscription-manager命令先安装</span><br><span class="line">subscription-manager repos --enable "rhel-*-optional-rpms" --enable "rhel-*-extras-rpms"</span><br><span class="line"></span><br><span class="line">yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> install the epel-release RPM if needed on CentOS, RHEL, or Scientific Linux</span><br><span class="line"><span class="meta">$</span> sudo yum install ansible</span><br></pre></td></tr></table></figure>
 <h1 id="创建rpm包"><a href="#创建rpm包" class="headerlink" title="创建rpm包"></a>创建rpm包</h1><p>使用 make rpm 命令创建RPM软件包. 然后可分发这个软件包或是使用它来安装Ansible.在创建之前,先确定你已安装了 rpm-build, make, and python2-devel .</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> yum -y install rpm-build make python2-devel</span><br><span class="line"><span class="meta">$</span> git clone git://github.com/ansible/ansible.git</span><br><span class="line"><span class="meta">$</span> cd ./ansible</span><br><span class="line"><span class="meta">$</span> make rpm</span><br><span class="line"><span class="meta">$</span> sudo rpm -Uvh ~/rpmbuild/ansible-*.noarch.rpm</span><br></pre></td></tr></table></figure>
+<h1 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h1><p>可能你会选择用pip安装<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">pip install ansible --upgrade --no-index --find-links=http://10.111.24.89:81/httpfiles/pipfiles/ --trusted-host 10.111.24.89</span><br></pre></td></tr></table></figure></p>
+<p>安装过程中可能会出现：</p>
+<blockquote>
+<p>Command “python setup.py egg_info” failed with error code 1 in /tmp/pip-install-soDkws/ansible/</p>
+</blockquote>
+<p>解决：  </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install --upgrade setuptools</span><br></pre></td></tr></table></figure>
+<p>重新安装就可以了</p>
 
       
     </div>
@@ -425,13 +433,13 @@
       
         <div class="post-tags">
           
+            <a href="/tags/部署/" rel="tag"># 部署</a>
+          
             <a href="/tags/安装/" rel="tag"># 安装</a>
           
             <a href="/tags/yum/" rel="tag"># yum</a>
           
             <a href="/tags/ansible/" rel="tag"># ansible</a>
-          
-            <a href="/tags/部署/" rel="tag"># 部署</a>
           
         </div>
       
@@ -535,7 +543,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -546,7 +554,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -557,7 +565,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">113</span>
+                  <span class="site-state-item-count">117</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -649,7 +657,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#介绍"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#yum安装"><span class="nav-number">2.</span> <span class="nav-text">yum安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建rpm包"><span class="nav-number">3.</span> <span class="nav-text">创建rpm包</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#介绍"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#yum安装"><span class="nav-number">2.</span> <span class="nav-text">yum安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建rpm包"><span class="nav-number">3.</span> <span class="nav-text">创建rpm包</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#补充"><span class="nav-number">4.</span> <span class="nav-text">补充</span></a></li></ol></div>
             
 
           </div>
@@ -690,7 +698,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共27.1k字</span>
+  <span class="post-count">博客全站共28.4k字</span>
 </div>
 
         

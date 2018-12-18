@@ -1,6 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Spring boot 部署到tomcat中注意事项]]></title>
+    <url>%2F2018%2F12%2F18%2FSpring%2FSpring-boot-%E9%83%A8%E7%BD%B2%E5%88%B0tomcat%E4%B8%AD%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9%2F</url>
+    <content type="text"><![CDATA[原文 介绍一般我们使用spring boot是使用内嵌的容器，一般不会将其部署到tomcat容器里，但是会有一些情况需要我们部署spring boot到tomcat中，部署过程中遇到一些问题，特此记录。 修改Application类如果你没有修改你的Application类就直接部署到tomcat中肯定会遇到一些无法请求到后台的服务的问题，只可以访问前端页面，修改你的Application类如下： 123456789@SpringBootApplication(exclude = &#123; DataSourceAutoConfiguration.class, DataSourceTransactionManagerAutoConfiguration.class&#125;) public class Application extends SpringBootServletInitializer &#123; @Override protected SpringApplicationBuilder configure(SpringApplicationBuilder application) &#123; return application.sources(Application.class); &#125; &#125; 如果我们用jar包启动，流程是执行SpringBootApplication的run方法,启动IOC容器,然后创建嵌入式Servlet容器，war包流程是先是启动Servlet服务器,服务器启动Springboot应用(springBootServletInitizer),然后启动IOC容器，根据Servlet3.0+规则，tomcat启动过程中会经过一系列的过程，最终会找到每个相关的WebApplicationInitilizer调用自己的onstartup方法，WebApplicationInitializer有个抽象实现类SpringBootServletInitializer（继承这个这个类），则会调用每一个WebApplicationInitializer实例（包括SpringBootServletInitializer）的onStartup方法。实例执行onStartup方法的时候会通过createRootApplicationContext方法来执行run方法，那这个过程就意味着，我们启动就和jar包启动一样了，如果你启动tomcat过程中仔细观看打印信息，也会注意到这一点。 SpringBootServletInitializer即是一个org.springframework.web.context.WebApplicationContext，容器启动时会调用其onStartup(ServletContext servletContext)方法，主要方法就是createRootApplicationContext（servletContext）方法。 12345678910111213public void onStartup(ServletContext servletContext) throws ServletException &#123; this.logger = LogFactory.getLog(this.getClass()); final WebApplicationContext rootAppContext = this.createRootApplicationContext(servletContext); if(rootAppContext != null) &#123; servletContext.addListener(new ContextLoaderListener(rootAppContext) &#123; public void contextInitialized(ServletContextEvent event) &#123; &#125; &#125;); &#125; else &#123; this.logger.debug("No ContextLoaderListener registered, as createRootApplicationContext() did not return an application context"); &#125; &#125;]]></content>
+      <categories>
+        <category>Spring</category>
+      </categories>
+      <tags>
+        <tag>Spring</tag>
+        <tag>boot</tag>
+        <tag>部署</tag>
+        <tag>tomcat</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[centos下各种源的配置方式]]></title>
+    <url>%2F2018%2F12%2F17%2FLinux%2Fcentos%E4%B8%8B%E5%90%84%E7%A7%8D%E6%BA%90%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%B9%E5%BC%8F%2F</url>
+    <content type="text"><![CDATA[原文 介绍平时在开发过程中很多时候部署环境，或者使用一些开发工具都会用到外部的源，特此记录分享； yum源配置编辑文件： 添加/etc/yum.repos.d/CentOS-inspur.repo 12345[CentOS-inspur]name=Nexus Repositorybaseurl=http://maven.inspur.com/repository/yum-public/$releasever/os/$basearch/enabled=1gpgcheck=0 执行命令： 12yum clean all yum list all pip源编辑文件： 全局的位于 /etc/pip.conf用户级别的位于 $HOME/.pip/pip.conf 123[global]trusted-host = maven.inspur.comindex-url = http://maven.inspur.com/repository/pypi-public/simple easy_install源 临时使用使用-i 参数，这个也适用于pip命令 1easy_install pip -i http://maven.inspur.com/repository/pypi-public/simple 修改配置文件修改~/.pydistutils.cfg 12[easy_install]index_url = http://maven.inspur.com/repository/pypi-public/simple npm源执行命令： 1npm config set registry http://maven.inspur.com/repository/npm-public/]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>配置</tag>
+        <tag>centos</tag>
+        <tag>pip</tag>
+        <tag>源</tag>
+        <tag>yum</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[CentOS7 安装pip]]></title>
+    <url>%2F2018%2F12%2F17%2FLinux%2FCentOS7-%E5%AE%89%E8%A3%85pip%2F</url>
+    <content type="text"><![CDATA[原文 准备环境yum install gcc libffi-devel openssl-devel libxml2 libslt-devel libxml2-devel python-devel -y 安装easy_installyum install python-setuptools 安装pipeasy_install pip 如果你安装的服务器处于断网状态，需要配置内部能访问的源，可以参考各种配置源的方式]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>安装</tag>
+        <tag>centos</tag>
+        <tag>pip</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[jenkins中SSH remote hosts配置]]></title>
     <url>%2F2018%2F12%2F15%2F%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7%2Fjenkins%E4%B8%ADSSH-remote-hosts%E9%85%8D%E7%BD%AE%2F</url>
     <content type="text"><![CDATA[原文 介绍今天配置自己的系统在jenkins中，能让测试人员实时的构建测试,但是在配置ssh remote hosts的时候出现了一点小问题，特此记录；使用pipeline的方式和执行shell脚本的方式很快就能搭建完成，但是本来有可以配置“构建一个maven项目”的配置为什么还要使用其他的呢，所以就采用了这种方式。但是却在最后一步出现了问题，使用ssh部署到远程服务器上的时候找不到在哪里配置remote hosts。 操作 在Jenkins主界面，系统管理-&gt;管理插件-&gt;安装SSH Plugin； 系统管理-&gt;Configure(系统设置)-&gt;SSH remote hosts 配置完成但是无法连接，测试连接粗错； 所以进行了以下操作： * 两台机执行ssh-keygen -t rsa ，生成id_rsa.pub文件 * 在jenkins linux执行命令：scp /home/xxxx/.ssh/id_rsa.pub xxxx@10.111.25.28:/home/xxxx/.ssh/authorized_keys 输入密码拷贝文件 就可以了，其实这样就可以进行不实用密码在jenkins上执行远程机器的命令： 1ssh -p 22 root@10.111.*.* "df -h" 再测试就可以连接成功了。如果中间再出现访问权限问题(Jenkins Publish over ssh authentification failed with private key)，那可以考虑一下远程机器是不是权限设置有问题，在远程机器上执行： 12chmod 700 ~/.sshchmod 600 ~/.ssh/authorized_keys 冲突解决人生不如意，十之八九，git使用过程中如果没有遇到过冲突，那绝对也是很离奇的事件。 我们平时使用git遇到冲突一般是pull代码或者push代码的时候，还有合并分支的时候。“git pull”操作等于“git fetch + git merge refs/remotes/origin/master”由此可见，git fetch更安全一点，不会合并代码。 一般解决过程： 在报错的目录下执行： git rebase remote-branch-name 先编辑冲突，然后git commit提交 执行 git add -u（-u 表示把所有已track的文件的新的修改加入缓存，但不加入新的文件） git rebase –continue （重复这这些步骤，直到rebase冲突解决完成） 如果想要恢复修改bug之前的状态，执行：git rebase –abort 冲突产生后会有&lt;&lt;&lt;&lt;&gt;&gt;&gt;&gt;这些内容，&lt;&lt;&lt;&lt;&lt;&lt;&lt;HEAD 和=====之间的内容是我们本地的修改。 为什么会使用rebase？ git rebase 和 git merge 一样都是用于从一个分支获取并且合并到当前分支，但是他们采取不同的工作流程。从上面你可以可能看到了git rebase是一个一个处理冲突的。本质上git merge会产生一个新的commit，合并的时候是全部合并，修改完成冲突就可以提交了，记录了真实的commit情况，包括每个分支的详情，但是如果频繁的使用，就会导致commit信息比较混乱。git rebase不会一次性合并，而是一个一个处理，不会有commit信息，会合并之前的commit历史，这样会让他的提交历史比较简洁，它的优点也是它的缺点，以为重写了commit历史，所以，导致提交历史不明晰。]]></content>
@@ -31,15 +73,15 @@
   <entry>
     <title><![CDATA[Git常用命令]]></title>
     <url>%2F2018%2F12%2F13%2FGit%2FGit%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%2F</url>
-    <content type="text"><![CDATA[原文 概念git是一个分布式版本控制软件，最初由林纳斯·托瓦兹创作，于2005年以GPL发布。最初目的是为更好地管理Linux内核开发而设计。应注意的是，这与GNU Interactive Tools（一个类似Norton Commander界面的文件管理器）有所不同。 git最初的开发动力来自于BitKeeper和Monotone。git最初只是作为一个可以被其他前端（比如Cogito或Stgit）包装的后端而开发的，但后来git内核已经成熟到可以独立地用作版本控制。很多著名的软件都使用git进行版本控制，其中包括Linux内核、X.Org服务器和OLPC内核等项目的开发流程。 Workspace：工作区（在当前仓库中，新增，更改，删除，即当前的工作空间） Index / Stage：暂存区（它实际上就是一个包含文件索引的目录树，像是一个虚拟的工作区，这个工作区内存储了文件名、文件的状态等，这些都是存储在.git下的index文件中，文件内容存储在.git/object中，如果使用git add命令添加，将会更新到暂存区内) Repository：仓库区（或本地仓库） Remote：远程仓库 专业术语英文对照表： 仓库区和版本库、暂存库的关系： 获取代码仓库 初始化代码仓库 12345678# 创建一个代码仓库，在当前目录下$ git init# 创建代码仓库，在projectname文件夹下初始化仓库$ git init [projectname]# 从远程下载仓库并获取仓库的“所有”信息$ git clone [url] 操作文件123456789101112131415161718192021# 添加指定文件到暂存区$ git add [file1] [file2] ...# 添加指定目录到暂存区，包括子目录和子目录文件$ git add [dir]# 添加当前目录下的的所有的文件到暂存区中去$ git add .# p是patch的意思，对于同一个文件的多处变化，可以实现分次提交$ git add -p# 将工作区中的文件删除并同步删除操作到暂存区$ git rm [file1] [file2] ...# 停止追踪指定文件的状态，但是文件还会保留在工作区，比如误提了忽略文件，再添加忽略文件的时候可以执行这个命令忽略追踪这个文件的状态，让忽略文件生效$ git rm --cached [file]# 改名工作区文件，并同步到缓存区$ git mv [file-original] [file-renamed] 提交代码123456789101112131415161718# add内容后，内容在暂存区，这个操作让暂存区内容到仓库区$ git commit -m [message]# 同上，不过指定了文件$ git commit [file1] [file2] ... -m [message]# 提交工作区与上次commit的变化，直接到仓库区$ git commit -a# 提交时后显示所有的diff信息$ git commit -v# 替换上一次的提交，包含提交信息$ git commit --amend -m [message]# 从新做一次commit，不包含提示信息$ git commit --amend [file1] [file2] ... 分支操作123456789101112131415161718192021222324252627282930313233343536373839404142# 列出所有本地分支$ git branch# 列出所有远程分支$ git branch -r# 列出所有本地分支和远程分支$ git branch -a# 创建一个新分支，但是还是处于当前分支，不会切换到新分支下$ git branch [branch-name]# 新建一个分支，并切换到新的分支下$ git checkout -b [branch]# 新建一个分支，指向指定分支的commit$ git branch [branch] [commit]# 新建一个分支，与指定的远程分支建立同步的追踪关系$ git branch --track [branch] [remote-branch]# 切换到指定分支，并更新工作区$ git checkout [branch-name]# 切换到上一个分支$ git checkout -# 建立追踪关系，在现有分支与指定的远程分支之间$ git branch --set-upstream [branch] [remote-branch]# 合并指定分支到当前分支$ git merge [branch]# 将一个commit合并进当前分支$ git cherry-pick [commit]# 删除某个分支$ git branch -d [branch-name]# 删除远程分支$ git push origin --delete [branch-name]$ git branch -dr [remote/branch] 标签操作1234567891011121314151617181920212223242526# 列出ta列表$ git tag# 在当前commit下创建一个tag$ git tag [tag]# 在执行commit下创建tag$ git tag [tag] [commit]# 删除本地tag$ git tag -d [tag]# 删除远程tag$ git push origin :refs/tags/[tagName]# 查看tag信息$ git show [tag]# 提交指定tag$ git push [remote] [tag]# 提交所有tag$ git push [remote] --tags# 新建一个分支，指向某个tag$ git checkout -b [branch] [tag] 查看信息123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657# 显示有变更的文件$ git status# 显示当前分支的版本历史$ git log# 显示commit历史包含commit变更的文件等$ git log --stat# 搜根据关键词搜索提交历史$ git log -S [keyword]# 显示某一个commit之后的一切变动信息$ git log [tag] HEAD --pretty=format:%s# 同上，不过提交信息必须符合过滤搜索特征$ git log [tag] HEAD --grep feature# 显示文件的版本历史$ git log --follow [file]$ git whatchanged [file]# 显示文件的一切diff$ git log -p [file]# 指定过去的几次提交，实例中为5$ git log -5 --pretty --oneline# 按照提交次序显示提交过的用户$ git shortlog -sn# 显示人对于某个文件修改的时间等$ git blame [file]# 显示暂存区和工作区的差异，这个经常会用到$ git diff# 显示暂存区和上一个提交commit的差异$ git diff --cached [file]# 显示工作区与当前分支最新commit之间的差异$ git diff HEAD# 显示两次提交之间的差异$ git diff [first-branch]...[second-branch]# 显示某次提交的元数据和内容变化$ git show [commit]# 显示某次提交发生变化的文件$ git show --name-only [commit]# 显示某次提交时，某个文件的内容$ git show [commit]:[filename]# 显示当前分支的最近几次提交$ git reflog 同步代码1234567891011121314151617181920212223# 下载远程仓库的所有变动,不会强制合并$ git fetch [remote]# 显示所有远程仓库$ git remote -v# 显示某个远程仓库的信息$ git remote show [remote]# 增加一个新的远程仓库，并命名$ git remote add [shortname] [url]# 取回远程仓库的变化，并与本地分支合并$ git pull [remote] [branch]# 上传本地指定分支到远程仓库$ git push [remote] [branch]# 强行推送当前分支到远程仓库，即使有冲突$ git push [remote] --force# 推送所有分支到远程仓库$ git push [remote] --all 撤销操作12345678910111213141516171819202122232425262728293031# 恢复暂存区的指定文件到工作区$ git checkout [file]# 恢复某个commit的指定文件到暂存区和工作区$ git checkout [commit] [file]# 恢复暂存区的所有文件到工作区$ git checkout .# 重置暂存区的指定文件，与上一次commit保持一致，但工作区不变$ git reset [file]# 重置暂存区与工作区，与上一次commit保持一致$ git reset --hard # 重置当前分支的指针为指定commit，同时重置暂存区，但工作区不变$ git reset [commit]# 重置当前分支的HEAD为指定commit，同时重置暂存区和工作区，与指定commit一致$ git reset --hard [commit]# 重置当前HEAD为指定commit，但保持暂存区和工作区不变$ git reset --keep [commit]# 新建一个commit，用来撤销指定commit# 后者的所有变化都将被前者抵消，并且应用到当前分支$ git revert [commit]# 暂时将未提交的变化移除，稍后再移入$ git stash$ git stash pop 配置123456789# 显示当前的Git配置,user.name,user.email等等$ git config --list# 编辑Git配置文件$ git config -e [--global]# 设置提交代码时包含的用户信息$ git config [--global] user.name "[name]"$ git config [--global] user.email "[email address]"]]></content>
+    <content type="text"><![CDATA[原文 概念git是一个分布式版本控制软件，最初由林纳斯·托瓦兹创作，于2005年以GPL发布。最初目的是为更好地管理Linux内核开发而设计。应注意的是，这与GNU Interactive Tools（一个类似Norton Commander界面的文件管理器）有所不同。 git最初的开发动力来自于BitKeeper和Monotone。git最初只是作为一个可以被其他前端（比如Cogito或Stgit）包装的后端而开发的，但后来git内核已经成熟到可以独立地用作版本控制。很多著名的软件都使用git进行版本控制，其中包括Linux内核、X.Org服务器和OLPC内核等项目的开发流程。 Workspace：工作区（在当前仓库中，新增，更改，删除，即当前的工作空间） Index / Stage：暂存区（它实际上就是一个包含文件索引的目录树，像是一个虚拟的工作区，这个工作区内存储了文件名、文件的状态等，这些都是存储在.git下的index文件中，文件内容存储在.git/object中，如果使用git add命令添加，将会更新到暂存区内) Repository：仓库区（或本地仓库） Remote：远程仓库 专业术语英文对照表： 仓库区和版本库、暂存库的关系： 获取代码仓库 初始化代码仓库 12345678# 创建一个代码仓库，在当前目录下$ git init# 创建代码仓库，在projectname文件夹下初始化仓库$ git init [projectname]# 从远程下载仓库并获取仓库的“所有”信息$ git clone [url] 操作文件123456789101112131415161718192021# 添加指定文件到暂存区$ git add [file1] [file2] ...# 添加指定目录到暂存区，包括子目录和子目录文件$ git add [dir]# 添加当前目录下的的所有的文件到暂存区中去$ git add .# p是patch的意思，对于同一个文件的多处变化，可以实现分次提交$ git add -p# 将工作区中的文件删除并同步删除操作到暂存区$ git rm [file1] [file2] ...# 停止追踪指定文件的状态，但是文件还会保留在工作区，比如误提了忽略文件，再添加忽略文件的时候可以执行这个命令忽略追踪这个文件的状态，让忽略文件生效$ git rm --cached [file]# 改名工作区文件，并同步到缓存区$ git mv [file-original] [file-renamed] 提交代码123456789101112131415161718# add内容后，内容在暂存区，这个操作让暂存区内容到仓库区$ git commit -m [message]# 同上，不过指定了文件$ git commit [file1] [file2] ... -m [message]# 提交工作区与上次commit的变化，直接到仓库区$ git commit -a# 提交时后显示所有的diff信息$ git commit -v# 替换上一次的提交，包含提交信息$ git commit --amend -m [message]# 从新做一次commit，不包含提示信息$ git commit --amend [file1] [file2] ... 分支操作123456789101112131415161718192021222324252627282930313233343536373839404142# 列出所有本地分支$ git branch# 列出所有远程分支$ git branch -r# 列出所有本地分支和远程分支$ git branch -a# 创建一个新分支，但是还是处于当前分支，不会切换到新分支下$ git branch [branch-name]# 新建一个分支，并切换到新的分支下$ git checkout -b [branch]# 新建一个分支，指向指定分支的commit$ git branch [branch] [commit]# 新建一个分支，与指定的远程分支建立同步的追踪关系$ git branch --track [branch] [remote-branch]# 切换到指定分支，并更新工作区$ git checkout [branch-name]# 切换到上一个分支$ git checkout -# 建立追踪关系，在现有分支与指定的远程分支之间$ git branch --set-upstream [branch] [remote-branch]# 合并指定分支到当前分支$ git merge [branch]# 将一个commit合并进当前分支$ git cherry-pick [commit]# 删除某个分支$ git branch -d [branch-name]# 删除远程分支$ git push origin --delete [branch-name]$ git branch -dr [remote/branch] 标签操作1234567891011121314151617181920212223242526# 列出ta列表$ git tag# 在当前commit下创建一个tag$ git tag [tag]# 在执行commit下创建tag$ git tag [tag] [commit]# 删除本地tag$ git tag -d [tag]# 删除远程tag$ git push origin :refs/tags/[tagName]# 查看tag信息$ git show [tag]# 提交指定tag$ git push [remote] [tag]# 提交所有tag$ git push [remote] --tags# 新建一个分支，指向某个tag$ git checkout -b [branch] [tag] 查看信息123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657# 显示有变更的文件$ git status# 显示当前分支的版本历史$ git log# 显示commit历史包含commit变更的文件等$ git log --stat# 搜根据关键词搜索提交历史$ git log -S [keyword]# 显示某一个commit之后的一切变动信息$ git log [tag] HEAD --pretty=format:%s# 同上，不过提交信息必须符合过滤搜索特征$ git log [tag] HEAD --grep feature# 显示文件的版本历史$ git log --follow [file]$ git whatchanged [file]# 显示文件的一切diff$ git log -p [file]# 指定过去的几次提交，实例中为5$ git log -5 --pretty --oneline# 按照提交次序显示提交过的用户$ git shortlog -sn# 显示人对于某个文件修改的时间等$ git blame [file]# 显示暂存区和工作区的差异，这个经常会用到$ git diff# 显示暂存区和上一个提交commit的差异$ git diff --cached [file]# 显示工作区与当前分支最新commit之间的差异$ git diff HEAD# 显示两次提交之间的差异$ git diff [first-branch]...[second-branch]# 显示某次提交的元数据和内容变化$ git show [commit]# 显示某次提交发生变化的文件$ git show --name-only [commit]# 显示某次提交时，某个文件的内容$ git show [commit]:[filename]# 显示当前分支的最近几次提交$ git reflog 同步代码1234567891011121314151617181920212223# 下载远程仓库的所有变动,不会强制合并$ git fetch [remote]# 显示所有远程仓库$ git remote -v# 显示某个远程仓库的信息$ git remote show [remote]# 增加一个新的远程仓库，并命名$ git remote add [shortname] [url]# 取回远程仓库的变化，并与本地分支合并$ git pull [remote] [branch]# 上传本地指定分支到远程仓库$ git push [remote] [branch]# 强行推送当前分支到远程仓库，即使有冲突$ git push [remote] --force# 推送所有分支到远程仓库$ git push [remote] --all 撤销操作12345678910111213141516171819202122232425262728293031# 恢复暂存区的指定文件到工作区$ git checkout [file]# 恢复某个commit的指定文件到暂存区和工作区$ git checkout [commit] [file]# 恢复暂存区的所有文件到工作区$ git checkout .# 重置暂存区的指定文件，与上一次commit保持一致，但工作区不变$ git reset [file]# 重置暂存区与工作区，与上一次commit保持一致$ git reset --hard # 重置当前分支的指针为指定commit，同时重置暂存区，但工作区不变$ git reset [commit]# 重置当前分支的HEAD为指定commit，同时重置暂存区和工作区，与指定commit一致$ git reset --hard [commit]# 重置当前HEAD为指定commit，但保持暂存区和工作区不变$ git reset --keep [commit]# 新建一个commit，用来撤销指定commit# 后者的所有变化都将被前者抵消，并且应用到当前分支$ git revert [commit]# 暂时将未提交的变化移除，稍后再移入$ git stash$ git stash pop 配置123456789# 显示当前的Git配置,user.name,user.email等等$ git config --list# 编辑Git配置文件$ git config -e [--global]# 设置提交代码时包含的用户信息$ git config [--global] user.name "[name]"$ git config [--global] user.email "[email address]" 冲突解决人生不如意，十之八九，git使用过程中如果没有遇到过冲突，那绝对也是很离奇的事件。 我们平时使用git遇到冲突一般是pull代码或者push代码的时候，还有合并分支的时候。“git pull”操作等于“git fetch + git merge refs/remotes/origin/master”由此可见，git fetch更安全一点，不会合并代码。 一般解决过程： 在报错的目录下执行： git rebase remote-branch-name 先编辑冲突，然后git commit提交 执行 git add -u（-u 表示把所有已track的文件的新的修改加入缓存，但不加入新的文件） git rebase –continue （重复这这些步骤，直到rebase冲突解决完成） 如果想要恢复修改bug之前的状态，执行：git rebase –abort 冲突产生后会有&lt;&lt;&lt;&lt;&gt;&gt;&gt;&gt;这些内容，&lt;&lt;&lt;&lt;&lt;&lt;&lt;HEAD 和=====之间的内容是我们本地的修改。 为什么会使用rebase？ git rebase 和 git merge 一样都是用于从一个分支获取并且合并到当前分支，但是他们采取不同的工作流程。从上面你可以可能看到了git rebase是一个一个处理冲突的。本质上git merge会产生一个新的commit，合并的时候是全部合并，修改完成冲突就可以提交了，记录了真实的commit情况，包括每个分支的详情，但是如果频繁的使用，就会导致commit信息比较混乱。git rebase不会一次性合并，而是一个一个处理，不会有commit信息，会合并之前的commit历史，这样会让他的提交历史比较简洁，它的优点也是它的缺点，以为重写了commit历史，所以，导致提交历史不明晰。]]></content>
       <categories>
         <category>Git</category>
       </categories>
       <tags>
-        <tag>git</tag>
         <tag>命令</tag>
-        <tag>常用</tag>
         <tag>概念</tag>
+        <tag>git</tag>
+        <tag>常用</tag>
       </tags>
   </entry>
   <entry>
@@ -80,23 +122,23 @@
         <tag>mysql</tag>
         <tag>解决</tag>
         <tag>安装</tag>
+        <tag>问题</tag>
         <tag>迁移</tag>
         <tag>数据</tag>
-        <tag>问题</tag>
       </tags>
   </entry>
   <entry>
     <title><![CDATA[通过yum安装Ansible]]></title>
     <url>%2F2018%2F12%2F10%2FLinux%2F%E9%80%9A%E8%BF%87yum%E5%AE%89%E8%A3%85Ansible%2F</url>
-    <content type="text"><![CDATA[原文 介绍Fedora 用户可直接安装Ansible, 但RHEL或CentOS用户,需要 配置 EPEL yum安装我的是CentOS7.2: 1234567# 建议执行，如果没有subscription-manager命令先安装subscription-manager repos --enable "rhel-*-optional-rpms" --enable "rhel-*-extras-rpms"yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm# install the epel-release RPM if needed on CentOS, RHEL, or Scientific Linux$ sudo yum install ansible 创建rpm包使用 make rpm 命令创建RPM软件包. 然后可分发这个软件包或是使用它来安装Ansible.在创建之前,先确定你已安装了 rpm-build, make, and python2-devel . 12345$ yum -y install rpm-build make python2-devel$ git clone git://github.com/ansible/ansible.git$ cd ./ansible$ make rpm$ sudo rpm -Uvh ~/rpmbuild/ansible-*.noarch.rpm]]></content>
+    <content type="text"><![CDATA[原文 介绍Fedora 用户可直接安装Ansible, 但RHEL或CentOS用户,需要 配置 EPEL yum安装我的是CentOS7.2: 1234567# 建议执行，如果没有subscription-manager命令先安装subscription-manager repos --enable "rhel-*-optional-rpms" --enable "rhel-*-extras-rpms"yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm# install the epel-release RPM if needed on CentOS, RHEL, or Scientific Linux$ sudo yum install ansible 创建rpm包使用 make rpm 命令创建RPM软件包. 然后可分发这个软件包或是使用它来安装Ansible.在创建之前,先确定你已安装了 rpm-build, make, and python2-devel . 12345$ yum -y install rpm-build make python2-devel$ git clone git://github.com/ansible/ansible.git$ cd ./ansible$ make rpm$ sudo rpm -Uvh ~/rpmbuild/ansible-*.noarch.rpm 补充可能你会选择用pip安装12pip install ansible --upgrade --no-index --find-links=http://10.111.24.89:81/httpfiles/pipfiles/ --trusted-host 10.111.24.89 安装过程中可能会出现： Command “python setup.py egg_info” failed with error code 1 in /tmp/pip-install-soDkws/ansible/ 解决： 1pip install --upgrade setuptools 重新安装就可以了]]></content>
       <categories>
         <category>Linux</category>
       </categories>
       <tags>
+        <tag>部署</tag>
         <tag>安装</tag>
         <tag>yum</tag>
         <tag>ansible</tag>
-        <tag>部署</tag>
       </tags>
   </entry>
   <entry>
@@ -124,9 +166,9 @@
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>yum</tag>
-        <tag>源</tag>
         <tag>配置</tag>
+        <tag>源</tag>
+        <tag>yum</tag>
         <tag>nexus3</tag>
       </tags>
   </entry>
@@ -139,9 +181,9 @@
       </categories>
       <tags>
         <tag>仓库</tag>
-        <tag>国内</tag>
-        <tag>yum</tag>
         <tag>源</tag>
+        <tag>yum</tag>
+        <tag>国内</tag>
       </tags>
   </entry>
   <entry>
@@ -152,8 +194,8 @@
         <category>开发工具</category>
       </categories>
       <tags>
-        <tag>安装</tag>
         <tag>部署</tag>
+        <tag>安装</tag>
         <tag>mac</tag>
         <tag>nginx</tag>
       </tags>
@@ -206,8 +248,8 @@
         <category>Maven</category>
       </categories>
       <tags>
-        <tag>概念</tag>
         <tag>maven</tag>
+        <tag>概念</tag>
         <tag>核心</tag>
         <tag>生命周期</tag>
       </tags>
@@ -233,8 +275,8 @@
         <category>Maven</category>
       </categories>
       <tags>
-        <tag>安装</tag>
         <tag>maven</tag>
+        <tag>安装</tag>
         <tag>nexus</tag>
         <tag>文档</tag>
       </tags>
@@ -289,10 +331,10 @@
         <category>Maven</category>
       </categories>
       <tags>
-        <tag>命令</tag>
         <tag>仓库</tag>
-        <tag>安装</tag>
         <tag>Maven</tag>
+        <tag>安装</tag>
+        <tag>命令</tag>
       </tags>
   </entry>
   <entry>
@@ -303,10 +345,10 @@
         <category>Maven</category>
       </categories>
       <tags>
-        <tag>问题</tag>
         <tag>web</tag>
         <tag>模块</tag>
         <tag>打包</tag>
+        <tag>问题</tag>
         <tag>总结</tag>
       </tags>
   </entry>
@@ -439,8 +481,8 @@
         <category>开发工具</category>
       </categories>
       <tags>
-        <tag>命令</tag>
         <tag>安装</tag>
+        <tag>命令</tag>
         <tag>Mac</tag>
         <tag>npm</tag>
         <tag>不生效</tag>
@@ -464,7 +506,7 @@
   <entry>
     <title><![CDATA[Mac OS下搭建Vue开发环境]]></title>
     <url>%2F2018%2F11%2F23%2Fvue%2FMac-OS%E4%B8%8B%E6%90%AD%E5%BB%BAVue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%2F</url>
-    <content type="text"><![CDATA[前言原来一直学习使用React，现在因为工作的需要，对Vue进行学习和使用，现在比较流行的框架React,angular,vue，正好对于vue也进行些了解。 环境搭建 打开终端,安装brew 1usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot; 安装成功后，使用查看版本，验证是否安装成功1brew -v 安装node.js1brew install nodejs 也可以下载安装下载地址安装成功后，使用验证123node -v``` * 给nodejs目录赋权限 sudo chmod -R 777 /usr/local/lib/node_modules/1* 安装 淘宝镜像 （npm） npm install -g cnpm –registry=https://registry.npm.taobao.org12* 安装webpack cnpm install webpack -g12* 安装vue脚手架 npm install vue-cli -g12# 开始Vue 创建一个基于 webpack 模板的新项目$ vue init webpack my-project 这里需要进行一些配置，默认回车即可This will install Vue 2.x version of the template. For Vue 1.x use: vue init webpack#1.0 my-project ? Project name my-project? Project description A Vue.js project? Author runoob &#116;&#x65;&#115;&#x74;&#x40;&#x72;&#117;&#x6e;&#111;&#x6f;&#98;&#x2e;&#99;&#x6f;&#109;? Vue build standalone? Use ESLint to lint your code? Yes? Pick an ESLint preset Standard? Setup unit tests with Karma + Mocha? Yes? Setup e2e tests with Nightwatch? Yes vue-cli · Generated “my-project”. To get started: cd my-project npm install npm run dev Documentation can be found at https://vuejs-templates.github.io/webpack1进入项目，安装并运行： $ cd my-project$ cnpm install$ cnpm run dev DONE Compiled successfully in 4388ms Listening at http://localhost:8080`]]></content>
+    <content type="text"><![CDATA[前言原来一直学习使用React，现在因为工作的需要，对Vue进行学习和使用，现在比较流行的框架React,angular,vue，正好对于vue也进行些了解。 环境搭建 打开终端,安装brew 1usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot; 安装成功后，使用查看版本，验证是否安装成功1brew -v 安装node.js1brew install nodejs 也可以下载安装下载地址安装成功后，使用验证123node -v``` * 给nodejs目录赋权限 sudo chmod -R 777 /usr/local/lib/node_modules/1* 安装 淘宝镜像 （npm） npm install -g cnpm –registry=https://registry.npm.taobao.org12* 安装webpack cnpm install webpack -g12* 安装vue脚手架 npm install vue-cli -g12# 开始Vue 创建一个基于 webpack 模板的新项目$ vue init webpack my-project 这里需要进行一些配置，默认回车即可This will install Vue 2.x version of the template. For Vue 1.x use: vue init webpack#1.0 my-project ? Project name my-project? Project description A Vue.js project? Author runoob &#x74;&#101;&#115;&#x74;&#64;&#114;&#x75;&#110;&#x6f;&#x6f;&#98;&#x2e;&#x63;&#111;&#109;? Vue build standalone? Use ESLint to lint your code? Yes? Pick an ESLint preset Standard? Setup unit tests with Karma + Mocha? Yes? Setup e2e tests with Nightwatch? Yes vue-cli · Generated “my-project”. To get started: cd my-project npm install npm run dev Documentation can be found at https://vuejs-templates.github.io/webpack1进入项目，安装并运行： $ cd my-project$ cnpm install$ cnpm run dev DONE Compiled successfully in 4388ms Listening at http://localhost:8080`]]></content>
       <categories>
         <category>Vue</category>
       </categories>
