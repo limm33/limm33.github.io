@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.limingming.org/"/>
-  <updated>2018-12-18T14:45:22.499Z</updated>
+  <updated>2018-12-19T14:39:59.835Z</updated>
   <id>http://www.limingming.org/</id>
   
   <author>
@@ -15,6 +15,38 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>log4j包的使用</title>
+    <link href="http://www.limingming.org/2018/12/19/Java/log4j%E5%8C%85%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+    <id>http://www.limingming.org/2018/12/19/Java/log4j包的使用/</id>
+    <published>2018-12-19T14:29:32.000Z</published>
+    <updated>2018-12-19T14:39:59.835Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="Java" scheme="http://www.limingming.org/categories/Java/"/>
+    
+    
+      <category term="log4j" scheme="http://www.limingming.org/tags/log4j/"/>
+    
+      <category term="使用" scheme="http://www.limingming.org/tags/%E4%BD%BF%E7%94%A8/"/>
+    
+      <category term="日志" scheme="http://www.limingming.org/tags/%E6%97%A5%E5%BF%97/"/>
+    
+      <category term="介绍" scheme="http://www.limingming.org/tags/%E4%BB%8B%E7%BB%8D/"/>
+    
+  </entry>
   
   <entry>
     <title>Spring boot 部署到tomcat中注意事项</title>
@@ -38,13 +70,13 @@
       <category term="Spring" scheme="http://www.limingming.org/categories/Spring/"/>
     
     
-      <category term="Spring" scheme="http://www.limingming.org/tags/Spring/"/>
-    
-      <category term="boot" scheme="http://www.limingming.org/tags/boot/"/>
+      <category term="tomcat" scheme="http://www.limingming.org/tags/tomcat/"/>
     
       <category term="部署" scheme="http://www.limingming.org/tags/%E9%83%A8%E7%BD%B2/"/>
     
-      <category term="tomcat" scheme="http://www.limingming.org/tags/tomcat/"/>
+      <category term="Spring" scheme="http://www.limingming.org/tags/Spring/"/>
+    
+      <category term="boot" scheme="http://www.limingming.org/tags/boot/"/>
     
   </entry>
   
@@ -328,9 +360,9 @@
       <category term="Linux" scheme="http://www.limingming.org/categories/Linux/"/>
     
     
-      <category term="部署" scheme="http://www.limingming.org/tags/%E9%83%A8%E7%BD%B2/"/>
-    
       <category term="安装" scheme="http://www.limingming.org/tags/%E5%AE%89%E8%A3%85/"/>
+    
+      <category term="部署" scheme="http://www.limingming.org/tags/%E9%83%A8%E7%BD%B2/"/>
     
       <category term="yum" scheme="http://www.limingming.org/tags/yum/"/>
     
@@ -462,11 +494,11 @@
       <category term="开发工具" scheme="http://www.limingming.org/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"/>
     
     
-      <category term="部署" scheme="http://www.limingming.org/tags/%E9%83%A8%E7%BD%B2/"/>
-    
       <category term="安装" scheme="http://www.limingming.org/tags/%E5%AE%89%E8%A3%85/"/>
     
       <category term="mac" scheme="http://www.limingming.org/tags/mac/"/>
+    
+      <category term="部署" scheme="http://www.limingming.org/tags/%E9%83%A8%E7%BD%B2/"/>
     
       <category term="nginx" scheme="http://www.limingming.org/tags/nginx/"/>
     
@@ -556,11 +588,11 @@
       <category term="Maven" scheme="http://www.limingming.org/categories/Maven/"/>
     
     
+      <category term="介绍" scheme="http://www.limingming.org/tags/%E4%BB%8B%E7%BB%8D/"/>
+    
       <category term="工具包" scheme="http://www.limingming.org/tags/%E5%B7%A5%E5%85%B7%E5%8C%85/"/>
     
       <category term="目录" scheme="http://www.limingming.org/tags/%E7%9B%AE%E5%BD%95/"/>
-    
-      <category term="介绍" scheme="http://www.limingming.org/tags/%E4%BB%8B%E7%BB%8D/"/>
     
   </entry>
   
@@ -618,43 +650,11 @@
       <category term="Maven" scheme="http://www.limingming.org/categories/Maven/"/>
     
     
-      <category term="maven" scheme="http://www.limingming.org/tags/maven/"/>
-    
       <category term="使用私服" scheme="http://www.limingming.org/tags/%E4%BD%BF%E7%94%A8%E7%A7%81%E6%9C%8D/"/>
     
       <category term="配置" scheme="http://www.limingming.org/tags/%E9%85%8D%E7%BD%AE/"/>
     
-  </entry>
-  
-  <entry>
-    <title>安装nexus</title>
-    <link href="http://www.limingming.org/2018/12/03/maven/%E5%AE%89%E8%A3%85nexus/"/>
-    <id>http://www.limingming.org/2018/12/03/maven/安装nexus/</id>
-    <published>2018-12-03T12:09:05.000Z</published>
-    <updated>2018-12-03T23:55:24.604Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-      <category term="Maven" scheme="http://www.limingming.org/categories/Maven/"/>
-    
-    
       <category term="maven" scheme="http://www.limingming.org/tags/maven/"/>
-    
-      <category term="安装" scheme="http://www.limingming.org/tags/%E5%AE%89%E8%A3%85/"/>
-    
-      <category term="nexus" scheme="http://www.limingming.org/tags/nexus/"/>
-    
-      <category term="文档" scheme="http://www.limingming.org/tags/%E6%96%87%E6%A1%A3/"/>
     
   </entry>
   
