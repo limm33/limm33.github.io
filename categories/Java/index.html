@@ -85,7 +85,7 @@
 <meta name="keywords" content="Welcome to my site! My name is Li MingMing(李明明). You can call me Kel. I was born in 1993s.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="李明明的博客">
-<meta property="og:url" content="http://www.limingming.org/tags/mac/index.html">
+<meta property="og:url" content="http://www.limingming.org/categories/Java/index.html">
 <meta property="og:site_name" content="李明明的博客">
 <meta property="og:description" content="Welcome to my site! My name is Li MingMing(李明明). 欢迎来到我的博客网站，我的名字是李明明">
 <meta property="og:locale" content="zh-Hans">
@@ -121,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://www.limingming.org/tags/mac/">
+  <link rel="canonical" href="http://www.limingming.org/categories/Java/">
 
 
 
 
 
-  <title>标签: mac | 李明明的博客</title>
+  <title>分类: Java | 李明明的博客</title>
   
 
 
@@ -285,11 +285,11 @@
   
   
   
-  <div class="post-block tag">
+  <div class="post-block category">
 
     <div id="posts" class="posts-collapse">
       <div class="collection-title">
-        <h1>mac<small>标签</small>
+        <h1>Java<small>分类</small>
         </h1>
       </div>
 
@@ -301,17 +301,69 @@
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2018/12/06/开发工具/mac上安装部署nginx/" itemprop="url">
+            <a class="post-title-link" href="/2018/12/22/Java/log4j2使用/" itemprop="url">
               
-                <span itemprop="name">mac上安装部署nginx</span>
+                <span itemprop="name">log4j2使用</span>
               
             </a>
         
       </h2>
 
       <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-12-06T17:41:19+08:00" content="2018-12-06">
-          12-06
+        <time class="post-time" itemprop="dateCreated" datetime="2018-12-22T16:22:09+08:00" content="2018-12-22">
+          12-22
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+      
+        
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+            <a class="post-title-link" href="/2018/12/19/Java/log4j使用/" itemprop="url">
+              
+                <span itemprop="name">log4j使用</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2018-12-19T20:39:07+08:00" content="2018-12-19">
+          12-19
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+      
+        
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+            <a class="post-title-link" href="/2018/12/01/Java/JDK及openJDK版本更迭/" itemprop="url">
+              
+                <span itemprop="name">JDK及openJDK版本更迭</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2018-12-01T00:24:22+08:00" content="2018-12-01">
+          12-01
         </time>
       </div>
 
@@ -328,6 +380,7 @@
   
 
   
+
 
 
           </div>
@@ -924,75 +977,6 @@
                 searchResultList += result.item;
               })
               searchResultList += "</ul>";
-              resultContent.innerHTML = searchResultList;
-            }
-          }
-
-          if ('auto' === 'auto') {
-            input.addEventListener('input', inputEventFunction);
-          } else {
-            $('.search-icon').click(inputEventFunction);
-            input.addEventListener('keypress', function (event) {
-              if (event.keyCode === 13) {
-                inputEventFunction();
-              }
-            });
-          }
-
-          // remove loading animation
-          $(".local-search-pop-overlay").remove();
-          $('body').css('overflow', '');
-
-          proceedsearch();
-        }
-      });
-    }
-
-    // handle and trigger popup window;
-    $('.popup-trigger').click(function(e) {
-      e.stopPropagation();
-      if (isfetched === false) {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-      } else {
-        proceedsearch();
-      };
-    });
-
-    $('.popup-btn-close').click(onPopupClose);
-    $('.popup').click(function(e){
-      e.stopPropagation();
-    });
-    $(document).on('keyup', function (event) {
-      var shouldDismissSearchPopup = event.which === 27 &&
-        $('.search-popup').is(':visible');
-      if (shouldDismissSearchPopup) {
-        onPopupClose();
-      }
-    });
-  </script>
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-
-</body>
-</html>
-sultList += "</ul>";
               resultContent.innerHTML = searchResultList;
             }
           }
