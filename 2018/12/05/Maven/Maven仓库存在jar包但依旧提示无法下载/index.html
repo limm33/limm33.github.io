@@ -81,19 +81,19 @@
 
 
 
-<meta name="description" content="原文       介绍最近服务器的迁移，把原来服务器的地址都更改了，所以私服的地址也改动了，原来项目下载到本地仓库的包，但是重新构建过程中竟然发现依然要提示下载，本地仓库里面明明有包，为什么还要下载？ 解决去maven仓库包下面你会发现有_remote.repositories文件，下载不下来问题就是因为这个文件导致的。你可能会发现nexus=的信息在这个文件中，这个文件中已经连接不上原来的nex">
+<meta name="description" content="原文：http://limingming.org/index.php/2018/12/maven-has-jar-but-downloading/       介绍最近服务器的迁移，把原来服务器的地址都更改了，所以私服的地址也改动了，原来项目下载到本地仓库的包，但是重新构建过程中竟然发现依然要提示下载，本地仓库里面明明有包，为什么还要下载？ 解决去maven仓库包下面你会发现有_remote.re">
 <meta name="keywords" content="maven,存在,依然,报错">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Maven仓库存在jar包但依旧提示无法下载">
 <meta property="og:url" content="http://www.limingming.org/2018/12/05/maven/Maven仓库存在jar包但依旧提示无法下载/index.html">
 <meta property="og:site_name" content="李明明的博客">
-<meta property="og:description" content="原文       介绍最近服务器的迁移，把原来服务器的地址都更改了，所以私服的地址也改动了，原来项目下载到本地仓库的包，但是重新构建过程中竟然发现依然要提示下载，本地仓库里面明明有包，为什么还要下载？ 解决去maven仓库包下面你会发现有_remote.repositories文件，下载不下来问题就是因为这个文件导致的。你可能会发现nexus=的信息在这个文件中，这个文件中已经连接不上原来的nex">
+<meta property="og:description" content="原文：http://limingming.org/index.php/2018/12/maven-has-jar-but-downloading/       介绍最近服务器的迁移，把原来服务器的地址都更改了，所以私服的地址也改动了，原来项目下载到本地仓库的包，但是重新构建过程中竟然发现依然要提示下载，本地仓库里面明明有包，为什么还要下载？ 解决去maven仓库包下面你会发现有_remote.re">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://limingming.org/wp-content/uploads/2018/12/1234-1-300x45.png">
-<meta property="og:updated_time" content="2018-12-06T23:11:40.455Z">
+<meta property="og:updated_time" content="2018-12-20T14:57:47.759Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Maven仓库存在jar包但依旧提示无法下载">
-<meta name="twitter:description" content="原文       介绍最近服务器的迁移，把原来服务器的地址都更改了，所以私服的地址也改动了，原来项目下载到本地仓库的包，但是重新构建过程中竟然发现依然要提示下载，本地仓库里面明明有包，为什么还要下载？ 解决去maven仓库包下面你会发现有_remote.repositories文件，下载不下来问题就是因为这个文件导致的。你可能会发现nexus=的信息在这个文件中，这个文件中已经连接不上原来的nex">
+<meta name="twitter:description" content="原文：http://limingming.org/index.php/2018/12/maven-has-jar-but-downloading/       介绍最近服务器的迁移，把原来服务器的地址都更改了，所以私服的地址也改动了，原来项目下载到本地仓库的包，但是重新构建过程中竟然发现依然要提示下载，本地仓库里面明明有包，为什么还要下载？ 解决去maven仓库包下面你会发现有_remote.re">
 <meta name="twitter:image" content="http://limingming.org/wp-content/uploads/2018/12/1234-1-300x45.png">
 
 
@@ -388,7 +388,7 @@
       
 
       
-        <p><a href="http://limingming.org/index.php/2018/12/maven-has-jar-but-downloading/" target="_blank" rel="noopener">原文</a>      </p>
+        <p><a href="http://limingming.org/index.php/2018/12/maven-has-jar-but-downloading/" target="_blank" rel="noopener">原文：http://limingming.org/index.php/2018/12/maven-has-jar-but-downloading/</a>      </p>
 <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>最近服务器的迁移，把原来服务器的地址都更改了，所以私服的地址也改动了，原来项目下载到本地仓库的包，但是重新构建过程中竟然发现依然要提示下载，本地仓库里面明明有包，为什么还要下载？</p>
 <h1 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h1><p>去maven仓库包下面你会发现有_remote.repositories文件，下载不下来问题就是因为这个文件导致的。你可能会发现nexus=的信息在这个文件中，这个文件中已经连接不上原来的nexus私服了，所有会报错依然会生成lastUpdatedw文件，如果你可以从新的服务地址中下载，你可以选择删除掉这个包，重新下载，如果不能的话可以选择改掉nexus=的信息，改成可以连接的地址，那它就不会重新下载了，例如改成 central=，这代表从远程中央仓库下载。<br><img src="http://limingming.org/wp-content/uploads/2018/12/1234-1-300x45.png" alt=""></p>
 <h1 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h1><p>最后当然会成功，如果不成功的话重新检查一下网络情况！</p>
@@ -400,9 +400,9 @@
           <div>
     
         <div style="text-align:center;color: #ccc;font-size:14px;">
-                         <a href="http://www.limingming.org">李明明的个人网站</a>
+                         <a href="http://www.limingming.org">李明明的个人网站:http://www.limingming.org</a>
                          <br>
-              -------------本文结束<i class="fa fa-paw"></i>感谢阅读-------------
+                 ---本文结束，感谢阅读本文，如需转载，请注明原文出处---
               
         </div>
     
@@ -535,7 +535,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-count">43</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -557,7 +557,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">120</span>
+                  <span class="site-state-item-count">129</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -690,7 +690,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共29.3k字</span>
+  <span class="post-count">博客全站共36.4k字</span>
 </div>
 
         

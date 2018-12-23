@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="web,模块,打包,问题,总结,">
+  <meta name="keywords" content="问题,web,模块,打包,总结,">
 
 
 
@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="原文    介绍在项目开发中可能会遇到这种那种的maven问题，尤其是在企业原有的开发模式转换到mavne方式进行开发的时候，以下就列出在企业项目拆分的过程中总结的maven多个子web模块的整合遇到的问题。 在各个子模块中可以添加，注意relativePath，在子模块中设置，可以在项目构建时先在本地项目中查找，使用../.. ，然后在去仓库和私服查找父pom: 123456&amp;lt;parent">
-<meta name="keywords" content="web,模块,打包,问题,总结">
+<meta name="description" content="原文：http://limingming.org/index.php/2018/12/03/maven-webs-moudle/    介绍在项目开发中可能会遇到这种那种的maven问题，尤其是在企业原有的开发模式转换到mavne方式进行开发的时候，以下就列出在企业项目拆分的过程中总结的maven多个子web模块的整合遇到的问题。 在各个子模块中可以添加，注意relativePath，在子模块中设">
+<meta name="keywords" content="问题,web,模块,打包,总结">
 <meta property="og:type" content="article">
 <meta property="og:title" content="maven多web模块打包问题">
 <meta property="og:url" content="http://www.limingming.org/2018/12/03/maven/maven多web模块打包问题/index.html">
 <meta property="og:site_name" content="李明明的博客">
-<meta property="og:description" content="原文    介绍在项目开发中可能会遇到这种那种的maven问题，尤其是在企业原有的开发模式转换到mavne方式进行开发的时候，以下就列出在企业项目拆分的过程中总结的maven多个子web模块的整合遇到的问题。 在各个子模块中可以添加，注意relativePath，在子模块中设置，可以在项目构建时先在本地项目中查找，使用../.. ，然后在去仓库和私服查找父pom: 123456&amp;lt;parent">
+<meta property="og:description" content="原文：http://limingming.org/index.php/2018/12/03/maven-webs-moudle/    介绍在项目开发中可能会遇到这种那种的maven问题，尤其是在企业原有的开发模式转换到mavne方式进行开发的时候，以下就列出在企业项目拆分的过程中总结的maven多个子web模块的整合遇到的问题。 在各个子模块中可以添加，注意relativePath，在子模块中设">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-03T23:55:24.603Z">
+<meta property="og:updated_time" content="2018-12-20T14:57:47.937Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="maven多web模块打包问题">
-<meta name="twitter:description" content="原文    介绍在项目开发中可能会遇到这种那种的maven问题，尤其是在企业原有的开发模式转换到mavne方式进行开发的时候，以下就列出在企业项目拆分的过程中总结的maven多个子web模块的整合遇到的问题。 在各个子模块中可以添加，注意relativePath，在子模块中设置，可以在项目构建时先在本地项目中查找，使用../.. ，然后在去仓库和私服查找父pom: 123456&amp;lt;parent">
+<meta name="twitter:description" content="原文：http://limingming.org/index.php/2018/12/03/maven-webs-moudle/    介绍在项目开发中可能会遇到这种那种的maven问题，尤其是在企业原有的开发模式转换到mavne方式进行开发的时候，以下就列出在企业项目拆分的过程中总结的maven多个子web模块的整合遇到的问题。 在各个子模块中可以添加，注意relativePath，在子模块中设">
 
 
 
@@ -386,7 +386,7 @@
       
 
       
-        <p><a href="http://limingming.org/index.php/2018/12/03/maven-webs-moudle/" target="_blank" rel="noopener">原文</a>   </p>
+        <p><a href="http://limingming.org/index.php/2018/12/03/maven-webs-moudle/" target="_blank" rel="noopener">原文：http://limingming.org/index.php/2018/12/03/maven-webs-moudle/</a>   </p>
 <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>在项目开发中可能会遇到这种那种的maven问题，尤其是在企业原有的开发模式转换到mavne方式进行开发的时候，以下就列出在企业项目拆分的过程中总结的maven多个子web模块的整合遇到的问题。</p>
 <p>在各个子模块中可以添加，注意relativePath，在子模块中设置，可以在项目构建时先在本地项目中查找，使用<relativepath>../..</relativepath> ，然后在去仓库和私服查找父pom:</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">parent</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.founder.fix.fixflow<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>fixflow-root<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>5.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;<span class="name">relativePath</span>&gt;</span>../..<span class="tag">&lt;/<span class="name">relativePath</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">parent</span>&gt;</span></span><br></pre></td></tr></table></figure>
@@ -407,9 +407,9 @@
           <div>
     
         <div style="text-align:center;color: #ccc;font-size:14px;">
-                         <a href="http://www.limingming.org">李明明的个人网站</a>
+                         <a href="http://www.limingming.org">李明明的个人网站:http://www.limingming.org</a>
                          <br>
-              -------------本文结束<i class="fa fa-paw"></i>感谢阅读-------------
+                 ---本文结束，感谢阅读本文，如需转载，请注明原文出处---
               
         </div>
     
@@ -432,13 +432,13 @@
       
         <div class="post-tags">
           
+            <a href="/tags/问题/" rel="tag"># 问题</a>
+          
             <a href="/tags/web/" rel="tag"># web</a>
           
             <a href="/tags/模块/" rel="tag"># 模块</a>
           
             <a href="/tags/打包/" rel="tag"># 打包</a>
-          
-            <a href="/tags/问题/" rel="tag"># 问题</a>
           
             <a href="/tags/总结/" rel="tag"># 总结</a>
           
@@ -544,7 +544,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-count">43</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -566,7 +566,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">120</span>
+                  <span class="site-state-item-count">129</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -699,7 +699,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共29.3k字</span>
+  <span class="post-count">博客全站共36.4k字</span>
 </div>
 
         

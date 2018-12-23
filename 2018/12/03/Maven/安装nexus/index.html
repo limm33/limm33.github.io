@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="原文 介绍私服不是Maven的核心概念，它仅仅是一种衍生出来的特殊的Maven仓库。如果没有私服，我们所需的所有构件都需要通过maven的中央仓库和第三方的Maven仓库下载到本地，而一个团队中的所有人都重复的从maven仓库下载构件无疑加大了仓库的负载和浪费了外网带宽，如果网速慢的话，还会影响项目的进程。很多情况下项目的开发都是在内网进行的，连接不到maven仓库怎么办呢？开发的公共构件怎么让其">
+<meta name="description" content="原文：http://limingming.org/index.php/2018/12/03/maven-install-nexus/ 介绍私服不是Maven的核心概念，它仅仅是一种衍生出来的特殊的Maven仓库。如果没有私服，我们所需的所有构件都需要通过maven的中央仓库和第三方的Maven仓库下载到本地，而一个团队中的所有人都重复的从maven仓库下载构件无疑加大了仓库的负载和浪费了外网带宽，">
 <meta name="keywords" content="安装,maven,nexus,文档">
 <meta property="og:type" content="article">
 <meta property="og:title" content="安装nexus">
 <meta property="og:url" content="http://www.limingming.org/2018/12/03/maven/安装nexus/index.html">
 <meta property="og:site_name" content="李明明的博客">
-<meta property="og:description" content="原文 介绍私服不是Maven的核心概念，它仅仅是一种衍生出来的特殊的Maven仓库。如果没有私服，我们所需的所有构件都需要通过maven的中央仓库和第三方的Maven仓库下载到本地，而一个团队中的所有人都重复的从maven仓库下载构件无疑加大了仓库的负载和浪费了外网带宽，如果网速慢的话，还会影响项目的进程。很多情况下项目的开发都是在内网进行的，连接不到maven仓库怎么办呢？开发的公共构件怎么让其">
+<meta property="og:description" content="原文：http://limingming.org/index.php/2018/12/03/maven-install-nexus/ 介绍私服不是Maven的核心概念，它仅仅是一种衍生出来的特殊的Maven仓库。如果没有私服，我们所需的所有构件都需要通过maven的中央仓库和第三方的Maven仓库下载到本地，而一个团队中的所有人都重复的从maven仓库下载构件无疑加大了仓库的负载和浪费了外网带宽，">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-03T23:55:24.604Z">
+<meta property="og:updated_time" content="2018-12-20T14:57:47.997Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="安装nexus">
-<meta name="twitter:description" content="原文 介绍私服不是Maven的核心概念，它仅仅是一种衍生出来的特殊的Maven仓库。如果没有私服，我们所需的所有构件都需要通过maven的中央仓库和第三方的Maven仓库下载到本地，而一个团队中的所有人都重复的从maven仓库下载构件无疑加大了仓库的负载和浪费了外网带宽，如果网速慢的话，还会影响项目的进程。很多情况下项目的开发都是在内网进行的，连接不到maven仓库怎么办呢？开发的公共构件怎么让其">
+<meta name="twitter:description" content="原文：http://limingming.org/index.php/2018/12/03/maven-install-nexus/ 介绍私服不是Maven的核心概念，它仅仅是一种衍生出来的特殊的Maven仓库。如果没有私服，我们所需的所有构件都需要通过maven的中央仓库和第三方的Maven仓库下载到本地，而一个团队中的所有人都重复的从maven仓库下载构件无疑加大了仓库的负载和浪费了外网带宽，">
 
 
 
@@ -386,7 +386,7 @@
       
 
       
-        <p><a href="http://limingming.org/index.php/2018/12/03/maven-install-nexus/" target="_blank" rel="noopener">原文</a></p>
+        <p><a href="http://limingming.org/index.php/2018/12/03/maven-install-nexus/" target="_blank" rel="noopener">原文：http://limingming.org/index.php/2018/12/03/maven-install-nexus/</a></p>
 <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>私服不是Maven的核心概念，它仅仅是一种衍生出来的特殊的Maven仓库。<br>如果没有私服，我们所需的所有构件都需要通过maven的中央仓库和第三方的Maven仓库下载到本地，而一个团队中的所有人都重复的从maven仓库下载构件无疑加大了仓库的负载和浪费了外网带宽，如果网速慢的话，还会影响项目的进程。很多情况下项目的开发都是在内网进行的，连接不到maven仓库怎么办呢？开发的公共构件怎么让其它项目使用？这个时候我们不得不为自己的团队搭建属于自己的maven私服，这样既节省了网络带宽也会加速项目搭建的进程，当然前提条件就是你的私服中拥有项目所需的所有构件。</p>
 <h1 id="安装Nexus"><a href="#安装Nexus" class="headerlink" title="安装Nexus"></a>安装Nexus</h1><p>Nexus是典型的JavaWeb应用，它有两种安装包，一种是包含Jetty容器的Bundle包，另一种是不包含Web容器的war包。</p>
 <ol>
@@ -438,9 +438,9 @@
           <div>
     
         <div style="text-align:center;color: #ccc;font-size:14px;">
-                         <a href="http://www.limingming.org">李明明的个人网站</a>
+                         <a href="http://www.limingming.org">李明明的个人网站:http://www.limingming.org</a>
                          <br>
-              -------------本文结束<i class="fa fa-paw"></i>感谢阅读-------------
+                 ---本文结束，感谢阅读本文，如需转载，请注明原文出处---
               
         </div>
     
@@ -573,7 +573,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-count">43</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -595,7 +595,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">120</span>
+                  <span class="site-state-item-count">129</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -728,7 +728,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共29.3k字</span>
+  <span class="post-count">博客全站共36.4k字</span>
 </div>
 
         

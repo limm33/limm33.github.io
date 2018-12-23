@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="tomcat,部署,Spring,boot,">
+  <meta name="keywords" content="部署,Spring,boot,tomcat,">
 
 
 
@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="原文         介绍一般我们使用spring boot是使用内嵌的容器，一般不会将其部署到tomcat容器里，但是会有一些情况需要我们部署spring boot到tomcat中，部署过程中遇到一些问题，特此记录。 修改Application类如果你没有修改你的Application类就直接部署到tomcat中肯定会遇到一些无法请求到后台的服务的问题，只可以访问前端页面，修改你的Applica">
-<meta name="keywords" content="tomcat,部署,Spring,boot">
+<meta name="description" content="原文：http://limingming.org/index.php/2018/12/spring-boot-deploy-to-tomcat/         介绍一般我们使用spring boot是使用内嵌的容器，一般不会将其部署到tomcat容器里，但是会有一些情况需要我们部署spring boot到tomcat中，部署过程中遇到一些问题，特此记录。 修改Application类如果你没有修">
+<meta name="keywords" content="部署,Spring,boot,tomcat">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spring boot 部署到tomcat中注意事项">
 <meta property="og:url" content="http://www.limingming.org/2018/12/18/Spring/Spring-boot-部署到tomcat中注意事项/index.html">
 <meta property="og:site_name" content="李明明的博客">
-<meta property="og:description" content="原文         介绍一般我们使用spring boot是使用内嵌的容器，一般不会将其部署到tomcat容器里，但是会有一些情况需要我们部署spring boot到tomcat中，部署过程中遇到一些问题，特此记录。 修改Application类如果你没有修改你的Application类就直接部署到tomcat中肯定会遇到一些无法请求到后台的服务的问题，只可以访问前端页面，修改你的Applica">
+<meta property="og:description" content="原文：http://limingming.org/index.php/2018/12/spring-boot-deploy-to-tomcat/         介绍一般我们使用spring boot是使用内嵌的容器，一般不会将其部署到tomcat容器里，但是会有一些情况需要我们部署spring boot到tomcat中，部署过程中遇到一些问题，特此记录。 修改Application类如果你没有修">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-18T14:45:22.499Z">
+<meta property="og:updated_time" content="2018-12-20T14:57:47.675Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring boot 部署到tomcat中注意事项">
-<meta name="twitter:description" content="原文         介绍一般我们使用spring boot是使用内嵌的容器，一般不会将其部署到tomcat容器里，但是会有一些情况需要我们部署spring boot到tomcat中，部署过程中遇到一些问题，特此记录。 修改Application类如果你没有修改你的Application类就直接部署到tomcat中肯定会遇到一些无法请求到后台的服务的问题，只可以访问前端页面，修改你的Applica">
+<meta name="twitter:description" content="原文：http://limingming.org/index.php/2018/12/spring-boot-deploy-to-tomcat/         介绍一般我们使用spring boot是使用内嵌的容器，一般不会将其部署到tomcat容器里，但是会有一些情况需要我们部署spring boot到tomcat中，部署过程中遇到一些问题，特此记录。 修改Application类如果你没有修">
 
 
 
@@ -386,7 +386,7 @@
       
 
       
-        <p><a href="http://limingming.org/index.php/2018/12/spring-boot-deploy-to-tomcat/" target="_blank" rel="noopener">原文</a>        </p>
+        <p><a href="http://limingming.org/index.php/2018/12/spring-boot-deploy-to-tomcat/" target="_blank" rel="noopener">原文：http://limingming.org/index.php/2018/12/spring-boot-deploy-to-tomcat/</a>        </p>
 <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>一般我们使用spring boot是使用内嵌的容器，一般不会将其部署到tomcat容器里，但是会有一些情况需要我们部署spring boot到tomcat中，部署过程中遇到一些问题，特此记录。</p>
 <h1 id="修改Application类"><a href="#修改Application类" class="headerlink" title="修改Application类"></a>修改Application类</h1><p>如果你没有修改你的Application类就直接部署到tomcat中肯定会遇到一些无法请求到后台的服务的问题，只可以访问前端页面，修改你的Application类如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span>(exclude = &#123; </span><br><span class="line">DataSourceAutoConfiguration.class, </span><br><span class="line">DataSourceTransactionManagerAutoConfiguration.class&#125;) </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Application</span> <span class="keyword">extends</span> <span class="title">SpringBootServletInitializer</span> </span>&#123; </span><br><span class="line"> <span class="meta">@Override</span></span><br><span class="line"> <span class="function"><span class="keyword">protected</span> SpringApplicationBuilder <span class="title">configure</span><span class="params">(SpringApplicationBuilder application)</span> </span>&#123; </span><br><span class="line"> <span class="keyword">return</span> application.sources(Application.class); </span><br><span class="line"> &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -399,9 +399,9 @@
           <div>
     
         <div style="text-align:center;color: #ccc;font-size:14px;">
-                         <a href="http://www.limingming.org">李明明的个人网站</a>
+                         <a href="http://www.limingming.org">李明明的个人网站:http://www.limingming.org</a>
                          <br>
-              -------------本文结束<i class="fa fa-paw"></i>感谢阅读-------------
+                 ---本文结束，感谢阅读本文，如需转载，请注明原文出处---
               
         </div>
     
@@ -424,13 +424,13 @@
       
         <div class="post-tags">
           
-            <a href="/tags/tomcat/" rel="tag"># tomcat</a>
-          
             <a href="/tags/部署/" rel="tag"># 部署</a>
           
             <a href="/tags/Spring/" rel="tag"># Spring</a>
           
             <a href="/tags/boot/" rel="tag"># boot</a>
+          
+            <a href="/tags/tomcat/" rel="tag"># tomcat</a>
           
         </div>
       
@@ -453,8 +453,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/12/19/Java/log4j包的使用/" rel="prev" title="log4j包的使用">
-                log4j包的使用 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/12/19/Java/log4j使用/" rel="prev" title="log4j使用">
+                log4j使用 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -534,7 +534,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-count">43</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -556,7 +556,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">120</span>
+                  <span class="site-state-item-count">129</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -689,7 +689,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共29.3k字</span>
+  <span class="post-count">博客全站共36.4k字</span>
 </div>
 
         

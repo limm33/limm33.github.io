@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="配置,源,yum,nexus3,">
+  <meta name="keywords" content="源,配置,yum,nexus3,">
 
 
 
@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="原文        使用在生产环境中，或者在隔离外网的服务器环境中，不能在线更新下载RPM包，所以借助有一台Linux服务器可以连接外网，剩余的服务器通过这台YUM服务器更新就可以了。 开篇以前的做法是先把包下载到内网中的YUM服务器上，然后通过createrepo命令生成本地仓库，其余服务器通过HTTP访问这个链接，这种方式比较费时费力，而且工作效率不高，在这也简要的把这种方式介绍一下，这种方式">
-<meta name="keywords" content="配置,源,yum,nexus3">
+<meta name="description" content="原文：http://limingming.org/index.php/2018/12/nexus3-yum-repo/        使用在生产环境中，或者在隔离外网的服务器环境中，不能在线更新下载RPM包，所以借助有一台Linux服务器可以连接外网，剩余的服务器通过这台YUM服务器更新就可以了。 开篇以前的做法是先把包下载到内网中的YUM服务器上，然后通过createrepo命令生成本地仓库，其">
+<meta name="keywords" content="源,配置,yum,nexus3">
 <meta property="og:type" content="article">
 <meta property="og:title" content="nexus3配置yum源">
 <meta property="og:url" content="http://www.limingming.org/2018/12/08/Linux/nexus3配置yum源/index.html">
 <meta property="og:site_name" content="李明明的博客">
-<meta property="og:description" content="原文        使用在生产环境中，或者在隔离外网的服务器环境中，不能在线更新下载RPM包，所以借助有一台Linux服务器可以连接外网，剩余的服务器通过这台YUM服务器更新就可以了。 开篇以前的做法是先把包下载到内网中的YUM服务器上，然后通过createrepo命令生成本地仓库，其余服务器通过HTTP访问这个链接，这种方式比较费时费力，而且工作效率不高，在这也简要的把这种方式介绍一下，这种方式">
+<meta property="og:description" content="原文：http://limingming.org/index.php/2018/12/nexus3-yum-repo/        使用在生产环境中，或者在隔离外网的服务器环境中，不能在线更新下载RPM包，所以借助有一台Linux服务器可以连接外网，剩余的服务器通过这台YUM服务器更新就可以了。 开篇以前的做法是先把包下载到内网中的YUM服务器上，然后通过createrepo命令生成本地仓库，其">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-10T21:32:30.545Z">
+<meta property="og:updated_time" content="2018-12-20T14:57:47.588Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="nexus3配置yum源">
-<meta name="twitter:description" content="原文        使用在生产环境中，或者在隔离外网的服务器环境中，不能在线更新下载RPM包，所以借助有一台Linux服务器可以连接外网，剩余的服务器通过这台YUM服务器更新就可以了。 开篇以前的做法是先把包下载到内网中的YUM服务器上，然后通过createrepo命令生成本地仓库，其余服务器通过HTTP访问这个链接，这种方式比较费时费力，而且工作效率不高，在这也简要的把这种方式介绍一下，这种方式">
+<meta name="twitter:description" content="原文：http://limingming.org/index.php/2018/12/nexus3-yum-repo/        使用在生产环境中，或者在隔离外网的服务器环境中，不能在线更新下载RPM包，所以借助有一台Linux服务器可以连接外网，剩余的服务器通过这台YUM服务器更新就可以了。 开篇以前的做法是先把包下载到内网中的YUM服务器上，然后通过createrepo命令生成本地仓库，其">
 
 
 
@@ -386,7 +386,7 @@
       
 
       
-        <p><a href="http://limingming.org/index.php/2018/12/nexus3-yum-repo/" target="_blank" rel="noopener">原文</a>       </p>
+        <p><a href="http://limingming.org/index.php/2018/12/nexus3-yum-repo/" target="_blank" rel="noopener">原文：http://limingming.org/index.php/2018/12/nexus3-yum-repo/</a>       </p>
 <h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p>在生产环境中，或者在隔离外网的服务器环境中，不能在线更新下载RPM包，所以借助有一台Linux服务器可以连接外网，剩余的服务器通过这台YUM服务器更新就可以了。</p>
 <h1 id="开篇"><a href="#开篇" class="headerlink" title="开篇"></a>开篇</h1><p>以前的做法是先把包下载到内网中的YUM服务器上，然后通过createrepo命令生成本地仓库，其余服务器通过HTTP访问这个链接，这种方式比较费时费力，而且工作效率不高，在这也简要的把这种方式介绍一下，这种方式下一般应用到本地为开发环境可以联网但是开发环境并不可以的情况，如果是简单部署单个应用不是很多应用的话，这种方式还是有可取之处的。</p>
 <ol>
@@ -423,9 +423,9 @@
           <div>
     
         <div style="text-align:center;color: #ccc;font-size:14px;">
-                         <a href="http://www.limingming.org">李明明的个人网站</a>
+                         <a href="http://www.limingming.org">李明明的个人网站:http://www.limingming.org</a>
                          <br>
-              -------------本文结束<i class="fa fa-paw"></i>感谢阅读-------------
+                 ---本文结束，感谢阅读本文，如需转载，请注明原文出处---
               
         </div>
     
@@ -448,9 +448,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/配置/" rel="tag"># 配置</a>
-          
             <a href="/tags/源/" rel="tag"># 源</a>
+          
+            <a href="/tags/配置/" rel="tag"># 配置</a>
           
             <a href="/tags/yum/" rel="tag"># yum</a>
           
@@ -558,7 +558,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-count">43</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -580,7 +580,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">120</span>
+                  <span class="site-state-item-count">129</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -713,7 +713,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共29.3k字</span>
+  <span class="post-count">博客全站共36.4k字</span>
 </div>
 
         

@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/my-favicon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/my-favicon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/my-favicon.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/my-favicon.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="配置,介绍,使用,log4j2,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="李明明的博客" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="原文：http://limingming.org/index.php/2018/12/log4j2-user-config/ 介绍log4j 兼容jdk6， 最新版本是1.2.17（不再进行更新），log4j2 不兼容jdk7之前的版本。但是，log4j 2 采用了异步写文件的机制，比log4j 提高了10倍以上的性能，log4j组件2.4以后的版本能够支持.properties格式的配置文件（之">
+<meta name="keywords" content="配置,介绍,使用,log4j2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="log4j2使用">
+<meta property="og:url" content="http://www.limingming.org/2018/12/22/Java/log4j2使用/index.html">
+<meta property="og:site_name" content="李明明的博客">
+<meta property="og:description" content="原文：http://limingming.org/index.php/2018/12/log4j2-user-config/ 介绍log4j 兼容jdk6， 最新版本是1.2.17（不再进行更新），log4j2 不兼容jdk7之前的版本。但是，log4j 2 采用了异步写文件的机制，比log4j 提高了10倍以上的性能，log4j组件2.4以后的版本能够支持.properties格式的配置文件（之">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-12-23T14:43:49.773Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="log4j2使用">
+<meta name="twitter:description" content="原文：http://limingming.org/index.php/2018/12/log4j2-user-config/ 介绍log4j 兼容jdk6， 最新版本是1.2.17（不再进行更新），log4j2 不兼容jdk7之前的版本。但是，log4j 2 采用了异步写文件的机制，比log4j 提高了10倍以上的性能，log4j组件2.4以后的版本能够支持.properties格式的配置文件（之">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.limingming.org/2018/12/22/Java/log4j2使用/">
+
+
+
+
+
+  <title>log4j2使用 | 李明明的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">李明明的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Li MingMing's blog site</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+   <!-- <a href="https://github.com/limm33"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://blog.limingming.org/source/images/forkme_left_darkblue_121621.png" alt="Fork me on GitHub"></a> -->
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.limingming.org/2018/12/22/Java/log4j2使用/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="李明明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/my-photo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="李明明的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">log4j2使用</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-22T16:22:09+08:00">
+                2018-12-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="http://limingming.org/index.php/2018/12/log4j2-user-config/" target="_blank" rel="noopener">原文：http://limingming.org/index.php/2018/12/log4j2-user-config/</a></p>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>log4j 兼容jdk6， 最新版本是1.2.17（不再进行更新），log4j2 不兼容jdk7之前的版本。但是，log4j 2 采用了异步写文件的机制，比log4j 提高了10倍以上的性能，log4j组件2.4以后的版本能够支持.properties格式的配置文件（之前的2.x版均不支持.properties配置），新版properties格式配置文件与其他格式（XML格式、JSON格式文件等）一样，配置的主要任务是完成对各类插件及其属性的定义。</p>
+<h2 id="xml-配置"><a href="#xml-配置" class="headerlink" title="xml 配置"></a>xml 配置</h2><p>在spring boot2.1.1.RELEASE中配置使用log4j2：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- Exclude Spring Boot's Default Logging --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">exclusions</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">exclusion</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-logging<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">exclusion</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">exclusions</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">exclusions</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">exclusion</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-logging<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">exclusion</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">exclusions</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- Add Log4j2 Dependency --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-log4j2<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="无厘头的问题"><a href="#无厘头的问题" class="headerlink" title="无厘头的问题"></a>无厘头的问题</h2><p>使用以上配置之后出现了异常：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">objc[24414]: Class JavaLaunchHelper is implemented in both /Library/Java/JavaVirtualMachines/jdk1.8.0_112.jdk/Contents/Home/bin/java (0x1045c54c0) and /Library/Java/JavaVirtualMachines/jdk1.8.0_112.jdk/Contents/Home/jre/lib/libinstrument.dylib (0x1055ef4e0). One of the two will be used. Which one is undefined.</span><br><span class="line">SLF4J: Class path contains multiple SLF4J bindings.</span><br><span class="line">SLF4J: Found binding in [jar:file:/Users/limm/.m2/repository/ch/qos/logback/logback-classic/1.2.3/logback-classic-1.2.3.jar!/org/slf4j/impl/StaticLoggerBinder.class]</span><br><span class="line">SLF4J: Found binding in [jar:file:/Users/limm/.m2/repository/org/apache/logging/log4j/log4j-slf4j-impl/2.11.1/log4j-slf4j-impl-2.11.1.jar!/org/slf4j/impl/StaticLoggerBinder.class]</span><br><span class="line">SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.</span><br><span class="line">SLF4J: Actual binding is of type [ch.qos.logback.classic.util.ContextSelectorStaticBinder]</span><br></pre></td></tr></table></figure>
+<p>所以尝试排除各种依赖解决这个异常错误，但是排除了各种依赖，都没有解决这个问题，干脆重新删掉项目在eclipse中重新执行了一下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn clean eclipse:eclipse</span><br></pre></td></tr></table></figure>
+<p>然后重新导入到eclipse中，发现这个错误竟然好了，我真的对这个东西无语了，姑且认为我的这个错误是因为eclipse导致的吧，但是我更愿意相信可能我在操作这个的过程中，修改的某个地方但是我忘记了。<br>但是第二天我重新建立一个项目，pom中配置的内容一样还是出现了上面的问题，我没有做其他任何操作重新执行了上面的步骤异常就消失了，我到写这个博客的日子还没有抛弃eclipse，具体来说应该是sts，接下来我可能换IDEA了。</p>
+<h2 id="XML配置文件"><a href="#XML配置文件" class="headerlink" title="XML配置文件"></a>XML配置文件</h2><p>我使用的是Spring boot2.1.1,所以log4j2 为2.1.1版本，所以我们用通用的xml配置。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--日志级别排序: OFF &gt; FATAL &gt; ERROR &gt; WARN &gt; INFO &gt; DEBUG &gt; TRACE &gt; ALL --&gt;</span></span><br><span class="line"><span class="comment">&lt;!--Configuration后面的status，这个用于设置log4j2自身内部的信息输出，可以不设置，当设置成trace时，你会看到log4j2内部各种详细输出--&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--monitorInterval：Log4j能够自动检测修改配置 文件和重新配置本身，设置间隔秒数--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span> <span class="attr">status</span>=<span class="string">"ERROR"</span> <span class="attr">monitorInterval</span>=<span class="string">"60"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">Properties</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 下文中通过$&#123;log.path&#125;获取这个配置路径 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Property</span> <span class="attr">name</span>=<span class="string">"log.path"</span>&gt;</span>/Users/limm/log/dialog-demo-web<span class="tag">&lt;/<span class="name">Property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">Properties</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!--先定义所有的appender--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">appenders</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">&lt;!--这个输出控制台的配置--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">console</span> <span class="attr">name</span>=<span class="string">"Console"</span> <span class="attr">target</span>=<span class="string">"SYSTEM_OUT"</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--输出日志的格式--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">PatternLayout</span> <span class="attr">pattern</span>=<span class="string">"[%d&#123;HH:mm:ss:SSS&#125;] [%p] - %l - %m%n"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">console</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">File</span> <span class="attr">name</span>=<span class="string">"log"</span> <span class="attr">fileName</span>=<span class="string">"$&#123;log.path&#125;/test.log"</span> <span class="attr">append</span>=<span class="string">"false"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">PatternLayout</span> <span class="attr">pattern</span>=<span class="string">"[%d&#123;HH:mm:ss:SSS&#125;] [%p] - %l - %m%n"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">File</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">RollingFile</span> <span class="attr">name</span>=<span class="string">"RollingFileInfo"</span> <span class="attr">fileName</span>=<span class="string">"$&#123;log.path&#125;/info.log"</span>  <span class="attr">filePattern</span>=<span class="string">"$&#123;log.path&#125;/logs/$&#123;date:yyyy-MM&#125;/info-%d&#123;yyyy-MM-dd&#125;.log.zip"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">&lt;!--只输出level及以上级别的信息（onMatch），其他的直接拒绝（onMismatch）--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">ThresholdFilter</span> <span class="attr">level</span>=<span class="string">"info"</span> <span class="attr">onMatch</span>=<span class="string">"ACCEPT"</span> <span class="attr">onMismatch</span>=<span class="string">"DENY"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="tag">&lt;<span class="name">PatternLayout</span> <span class="attr">pattern</span>=<span class="string">"[%d&#123;HH:mm:ss:SSS&#125;] [%p] - %l - %m%n"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="tag">&lt;<span class="name">Policies</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">TimeBasedTriggeringPolicy</span> <span class="attr">modulate</span>=<span class="string">"true"</span> <span class="attr">interval</span>=<span class="string">"1"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">Policies</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;/<span class="name">RollingFile</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">appenders</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">loggers</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--过滤掉spring和mybatis的一些无用的DEBUG信息--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">logger</span> <span class="attr">name</span>=<span class="string">"org.springframework"</span> <span class="attr">level</span>=<span class="string">"INFO"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">logger</span> <span class="attr">name</span>=<span class="string">"org.mybatis"</span> <span class="attr">level</span>=<span class="string">"INFO"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">logger</span> <span class="attr">name</span>=<span class="string">"com.inspur.demo.web"</span> <span class="attr">level</span>=<span class="string">"INFO"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">root</span> <span class="attr">level</span>=<span class="string">"info"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">appender-ref</span> <span class="attr">ref</span>=<span class="string">"Console"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">appender-ref</span> <span class="attr">ref</span>=<span class="string">"RollingFileInfo"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">root</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">loggers</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>启动过程中遇到：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2018-12-21 20:23:58,444 main INFO Log4j appears to be running in a Servlet environment, but there&apos;s no log4j-web module available. If you want better web container support, please add the log4j-web JAR to your web archive or server lib directory.</span><br></pre></td></tr></table></figure>
+<p>添加了依赖：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.logging.log4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>log4j-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="XML配置语法"><a href="#XML配置语法" class="headerlink" title="XML配置语法"></a>XML配置语法</h2><ol>
+<li>根节点属性<br>根节点<configuration></configuration>有两个属性，一个是status，一个是monitorinterval，</li>
+</ol>
+<blockquote>
+<p> status用来指定log4j2本身的日志的级别，我们上面的xml中为WARN<br>monitorinterval用于指定log4j自动监测间隔时间，单位是s,最小是5s</p>
+</blockquote>
+<p>Properties 标签<br>在xml文件中，可以使用Properties 标签来自定义变量，方便其他地方的引用，当然用的最多的是通过log.path获取log，输出的跟路径。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Properties</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Property</span> <span class="attr">name</span>=<span class="string">"log.path"</span>&gt;</span>这里写日志输入的跟路径<span class="tag">&lt;/<span class="name">Property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">Properties</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>Appenders 节点</li>
+</ol>
+<p>我们上面log4j中提到Appender，Appender是用来定义日志输出点的，一般常用有三个子节点，分别为Console、RollingFile、File，也可以参考log4j,下面介绍一下各个子节点的用处及常用的属性</p>
+<ul>
+<li>Console节点用来定义输出到控制台的Appender：</li>
+<li>name : 指定Appender的名字，用于Logger节点引用</li>
+<li>target : SYSTEM_OUT 或 SYSTEM_ERR,一般设置为:SYSTEM_OUT</li>
+<li>PatternLayout : 指定日志输出格式，默认为%m%n</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">console</span> <span class="attr">name</span>=<span class="string">"Console"</span> <span class="attr">target</span>=<span class="string">"SYSTEM_OUT"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--输出日志的格式--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">PatternLayout</span> <span class="attr">pattern</span>=<span class="string">"[%d&#123;HH:mm:ss:SSS&#125;] [%p] - %l - %m%n"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">console</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>File节点用来定义输出到指定位置的文件的Appender:</p>
+<ul>
+<li>name : 和console一样，指定Appender的名字，用于Logger节点引用</li>
+<li>fileName : 指定输出日志的目的文件带全路径的文件名</li>
+<li>append : 是否追加，默认为ture。ture是将新日志追加到原日志文件尾部，false则是删除已有文件，重建新文件</li>
+<li>PatternLayout : 指定日志输出格式，默认为%m%n</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">File</span> <span class="attr">name</span>=<span class="string">"log"</span> <span class="attr">fileName</span>=<span class="string">"log/test.log"</span> <span class="attr">append</span>=<span class="string">"false"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">PatternLayout</span> <span class="attr">pattern</span>=<span class="string">"[%d&#123;HH:mm:ss:SSS&#125;] [%p] - %l - %m%n"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">File</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>上面的File节点指定输出文件位置的Appender，但是对于文件输入的约束是很弱的，而RollingFile节点也用来定义输出到指定位置的文件的Appender,但是却灵活的多，记录的文件内容可进行详细的拆分，例如对于文件大小，根据时间等：</p>
+<ul>
+<li>name : 指定Appender的名字，用于Logger节点引用</li>
+<li>fileName : 指定输出日志的目的文件带全路径的文件名</li>
+<li>filePattern:指定拆分出去的日志文件的全路径的文件名以及格式</li>
+<li>PatternLayout : 指定日志输出格式，默认为%m%n</li>
+<li>Policies : 指定滚动日志的策略，就是什么时候进行新建日志文件输出日志.</li>
+<li>TimeBasedTriggeringPolicy : 基于时间进行日志的滚动</li>
+<li>SizeBasedTriggeringPolicy : 基于文件大小进行日志的滚动</li>
+<li>ThresholdFilter : 日志过滤器</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">RollingFile</span> <span class="attr">name</span>=<span class="string">"RollingFileInfo"</span> <span class="attr">fileName</span>=<span class="string">"$&#123;log.path&#125;/info.log"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">filePattern</span>=<span class="string">"$&#123;log.path&#125;/logs/$$&#123;date:yyyy-MM&#125;/info-%d&#123;yyyy-MM-dd&#125;-%i.log.zip"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--只输出level及以上级别的信息（onMatch），其他的直接拒绝（onMismatch）--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ThresholdFilter</span> <span class="attr">level</span>=<span class="string">"info"</span> <span class="attr">onMatch</span>=<span class="string">"ACCEPT"</span> <span class="attr">onMismatch</span>=<span class="string">"DENY"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">PatternLayout</span> <span class="attr">pattern</span>=<span class="string">"[%d&#123;HH:mm:ss:SSS&#125;] [%p] - %l - %m%n"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Policies</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">TimeBasedTriggeringPolicy</span> <span class="attr">modulate</span>=<span class="string">"true"</span> <span class="attr">interval</span>=<span class="string">"1"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">Policies</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">RollingFile</span>&gt;</span></span><br><span class="line"> <span class="comment">&lt;!-- 一般般情况下都使用RollingRandomAccessFile，RollingRandomAccessFile可以按照日志名称的格式进行定期备份，拥有一定的备份策略。  </span></span><br><span class="line"><span class="comment">            1.是否压缩备份日志：直接在filePattern属性的文件名称最后加对应的压缩后缀，如gzip压缩用 .gz --&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">RollingRandomAccessFile</span> <span class="attr">name</span>=<span class="string">"errorFile"</span> <span class="attr">fileName</span>=<span class="string">"$&#123;fileName&#125;/mic-error.log"</span></span></span><br><span class="line"><span class="tag">                                 <span class="attr">filePattern</span>=<span class="string">"$&#123;fileGz&#125;/$$&#123;date:yyyy-MM&#125;/app-%d&#123;MM-dd-yyyy&#125;-%i.mic-error.gz"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">PatternLayout</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">pattern</span>&gt;</span>%d %p %C&#123;1.&#125; [%t] %m%n<span class="tag">&lt;/<span class="name">pattern</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">PatternLayout</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Policies</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">TimeBasedTriggeringPolicy</span> <span class="attr">interval</span>=<span class="string">"6"</span> <span class="attr">modulate</span>=<span class="string">"true"</span> /&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">SizeBasedTriggeringPolicy</span> <span class="attr">size</span>=<span class="string">"10 MB"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">Policies</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 指定每天的最大压缩包个数，默认7个，超过了会覆盖之前的 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">DefaultRolloverStrategy</span> <span class="attr">max</span>=<span class="string">"50"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">RollingRandomAccessFile</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>Ps:<br>TimeBasedTriggeringPolicy这个滚动策略的属性interval，它是指日志进行滚动的间隔，那么它的单位具体是什么呢？关键点在于filePattern的日志文件名所含有的日期格式%d{yyyy-MM-dd},这里日期格式具体到了天，那么以天为单位，若是日期具体到%d{yyyy-MM-dd-HH-mm}分钟的话，那么就是以分钟为单位。</p>
+<ol start="3">
+<li>Loggers节点</li>
+</ol>
+<p>Loggers节点下一般会配置root和logger节点，root节点用来指定项目的根日志，如果没有单独指定logger，那么就会默认使用该root日志输出。</p>
+<ul>
+<li>level ：日志输出级别，共有8个级别，按照从低到高为：All &lt; Trace &lt; Debug &lt; Info &lt; Warn &lt; Error &lt; Fatal &lt; OFF.</li>
+<li>appender-ref ：root的子节点，用来指定该日志输出到哪个Appender</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">root</span> <span class="attr">level</span>=<span class="string">"info"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">appender-ref</span> <span class="attr">ref</span>=<span class="string">"Console"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">appender-ref</span> <span class="attr">ref</span>=<span class="string">"RollingFileInfo"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">root</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>Logger节点用来单独指定日志的形式，比如要为某个包下所有的class或者某个具体的class指定不同的日志级别等。</p>
+<ul>
+<li>level : 日志输出级别</li>
+<li>name : 用来指定该Logger所适用的类或者包.</li>
+<li>AppenderRef ：Logger的子节点，用来指定该日志输出到哪个Appender,如果没有指定，就会默认继承自Root</li>
+<li>additivity ：是否向上级传递日志 true(默认)或false</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--过滤掉spring和mybatis的一些无用的DEBUG信息--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">logger</span> <span class="attr">name</span>=<span class="string">"org.springframework"</span> <span class="attr">level</span>=<span class="string">"INFO"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">logger</span> <span class="attr">name</span>=<span class="string">"org.mybatis"</span> <span class="attr">level</span>=<span class="string">"INFO"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">logger</span> <span class="attr">name</span>=<span class="string">"com.baiding"</span> <span class="attr">level</span>=<span class="string">"INFO"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<p>若我们为logger指定了AppenderRef ，别忘了将logger的additivity 属性设置为false,要不然日志可能会在指定的Appender中输出两遍</p>
+<h2 id="Log4j2异步输出日志"><a href="#Log4j2异步输出日志" class="headerlink" title="Log4j2异步输出日志"></a>Log4j2异步输出日志</h2><p>Log4j2突出新特性支持高效低延迟的异步化写日志，日志异步优点是单独的进程打印日志，可以提高日志执行效率，减少日志功能对正常业务的影响。使用了disruptor这个开源的并发框架进行日志的异步输出，所以首先得导入disruptor.jar包    </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.lmax<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>disruptor<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.4.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>异步输出模式</p>
+<ul>
+<li>全异步</li>
+<li>异步和非异步混合输出</li>
+</ul>
+<p>异步和非异步混合模式，性能还是比较好的，这种模式的启用，主要在于两个节点的使用，分别为AsyncRoot和AsyncLogger,这两个节点可以和Root 或 Logger节点混合使用。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">loggers</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">AsyncRoot</span> <span class="attr">level</span>=<span class="string">"info"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">appender-ref</span> <span class="attr">ref</span>=<span class="string">"Console"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">appender-ref</span> <span class="attr">ref</span>=<span class="string">"RollingFileInfo"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">AsyncRoot</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">AsyncLogger</span> <span class="attr">name</span>=<span class="string">"com.baiding"</span> <span class="attr">level</span>=<span class="string">"INFO"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">AsyncLogger</span> <span class="attr">name</span>=<span class="string">"org.mybatis"</span> <span class="attr">level</span>=<span class="string">"INFO"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">AsyncLogger</span> <span class="attr">name</span>=<span class="string">"org.springframework"</span> <span class="attr">level</span>=<span class="string">"INFO"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">loggers</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="参考配置文件模版"><a href="#参考配置文件模版" class="headerlink" title="参考配置文件模版"></a>参考配置文件模版</h1><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>  </span><br><span class="line"><span class="comment">&lt;!-- 在运行时，可以动态修改配置文件，不用重启服务，在固定时长更新一次配置文件。monitorInterval设置更新配置文件时长， 单位为seconds ， min senconds &gt;= 5secondes --&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="name">Configuration</span>  <span class="attr">monitorInterval</span>=<span class="string">"30"</span> &gt;</span>  </span><br><span class="line">  </span><br><span class="line">    <span class="tag">&lt;<span class="name">Properties</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">Property</span> <span class="attr">name</span>=<span class="string">"log.path"</span>&gt;</span>E:\log4j2_log\<span class="tag">&lt;/<span class="name">Property</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;/<span class="name">Properties</span>&gt;</span>  </span><br><span class="line">  </span><br><span class="line">    <span class="tag">&lt;<span class="name">Appenders</span>&gt;</span>  </span><br><span class="line">        <span class="comment">&lt;!-- 控制台appdener--&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">Console</span> <span class="attr">name</span>=<span class="string">"STDOUT"</span> <span class="attr">target</span>=<span class="string">"SYSTEM_OUT"</span>&gt;</span>  </span><br><span class="line">            <span class="tag">&lt;<span class="name">PatternLayout</span>    <span class="attr">charset</span>=<span class="string">"UTF-8"</span> <span class="attr">pattern</span>=<span class="string">"%m%n"</span>/&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;/<span class="name">Console</span>&gt;</span>  </span><br><span class="line">  </span><br><span class="line">        <span class="comment">&lt;!-- File appdener--&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">File</span> <span class="attr">name</span>=<span class="string">"MyFile"</span> <span class="attr">fileName</span>=<span class="string">"logs/app.log"</span> <span class="attr">bufferedIO</span>=<span class="string">"true"</span> &gt;</span>  </span><br><span class="line">            <span class="tag">&lt;<span class="name">PatternLayout</span>&gt;</span>  </span><br><span class="line">                <span class="tag">&lt;<span class="name">Charset</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">Charset</span>&gt;</span>  </span><br><span class="line">                <span class="tag">&lt;<span class="name">Pattern</span>&gt;</span>%d %p %c&#123;1.&#125; [%t] %m%n<span class="tag">&lt;/<span class="name">Pattern</span>&gt;</span>  </span><br><span class="line">            <span class="tag">&lt;/<span class="name">PatternLayout</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;/<span class="name">File</span>&gt;</span>  </span><br><span class="line">  </span><br><span class="line">        <span class="comment">&lt;!-- RandomAccessFile 性能高于 File--&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">RandomAccessFile</span> <span class="attr">name</span>=<span class="string">"MyFile"</span> <span class="attr">fileName</span>=<span class="string">"logs/RandomAccessFile.log"</span>  &gt;</span>  </span><br><span class="line">            <span class="tag">&lt;<span class="name">PatternLayout</span>&gt;</span>  </span><br><span class="line">                <span class="tag">&lt;<span class="name">Charset</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">Charset</span>&gt;</span>  </span><br><span class="line">                <span class="tag">&lt;<span class="name">Pattern</span>&gt;</span>%d %p %c&#123;1.&#125; [%t] %m%n<span class="tag">&lt;/<span class="name">Pattern</span>&gt;</span>  </span><br><span class="line">            <span class="tag">&lt;/<span class="name">PatternLayout</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;/<span class="name">RandomAccessFile</span>&gt;</span>  </span><br><span class="line">  </span><br><span class="line">        <span class="comment">&lt;!--&lt;RollingFile&gt;&lt;/RollingFile&gt;--&gt;</span>  </span><br><span class="line">  </span><br><span class="line">        <span class="comment">&lt;!--  </span></span><br><span class="line"><span class="comment">            注意：一般情况下都使用RollingRandomAccessFile 。  </span></span><br><span class="line"><span class="comment">            RollingRandomAccessFile可以按照日志名称的格式进行定期备份，拥有一定的备份策略。  </span></span><br><span class="line"><span class="comment">            1.是否压缩备份日志：直接在filePattern属性的文件名称最后加对应的压缩后缀，如gzip压缩用 .gz  </span></span><br><span class="line"><span class="comment">        --&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">RollingRandomAccessFile</span> <span class="attr">name</span>=<span class="string">"RollingRandomAccessFile"</span> <span class="attr">fileName</span>=<span class="string">"logs/RollingRandomAccessFile.log"</span>  </span></span><br><span class="line"><span class="tag">                                 <span class="attr">filePattern</span>=<span class="string">"logs/RollingRandomAccessFile-%d&#123;yyyy-MM-dd&#125;-%i.log.gz"</span>&gt;</span>  </span><br><span class="line">            <span class="tag">&lt;<span class="name">PatternLayout</span>&gt;</span>  </span><br><span class="line">                <span class="tag">&lt;<span class="name">Pattern</span>&gt;</span>%d %p %c&#123;1.&#125; [%t] %m%n<span class="tag">&lt;/<span class="name">Pattern</span>&gt;</span>  </span><br><span class="line">            <span class="tag">&lt;/<span class="name">PatternLayout</span>&gt;</span>  </span><br><span class="line">            <span class="comment">&lt;!-- 备份策略:满足其中一个就可以启动备份--&gt;</span>  </span><br><span class="line">            <span class="tag">&lt;<span class="name">Policies</span>&gt;</span>  </span><br><span class="line">                <span class="comment">&lt;!-- interval 多久执行一次备份，单位为 RollingRandomAccessFile的属性filePattern中%d&#123;yyyy-MM-dd&#125;的最小时间单位，此处是天--&gt;</span>  </span><br><span class="line">                <span class="tag">&lt;<span class="name">TimeBasedTriggeringPolicy</span>  <span class="attr">interval</span>=<span class="string">"1"</span>  <span class="attr">modulate</span>=<span class="string">"true"</span>/&gt;</span>  </span><br><span class="line">                <span class="tag">&lt;<span class="name">SizeBasedTriggeringPolicy</span> <span class="attr">size</span>=<span class="string">"250 MB"</span>/&gt;</span>  </span><br><span class="line">            <span class="tag">&lt;/<span class="name">Policies</span>&gt;</span>  </span><br><span class="line">            <span class="comment">&lt;!-- 默认的备份策略：max="7"表示最多只保留7份日志，fileIndex属性是在拥有多个备份日志的时候，命令是以递增的数为文件名，max值时值大的文件是最新的内容，min值时值大的是最久的内容--&gt;</span>  </span><br><span class="line">            <span class="tag">&lt;<span class="name">DefaultRolloverStrategy</span>  <span class="attr">fileIndex</span>=<span class="string">"max"</span> <span class="attr">max</span>=<span class="string">"7"</span>&gt;</span>  </span><br><span class="line">                <span class="comment">&lt;!-- 删除指定目录下60天之前的日志--&gt;</span>  </span><br><span class="line">                <span class="tag">&lt;<span class="name">Delete</span> <span class="attr">basePath</span>=<span class="string">"$&#123;log.path&#125;"</span> <span class="attr">maxDepth</span>=<span class="string">"2"</span>&gt;</span>  </span><br><span class="line">                    <span class="tag">&lt;<span class="name">IfFileName</span> <span class="attr">glob</span>=<span class="string">"*/app-*.log.gz"</span> /&gt;</span>  </span><br><span class="line">                    <span class="tag">&lt;<span class="name">IfLastModified</span> <span class="attr">age</span>=<span class="string">"60d"</span> /&gt;</span>  </span><br><span class="line">                <span class="tag">&lt;/<span class="name">Delete</span>&gt;</span>  </span><br><span class="line">            <span class="tag">&lt;/<span class="name">DefaultRolloverStrategy</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;/<span class="name">RollingRandomAccessFile</span>&gt;</span>  </span><br><span class="line">  </span><br><span class="line">        <span class="comment">&lt;!-- 异步 appder  ,使用的是ArrayBlocingQueue --&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">Async</span> <span class="attr">name</span>=<span class="string">"Async"</span>&gt;</span>  </span><br><span class="line">            <span class="tag">&lt;<span class="name">AppenderRef</span> <span class="attr">ref</span>=<span class="string">"MyFile"</span>/&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;/<span class="name">Async</span>&gt;</span>  </span><br><span class="line">  </span><br><span class="line">    <span class="tag">&lt;/<span class="name">Appenders</span>&gt;</span>  </span><br><span class="line">  </span><br><span class="line">    <span class="tag">&lt;<span class="name">Loggers</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">Root</span> <span class="attr">level</span>=<span class="string">"error"</span>&gt;</span>  </span><br><span class="line">            <span class="tag">&lt;<span class="name">AppenderRef</span> <span class="attr">ref</span>=<span class="string">"MyFile"</span>/&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;/<span class="name">Root</span>&gt;</span>  </span><br><span class="line">  </span><br><span class="line">        <span class="comment">&lt;!-- logger  </span></span><br><span class="line"><span class="comment">        additivity属性：如果设置为true（默认值）则log会被打印两次，这里的logger和root--&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">Logger</span> <span class="attr">name</span>=<span class="string">"com.foo.bar.MyApp"</span> <span class="attr">level</span>=<span class="string">"info"</span> <span class="attr">additivity</span>=<span class="string">"true"</span>&gt;</span>  </span><br><span class="line">            <span class="tag">&lt;<span class="name">appender-ref</span> <span class="attr">ref</span>=<span class="string">"RandomAccessFile"</span>/&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;/<span class="name">Logger</span>&gt;</span>  </span><br><span class="line">  </span><br><span class="line">        <span class="comment">&lt;!-- 异步 logger：使用了disruptor类库，代替Jdk中的queue，性能提高很多  </span></span><br><span class="line"><span class="comment">        includeLocation属性是指layout中的  %C or $class, %F or %file, %l or %location, %L or %line, %M or %method，异步logger默认为false，如果设置为true，会影响logger的性能  </span></span><br><span class="line"><span class="comment">        --&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">AsyncLogger</span> <span class="attr">name</span>=<span class="string">"com.foo.test"</span> <span class="attr">level</span>=<span class="string">"info"</span> <span class="attr">additivity</span>=<span class="string">"false"</span> <span class="attr">includeLocation</span>=<span class="string">"false"</span>&gt;</span>  </span><br><span class="line">            <span class="tag">&lt;<span class="name">appender-ref</span> <span class="attr">ref</span>=<span class="string">"log4j2test"</span>/&gt;</span>  </span><br><span class="line">            <span class="tag">&lt;<span class="name">appender-ref</span> <span class="attr">ref</span>=<span class="string">"STDOUT"</span>/&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;/<span class="name">AsyncLogger</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;/<span class="name">Loggers</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="name">Configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <div>
+      
+          <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">
+                         <a href="http://www.limingming.org">李明明的个人网站:http://www.limingming.org</a>
+                         <br>
+                 ---本文结束，感谢阅读本文，如需转载，请注明原文出处---
+              
+        </div>
+    
+</div>
+
+      
+    </div>
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/配置/" rel="tag"># 配置</a>
+          
+            <a href="/tags/介绍/" rel="tag"># 介绍</a>
+          
+            <a href="/tags/使用/" rel="tag"># 使用</a>
+          
+            <a href="/tags/log4j2/" rel="tag"># log4j2</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/21/Spring/spring-boot2-x日志体系问题/" rel="next" title="spring boot2.x日志体系问题">
+                <i class="fa fa-chevron-left"></i> spring boot2.x日志体系问题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/22/杂谈/macOS常见问题记录/" rel="prev" title="macOS常见问题记录">
+                macOS常见问题记录 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/my-photo.jpg" alt="李明明">
+            
+              <p class="site-author-name" itemprop="name">李明明</p>
+              <p class="site-description motion-element" itemprop="description">Welcome to my site! My name is Li MingMing(李明明). 欢迎来到我的博客网站，我的名字是李明明</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">129</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/limm33" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://www.limingming.org" target="_blank" title="个人网站">
+                      
+                        <i class="fa fa-fw fa-crosshairs"></i>个人网站</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://blog.csdn.net/limm33" target="_blank" title="CSDN">
+                      
+                        <i class="fa fa-fw fa-book"></i>CSDN</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.jianshu.com/u/0ea8ec2aa0d1" target="_blank" title="简书">
+                      
+                        <i class="fa fa-fw fa-heartbeat"></i>简书</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://www.linkedin.com/in/李明明-kel" target="_blank" title="LinkIn">
+                      
+                        <i class="fa fa-fw fa-meh-o"></i>LinkIn</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/limm33" target="_blank" title="微博">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>微博</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.facebook.com/limm33" target="_blank" title="facebook">
+                      
+                        <i class="fa fa-fw fa-facebook"></i>facebook</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/limm333" target="_blank" title="twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>twitter</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#xml-配置"><span class="nav-number">2.</span> <span class="nav-text">xml 配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#无厘头的问题"><span class="nav-number">3.</span> <span class="nav-text">无厘头的问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#XML配置文件"><span class="nav-number">4.</span> <span class="nav-text">XML配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#XML配置语法"><span class="nav-number">5.</span> <span class="nav-text">XML配置语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Log4j2异步输出日志"><span class="nav-number">6.</span> <span class="nav-text">Log4j2异步输出日志</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#参考配置文件模版"><span class="nav-number"></span> <span class="nav-text">参考配置文件模版</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://limm33.github.io/source/js/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">李明明</span>
+
+  
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_pv"></span>
+</span>
+</div>
+
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共36.4k字</span>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

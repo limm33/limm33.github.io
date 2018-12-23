@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="仓库,Maven,安装,命令,">
+  <meta name="keywords" content="安装,仓库,Maven,命令,">
 
 
 
@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="原文      介绍废话就不说了：   1mvn install:install-file –Dfile=loushang-home-6.0.RELEASE.jar –DgroupId=org.loushang.framework –DartifactId=loushang-home –Dversion=6.0.RELEASE –Dpackaging=jar python脚本批量上传Jar包到私服">
-<meta name="keywords" content="仓库,Maven,安装,命令">
+<meta name="description" content="原文：http://limingming.org/index.php/2018/12/03/maven-install-jar-to-repository/      介绍废话就不说了：   1mvn install:install-file –Dfile=loushang-home-6.0.RELEASE.jar –DgroupId=org.loushang.framework –Dartifa">
+<meta name="keywords" content="安装,仓库,Maven,命令">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Maven安装jar包到仓库">
 <meta property="og:url" content="http://www.limingming.org/2018/12/03/maven/Maven安装jar包到仓库/index.html">
 <meta property="og:site_name" content="李明明的博客">
-<meta property="og:description" content="原文      介绍废话就不说了：   1mvn install:install-file –Dfile=loushang-home-6.0.RELEASE.jar –DgroupId=org.loushang.framework –DartifactId=loushang-home –Dversion=6.0.RELEASE –Dpackaging=jar python脚本批量上传Jar包到私服">
+<meta property="og:description" content="原文：http://limingming.org/index.php/2018/12/03/maven-install-jar-to-repository/      介绍废话就不说了：   1mvn install:install-file –Dfile=loushang-home-6.0.RELEASE.jar –DgroupId=org.loushang.framework –Dartifa">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-03T23:55:24.601Z">
+<meta property="og:updated_time" content="2018-12-20T14:57:47.817Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Maven安装jar包到仓库">
-<meta name="twitter:description" content="原文      介绍废话就不说了：   1mvn install:install-file –Dfile=loushang-home-6.0.RELEASE.jar –DgroupId=org.loushang.framework –DartifactId=loushang-home –Dversion=6.0.RELEASE –Dpackaging=jar python脚本批量上传Jar包到私服">
+<meta name="twitter:description" content="原文：http://limingming.org/index.php/2018/12/03/maven-install-jar-to-repository/      介绍废话就不说了：   1mvn install:install-file –Dfile=loushang-home-6.0.RELEASE.jar –DgroupId=org.loushang.framework –Dartifa">
 
 
 
@@ -386,7 +386,7 @@
       
 
       
-        <p><a href="http://limingming.org/index.php/2018/12/03/maven-install-jar-to-repository/" target="_blank" rel="noopener">原文</a>     </p>
+        <p><a href="http://limingming.org/index.php/2018/12/03/maven-install-jar-to-repository/" target="_blank" rel="noopener">原文：http://limingming.org/index.php/2018/12/03/maven-install-jar-to-repository/</a>     </p>
 <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>废话就不说了：  </p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn install:install-file –Dfile=loushang-home-6.0.RELEASE.jar –DgroupId=org.loushang.framework –DartifactId=loushang-home –Dversion=6.0.RELEASE –Dpackaging=jar</span><br></pre></td></tr></table></figure>
 <h1 id="python脚本批量上传Jar包到私服"><a href="#python脚本批量上传Jar包到私服" class="headerlink" title="python脚本批量上传Jar包到私服"></a>python脚本批量上传Jar包到私服</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> xml.etree.ElementTree <span class="keyword">import</span> Element, SubElement, tostring,ElementTree</span><br><span class="line"><span class="keyword">import</span> glob</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mvn_script</span><span class="params">(filename)</span>:</span></span><br><span class="line">       <span class="keyword">return</span>  <span class="string">"mvn deploy:deploy-file  -DrepositoryId=open2-baidu -Durl=http://10.100.10.131:8119/nexus-2.3.0-04/content/repositories/open2-baidu  -DgroupId=com.pzoom -DartifactId="</span>+filename[<span class="number">0</span>:len(filename)<span class="number">-4</span>]+<span class="string">" -Dversion=1.0 -Dpackaging=jar  -Dfile="</span>+filename</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">writeDependency</span><span class="params">(filename)</span>:</span></span><br><span class="line">    dependencies = Element(<span class="string">"dependencies"</span>)</span><br><span class="line">    dependency = SubElement(dependencies,<span class="string">"dependency"</span>)</span><br><span class="line">    groupId = SubElement(dependency, <span class="string">"groupId"</span>)</span><br><span class="line">    groupId.text = <span class="string">"com.pzoom"</span></span><br><span class="line">    artifactId = SubElement(dependency, <span class="string">"artifactId"</span>)</span><br><span class="line">    artifactId.text = filename[<span class="number">0</span>:len(filename)<span class="number">-4</span>]</span><br><span class="line">    version = SubElement(dependency, <span class="string">"version"</span>)</span><br><span class="line">    version.text=<span class="string">"1.0"</span></span><br><span class="line">    ElementTree(dependencies).write(<span class="string">"out.xml"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">files = glob.glob(<span class="string">'*.jar'</span>)</span><br><span class="line"><span class="keyword">for</span> file <span class="keyword">in</span> files:</span><br><span class="line">    writeDependency(file)</span><br><span class="line">    print(file)</span><br><span class="line">    os.system(mvn_script(file))</span><br><span class="line">    print(<span class="string">'upload success'</span>)</span><br><span class="line">    print(<span class="string">'delete the file : '</span>+file)</span><br><span class="line">    os.remove(file)</span><br></pre></td></tr></table></figure>
@@ -399,9 +399,9 @@
           <div>
     
         <div style="text-align:center;color: #ccc;font-size:14px;">
-                         <a href="http://www.limingming.org">李明明的个人网站</a>
+                         <a href="http://www.limingming.org">李明明的个人网站:http://www.limingming.org</a>
                          <br>
-              -------------本文结束<i class="fa fa-paw"></i>感谢阅读-------------
+                 ---本文结束，感谢阅读本文，如需转载，请注明原文出处---
               
         </div>
     
@@ -424,11 +424,11 @@
       
         <div class="post-tags">
           
+            <a href="/tags/安装/" rel="tag"># 安装</a>
+          
             <a href="/tags/仓库/" rel="tag"># 仓库</a>
           
             <a href="/tags/Maven/" rel="tag"># Maven</a>
-          
-            <a href="/tags/安装/" rel="tag"># 安装</a>
           
             <a href="/tags/命令/" rel="tag"># 命令</a>
           
@@ -534,7 +534,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-count">43</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -556,7 +556,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">120</span>
+                  <span class="site-state-item-count">129</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -689,7 +689,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共29.3k字</span>
+  <span class="post-count">博客全站共36.4k字</span>
 </div>
 
         
