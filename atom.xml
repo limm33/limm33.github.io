@@ -83,7 +83,7 @@
     <link href="http://www.limingming.org/2018/12/22/Java/log4j2%E4%BD%BF%E7%94%A8/"/>
     <id>http://www.limingming.org/2018/12/22/Java/log4j2使用/</id>
     <published>2018-12-22T08:22:09.000Z</published>
-    <updated>2018-12-23T14:43:49.773Z</updated>
+    <updated>2018-12-23T14:45:50.744Z</updated>
     
     <summary type="html">
     
@@ -132,9 +132,9 @@
       <category term="Spring" scheme="http://www.limingming.org/categories/Spring/"/>
     
     
-      <category term="spring" scheme="http://www.limingming.org/tags/spring/"/>
-    
       <category term="日志" scheme="http://www.limingming.org/tags/%E6%97%A5%E5%BF%97/"/>
+    
+      <category term="spring" scheme="http://www.limingming.org/tags/spring/"/>
     
       <category term="输出" scheme="http://www.limingming.org/tags/%E8%BE%93%E5%87%BA/"/>
     
@@ -166,11 +166,11 @@
     
       <category term="配置" scheme="http://www.limingming.org/tags/%E9%85%8D%E7%BD%AE/"/>
     
-      <category term="日志" scheme="http://www.limingming.org/tags/%E6%97%A5%E5%BF%97/"/>
-    
       <category term="log4j" scheme="http://www.limingming.org/tags/log4j/"/>
     
       <category term="使用" scheme="http://www.limingming.org/tags/%E4%BD%BF%E7%94%A8/"/>
+    
+      <category term="日志" scheme="http://www.limingming.org/tags/%E6%97%A5%E5%BF%97/"/>
     
   </entry>
   

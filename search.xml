@@ -49,8 +49,8 @@
         <category>Spring</category>
       </categories>
       <tags>
-        <tag>spring</tag>
         <tag>日志</tag>
+        <tag>spring</tag>
         <tag>输出</tag>
         <tag>体系</tag>
       </tags>
@@ -64,9 +64,9 @@
       </categories>
       <tags>
         <tag>配置</tag>
-        <tag>日志</tag>
         <tag>log4j</tag>
         <tag>使用</tag>
+        <tag>日志</tag>
       </tags>
   </entry>
   <entry>
@@ -358,8 +358,8 @@
         <category>Maven</category>
       </categories>
       <tags>
-        <tag>nexus</tag>
         <tag>介绍</tag>
+        <tag>nexus</tag>
         <tag>私服</tag>
       </tags>
   </entry>
@@ -517,7 +517,7 @@
     <url>%2F2018%2F12%2F01%2FJava%2FJDK%E5%8F%8AopenJDK%E7%89%88%E6%9C%AC%E6%9B%B4%E8%BF%AD%2F</url>
     <content type="text"><![CDATA[作者: 李明明http://limingming.org/index.php/2018/11/30/jdk-and-openjdk-version/ 道听途说最近浪潮公司内部除了持之以恒的宣扬“奋进者精神”之外，可能最大的一件事情就是JDK要收费了，观望着是不是要更换为openJDK，9月20多号Oracle发布了java 11，同时也发布后续更新策略，那是怎么收费的呢？ 追根溯源oracle jdk 和open jdk有什么区别？ Java 11授权使用BCL协议，没有个人、商业版了，也就是说，如果要使用的必须要付出代价，代价就是Money，不禁想说一句：万恶的资本主义。 Open jdk使用GPL协议 两种协议有什么区别呢？首先BCL不是开源协议，简要来介绍BCL协议的话，就是你一点也不能更改我的jdk，也不能基于我开发周边类库发布，如果基于我这个BCL开发，需要判断你是个人版还是商业版，再收钱！GPL是开源协议，JDK是可以更改的，基于这个GPL开发的东西也是属于GPL协议的，也要开源出来。 补充：由于历史原因，OpenJDK是JDK的开放源码版本，也就是上面我们说的GPL协议的，但是到了JDK7的时候OpenJDK已经为jdk的主干开发，oracle jdk是在openjdk基础上进行封板发布的，所以大部分的源代码是相同的，只不过其中有部分少量的源代码被替换掉，使用JRL发布，以上jdk7的过程中就产生了微妙的变化，openjdk 是GPL协议的，完全可以商用，但是JRL只允许个人使用不允许商用。 版本更迭大体梳理一下JDK版本更迭过程中产生了那些新特性，也借此机会梳理一下自己JAVA的知识脉络。 JDK5 泛型“ 123ArrayList list=new ArrayList()------&gt;ArrayList&lt;Integer&gt;list=new ArrayList&lt;Integer&gt;(); 枚举 静态导入 123456789101112import static java.lang.System.out``` 3. 可变参数（Varargs）4. 内省（Introspector），主要用于操作JavaBean中的属性，通过getXxx/setXxx。一般的做法是通过类Introspector来获取某个对象的BeanInfo信息，然后通过BeanInfo来获取属性的描述器（PropertyDescriptor），通过这个属性描述器就可以获取某个属性对应的getter/setter方法，然后我们就可以通过反射机制来调用这些方法。泛型(Generic)（包括通配类型/边界类型等）5. For-Each循环 ```javai=0;i&lt;a.length;i++------------&gt;for(int i:a)&#123;......&#125; 注解 协变返回类型：实际返回类型可以是要求的返回类型的一个子类型 自动装箱拆箱： 123int i=list.get(0).parseInt();--------&gt;int i=list.get(0); 我们经常阅读的编程思想也是在jdk5的版本上进行编写的，可惜作者忙别的事情去了，没有更新了，可能觉得java更新至此也应该很全面了吧。 JDK6 AWT新增加了两个类:Desktop和SystemTray，其中前者用来通过系统默认程序来执行一个操作，如使用默认浏览器浏览指定的URL,用默认邮件客户端给指定的邮箱发邮件,用默认应用程序打开或编辑文件(比如,用记事本打开以txt为后缀名的文件),用系统默认的打印机打印文档等。后者可以用来在系统托盘区创建一个托盘程序。 使用JAXB2来实现对象与XML之间的映射，可以将一个Java对象转变成为XML格式，反之亦然 StAX，一种利用拉模式解析(pull-parsing)XML文档的API。类似于SAX，也基于事件驱动模型。之所以将StAX加入到JAXP家族，是因为JDK6中的JAXB2和JAX-WS 2.0中都会用StAX。 使用Compiler API，动态编译Java源文件，如JSP编译引擎就是动态的，所以修改后无需重启服务器。（刚知道是从这里开始可以动态编译的） 轻量级Http Server API，据此可以构建自己的嵌入式HttpServer,它支持Http和Https协议。 插入式注解处理API(PluggableAnnotation Processing API) 提供了Console类用以开发控制台程序，位于java.io包中。据此可方便与Windows下的cmd或Linux下的Terminal等交互。 对脚本语言的支持如: ruby,groovy, javascript Common Annotations，原是J2EE 5.0规范的一部分，现在把它的一部分放到了J2SE 6.0中 嵌入式数据库 Derby 增强的for循环语句 1234567Integer[] numbers = computeNumbers();for (int i=0; i &lt; numbers.length ; i++)sum += numbers[i];||int sum = 0;for ( int number: computeNumbers() )sum += number; 监视和管理Java SE 6中对内存泄漏增强了分析以及诊断能力。当遇到java.lang.OutOfMemory异常的时候，可以得到一个完整的堆栈信息，并且当堆已经满了的时候，会产生一个Log文件来记录这个致命错误。另外，JVM还添加了一个选项，允许你在堆满的时候运行脚本。 插入式注解处理插入式注解处理API(JSR 269)提供一套标准API来处理Annotations 安全性 如果你细细想来jdk6用到的新特性的确很少 JDK7 对Java集合（Collections）的增强支持，可直接采用[]、{}的形式存入对象，采用[]的形式按照索引、键值来获取集合中的对象。如： 12345List&lt;String&gt;list=[“item1”,”item2”];//存Stringitem=list[0];//直接取Set&lt;String&gt;set=&#123;“item1”,”item2”,”item3”&#125;;//存Map&lt;String,Integer&gt; map=&#123;“key1”:1,”key2”:2&#125;;//存Intvalue=map[“key1”]; 在Switch中可用String 数值可加下划线用作分隔符（编译时自动被忽略） 支持二进制数字，如： 12345678910int binary= 0b1001_1001; ``` 5. 简化了可变参数方法的调用 6. 调用泛型类的构造方法时，可以省去泛型参数，编译器会自动判断。 7. Boolean类型反转，空指针安全,参与位运算 8. char类型的equals方法: ```javabooleanCharacter.equalsIgnoreCase(char ch1, char ch2) 安全的加减乘除: 1Math.safeToInt(longv); Math.safeNegate(int v); Math.safeSubtract(long v1, int v2);Math.safeMultiply(int v1, int v2); Map集合支持并发请求，注HashTable是线程安全的，Map是非线程安全的。但此处更新使得其也支持并发。另外，Map对象可这样定义： 1Map map = &#123;name:”xxx”,age:18&#125;; JDK8 接口的默认方法：即接口中可以声明一个非抽象的方法做为默认的实现，但只能声明一个，且在方法的返回类型前要加上“default”关键字。2.Lambda 表达式：是对匿名比较器的简化，如： 1Collections.sort(names,(String a, String b) -&gt; &#123; returnb.compareTo(a);&#125;); 对于函数体只有一行代码的，你可以去掉大括号{}以及return关键字。如： 123456Collections.sort(names,(String a, String b) -&gt; b.compareTo(a));``` 或：```javaCollections.sort(names, (a, b) -&gt; b.compareTo(a)); 函数式接口：是指仅仅只包含一个抽象方法的接口，要加@FunctionalInterface注解 使用 :: 关键字来传递方法或者构造函数引用 多重注解 还增加了很多与函数式接口类似的接口以及与Map相关的API等 其实以上的只不过是对于各个版本功能的简要摘录，如果想要详细了解的话可以看官方文档，平时用到的就是到jdk8，从jdk5到现在用jdk8，jdk9、和10还从来没有接触过。 最后附上相关项目的地址： OpenJDK官网:http://openjdk.java.net/ OpenJDK源码库：http://hg.openjdk.java.net/ OpenJDK源码库：http://hg.openjdk.java.net/]]></content>
       <categories>
-        <category>java</category>
+        <category>Java</category>
       </categories>
       <tags>
         <tag>Java</tag>
@@ -575,7 +575,7 @@
   <entry>
     <title><![CDATA[Mac OS下搭建Vue开发环境]]></title>
     <url>%2F2018%2F11%2F23%2Fvue%2FMac-OS%E4%B8%8B%E6%90%AD%E5%BB%BAVue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%2F</url>
-    <content type="text"><![CDATA[前言原来一直学习使用React，现在因为工作的需要，对Vue进行学习和使用，现在比较流行的框架React,angular,vue，正好对于vue也进行些了解。 环境搭建 打开终端,安装brew 1usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot; 安装成功后，使用查看版本，验证是否安装成功1brew -v 安装node.js1brew install nodejs 也可以下载安装下载地址安装成功后，使用验证123node -v``` * 给nodejs目录赋权限 sudo chmod -R 777 /usr/local/lib/node_modules/1* 安装 淘宝镜像 （npm） npm install -g cnpm –registry=https://registry.npm.taobao.org12* 安装webpack cnpm install webpack -g12* 安装vue脚手架 npm install vue-cli -g12# 开始Vue 创建一个基于 webpack 模板的新项目$ vue init webpack my-project 这里需要进行一些配置，默认回车即可This will install Vue 2.x version of the template. For Vue 1.x use: vue init webpack#1.0 my-project ? Project name my-project? Project description A Vue.js project? Author runoob &#x74;&#101;&#x73;&#116;&#x40;&#x72;&#x75;&#x6e;&#111;&#x6f;&#98;&#46;&#99;&#x6f;&#x6d;? Vue build standalone? Use ESLint to lint your code? Yes? Pick an ESLint preset Standard? Setup unit tests with Karma + Mocha? Yes? Setup e2e tests with Nightwatch? Yes vue-cli · Generated “my-project”. To get started: cd my-project npm install npm run dev Documentation can be found at https://vuejs-templates.github.io/webpack1进入项目，安装并运行： $ cd my-project$ cnpm install$ cnpm run dev DONE Compiled successfully in 4388ms Listening at http://localhost:8080`]]></content>
+    <content type="text"><![CDATA[前言原来一直学习使用React，现在因为工作的需要，对Vue进行学习和使用，现在比较流行的框架React,angular,vue，正好对于vue也进行些了解。 环境搭建 打开终端,安装brew 1usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot; 安装成功后，使用查看版本，验证是否安装成功1brew -v 安装node.js1brew install nodejs 也可以下载安装下载地址安装成功后，使用验证123node -v``` * 给nodejs目录赋权限 sudo chmod -R 777 /usr/local/lib/node_modules/1* 安装 淘宝镜像 （npm） npm install -g cnpm –registry=https://registry.npm.taobao.org12* 安装webpack cnpm install webpack -g12* 安装vue脚手架 npm install vue-cli -g12# 开始Vue 创建一个基于 webpack 模板的新项目$ vue init webpack my-project 这里需要进行一些配置，默认回车即可This will install Vue 2.x version of the template. For Vue 1.x use: vue init webpack#1.0 my-project ? Project name my-project? Project description A Vue.js project? Author runoob &#x74;&#101;&#x73;&#116;&#x40;&#114;&#117;&#110;&#x6f;&#x6f;&#98;&#x2e;&#99;&#111;&#109;? Vue build standalone? Use ESLint to lint your code? Yes? Pick an ESLint preset Standard? Setup unit tests with Karma + Mocha? Yes? Setup e2e tests with Nightwatch? Yes vue-cli · Generated “my-project”. To get started: cd my-project npm install npm run dev Documentation can be found at https://vuejs-templates.github.io/webpack1进入项目，安装并运行： $ cd my-project$ cnpm install$ cnpm run dev DONE Compiled successfully in 4388ms Listening at http://localhost:8080`]]></content>
       <categories>
         <category>Vue</category>
       </categories>
