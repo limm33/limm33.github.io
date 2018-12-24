@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.limingming.org/"/>
-  <updated>2018-12-22T15:21:49.762Z</updated>
+  <updated>2018-12-22T10:17:28.437Z</updated>
   <id>http://www.limingming.org/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://www.limingming.org/2018/12/22/%E6%9D%82%E8%B0%88/syntax-error-near-unexpected-token-do-r%E6%8A%A5%E9%94%99%E9%97%AE%E9%A2%98/"/>
     <id>http://www.limingming.org/2018/12/22/杂谈/syntax-error-near-unexpected-token-do-r报错问题/</id>
     <published>2018-12-22T10:06:53.000Z</published>
-    <updated>2018-12-22T15:21:49.762Z</updated>
+    <updated>2018-12-22T10:17:28.437Z</updated>
     
     <summary type="html">
     
@@ -51,7 +51,7 @@
     <link href="http://www.limingming.org/2018/12/22/%E6%9D%82%E8%B0%88/macOS%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/"/>
     <id>http://www.limingming.org/2018/12/22/杂谈/macOS常见问题记录/</id>
     <published>2018-12-22T09:49:31.000Z</published>
-    <updated>2018-12-22T15:21:49.762Z</updated>
+    <updated>2018-12-22T09:52:05.430Z</updated>
     
     <summary type="html">
     
@@ -83,7 +83,7 @@
     <link href="http://www.limingming.org/2018/12/22/Java/log4j2%E4%BD%BF%E7%94%A8/"/>
     <id>http://www.limingming.org/2018/12/22/Java/log4j2使用/</id>
     <published>2018-12-22T08:22:09.000Z</published>
-    <updated>2018-12-23T14:45:50.744Z</updated>
+    <updated>2018-12-24T01:48:27.788Z</updated>
     
     <summary type="html">
     
@@ -115,7 +115,7 @@
     <link href="http://www.limingming.org/2018/12/21/Spring/spring-boot2-x%E6%97%A5%E5%BF%97%E4%BD%93%E7%B3%BB%E9%97%AE%E9%A2%98/"/>
     <id>http://www.limingming.org/2018/12/21/Spring/spring-boot2-x日志体系问题/</id>
     <published>2018-12-21T02:08:41.000Z</published>
-    <updated>2018-12-21T15:20:40.546Z</updated>
+    <updated>2018-12-21T02:38:30.395Z</updated>
     
     <summary type="html">
     
@@ -147,7 +147,7 @@
     <link href="http://www.limingming.org/2018/12/19/Java/log4j%E4%BD%BF%E7%94%A8/"/>
     <id>http://www.limingming.org/2018/12/19/Java/log4j使用/</id>
     <published>2018-12-19T12:39:07.000Z</published>
-    <updated>2018-12-22T15:21:49.762Z</updated>
+    <updated>2018-12-22T08:28:39.845Z</updated>
     
     <summary type="html">
     
@@ -179,7 +179,7 @@
     <link href="http://www.limingming.org/2018/12/18/Spring/Spring-boot-%E9%83%A8%E7%BD%B2%E5%88%B0tomcat%E4%B8%AD%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/"/>
     <id>http://www.limingming.org/2018/12/18/Spring/Spring-boot-部署到tomcat中注意事项/</id>
     <published>2018-12-18T14:43:46.000Z</published>
-    <updated>2018-12-20T14:57:47.675Z</updated>
+    <updated>2018-12-20T03:13:21.295Z</updated>
     
     <summary type="html">
     
@@ -198,11 +198,11 @@
     
       <category term="部署" scheme="http://www.limingming.org/tags/%E9%83%A8%E7%BD%B2/"/>
     
+      <category term="tomcat" scheme="http://www.limingming.org/tags/tomcat/"/>
+    
       <category term="Spring" scheme="http://www.limingming.org/tags/Spring/"/>
     
       <category term="boot" scheme="http://www.limingming.org/tags/boot/"/>
-    
-      <category term="tomcat" scheme="http://www.limingming.org/tags/tomcat/"/>
     
   </entry>
   
@@ -211,7 +211,7 @@
     <link href="http://www.limingming.org/2018/12/17/Linux/centos%E4%B8%8B%E5%90%84%E7%A7%8D%E6%BA%90%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%B9%E5%BC%8F/"/>
     <id>http://www.limingming.org/2018/12/17/Linux/centos下各种源的配置方式/</id>
     <published>2018-12-17T06:27:52.000Z</published>
-    <updated>2018-12-20T14:57:47.562Z</updated>
+    <updated>2018-12-20T03:07:25.613Z</updated>
     
     <summary type="html">
     
@@ -245,7 +245,7 @@
     <link href="http://www.limingming.org/2018/12/17/Linux/CentOS7-%E5%AE%89%E8%A3%85pip/"/>
     <id>http://www.limingming.org/2018/12/17/Linux/CentOS7-安装pip/</id>
     <published>2018-12-17T06:27:41.000Z</published>
-    <updated>2018-12-20T14:57:47.510Z</updated>
+    <updated>2018-12-20T03:07:10.591Z</updated>
     
     <summary type="html">
     
@@ -275,7 +275,7 @@
     <link href="http://www.limingming.org/2018/12/15/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/jenkins%E4%B8%ADSSH-remote-hosts%E9%85%8D%E7%BD%AE/"/>
     <id>http://www.limingming.org/2018/12/15/开发工具/jenkins中SSH-remote-hosts配置/</id>
     <published>2018-12-15T08:11:07.000Z</published>
-    <updated>2018-12-15T14:34:03.625Z</updated>
+    <updated>2018-12-15T08:45:28.390Z</updated>
     
     <summary type="html">
     
@@ -307,7 +307,7 @@
     <link href="http://www.limingming.org/2018/12/15/Linux/This-account-is-currently-not-available%E9%97%AE%E9%A2%98/"/>
     <id>http://www.limingming.org/2018/12/15/Linux/This-account-is-currently-not-available问题/</id>
     <published>2018-12-15T07:43:02.000Z</published>
-    <updated>2018-12-20T14:57:47.562Z</updated>
+    <updated>2018-12-20T03:07:46.600Z</updated>
     
     <summary type="html">
     
@@ -339,7 +339,7 @@
     <link href="http://www.limingming.org/2018/12/13/Git/Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
     <id>http://www.limingming.org/2018/12/13/Git/Git常用命令/</id>
     <published>2018-12-13T12:06:24.000Z</published>
-    <updated>2018-12-20T14:57:47.391Z</updated>
+    <updated>2018-12-20T03:06:57.014Z</updated>
     
     <summary type="html">
     
@@ -371,7 +371,7 @@
     <link href="http://www.limingming.org/2018/12/12/Linux/CentOS7%E4%BF%AE%E6%94%B9%E9%98%B2%E7%81%AB%E5%A2%99%E9%85%8D%E7%BD%AE%E5%BC%80%E6%94%BE%E7%AB%AF%E5%8F%A3/"/>
     <id>http://www.limingming.org/2018/12/12/Linux/CentOS7修改防火墙配置开放端口/</id>
     <published>2018-12-12T07:31:07.000Z</published>
-    <updated>2018-12-20T14:57:47.522Z</updated>
+    <updated>2018-12-20T03:07:18.592Z</updated>
     
     <summary type="html">
     
@@ -401,7 +401,39 @@
     <link href="http://www.limingming.org/2018/12/12/DB/Mysql%E8%BF%9E%E6%8E%A5SSL%E9%94%99%E8%AF%AF%E8%AD%A6%E5%91%8A/"/>
     <id>http://www.limingming.org/2018/12/12/DB/Mysql连接SSL错误警告/</id>
     <published>2018-12-12T03:40:22.000Z</published>
-    <updated>2018-12-20T14:57:47.319Z</updated>
+    <updated>2018-12-20T03:06:19.824Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="DB" scheme="http://www.limingming.org/categories/DB/"/>
+    
+    
+      <category term="mysql" scheme="http://www.limingming.org/tags/mysql/"/>
+    
+      <category term="警告" scheme="http://www.limingming.org/tags/%E8%AD%A6%E5%91%8A/"/>
+    
+      <category term="ssl" scheme="http://www.limingming.org/tags/ssl/"/>
+    
+      <category term="解决" scheme="http://www.limingming.org/tags/%E8%A7%A3%E5%86%B3/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Linux系统Mysql数据库安装及修改存储数据位置</title>
+    <link href="http://www.limingming.org/2018/12/11/DB/Linux%E7%B3%BB%E7%BB%9FMysql%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BF%AE%E6%94%B9%E5%AD%98%E5%82%A8%E6%95%B0%E6%8D%AE%E4%BD%8D%E7%BD%AE/"/>
+    <id>http://www.limingming.org/2018/12/11/DB/Linux系统Mysql数据库安装及修改存储数据位置/</id>
+    <published>2018-12-11T11:28:07.000Z</published>
+    <updated>2018-12-20T03:05:50.828Z</updated>
     
     <summary type="html">
     
@@ -421,36 +453,6 @@
       <category term="mysql" scheme="http://www.limingming.org/tags/mysql/"/>
     
       <category term="解决" scheme="http://www.limingming.org/tags/%E8%A7%A3%E5%86%B3/"/>
-    
-      <category term="警告" scheme="http://www.limingming.org/tags/%E8%AD%A6%E5%91%8A/"/>
-    
-      <category term="ssl" scheme="http://www.limingming.org/tags/ssl/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Linux系统Mysql数据库安装及修改存储数据位置</title>
-    <link href="http://www.limingming.org/2018/12/11/DB/Linux%E7%B3%BB%E7%BB%9FMysql%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BF%AE%E6%94%B9%E5%AD%98%E5%82%A8%E6%95%B0%E6%8D%AE%E4%BD%8D%E7%BD%AE/"/>
-    <id>http://www.limingming.org/2018/12/11/DB/Linux系统Mysql数据库安装及修改存储数据位置/</id>
-    <published>2018-12-11T11:28:07.000Z</published>
-    <updated>2018-12-20T14:57:47.307Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-      <category term="DB" scheme="http://www.limingming.org/categories/DB/"/>
-    
-    
-      <category term="mysql" scheme="http://www.limingming.org/tags/mysql/"/>
     
       <category term="安装" scheme="http://www.limingming.org/tags/%E5%AE%89%E8%A3%85/"/>
     
@@ -460,8 +462,6 @@
     
       <category term="问题" scheme="http://www.limingming.org/tags/%E9%97%AE%E9%A2%98/"/>
     
-      <category term="解决" scheme="http://www.limingming.org/tags/%E8%A7%A3%E5%86%B3/"/>
-    
   </entry>
   
   <entry>
@@ -469,7 +469,7 @@
     <link href="http://www.limingming.org/2018/12/10/Linux/%E9%80%9A%E8%BF%87yum%E5%AE%89%E8%A3%85Ansible/"/>
     <id>http://www.limingming.org/2018/12/10/Linux/通过yum安装Ansible/</id>
     <published>2018-12-10T07:59:43.000Z</published>
-    <updated>2018-12-20T14:57:47.595Z</updated>
+    <updated>2018-12-20T03:08:04.538Z</updated>
     
     <summary type="html">
     
@@ -501,7 +501,7 @@
     <link href="http://www.limingming.org/2018/12/08/DB/mysql-%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BF%AE%E6%94%B9%E5%AF%86%E7%A0%81%E5%8F%8A%E6%9B%B4%E6%94%B9%E8%BF%9C%E7%A8%8B%E8%AE%BF%E9%97%AE%E6%9D%83%E9%99%90/"/>
     <id>http://www.limingming.org/2018/12/08/DB/mysql-数据库修改密码及更改远程访问权限/</id>
     <published>2018-12-08T06:00:55.000Z</published>
-    <updated>2018-12-20T14:57:47.319Z</updated>
+    <updated>2018-12-20T03:06:09.694Z</updated>
     
     <summary type="html">
     
@@ -539,7 +539,7 @@
     <link href="http://www.limingming.org/2018/12/08/Linux/nexus3%E9%85%8D%E7%BD%AEyum%E6%BA%90/"/>
     <id>http://www.limingming.org/2018/12/08/Linux/nexus3配置yum源/</id>
     <published>2018-12-07T16:33:57.000Z</published>
-    <updated>2018-12-20T14:57:47.588Z</updated>
+    <updated>2018-12-20T03:07:37.776Z</updated>
     
     <summary type="html">
     
@@ -571,7 +571,7 @@
     <link href="http://www.limingming.org/2018/12/07/Linux/%E5%9B%BD%E5%86%85yum%E6%BA%90%E5%9C%B0%E5%9D%80/"/>
     <id>http://www.limingming.org/2018/12/07/Linux/国内yum源地址/</id>
     <published>2018-12-07T15:21:55.000Z</published>
-    <updated>2018-12-20T14:57:47.595Z</updated>
+    <updated>2018-12-20T03:07:54.416Z</updated>
     
     <summary type="html">
     
@@ -603,7 +603,7 @@
     <link href="http://www.limingming.org/2018/12/06/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/mac%E4%B8%8A%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2nginx/"/>
     <id>http://www.limingming.org/2018/12/06/开发工具/mac上安装部署nginx/</id>
     <published>2018-12-06T09:41:19.000Z</published>
-    <updated>2018-12-06T23:11:40.456Z</updated>
+    <updated>2018-12-06T10:51:12.215Z</updated>
     
     <summary type="html">
     
@@ -632,10 +632,10 @@
   
   <entry>
     <title>Maven仓库存在jar包但依旧提示无法下载</title>
-    <link href="http://www.limingming.org/2018/12/05/maven/Maven%E4%BB%93%E5%BA%93%E5%AD%98%E5%9C%A8jar%E5%8C%85%E4%BD%86%E4%BE%9D%E6%97%A7%E6%8F%90%E7%A4%BA%E6%97%A0%E6%B3%95%E4%B8%8B%E8%BD%BD/"/>
-    <id>http://www.limingming.org/2018/12/05/maven/Maven仓库存在jar包但依旧提示无法下载/</id>
+    <link href="http://www.limingming.org/2018/12/05/Maven/Maven%E4%BB%93%E5%BA%93%E5%AD%98%E5%9C%A8jar%E5%8C%85%E4%BD%86%E4%BE%9D%E6%97%A7%E6%8F%90%E7%A4%BA%E6%97%A0%E6%B3%95%E4%B8%8B%E8%BD%BD/"/>
+    <id>http://www.limingming.org/2018/12/05/Maven/Maven仓库存在jar包但依旧提示无法下载/</id>
     <published>2018-12-05T07:05:20.000Z</published>
-    <updated>2018-12-20T14:57:47.759Z</updated>
+    <updated>2018-12-20T03:08:14.213Z</updated>
     
     <summary type="html">
     
