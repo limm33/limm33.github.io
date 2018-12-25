@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.limingming.org/"/>
-  <updated>2018-12-22T10:17:28.437Z</updated>
+  <updated>2018-12-25T07:26:03.389Z</updated>
   <id>http://www.limingming.org/</id>
   
   <author>
@@ -15,6 +15,38 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>maven无法下载构件 </title>
+    <link href="http://www.limingming.org/2018/12/25/Maven/maven%E6%97%A0%E6%B3%95%E4%B8%8B%E8%BD%BD%E6%9E%84%E4%BB%B6/"/>
+    <id>http://www.limingming.org/2018/12/25/Maven/maven无法下载构件/</id>
+    <published>2018-12-25T07:25:10.000Z</published>
+    <updated>2018-12-25T07:26:03.389Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="Maven" scheme="http://www.limingming.org/categories/Maven/"/>
+    
+    
+      <category term="无法" scheme="http://www.limingming.org/tags/%E6%97%A0%E6%B3%95/"/>
+    
+      <category term="Maven" scheme="http://www.limingming.org/tags/Maven/"/>
+    
+      <category term="下载" scheme="http://www.limingming.org/tags/%E4%B8%8B%E8%BD%BD/"/>
+    
+      <category term="构件" scheme="http://www.limingming.org/tags/%E6%9E%84%E4%BB%B6/"/>
+    
+  </entry>
   
   <entry>
     <title>syntax error near unexpected token $ do报错问题</title>
@@ -51,7 +83,7 @@
     <link href="http://www.limingming.org/2018/12/22/%E6%9D%82%E8%B0%88/macOS%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/"/>
     <id>http://www.limingming.org/2018/12/22/杂谈/macOS常见问题记录/</id>
     <published>2018-12-22T09:49:31.000Z</published>
-    <updated>2018-12-22T09:52:05.430Z</updated>
+    <updated>2018-12-24T09:29:19.580Z</updated>
     
     <summary type="html">
     
@@ -230,11 +262,11 @@
     
       <category term="centos" scheme="http://www.limingming.org/tags/centos/"/>
     
-      <category term="pip" scheme="http://www.limingming.org/tags/pip/"/>
-    
       <category term="源" scheme="http://www.limingming.org/tags/%E6%BA%90/"/>
     
       <category term="配置" scheme="http://www.limingming.org/tags/%E9%85%8D%E7%BD%AE/"/>
+    
+      <category term="pip" scheme="http://www.limingming.org/tags/pip/"/>
     
       <category term="yum" scheme="http://www.limingming.org/tags/yum/"/>
     
@@ -627,38 +659,6 @@
       <category term="mac" scheme="http://www.limingming.org/tags/mac/"/>
     
       <category term="nginx" scheme="http://www.limingming.org/tags/nginx/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Maven仓库存在jar包但依旧提示无法下载</title>
-    <link href="http://www.limingming.org/2018/12/05/Maven/Maven%E4%BB%93%E5%BA%93%E5%AD%98%E5%9C%A8jar%E5%8C%85%E4%BD%86%E4%BE%9D%E6%97%A7%E6%8F%90%E7%A4%BA%E6%97%A0%E6%B3%95%E4%B8%8B%E8%BD%BD/"/>
-    <id>http://www.limingming.org/2018/12/05/Maven/Maven仓库存在jar包但依旧提示无法下载/</id>
-    <published>2018-12-05T07:05:20.000Z</published>
-    <updated>2018-12-20T03:08:14.213Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-      <category term="Maven" scheme="http://www.limingming.org/categories/Maven/"/>
-    
-    
-      <category term="maven" scheme="http://www.limingming.org/tags/maven/"/>
-    
-      <category term="存在" scheme="http://www.limingming.org/tags/%E5%AD%98%E5%9C%A8/"/>
-    
-      <category term="依然" scheme="http://www.limingming.org/tags/%E4%BE%9D%E7%84%B6/"/>
-    
-      <category term="报错" scheme="http://www.limingming.org/tags/%E6%8A%A5%E9%94%99/"/>
     
   </entry>
   
