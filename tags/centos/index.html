@@ -85,7 +85,7 @@
 <meta name="keywords" content="Welcome to my site! My name is Li MingMing(李明明). You can call me Kel. I was born in 1993s.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="李明明的博客">
-<meta property="og:url" content="http://www.limingming.org/tags/centos/index.html">
+<meta property="og:url" content="http://www.limingming.org/tags/Centos/index.html">
 <meta property="og:site_name" content="李明明的博客">
 <meta property="og:description" content="Welcome to my site! My name is Li MingMing(李明明). 欢迎来到我的博客网站，我的名字是李明明">
 <meta property="og:locale" content="zh-Hans">
@@ -121,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://www.limingming.org/tags/centos/">
+  <link rel="canonical" href="http://www.limingming.org/tags/Centos/">
 
 
 
 
 
-  <title>标签: centos | 李明明的博客</title>
+  <title>标签: Centos | 李明明的博客</title>
   
 
 
@@ -289,7 +289,7 @@
 
     <div id="posts" class="posts-collapse">
       <div class="collection-title">
-        <h1>centos<small>标签</small>
+        <h1>Centos<small>标签</small>
         </h1>
       </div>
 
@@ -301,43 +301,17 @@
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2018/12/17/Linux/centos下各种源的配置方式/" itemprop="url">
+            <a class="post-title-link" href="/2018/12/26/Linux/centos常见配置修改/" itemprop="url">
               
-                <span itemprop="name">centos下各种源的配置方式</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-12-17T14:27:52+08:00" content="2018-12-17">
-          12-17
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/12/17/Linux/CentOS7-安装pip/" itemprop="url">
-              
-                <span itemprop="name">CentOS7 安装pip</span>
+                <span itemprop="name">centos常见配置修改</span>
               
             </a>
         
       </h2>
 
       <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-12-17T14:27:41+08:00" content="2018-12-17">
-          12-17
+        <time class="post-time" itemprop="dateCreated" datetime="2018-12-26T21:19:02+08:00" content="2018-12-26">
+          12-26
         </time>
       </div>
 
@@ -399,7 +373,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-count">45</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -421,7 +395,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">131</span>
+                  <span class="site-state-item-count">135</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -538,7 +512,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共36.7k字</span>
+  <span class="post-count">博客全站共37.1k字</span>
 </div>
 
         
@@ -975,6 +949,50 @@
     }
 
     // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+ window;
     $('.popup-trigger').click(function(e) {
       e.stopPropagation();
       if (isfetched === false) {

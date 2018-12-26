@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[centos常见配置修改]]></title>
+    <url>%2F2018%2F12%2F26%2FLinux%2Fcentos%E5%B8%B8%E8%A7%81%E9%85%8D%E7%BD%AE%E4%BF%AE%E6%94%B9%2F</url>
+    <content type="text"><![CDATA[原文: http://limingming.org/index.php/2018/12/linux-common-config-vi/ 字符集在登录系统的时候经常会看到乱码的情况，经常会修改配置utf-8解决中文乱码的问题； centos6.5和centos7修改系统默认字符集的方式有所改变，通过执行命令修改配置的方式是一样的： 查看系统支持的字符集 1locale -a centos6.5修改系统字符集 临时生效：1234LANG="zh_CN.utf8"echo $LANG# 显示zh_CN.utf8 永久生效：123vim /etc/sysconfig/i18n# 编辑内容LANG=&quot;zh_CN.utf8&quot; centos7修改系统字符集 临时生效的方式和Centos6.5设置一样； 永久生效需要修改配置文件/etc/locale.conf： 123vim /etc/locale.conf # 编辑内容LANG="zh_CN.utf8" 时间设置时区 查看当前时区 1date -R 修改设置Linux服务器时区 方法一 1tzselect 方法二 仅限于RedHat Linux 和 CentOS 1timeconfig 替换系统时区文件 1cp /usr/share/zoneinfo/$主时区/$次时区 /etc/localtime 例如设置为上海的时区，但是需要注意的是，如果你设置的时间是北京时间早上7点，可能你执行覆盖上海的时区的时候会加一个小时，变成早上8点，因为上海属于东9区。1cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime 修改时间 查看时间和日期 1date 设置时间和日期例如：将系统日期设定成2018年12月26日,晚上9点18分25秒 12date -s 12/26/2018date -s 21:18:25 将当前时间和日期写入BIOS，避免重启后失效 1hwclock -w cal 命令cal命令可以用来显示公历（阳历）日历。公历是现在国际通用的历法，又称格列历，通称阳历 1cal [参数][月份][年份]]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>修改</tag>
+        <tag>Centos</tag>
+        <tag>日期</tag>
+        <tag>字符集</tag>
+        <tag>乱码</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[maven无法下载构件]]></title>
     <url>%2F2018%2F12%2F25%2FMaven%2Fmaven%E6%97%A0%E6%B3%95%E4%B8%8B%E8%BD%BD%E6%9E%84%E4%BB%B6%2F</url>
     <content type="text"><![CDATA[原文：http://limingming.org/index.php/2018/12/maven-u-clean-install/ was cached in the local repository, resolution will not be reattempted until the update interval of central has elapsed or updates are forced -&gt; [Help 1][ERROR] 或许你遇到过这个错误，我看到这个错误的时候以为我配置的私服无法连接网络，其实并不是私服的问题，我执行了： 1find ./ -name "*.lastUpdated" -exec grep -q "Could not transfer" &#123;&#125; \; -print -exec rm &#123;&#125; \; 删除LastUpdate文件，但是有时候好使有时候不好使，可能是因为开着eclipse的原因吧，刚删除可能它自己有请求有生成了一个。 所以采取了一个简单的方法： 1mvn -U clean install 就会重新下载了，或者也可以修改配置使用私服的地方： 1234567891011121314151617&lt;profiles&gt; &lt;profile&gt; ... &lt;repositories&gt; &lt;repository&gt; &lt;id&gt;myRepo&lt;/id&gt; &lt;name&gt;My Repository&lt;/name&gt; &lt;releases&gt; &lt;enabled&gt;false&lt;/enabled&gt; &lt;updatePolicy&gt;always&lt;/updatePolicy&gt; &lt;checksumPolicy&gt;warn&lt;/checksumPolicy&gt; &lt;/releases&gt; &lt;/repository&gt; &lt;/repositories&gt; ... &lt;/profile&gt; &lt;/profiles&gt;]]></content>
@@ -106,9 +121,9 @@
       </categories>
       <tags>
         <tag>centos</tag>
+        <tag>pip</tag>
         <tag>源</tag>
         <tag>配置</tag>
-        <tag>pip</tag>
         <tag>yum</tag>
       </tags>
   </entry>
@@ -372,8 +387,8 @@
         <category>Maven</category>
       </categories>
       <tags>
-        <tag>介绍</tag>
         <tag>nexus</tag>
+        <tag>介绍</tag>
         <tag>私服</tag>
       </tags>
   </entry>
@@ -414,8 +429,8 @@
         <category>Maven</category>
       </categories>
       <tags>
-        <tag>仓库</tag>
         <tag>安装</tag>
+        <tag>仓库</tag>
         <tag>Maven</tag>
         <tag>命令</tag>
       </tags>
@@ -519,8 +534,8 @@
         <category>Maven</category>
       </categories>
       <tags>
-        <tag>Maven</tag>
         <tag>排除</tag>
+        <tag>Maven</tag>
         <tag>依赖管理</tag>
         <tag>依赖</tag>
         <tag>方法</tag>
@@ -589,7 +604,7 @@
   <entry>
     <title><![CDATA[Mac OS下搭建Vue开发环境]]></title>
     <url>%2F2018%2F11%2F23%2FVue%2FMac-OS%E4%B8%8B%E6%90%AD%E5%BB%BAVue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%2F</url>
-    <content type="text"><![CDATA[前言原来一直学习使用React，现在因为工作的需要，对Vue进行学习和使用，现在比较流行的框架React,angular,vue，正好对于vue也进行些了解。 环境搭建 打开终端,安装brew 1usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot; 安装成功后，使用查看版本，验证是否安装成功1brew -v 安装node.js1brew install nodejs 也可以下载安装下载地址安装成功后，使用验证123node -v``` * 给nodejs目录赋权限 sudo chmod -R 777 /usr/local/lib/node_modules/1* 安装 淘宝镜像 （npm） npm install -g cnpm –registry=https://registry.npm.taobao.org12* 安装webpack cnpm install webpack -g12* 安装vue脚手架 npm install vue-cli -g12# 开始Vue 创建一个基于 webpack 模板的新项目$ vue init webpack my-project 这里需要进行一些配置，默认回车即可This will install Vue 2.x version of the template. For Vue 1.x use: vue init webpack#1.0 my-project ? Project name my-project? Project description A Vue.js project? Author runoob &#x74;&#x65;&#x73;&#x74;&#x40;&#x72;&#117;&#110;&#x6f;&#111;&#98;&#x2e;&#99;&#111;&#x6d;? Vue build standalone? Use ESLint to lint your code? Yes? Pick an ESLint preset Standard? Setup unit tests with Karma + Mocha? Yes? Setup e2e tests with Nightwatch? Yes vue-cli · Generated “my-project”. To get started: cd my-project npm install npm run dev Documentation can be found at https://vuejs-templates.github.io/webpack1进入项目，安装并运行： $ cd my-project$ cnpm install$ cnpm run dev DONE Compiled successfully in 4388ms Listening at http://localhost:8080`]]></content>
+    <content type="text"><![CDATA[前言原来一直学习使用React，现在因为工作的需要，对Vue进行学习和使用，现在比较流行的框架React,angular,vue，正好对于vue也进行些了解。 环境搭建 打开终端,安装brew 1usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot; 安装成功后，使用查看版本，验证是否安装成功1brew -v 安装node.js1brew install nodejs 也可以下载安装下载地址安装成功后，使用验证123node -v``` * 给nodejs目录赋权限 sudo chmod -R 777 /usr/local/lib/node_modules/1* 安装 淘宝镜像 （npm） npm install -g cnpm –registry=https://registry.npm.taobao.org12* 安装webpack cnpm install webpack -g12* 安装vue脚手架 npm install vue-cli -g12# 开始Vue 创建一个基于 webpack 模板的新项目$ vue init webpack my-project 这里需要进行一些配置，默认回车即可This will install Vue 2.x version of the template. For Vue 1.x use: vue init webpack#1.0 my-project ? Project name my-project? Project description A Vue.js project? Author runoob &#116;&#x65;&#115;&#x74;&#x40;&#114;&#117;&#x6e;&#111;&#x6f;&#x62;&#x2e;&#x63;&#111;&#109;? Vue build standalone? Use ESLint to lint your code? Yes? Pick an ESLint preset Standard? Setup unit tests with Karma + Mocha? Yes? Setup e2e tests with Nightwatch? Yes vue-cli · Generated “my-project”. To get started: cd my-project npm install npm run dev Documentation can be found at https://vuejs-templates.github.io/webpack1进入项目，安装并运行： $ cd my-project$ cnpm install$ cnpm run dev DONE Compiled successfully in 4388ms Listening at http://localhost:8080`]]></content>
       <categories>
         <category>Vue</category>
       </categories>

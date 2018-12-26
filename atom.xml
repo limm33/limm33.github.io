@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.limingming.org/"/>
-  <updated>2018-12-25T07:26:03.389Z</updated>
+  <updated>2018-12-26T13:19:54.056Z</updated>
   <id>http://www.limingming.org/</id>
   
   <author>
@@ -15,6 +15,40 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>centos常见配置修改</title>
+    <link href="http://www.limingming.org/2018/12/26/Linux/centos%E5%B8%B8%E8%A7%81%E9%85%8D%E7%BD%AE%E4%BF%AE%E6%94%B9/"/>
+    <id>http://www.limingming.org/2018/12/26/Linux/centos常见配置修改/</id>
+    <published>2018-12-26T13:19:02.000Z</published>
+    <updated>2018-12-26T13:19:54.056Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="Linux" scheme="http://www.limingming.org/categories/Linux/"/>
+    
+    
+      <category term="修改" scheme="http://www.limingming.org/tags/%E4%BF%AE%E6%94%B9/"/>
+    
+      <category term="Centos" scheme="http://www.limingming.org/tags/Centos/"/>
+    
+      <category term="日期" scheme="http://www.limingming.org/tags/%E6%97%A5%E6%9C%9F/"/>
+    
+      <category term="字符集" scheme="http://www.limingming.org/tags/%E5%AD%97%E7%AC%A6%E9%9B%86/"/>
+    
+      <category term="乱码" scheme="http://www.limingming.org/tags/%E4%B9%B1%E7%A0%81/"/>
+    
+  </entry>
   
   <entry>
     <title>maven无法下载构件 </title>
@@ -262,11 +296,11 @@
     
       <category term="centos" scheme="http://www.limingming.org/tags/centos/"/>
     
+      <category term="pip" scheme="http://www.limingming.org/tags/pip/"/>
+    
       <category term="源" scheme="http://www.limingming.org/tags/%E6%BA%90/"/>
     
       <category term="配置" scheme="http://www.limingming.org/tags/%E9%85%8D%E7%BD%AE/"/>
-    
-      <category term="pip" scheme="http://www.limingming.org/tags/pip/"/>
     
       <category term="yum" scheme="http://www.limingming.org/tags/yum/"/>
     
@@ -627,38 +661,6 @@
       <category term="yum" scheme="http://www.limingming.org/tags/yum/"/>
     
       <category term="国内" scheme="http://www.limingming.org/tags/%E5%9B%BD%E5%86%85/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>mac上安装部署nginx</title>
-    <link href="http://www.limingming.org/2018/12/06/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/mac%E4%B8%8A%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2nginx/"/>
-    <id>http://www.limingming.org/2018/12/06/开发工具/mac上安装部署nginx/</id>
-    <published>2018-12-06T09:41:19.000Z</published>
-    <updated>2018-12-06T10:51:12.215Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-      <category term="开发工具" scheme="http://www.limingming.org/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"/>
-    
-    
-      <category term="安装" scheme="http://www.limingming.org/tags/%E5%AE%89%E8%A3%85/"/>
-    
-      <category term="部署" scheme="http://www.limingming.org/tags/%E9%83%A8%E7%BD%B2/"/>
-    
-      <category term="mac" scheme="http://www.limingming.org/tags/mac/"/>
-    
-      <category term="nginx" scheme="http://www.limingming.org/tags/nginx/"/>
     
   </entry>
   
