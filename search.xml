@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[vim编辑器使用]]></title>
+    <url>%2F2018%2F12%2F29%2FLinux%2Fvim%E7%BC%96%E8%BE%91%E5%99%A8%E4%BD%BF%E7%94%A8%2F</url>
+    <content type="text"><![CDATA[原文 介绍平时在使用linux like系统的时候肯定接触过vim，拿“鸟哥”的话来说的话就是，文本模式来处理Linux 的系统设置，不但可以让你比较容易了解到Linux的运行状况，也比较容易了解整个设计的基本思想，基本上我们接触的类linux系统都有vim编辑器，虽然有着繁杂的命令，但是基本上都是靠键盘输入，编辑文件简单快速，虽然在大学学习的时候总感觉为什么不用word，这玩意这么难用，为什么还要用这个玩意，到了慢慢熟悉使用vi之后才知道这个才是好的编辑器。 vi使用模式vi操作有很多，此文仅记录常用的相关操作，及vi的几种模式，分别是命令模式（command mode）、插入模式（Insert mode）和命令行模式（last line mode），各模式的功能区分如下： 一般模式（command mode）控制屏幕光标的移动，字符、字或行的删除，移动复制某区段及进入Insert mode下，或者到 last line mode。 插入模式（Insert mode）只有在Insert mode下，才可以做文字输入，按「ESC」键可回到命令行模式。 命令行模式（last line mode）将文件保存或退出vi，也可以设置编辑环境，如寻找字符串、列出行号……等。 基本操作进入vi : 1vi 文件路径/文件名 进入之后处于一般模式，如果要切换到插入模式可以使用i、o、a： 按「i」切换进入插入模式「insert mode」，按“i”进入插入模式后是从光标当前位置开始输入文件；按「a」进入插入模式后，是从目前光标所在位置的下一个位置开始输入文字；按「o」进入插入模式后，是插入新的一行，从行首开始输入文字。 如果要回到命令行模式「ESC」可以帮你退回到一般模式，在「一般模式（command mode）」下，按一下「：」冒号键进入「Last line mode」，常用的进入命令行模式，一般进入命令行模式会执行一些操作，例如保存并退出“：wq”，例如设置展示行号，“：se nu” 例如查找某些单词：“：/word”等等 一般模式下按键操作 移动光标但正规的vi是用小写英文字母「h」、「j」、「k」、「l」，分别控制光标左、下、上、右移一格翻页：按「ctrl」+「b」：屏幕往“后”移动一页。按「ctrl」+「f」：屏幕往“前”移动一页。按「ctrl」+「u」：屏幕往“后”移动半页。按「ctrl」+「d」：屏幕往“前”移动半页。 常用跳到行头和行尾：按数字「0」：移到文章的开头，按「$」：移动到光标所在行的“行尾” G相关：G： 移动到这个文件最后一行nG：n为数字移动到这个文件的第n行gg： 移动到文件的第一行，相当于1GN【Enter】 ： N为数字，向下移动N行 复制粘贴 「yw」：将光标所在之处到字尾的字符。「#yw」：复制#个字到缓冲区「yy」：复制光标所在行（常用）「#yy」：例如，「6yy」表示拷贝从光标所在的该行“往下数”6行文字。(常用)「p」： 粘贴 删除 x： 删除当前光标下的字符X； 删除光标前面的字符dw； 删除从当前光标到单词结尾的字符d^; 删除从当前光标到行首的字符d$ ;删除从当前光标到行尾的字符D ;删除从当前光标到行尾的字符dd 删除当前光标所在的行(常用)ndd： n是数字，删除光标所在行向下n行 撤销、重做u： 复原前一个操作Ctrl+r，重做上一个操作. ： 小数点，重复前一个操作 命令行模式操作 列出行号set nu 定位到某行#：井号代表一个数字，在Lastline mode提示符号“：”前输入数字，再按Enter就会跳到该行了，等同于在一般模式下的#G 寻找字符串/关键字：先按/，再输入您想寻找的字(字母“n”为向下继续查找)？关键字：先按？，再输入您想寻找的字(字母“n”为向下继续查找) 取代字符串1，$s/string/replae/g：在lastline mode输入“1，$s/string/replace/g”会将全文的string字符串取代为replace字符串，其中1,$s就是指搜寻区间为文章从头至尾的意思，g则是表示全部取代不必确认%s/string/replace/c：同样会将全文的string字符串取代为replace字符串，和上面指令不同的地方是，%s和1,$s是相同的功能，c则是表示要替代之前必须再次确认是否取代1,20s/string/replace/g：将1至20行间的string替代为relpace字符串 存储w：在lastline mode提示符号“：”前按w即可将文件保存#，# wfilename：如果您想摘取文章的某一段，存成另一个文件，可用这个指令#代表行号，例如30,50 wnice，将您正在编辑文章的第30~50行存成nice这个文件。 离开q：按q就离开，有时如果无法离开vi，可搭配“！：强置离开vi，如“q！”qw：一般建议离开时，搭配w一起使用，如此离开时还可存文件]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>vim</tag>
+        <tag>vi</tag>
+        <tag>编辑器</tag>
+        <tag>使用</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[centos常见配置修改]]></title>
     <url>%2F2018%2F12%2F26%2FLinux%2Fcentos%E5%B8%B8%E8%A7%81%E9%85%8D%E7%BD%AE%E4%BF%AE%E6%94%B9%2F</url>
     <content type="text"><![CDATA[原文: http://limingming.org/index.php/2018/12/linux-common-config-vi/ 字符集在登录系统的时候经常会看到乱码的情况，经常会修改配置utf-8解决中文乱码的问题； centos6.5和centos7修改系统默认字符集的方式有所改变，通过执行命令修改配置的方式是一样的： 查看系统支持的字符集 1locale -a centos6.5修改系统字符集 临时生效：1234LANG="zh_CN.utf8"echo $LANG# 显示zh_CN.utf8 永久生效：123vim /etc/sysconfig/i18n# 编辑内容LANG=&quot;zh_CN.utf8&quot; centos7修改系统字符集 临时生效的方式和Centos6.5设置一样； 永久生效需要修改配置文件/etc/locale.conf： 123vim /etc/locale.conf # 编辑内容LANG="zh_CN.utf8" 时间设置时区 查看当前时区 1date -R 修改设置Linux服务器时区 方法一 1tzselect 方法二 仅限于RedHat Linux 和 CentOS 1timeconfig 替换系统时区文件 1cp /usr/share/zoneinfo/$主时区/$次时区 /etc/localtime 例如设置为上海的时区，但是需要注意的是，如果你设置的时间是北京时间早上7点，可能你执行覆盖上海的时区的时候会加一个小时，变成早上8点，因为上海属于东9区。1cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime 修改时间 查看时间和日期 1date 设置时间和日期例如：将系统日期设定成2018年12月26日,晚上9点18分25秒 12date -s 12/26/2018date -s 21:18:25 将当前时间和日期写入BIOS，避免重启后失效 1hwclock -w cal 命令cal命令可以用来显示公历（阳历）日历。公历是现在国际通用的历法，又称格列历，通称阳历 1cal [参数][月份][年份]]]></content>
@@ -31,7 +45,7 @@
   </entry>
   <entry>
     <title><![CDATA[syntax error near unexpected token $ do 报错问题]]></title>
-    <url>%2F2018%2F12%2F22%2F%E6%9D%82%E8%B0%88%2Fsyntax-error-near-unexpected-token-do-r%E6%8A%A5%E9%94%99%E9%97%AE%E9%A2%98%2F</url>
+    <url>%2F2018%2F12%2F22%2FLinux%2Fsyntax-error-near-unexpected-token-do-r%E6%8A%A5%E9%94%99%E9%97%AE%E9%A2%98%2F</url>
     <content type="text"><![CDATA[原文： http://limingming.org/index.php/2018/12/syntax-error-nea…pected-token-dor/ 介绍不知道大家有没有在windows上面编写shell脚本，然后部署到linux上运行的经历，如果你做过类似的事情，那你可能遇到过这个问题：syntax error near unexpected token $’do\r”，或者类似的问题。 运行shell脚本shell脚本，运行出错：syntax error near unexpected token$’do\r 问题原因Linux和windows下的回车换行符不兼容 文件格式区别 很久以前，人们用老式的电传打字机作为输入设备，它使用两个字符来另起新行。一个字符把滑动架移回首位 (称为回车:，另一个字符把纸上移一行(称为换行:)， 当计算机问世后，由于存储器曾经非常昂贵。有些人就认定没必要用两个字符来表示行尾。于是UNIX 开发者决定他们可以用即，一个字符来表示行尾。Apple 开发者规定了用。开发 MS-DOS (以及微软视窗) 的那些家伙则决定沿用老式的 三种行尾格式如下: 1231. unix为： &lt;LF&gt; : /n 2. dos为： &lt;CR&gt;&lt;LF&gt; : /r/n3. mac为： &lt;CR&gt; : /r 所以这也是为什么window将的文件转移到unix上会出现syntax error near unexpected token `$’do\r”的原因。 问题解决 在windows上可以用文本编辑器查看所有字符，例如notepad++，视图-&gt;显示符号-&gt;显示所有符号在每行的结尾显示了CRLF的符号问题正是由此产生的。 用文本编辑器解决办法，eclipse等编辑器都可以解决，拿notepad++来说，编辑-&gt;档案格式转换-&gt;转换为UNIX格式，再放到linux上运行就不会出现以上报错了。 使用dos2unix工具进行处理 在linux上安装dos2unix工具：sudo apt-get install dos2unix（根据系统使用不同命令安装），安装成功后可以定义一个shell脚本，或者手动执行一下命令： 1dos2unix *.sh 输出：dos2unix: converting file eval1.sh to Unix format … 就将这个文件转换为了linux下的执行文件了。]]></content>
       <categories>
         <category>Linux</category>
@@ -44,10 +58,10 @@
   </entry>
   <entry>
     <title><![CDATA[macOS常见问题记录]]></title>
-    <url>%2F2018%2F12%2F22%2F%E6%9D%82%E8%B0%88%2FmacOS%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95%2F</url>
+    <url>%2F2018%2F12%2F22%2F%E8%AE%A1%E7%AE%97%E6%9C%BA%2FmacOS%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95%2F</url>
     <content type="text"><![CDATA[安装第三方应用Mac安装第三方应用时提示”*.app”已损坏,打不开.这是因为安装权限问题,把隐私偏好设置的”允许所有来源”安装选项即可.新版Mac系统默认隐藏了”允许任何来源”隐藏了.使用sudo spctl –master-disable命令打开即可. 打开终端程序执行命令： 1sudo spctl --master-disable 然后输入你的密码就可以了 MAC打开多个Eclipse空间Mac上打开多个Eclipse方法是：找到Eclipse.app的位置，在Terminal中cd到这个目录 然后执行： 1open -n Eclipse.app]]></content>
       <categories>
-        <category>杂谈</category>
+        <category>计算机</category>
       </categories>
       <tags>
         <tag>问题</tag>
@@ -65,8 +79,8 @@
       </categories>
       <tags>
         <tag>配置</tag>
-        <tag>介绍</tag>
         <tag>使用</tag>
+        <tag>介绍</tag>
         <tag>log4j2</tag>
       </tags>
   </entry>
@@ -93,8 +107,8 @@
       </categories>
       <tags>
         <tag>配置</tag>
-        <tag>log4j</tag>
         <tag>使用</tag>
+        <tag>log4j</tag>
         <tag>日志</tag>
       </tags>
   </entry>
@@ -142,10 +156,10 @@
   </entry>
   <entry>
     <title><![CDATA[jenkins中SSH remote hosts配置]]></title>
-    <url>%2F2018%2F12%2F15%2F%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7%2Fjenkins%E4%B8%ADSSH-remote-hosts%E9%85%8D%E7%BD%AE%2F</url>
+    <url>%2F2018%2F12%2F15%2F%E5%BC%80%E5%8F%91%E8%80%85%E6%89%8B%E5%86%8C%2Fjenkins%E4%B8%ADSSH-remote-hosts%E9%85%8D%E7%BD%AE%2F</url>
     <content type="text"><![CDATA[原文 介绍今天配置自己的系统在jenkins中，能让测试人员实时的构建测试,但是在配置ssh remote hosts的时候出现了一点小问题，特此记录；使用pipeline的方式和执行shell脚本的方式很快就能搭建完成，但是本来有可以配置“构建一个maven项目”的配置为什么还要使用其他的呢，所以就采用了这种方式。但是却在最后一步出现了问题，使用ssh部署到远程服务器上的时候找不到在哪里配置remote hosts。 操作 在Jenkins主界面，系统管理-&gt;管理插件-&gt;安装SSH Plugin； 系统管理-&gt;Configure(系统设置)-&gt;SSH remote hosts 配置完成但是无法连接，测试连接粗错； 所以进行了以下操作： * 两台机执行ssh-keygen -t rsa ，生成id_rsa.pub文件 * 在jenkins linux执行命令：scp /home/xxxx/.ssh/id_rsa.pub xxxx@10.111.25.28:/home/xxxx/.ssh/authorized_keys 输入密码拷贝文件 就可以了，其实这样就可以进行不实用密码在jenkins上执行远程机器的命令： 1ssh -p 22 root@10.111.*.* "df -h" 再测试就可以连接成功了。如果中间再出现访问权限问题(Jenkins Publish over ssh authentification failed with private key)，那可以考虑一下远程机器是不是权限设置有问题，在远程机器上执行： 12chmod 700 ~/.sshchmod 600 ~/.ssh/authorized_keys 冲突解决人生不如意，十之八九，git使用过程中如果没有遇到过冲突，那绝对也是很离奇的事件。 我们平时使用git遇到冲突一般是pull代码或者push代码的时候，还有合并分支的时候。“git pull”操作等于“git fetch + git merge refs/remotes/origin/master”由此可见，git fetch更安全一点，不会合并代码。 一般解决过程： 在报错的目录下执行： git rebase remote-branch-name 先编辑冲突，然后git commit提交 执行 git add -u（-u 表示把所有已track的文件的新的修改加入缓存，但不加入新的文件） git rebase –continue （重复这这些步骤，直到rebase冲突解决完成） 如果想要恢复修改bug之前的状态，执行：git rebase –abort 冲突产生后会有&lt;&lt;&lt;&lt;&gt;&gt;&gt;&gt;这些内容，&lt;&lt;&lt;&lt;&lt;&lt;&lt;HEAD 和=====之间的内容是我们本地的修改。 为什么会使用rebase？ git rebase 和 git merge 一样都是用于从一个分支获取并且合并到当前分支，但是他们采取不同的工作流程。从上面你可以可能看到了git rebase是一个一个处理冲突的。本质上git merge会产生一个新的commit，合并的时候是全部合并，修改完成冲突就可以提交了，记录了真实的commit情况，包括每个分支的详情，但是如果频繁的使用，就会导致commit信息比较混乱。git rebase不会一次性合并，而是一个一个处理，不会有commit信息，会合并之前的commit历史，这样会让他的提交历史比较简洁，它的优点也是它的缺点，以为重写了commit历史，所以，导致提交历史不明晰。]]></content>
       <categories>
-        <category>开发工具</category>
+        <category>开发者手册</category>
       </categories>
       <tags>
         <tag>远程</tag>
@@ -286,10 +300,10 @@
   </entry>
   <entry>
     <title><![CDATA[mac上安装部署nginx]]></title>
-    <url>%2F2018%2F12%2F06%2F%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7%2Fmac%E4%B8%8A%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2nginx%2F</url>
+    <url>%2F2018%2F12%2F06%2F%E5%BC%80%E5%8F%91%E8%80%85%E6%89%8B%E5%86%8C%2Fmac%E4%B8%8A%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2nginx%2F</url>
     <content type="text"><![CDATA[原文 介绍Nginx（发音同engine x）是异步框架的 Web服务器，也可以用作反向代理，负载平衡器 和 HTTP缓存。该软件由 Igor Sysoev 创建，并于2004年首次公开发布。同名公司成立于2011年，以提供支持。Nginx是免费的开源软件，根据类BSD许可证的条款发布。一大部分Web服务器使用Nginx,通常作为负载均衡器。 –维基百科 环境搭建 打开终端,安装brew 1usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot; 安装成功后，使用查看版本，验证是否安装成功1brew -v 安装ngnix 1brew install nginx 我安装完成的版本是：12$ nginx -vnginx version: nginx/1.15.6 中间安装过程中可能会出现warning,为了不必要的麻烦执行以下安装命令 1sudo xcode-select --install 会出现如下提示安装的工具，稍等几分钟就安装成功了。 启动关闭nginx 启动nginx123brew services start nginx# 或者更常用的：nginx 使用浏览器访问http://localhost:8080 ，应该可以看到 wlecom to nginx 的欢迎界面。 关闭命令：nginx -s quit 或者： 1234$ ps -ef | grep nginx 502 82708 1 0 6:22下午 ?? 0:00.02 nginx: master process /usr/local/opt/nginx/bin/nginx -g daemon off; 502 82709 82708 0 6:22下午 ?? 0:00.00 nginx: worker process 502 82712 82200 0 6:22下午 ttys000 0:00.00 grep nginx 找到它的进程号 82708 ，杀死！ 1kill -QUIT 82708 kill -QUIT 15800 (慢慢停止，不会立刻停止)Kill -TERM 15800 （立刻停止）Kill -INT 15800 （和上面一样，也是立刻停止） 重启 12cd /usr/local/Cellar/nginx/1.15.6/bin./nexus reload nexus 各个参数 123456789101112131415./nginx -hnginx version: nginx/1.15.6Usage: nginx [-?hvVtTq] [-s signal] [-c filename] [-p prefix] [-g directives]Options: -?,-h : this help -v : show version and exit -V : show version and configure options then exit -t : test configuration and exit -T : test configuration, dump it and exit -q : suppress non-error messages during configuration testing -s signal : send signal to a master process: stop, quit, reopen, reload -p prefix : set prefix path (default: /usr/local/Cellar/nginx/1.15.6/) -c filename : set configuration file (default: /usr/local/etc/nginx/nginx.conf) -g directives : set global directives out of configuration file 大家可以根据自己的需要执相应的命令. 补充&amp;强调 nginx安装文件目录 /usr/local/Cellar/nginx nginx配置文件目录/usr/local/etc/nginx config文件目录/usr/local/etc/nginx/nginx.conf 系统hosts位置/private/etc/hosts nginx常用命令 12345nginx #启动nginxnginx -V #查看版本，以及配置文件地址nginx -v #查看版本nginx -s reload|reopen|stop|quit #重新加载配置|重启|快速停止|安全关闭nginxnginx -h #帮助 卸载nginx1brew uninstall nginx]]></content>
       <categories>
-        <category>开发工具</category>
+        <category>开发者手册</category>
       </categories>
       <tags>
         <tag>安装</tag>
@@ -387,8 +401,8 @@
         <category>Maven</category>
       </categories>
       <tags>
-        <tag>nexus</tag>
         <tag>介绍</tag>
+        <tag>nexus</tag>
         <tag>私服</tag>
       </tags>
   </entry>
@@ -474,10 +488,10 @@
         <category>Maven</category>
       </categories>
       <tags>
+        <tag>排除</tag>
         <tag>多模块</tag>
         <tag>web</tag>
         <tag>合并</tag>
-        <tag>排除</tag>
         <tag>冲突</tag>
       </tags>
   </entry>
@@ -534,9 +548,9 @@
         <category>Maven</category>
       </categories>
       <tags>
-        <tag>排除</tag>
         <tag>Maven</tag>
         <tag>依赖管理</tag>
+        <tag>排除</tag>
         <tag>依赖</tag>
         <tag>方法</tag>
       </tags>
@@ -557,26 +571,11 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Markdown语法]]></title>
-    <url>%2F2018%2F11%2F27%2F%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7%2FMarkdown%E8%AF%AD%E6%B3%95%2F</url>
-    <content type="text"><![CDATA[作者 李明明转载请注明出处： http://limingming.org/index.php/2018/11/28/markdown-grammar/ 介绍 Markdown 是一种轻量级标记语言，它允许人们使用易读易写的纯文本格式编写文档，然后转换成格式丰富的HTML页面。 —— 维基百科;Markdown 是一种轻量级标记语言，让写作者专注于写作而不用关注样式。很多有编程基础的程序员比较喜欢使用Markdown进行编写，github项目中README.md都是markdown编写的；以下我讲述通用的语法，保留各个编辑器通用的，还有很多markdown语法是各个编辑器独有的，大家使用过程中可以注意一下，平时使用mac上的编辑器,也为大家分享一下。 语法介绍标题123# 一级标题## 二级标题### 三级标题 演示图效果： 强调 在Markdown中，可以使用 * 或 _ 来表示斜体和加粗。 使用一个*或者_来表示斜体，两个来表示加粗。1234A： *我是斜体*B: _我也是斜体_C：**我是粗体**D: __我也是粗体__ 演示图效果： 例子（摘抄于马克飞象“案例，马克飞象是一个很不错的markdown编辑器，为markdown各种类型的语法提供了一个良好的支持）12345**马克飞象**是一款专为印象笔记（Evernote）打造的Markdown编辑器，通过精心的设计与技术实现，配合印象笔记强大的存储和同步功能，带来前所未有的书写体验。特点概述： - **功能丰富** ：支持高亮代码块、*LaTeX* 公式、流程图，本地图片以及附件上传，甚至截图粘贴，工作学习好帮手；- **得心应手** ：简洁高效的编辑器，提供[桌面客户端][1]以及[离线Chrome App][2]，支持移动端 Web；- **深度整合** ：支持选择笔记本和添加标签，支持从印象笔记跳转编辑，轻松管理。 锚点markdown会针对每个标题，在解析时都会添加锚点 id，例如： 123# 介绍# 介绍1那我们就可以使用“[访问介绍标题的锚点](#介绍)”,来定义锚点 测试： 访问介绍标题的锚点; 引用Markdown 标记区块引用和 email 中用 &gt; 的引用方式类似，只需要在整个段落的第一行最前面加上 &gt; ： 演示： 列表标记通常放在句子最左边，项目标记后面要接一个字符的空格。 无序列表：使用星号、加号或是减号作为列表标记123* 我是无序列表A + 我是无序列表B - 我是无序列表C 有序列表：使用数字接着一个英文句点1231. 我是无序列表12. 我是无序列表2 3. 我是无序列表3 3.代办列表(简书暂不支持此方式）12- [ ] 不勾选- [x] 勾选 补充如果在列表中使用引用,需要换行缩进，一般为四个空格：12345* 演示内容： &gt; 引用部分1 &gt; 引用部分2 &gt; 引用部分3 &gt; 引用部分4 代码块使用`包裹代码块，并声明代码块的语言，一般会带有相关的解析插件，对代码进行高亮处理，对代码进行着色。 超链接方括号显示说明，圆括号内显示网址， Markdown 编辑器会自动把它转成链接；123[我的博客](https://blog.csdn.net/limm33)[编程者联盟](https://github.com/limm33/ProgrammerLeague/blob/master/ProgrammerLeague.jpg)[个人博客](http://www.limingming.org) 演示： 图片图片和超连接语法比较像，可以在方括号前面加一个！就变成了引用图片了；1234![编程者联盟](url) 或者：![卡卡西](/Users/limm/Pictures/火影忍者/30381-106.jpg) 相对路径也可以(./path/*.jpg)这种形式 分割线使用 3 个以上 - 符号制作分割线：123分割线以上内容------------------分割线以下内容 演示： 表格markdown可以制作表格，方法也很简单例如：1233 | 3 | 3-|-|-3| 3| 3 以上为最基本的结构，‘3’代表你编辑的内容，第一行为表头，但是有的编辑器 - 需要多个，有的需要至少三个，所以布局可以尽量美观：123一列 | 第二列 | 第三列---------|---------------|---------- 值1 | 值2 | 值3 演示： 可以设置对齐方式,使用 ：添加在列的左边左对齐，右边为右对齐，两边都添加就是中间对齐：1234一列 | 第二列 | 第三列:---------|---------------:|:----------: 值1 | 值2 | 值3 值3 | 值4 | 值5 演示： 以上为总结的markdown的语法，希望对你的编写有所帮助。 联系我原来一直在CSDN编写博客我的博客我的微信公众号:编程者联盟我的 个人博客我的QQ群：115402375]]></content>
-      <categories>
-        <category>开发工具</category>
-      </categories>
-      <tags>
-        <tag>介绍</tag>
-        <tag>markdown</tag>
-        <tag>语法</tag>
-        <tag>怎么</tag>
-        <tag>如何</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[mac下npm安装命令不生效]]></title>
-    <url>%2F2018%2F11%2F27%2F%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7%2Fmac%E4%B8%8Bnpm%E5%AE%89%E8%A3%85%E5%91%BD%E4%BB%A4%E4%B8%8D%E7%94%9F%E6%95%88%2F</url>
+    <url>%2F2018%2F11%2F27%2F%E5%BC%80%E5%8F%91%E8%80%85%E6%89%8B%E5%86%8C%2Fmac%E4%B8%8Bnpm%E5%AE%89%E8%A3%85%E5%91%BD%E4%BB%A4%E4%B8%8D%E7%94%9F%E6%95%88%2F</url>
     <content type="text"><![CDATA[介绍如果我们平时使用node进行开发的话，经常会使用node安装一些其他的命令，比如安装淘宝的cnpm（npm install -g cnpm –registry=https://registry.npm.taobao.org），安装vue（npm install vue）命令等等，按道理应该是命令可以直接使用的。 我们在mac上安装完成nodejs，node的命令是在/usr/local/bin下面，可以直接使用，但是我们通过node命令安装的其他工具是在/usr/local/Cellar/node/10.8.0/lib/node_modules/vue-cli/bin/vue,我使用的10.8.0的版本，如果使用其他版本会在其他版本号路径下面，这个安装的路径一般都会统一创建链接到/usr/local/Cellar/node/10.8.0/bin下，所以我们把这个路径添加到我们的环境变量里面就可以了。 解决办法添加到环境变量的一个方式，比如修改~/.bash_profile文件，添加： 12#node安装包下的相关命令cnpm、node等命令export PATH="$PATH:/usr/local/Cellar/node/10.8.0/bin" 执行: 1source ~/.bash_profile 就可以使用cnpm等命令了。]]></content>
       <categories>
-        <category>开发工具</category>
+        <category>开发者手册</category>
       </categories>
       <tags>
         <tag>安装</tag>
@@ -587,11 +586,26 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[Markdown语法]]></title>
+    <url>%2F2018%2F11%2F27%2F%E5%BC%80%E5%8F%91%E8%80%85%E6%89%8B%E5%86%8C%2FMarkdown%E8%AF%AD%E6%B3%95%2F</url>
+    <content type="text"><![CDATA[作者 李明明转载请注明出处： http://limingming.org/index.php/2018/11/28/markdown-grammar/ 介绍 Markdown 是一种轻量级标记语言，它允许人们使用易读易写的纯文本格式编写文档，然后转换成格式丰富的HTML页面。 —— 维基百科;Markdown 是一种轻量级标记语言，让写作者专注于写作而不用关注样式。很多有编程基础的程序员比较喜欢使用Markdown进行编写，github项目中README.md都是markdown编写的；以下我讲述通用的语法，保留各个编辑器通用的，还有很多markdown语法是各个编辑器独有的，大家使用过程中可以注意一下，平时使用mac上的编辑器,也为大家分享一下。 语法介绍标题123# 一级标题## 二级标题### 三级标题 演示图效果： 强调 在Markdown中，可以使用 * 或 _ 来表示斜体和加粗。 使用一个*或者_来表示斜体，两个来表示加粗。1234A： *我是斜体*B: _我也是斜体_C：**我是粗体**D: __我也是粗体__ 演示图效果： 例子（摘抄于马克飞象“案例，马克飞象是一个很不错的markdown编辑器，为markdown各种类型的语法提供了一个良好的支持）12345**马克飞象**是一款专为印象笔记（Evernote）打造的Markdown编辑器，通过精心的设计与技术实现，配合印象笔记强大的存储和同步功能，带来前所未有的书写体验。特点概述： - **功能丰富** ：支持高亮代码块、*LaTeX* 公式、流程图，本地图片以及附件上传，甚至截图粘贴，工作学习好帮手；- **得心应手** ：简洁高效的编辑器，提供[桌面客户端][1]以及[离线Chrome App][2]，支持移动端 Web；- **深度整合** ：支持选择笔记本和添加标签，支持从印象笔记跳转编辑，轻松管理。 锚点markdown会针对每个标题，在解析时都会添加锚点 id，例如： 123# 介绍# 介绍1那我们就可以使用“[访问介绍标题的锚点](#介绍)”,来定义锚点 测试： 访问介绍标题的锚点; 引用Markdown 标记区块引用和 email 中用 &gt; 的引用方式类似，只需要在整个段落的第一行最前面加上 &gt; ： 演示： 列表标记通常放在句子最左边，项目标记后面要接一个字符的空格。 无序列表：使用星号、加号或是减号作为列表标记123* 我是无序列表A + 我是无序列表B - 我是无序列表C 有序列表：使用数字接着一个英文句点1231. 我是无序列表12. 我是无序列表2 3. 我是无序列表3 3.代办列表(简书暂不支持此方式）12- [ ] 不勾选- [x] 勾选 补充如果在列表中使用引用,需要换行缩进，一般为四个空格：12345* 演示内容： &gt; 引用部分1 &gt; 引用部分2 &gt; 引用部分3 &gt; 引用部分4 代码块使用`包裹代码块，并声明代码块的语言，一般会带有相关的解析插件，对代码进行高亮处理，对代码进行着色。 超链接方括号显示说明，圆括号内显示网址， Markdown 编辑器会自动把它转成链接；123[我的博客](https://blog.csdn.net/limm33)[编程者联盟](https://github.com/limm33/ProgrammerLeague/blob/master/ProgrammerLeague.jpg)[个人博客](http://www.limingming.org) 演示： 图片图片和超连接语法比较像，可以在方括号前面加一个！就变成了引用图片了；1234![编程者联盟](url) 或者：![卡卡西](/Users/limm/Pictures/火影忍者/30381-106.jpg) 相对路径也可以(./path/*.jpg)这种形式 分割线使用 3 个以上 - 符号制作分割线：123分割线以上内容------------------分割线以下内容 演示： 表格markdown可以制作表格，方法也很简单例如：1233 | 3 | 3-|-|-3| 3| 3 以上为最基本的结构，‘3’代表你编辑的内容，第一行为表头，但是有的编辑器 - 需要多个，有的需要至少三个，所以布局可以尽量美观：123一列 | 第二列 | 第三列---------|---------------|---------- 值1 | 值2 | 值3 演示： 可以设置对齐方式,使用 ：添加在列的左边左对齐，右边为右对齐，两边都添加就是中间对齐：1234一列 | 第二列 | 第三列:---------|---------------:|:----------: 值1 | 值2 | 值3 值3 | 值4 | 值5 演示： 以上为总结的markdown的语法，希望对你的编写有所帮助。 联系我原来一直在CSDN编写博客我的博客我的微信公众号:编程者联盟我的 个人博客我的QQ群：115402375]]></content>
+      <categories>
+        <category>开发者手册</category>
+      </categories>
+      <tags>
+        <tag>介绍</tag>
+        <tag>markdown</tag>
+        <tag>语法</tag>
+        <tag>怎么</tag>
+        <tag>如何</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[mac下chromium源码编译笔记]]></title>
-    <url>%2F2018%2F11%2F25%2F%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7%2Fmac%E4%B8%8Bchromium%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E7%AC%94%E8%AE%B0%2F</url>
+    <url>%2F2018%2F11%2F25%2F%E5%BC%80%E5%8F%91%E8%80%85%E6%89%8B%E5%86%8C%2Fmac%E4%B8%8Bchromium%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E7%AC%94%E8%AE%B0%2F</url>
     <content type="text"><![CDATA[作者 李明明转载请注明出处： http://limingming.org/index.php/2018/11/28/mac-compile-chromium/ 背景因为项目需要，需要对chromium进行了解，对chromium进行编译，在官网上可以通过：网址，找到各个平台相关详细的介绍，介绍文档这个是mac下编译chromium的讲解，本篇文章是针对于官方介绍文档的中文版，对其中编译过程中遇到的问题进行记录。 因为国内特殊的原因，谷歌相关的网络请求被墙掉了，所有需要配置科学上网能够翻墙的工具，我使用的是自己搭建的shadowsocks，shadowsocks搭建在这里就不细说了，由于需要chromium源码及depots_tools工具需要git命令下载，所以设置http_proxy，通过搭建好的shadowsocks可以通过下图中的方式获取到设置方式在终端中执行就行了，就可以在终端中请求被墙的网络地址了，具体设置git请求的设置和让终端走代理的设置大家可以百度一下，看一下详细的配置，自己设置一下， export http_proxy=http://127.0.0.1:1087;export https_proxy=http://127.0.0.1:1087; ​ 系统要求：64位mac,系统版本10.11+系统版本，屏幕左上角 苹果图标 -&gt; 关于本机 -&gt; 概览 Xcode 7.3+在 App Store搜索下载 OSX 10.10 SDK装完Xcode以后在终端输入下面的代码，如下图所示应该就可以了 1$ ls `xcode-select -p`/Platforms/MacOSX.platform/Developer/SDKs ​ 安装depot_tools用git复制 depot_tools 资源，如果一直下载不成功，检查一下http_proxy是否设置成功 1$ git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git 把depot_tools加入路径,假设你放在/path/to/depot_tools路径下面，那么就在终端输入，不过这是临时的， 1$ export PATH=&quot;$PATH:/path/to/depot_tools&quot; 获取代码创建一个新的chromium文件夹并进入文件夹，你可以叫它别的名字，可以放在任意的位置，但是要保证路径没有空格 1$ mkdir chromium &amp;&amp; cd chromium 使用fetch来检出代码和依赖（这个代码我现在下大概是7.2GB，如果不想要所有的历史记录可以加–no-history，下载会快一点） 带历史记录的源码 1$ fetch chromium 不带历史记录的源码 1$ fetch --no-history chromium 会产生隐藏的.gclient的文件，如果下载失败，可以把这个文件删了重新执行 中间不会有任何的提示，请安静地等待~这种应该是下载成功了吧 ​然后你就会发现目录下面有src文件夹，进入文件夹，这里有提示install API keys ，但是对大多数的开发者不是必选项，所以就先跳过。在官网上没有详细介绍， 开始编译： 在编译之前要执行gclient sync和gclient runhooks，进入到src目录下，在src目录啊下编译，之前装了depot_tools，那么就可以用下面的代码开新建一个build的目录文件夹，（build可以换名字，但是out文件夹是必需的） gn gen out/build 更快地编译官网给了三个配置可以加快build，分别是is_debug，is_component_build，symbol_level，配置方式如下(关于配置的说明) 输入下面的命令行会打开一个配置文件 1gn args out/build 可以在文件里面输入配置，像下面展示的这样 123is_component_build = trueis_debug = falsesymbol_level = 0 其实他们应该保存在src/out/build/args.gn这边 输入下面的代码你能够查看所有可配置的参数以及他们的默认值 1gn args --list out/my_build 同时也可以通过install ccache ，在再次compile的时候会更快，会增量编译不会重复编译 build chromium使用Ninja来build chromium，这个过程会比较耗时，虽然很多人说等2个小时，我第一次编译用了5个小时 1$ ninja -C out/Default chrome 运行chromium输入 1$ out/Default/chrome Debugging 调试debug资料这里的意思是用图形化的环境不用在xcode里面配置Debugging in Xcode前面按照教程取消了crash的记录 最后的配置是在生成的文件夹下面找到products.xcodeproj，然后双击就会用xcode打开，然后配置scheme,第一次应该没有scheme配置，选择New Scheme，然后Info这边，Executable选择Chromium.app，‘ 然后启动chromium , Debug -》Attach to Processes -&gt; 选择Chomium程序 首先是第一个资料推荐苹果开发者阅读的Mac OS X Debugging Magic Technote重要提醒： 在xcode里面，为了让断点生效，Debugging面板中取消Load Symbols Lazily GYP_DEFINES的fast_build如果是1的话，那么你想要的断点可能拿不到,如果你去掉它，要重新运行gyp_chromium以及rebuild禁用ReportCrash，在终端输入man ReportCrash，然后找到这一行 ​ 12launchctl unload -w /System/Library/LaunchAgents/com.apple.ReportCrash.plistsudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.ReportCrash.Root.plist 调试渲染进程XCode本身不支持多于一个的进程，对子进程的支持也不友好，有两种方法应付。 (a)单进程运行chrome（不被推荐） CCache据说是加速recompilation的，他通过存储原来的compilation，当compilations相同的时候，能够有一个显著的加速，特别是切换分支的时候。首先用brew下载在环境变量里面配置 ，下面是临时的 1Export PATH=“$PATH:/usr/local/opt/ccache/libexec ccahe” 然后要让gn配置使用配置环境变量 123export CCACHE_CPP2=yesexport CCACHE_SLOPPINESS=time_macrosexport PATH=`pwd`/third_party/llvm-build/Release+Asserts/bin:$PATH 运行 ninja ninja -C out/Release chrome 推荐大家可以看一下《webkit技术内幕》 联系我原来一直在CSDN编写博客我的博客我的微信公众号:编程者联盟我的 个人博客我的QQ群：115402375]]></content>
       <categories>
-        <category>开发工具</category>
+        <category>开发者手册</category>
       </categories>
       <tags>
         <tag>Mac</tag>
@@ -604,7 +618,7 @@
   <entry>
     <title><![CDATA[Mac OS下搭建Vue开发环境]]></title>
     <url>%2F2018%2F11%2F23%2FVue%2FMac-OS%E4%B8%8B%E6%90%AD%E5%BB%BAVue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%2F</url>
-    <content type="text"><![CDATA[前言原来一直学习使用React，现在因为工作的需要，对Vue进行学习和使用，现在比较流行的框架React,angular,vue，正好对于vue也进行些了解。 环境搭建 打开终端,安装brew 1usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot; 安装成功后，使用查看版本，验证是否安装成功1brew -v 安装node.js1brew install nodejs 也可以下载安装下载地址安装成功后，使用验证123node -v``` * 给nodejs目录赋权限 sudo chmod -R 777 /usr/local/lib/node_modules/1* 安装 淘宝镜像 （npm） npm install -g cnpm –registry=https://registry.npm.taobao.org12* 安装webpack cnpm install webpack -g12* 安装vue脚手架 npm install vue-cli -g12# 开始Vue 创建一个基于 webpack 模板的新项目$ vue init webpack my-project 这里需要进行一些配置，默认回车即可This will install Vue 2.x version of the template. For Vue 1.x use: vue init webpack#1.0 my-project ? Project name my-project? Project description A Vue.js project? Author runoob &#116;&#x65;&#115;&#x74;&#x40;&#114;&#117;&#x6e;&#111;&#x6f;&#x62;&#x2e;&#x63;&#111;&#109;? Vue build standalone? Use ESLint to lint your code? Yes? Pick an ESLint preset Standard? Setup unit tests with Karma + Mocha? Yes? Setup e2e tests with Nightwatch? Yes vue-cli · Generated “my-project”. To get started: cd my-project npm install npm run dev Documentation can be found at https://vuejs-templates.github.io/webpack1进入项目，安装并运行： $ cd my-project$ cnpm install$ cnpm run dev DONE Compiled successfully in 4388ms Listening at http://localhost:8080`]]></content>
+    <content type="text"><![CDATA[前言原来一直学习使用React，现在因为工作的需要，对Vue进行学习和使用，现在比较流行的框架React,angular,vue，正好对于vue也进行些了解。 环境搭建 打开终端,安装brew 1usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot; 安装成功后，使用查看版本，验证是否安装成功1brew -v 安装node.js1brew install nodejs 也可以下载安装下载地址安装成功后，使用验证123node -v``` * 给nodejs目录赋权限 sudo chmod -R 777 /usr/local/lib/node_modules/1* 安装 淘宝镜像 （npm） npm install -g cnpm –registry=https://registry.npm.taobao.org12* 安装webpack cnpm install webpack -g12* 安装vue脚手架 npm install vue-cli -g12# 开始Vue 创建一个基于 webpack 模板的新项目$ vue init webpack my-project 这里需要进行一些配置，默认回车即可This will install Vue 2.x version of the template. For Vue 1.x use: vue init webpack#1.0 my-project ? Project name my-project? Project description A Vue.js project? Author runoob &#116;&#101;&#115;&#116;&#64;&#x72;&#117;&#110;&#111;&#x6f;&#x62;&#46;&#x63;&#111;&#x6d;? Vue build standalone? Use ESLint to lint your code? Yes? Pick an ESLint preset Standard? Setup unit tests with Karma + Mocha? Yes? Setup e2e tests with Nightwatch? Yes vue-cli · Generated “my-project”. To get started: cd my-project npm install npm run dev Documentation can be found at https://vuejs-templates.github.io/webpack1进入项目，安装并运行： $ cd my-project$ cnpm install$ cnpm run dev DONE Compiled successfully in 4388ms Listening at http://localhost:8080`]]></content>
       <categories>
         <category>Vue</category>
       </categories>
@@ -617,10 +631,10 @@
   </entry>
   <entry>
     <title><![CDATA[wordpress无法连接到FTP解决]]></title>
-    <url>%2F2018%2F11%2F23%2F%E6%9D%82%E8%B0%88%2Fwordpress%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5%E5%88%B0FTP%E8%A7%A3%E5%86%B3%2F</url>
+    <url>%2F2018%2F11%2F23%2F%E5%BC%80%E5%8F%91%E8%80%85%E6%89%8B%E5%86%8C%2Fwordpress%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5%E5%88%B0FTP%E8%A7%A3%E5%86%B3%2F</url>
     <content type="text"><![CDATA[问题未能连接到FTP服务器IP:21 原因分析为了安全起见，wordpress会在安装插件或者主题时增加一层FTP验证 解决 修改wordpress 根目录下wp-config.php文件 1vi wordpress/wp-config.php 在文件最后添加一行内容 1define(&apos;FS_METHOD&apos;, &quot;direct&quot;); 重新试试就可以了！]]></content>
       <categories>
-        <category>杂谈</category>
+        <category>开发者手册</category>
       </categories>
       <tags>
         <tag>解决</tag>
@@ -632,10 +646,10 @@
   </entry>
   <entry>
     <title><![CDATA[MAC-OS无法开机问题解决]]></title>
-    <url>%2F2018%2F11%2F11%2F%E6%9D%82%E8%B0%88%2FMAC-OS%E6%97%A0%E6%B3%95%E5%BC%80%E6%9C%BA%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%2F</url>
+    <url>%2F2018%2F11%2F11%2F%E8%AE%A1%E7%AE%97%E6%9C%BA%2FMAC-OS%E6%97%A0%E6%B3%95%E5%BC%80%E6%9C%BA%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%2F</url>
     <content type="text"><![CDATA[作为一个自恋的程序员，我的imac升级了系统之后也变得傲娇起来，就是开机无法启动，进度条大约到五分之四的时候就卡住了，电脑也变黑屏了，之后进入了小圆圈一直转的无限循环的状态，暂时简称无限菊花状态。 问题导致原因原来mac系统为10.13.6，升级到了最新的系统之后10.14.8,虽然更新过程中没有任何问题，也能重新启动了电脑，有了新的黑色主题的imac并没有让我适应，总感觉还是原来的主题比较好，再不高兴之余骂了它的主题，顺便关了机，所以它就闹起了小脾气。 问题解决 首先想到的是“开机按住shift键进入安全模式，结果无法启动； 所以无耻的google了一下，按照说明开机无法启动的情况下，按住电源按钮十秒；钟，当然我很坚持的按住了15秒钟，隐隐若若的听到了“嗒”的一个内部的声音，感觉有什么东西被重置了的感觉，但是也是无济于事； 之后按照重置 Mac 上的系统管理控制器 (SMC),按照配置重置了smc，结果仍然不能开机； 按照重置 Mac 上的 NVRAM 或 PRAM重置了，原来电脑是静音状态，重置了之后生效了开机声音，可以听到开机声音了； 经过了以上几个步骤还是不能开机，所以我觉得应该弄点大招了，所以开机使用“command+r”的方式进入恢复模式选择磁盘工具，进行急救，修复了文件权限和磁盘，当然我没有进行任何磁盘破坏的事情，我很确信是因为升级导致的无法启动，所以磁盘急救完成重新开机竟然还是不行； 在磁盘急救不生效的情况下，用command+r进入恢复模式，重新安装系统，此种方式安装系统不会丢失任何文件和应用，可以放心安装，可能因为网络和时区的问题，导致无法正常安装，可以多试几次；但是重装覆盖系统之后还是不能开机。 在恢复模式下磁盘工具中抹掉磁盘，当然要备份好重要数据后抹掉磁盘，然后再执行安装系统，完成后就可以正常开机了。 说明以上几个步骤我在执行过程中可能没有生效，但是很多遇到这种情况的执行其中几步的时候都成功开机了，在万不得已的情况下可以抹掉磁盘重新安装系统。 联系我原来一直在CSDN编写博客我的博客，欢迎留言讨论，现在第一次更换为简书，竟然写的不是技术博客。我的微信公众号:编程者联盟 我的QQ群：115402375]]></content>
       <categories>
-        <category>杂谈</category>
+        <category>计算机</category>
       </categories>
       <tags>
         <tag>解决</tag>

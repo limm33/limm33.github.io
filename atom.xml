@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.limingming.org/"/>
-  <updated>2018-12-26T13:19:54.056Z</updated>
+  <updated>2018-12-29T08:22:39.321Z</updated>
   <id>http://www.limingming.org/</id>
   
   <author>
@@ -15,6 +15,38 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>vim编辑器使用</title>
+    <link href="http://www.limingming.org/2018/12/29/Linux/vim%E7%BC%96%E8%BE%91%E5%99%A8%E4%BD%BF%E7%94%A8/"/>
+    <id>http://www.limingming.org/2018/12/29/Linux/vim编辑器使用/</id>
+    <published>2018-12-28T16:29:56.000Z</published>
+    <updated>2018-12-29T08:22:39.321Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="Linux" scheme="http://www.limingming.org/categories/Linux/"/>
+    
+    
+      <category term="vim" scheme="http://www.limingming.org/tags/vim/"/>
+    
+      <category term="vi" scheme="http://www.limingming.org/tags/vi/"/>
+    
+      <category term="编辑器" scheme="http://www.limingming.org/tags/%E7%BC%96%E8%BE%91%E5%99%A8/"/>
+    
+      <category term="使用" scheme="http://www.limingming.org/tags/%E4%BD%BF%E7%94%A8/"/>
+    
+  </entry>
   
   <entry>
     <title>centos常见配置修改</title>
@@ -84,10 +116,10 @@
   
   <entry>
     <title>syntax error near unexpected token $ do报错问题</title>
-    <link href="http://www.limingming.org/2018/12/22/%E6%9D%82%E8%B0%88/syntax-error-near-unexpected-token-do-r%E6%8A%A5%E9%94%99%E9%97%AE%E9%A2%98/"/>
-    <id>http://www.limingming.org/2018/12/22/杂谈/syntax-error-near-unexpected-token-do-r报错问题/</id>
+    <link href="http://www.limingming.org/2018/12/22/Linux/syntax-error-near-unexpected-token-do-r%E6%8A%A5%E9%94%99%E9%97%AE%E9%A2%98/"/>
+    <id>http://www.limingming.org/2018/12/22/Linux/syntax-error-near-unexpected-token-do-r报错问题/</id>
     <published>2018-12-22T10:06:53.000Z</published>
-    <updated>2018-12-22T10:17:28.437Z</updated>
+    <updated>2018-12-29T07:46:04.768Z</updated>
     
     <summary type="html">
     
@@ -114,10 +146,10 @@
   
   <entry>
     <title>macOS常见问题记录</title>
-    <link href="http://www.limingming.org/2018/12/22/%E6%9D%82%E8%B0%88/macOS%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/"/>
-    <id>http://www.limingming.org/2018/12/22/杂谈/macOS常见问题记录/</id>
+    <link href="http://www.limingming.org/2018/12/22/%E8%AE%A1%E7%AE%97%E6%9C%BA/macOS%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/"/>
+    <id>http://www.limingming.org/2018/12/22/计算机/macOS常见问题记录/</id>
     <published>2018-12-22T09:49:31.000Z</published>
-    <updated>2018-12-24T09:29:19.580Z</updated>
+    <updated>2018-12-29T08:38:52.501Z</updated>
     
     <summary type="html">
     
@@ -131,7 +163,7 @@
     
     </summary>
     
-      <category term="杂谈" scheme="http://www.limingming.org/categories/%E6%9D%82%E8%B0%88/"/>
+      <category term="计算机" scheme="http://www.limingming.org/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/"/>
     
     
       <category term="问题" scheme="http://www.limingming.org/tags/%E9%97%AE%E9%A2%98/"/>
@@ -168,9 +200,9 @@
     
       <category term="配置" scheme="http://www.limingming.org/tags/%E9%85%8D%E7%BD%AE/"/>
     
-      <category term="介绍" scheme="http://www.limingming.org/tags/%E4%BB%8B%E7%BB%8D/"/>
-    
       <category term="使用" scheme="http://www.limingming.org/tags/%E4%BD%BF%E7%94%A8/"/>
+    
+      <category term="介绍" scheme="http://www.limingming.org/tags/%E4%BB%8B%E7%BB%8D/"/>
     
       <category term="log4j2" scheme="http://www.limingming.org/tags/log4j2/"/>
     
@@ -232,9 +264,9 @@
     
       <category term="配置" scheme="http://www.limingming.org/tags/%E9%85%8D%E7%BD%AE/"/>
     
-      <category term="log4j" scheme="http://www.limingming.org/tags/log4j/"/>
-    
       <category term="使用" scheme="http://www.limingming.org/tags/%E4%BD%BF%E7%94%A8/"/>
+    
+      <category term="log4j" scheme="http://www.limingming.org/tags/log4j/"/>
     
       <category term="日志" scheme="http://www.limingming.org/tags/%E6%97%A5%E5%BF%97/"/>
     
@@ -338,10 +370,10 @@
   
   <entry>
     <title>jenkins中SSH remote hosts配置</title>
-    <link href="http://www.limingming.org/2018/12/15/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/jenkins%E4%B8%ADSSH-remote-hosts%E9%85%8D%E7%BD%AE/"/>
-    <id>http://www.limingming.org/2018/12/15/开发工具/jenkins中SSH-remote-hosts配置/</id>
+    <link href="http://www.limingming.org/2018/12/15/%E5%BC%80%E5%8F%91%E8%80%85%E6%89%8B%E5%86%8C/jenkins%E4%B8%ADSSH-remote-hosts%E9%85%8D%E7%BD%AE/"/>
+    <id>http://www.limingming.org/2018/12/15/开发者手册/jenkins中SSH-remote-hosts配置/</id>
     <published>2018-12-15T08:11:07.000Z</published>
-    <updated>2018-12-15T08:45:28.390Z</updated>
+    <updated>2018-12-29T08:44:03.522Z</updated>
     
     <summary type="html">
     
@@ -355,7 +387,7 @@
     
     </summary>
     
-      <category term="开发工具" scheme="http://www.limingming.org/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"/>
+      <category term="开发者手册" scheme="http://www.limingming.org/categories/%E5%BC%80%E5%8F%91%E8%80%85%E6%89%8B%E5%86%8C/"/>
     
     
       <category term="远程" scheme="http://www.limingming.org/tags/%E8%BF%9C%E7%A8%8B/"/>
@@ -629,38 +661,6 @@
       <category term="yum" scheme="http://www.limingming.org/tags/yum/"/>
     
       <category term="nexus3" scheme="http://www.limingming.org/tags/nexus3/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>国内yum源地址</title>
-    <link href="http://www.limingming.org/2018/12/07/Linux/%E5%9B%BD%E5%86%85yum%E6%BA%90%E5%9C%B0%E5%9D%80/"/>
-    <id>http://www.limingming.org/2018/12/07/Linux/国内yum源地址/</id>
-    <published>2018-12-07T15:21:55.000Z</published>
-    <updated>2018-12-20T03:07:54.416Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-      <category term="Linux" scheme="http://www.limingming.org/categories/Linux/"/>
-    
-    
-      <category term="仓库" scheme="http://www.limingming.org/tags/%E4%BB%93%E5%BA%93/"/>
-    
-      <category term="源" scheme="http://www.limingming.org/tags/%E6%BA%90/"/>
-    
-      <category term="yum" scheme="http://www.limingming.org/tags/yum/"/>
-    
-      <category term="国内" scheme="http://www.limingming.org/tags/%E5%9B%BD%E5%86%85/"/>
     
   </entry>
   
