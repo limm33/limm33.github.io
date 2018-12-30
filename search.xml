@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[ansible使用playbook总结]]></title>
+    <url>%2F2018%2F12%2F30%2FLinux%2Fansible%E4%BD%BF%E7%94%A8playbook%E6%80%BB%E7%BB%93%2F</url>
+    <content type="text"><![CDATA[原文 http://limingming.org/index.php/2018/12/ansible-playbook-use-summ/ SSH免密钥登录设置使用ssh-keygen生成key-pair： 123456789101112131415161718192021ssh-keygen -t rsa -P ''# 以下为系统输出内容：Generating public/private rsa key pair.Enter file in which to save the key (/root/.ssh/id_rsa): Created directory '/root/.ssh'.Your identification has been saved in /root/.ssh/id_rsa.Your public key has been saved in /root/.ssh/id_rsa.pub.The key fingerprint is:03:4a:1c:e1:7b:ca:84:11:2e:4e:4a:d7:d0:a3:83:d2 root@localhost.localdomainThe key's randomart image is:+--[ RSA 2048]----+| ..+. || . +o+ ||.++.=.o ||*oE* o . ||o.. = . S || o o . || o || || |+-----------------+ 从上面就可以看到密钥存储在了/root/.ssh/id_rsa,将该文件夹下的id_rsa.pub内容配置到被控制的机子的/root/.ssh/authorized_keys文件中。 重新ssh连接一次，就不需要密码了：1234567[root@localhost .ssh]# ssh root@10.111.24.67The authenticity of host '10.111.24.67 (10.111.24.67)' can't be established.ECDSA key fingerprint is ee:87:55:3a:d4:96:9e:c7:78:0e:a8:c1:8b:26:d3:75.Are you sure you want to continue connecting (yes/no)? yesWarning: Permanently added '10.111.24.67' (ECDSA) to the list of known hosts.Last login: Tue Dec 25 11:08:54 2018 from 10.9.11.40[root@localhost ~]# 配置Ansible使用Ansible需要配置/etc/anisble/路径下的hosts和ansible.cfg文件，需要使用root权限修改，默认安装成功后应该不存在这两个文件，所以需要创建： 1234567mkdir -p /etc/ansible vi /etc/ansible/ansible.cfg# 写入内容# remote_port 这个设置是你系统默认的远程SSH端口,如果不指定,默认为22号端口[defaults]remote_port = 22private_key_file = /root/.ssh/id_rsa 以上配置文件修改可以参考地址 Ansibleke可以操作属于同一个组的多个主机，组和主机之间的关系通过 inventory 文件(INI 格式)配置，默认的文件路径为 /etc/ansible/hosts，一个系统可以属于不同的组，比如一台服务器可以同时属于A组和B组，还有C组，所以修改host文件： 1234vi /etc/ansible/hosts# 写入内容[test]10.111.24.67 除了配置以上的host文件之外，还可以配置环境变量引用文件路径： 1export ANSIBLE_HOSTS=~/test/qiuyi_ansible/test_hosts playbook一个playbook中可以包含多个play。每个play都至少包含有tasks和hosts这两项，还可以包含其他非必须项，如vars,vars_files,remote_user等。tasks中可以通过模块调用定义一系列的action。只不过，绝大多数时候，一个playbook都只定义一个play。123playbook: [play1,play2,play3]play: [hosts,tasks,vars,remote_user...]tasks: [module1,module2,...] 需要注意，有些时候play中使用了role，可能看上去没有tasks，这是因为role本身就是整合playbook的，所以没有也没关系。但没有使用role的时候，必须得包含hosts和tasks。ansilbe提供了2种方式去执行完成任务，一个是playbook，一个是ad-hoc,ad-hoc只可以做一些简单的操作，如果要部署的话最好采用playbook来做，即是：ansible-palybook命令；通过上面的配置，我们现在可以放心的看一下ansible-playbook有哪些参数： 12345678910[root@localhost ~]# ansible-playbook --helpUsage: ansible-playbook [options] playbook.yml [playbook2 ...]Runs Ansible playbooks, executing the defined tasks on the targeted hosts.Options: --ask-vault-pass ask for vault password -C, --check don&apos;t make any changes; instead, try to predict some# 等等··· Playbooks适合部署复杂的应用，能用在声明配置，可以编排有序的执行过程，本文主要是记录并整理部署应用的过程，我要部署的应用大约包含部署tomcat及web应用，还有执行安装相关的python应用等 基础语法playbook使用了YAML格式的语法，编程少不了使用配置文件，yaml文件也是作为配置文件格式的一个主要方式，比如我经常用的使用markdown编写博客的HEXO，就是经常改动yaml文件，所以说，YAML是专门用来写配置文件的语言，非常简洁和强大，远比 JSON 格式方便。 如果感兴趣可以参考YAML语言介绍 12345大小写敏感 使用缩进表示层级关系 缩进时不允许使用Tab键，只允许使用空格 缩进的空格数目不重要，只要相同层级的元素左侧对齐即可 # 表示注释，从这个字符一直到行尾，都会被解析器忽略 在test组（我们上面说到的配置/etc/ansible/hosts）使用root用户执行安装wget命令，如下： 123456- hosts: test remote_user: root gather_facts: True tasks: - name: "安装wget命令" command: yum -y insatll wget hosts也可以使用ip的方式，每个ip用逗号隔开 语法注意：”-“以及”:”后面都需要一个空格，从上面可以看出，有两个基本的属性，一个是hosts，一个是remote_user,他们可以定位到我们需啊哟执行命令的主机，定义tasks就可以执行task的一些命令了，上面的例子中是执行安装wget的命令，playbook执行任务需要通过不同的模块进行控制。从上面的实例可以看出有两个必须的属性，那就是服务器主机hosts以及远程用户remote_user，有了它们就可以干点其它事了tasks，自然而然在playbook执行任务是需要通过模块的来操控的。使用命令检查yaml的语法: 1ansible-playbook main.yml --syntax-check command在上面举例中也是使用command执行安装wget命令： 123456- hosts: test remote_user: root gather_facts: True tasks: - name: "安装wget命令" command: yum -y insatll wget shell我们也可以使用shell替换到command： 123456- hosts: test remote_user: root gather_facts: True tasks: - name: "安装wget命令" shell: yum -y insatll wget script执行shell脚本： 123456- hosts: test remote_user: root gather_facts: True tasks: - name: "被控节点执行控制节点的shell脚本" script: /home/limm/test.sh copy将控制节点的文件上传到test服务器【被控节点】上:1234567891011- hosts: test remote_user: root gather_facts: True tasks: - name: "控节点文件复制到到被控制节点服务器" copy: src=/home/limm/dialog.war dest=/opt/limm/apache-tomcat/webapps/ owner=root group=root mode=0644 src代表控制节点路径，dest代表被控节点路径，其它的为可选项目 yum使用yum安装vim,yum该模块仅仅适合contOS相似的发行版：123456- hosts: test remote_user: root gather_facts: True tasks: - name: &quot;安装vim&quot; yum: name=vim state=latest name为安装软件的名称state为安装的版本 servicetest用户组以root用户重启apache2服务：123456- hosts: test remote_user: root gather_facts: True tasks: - name: "重启apache2服务" service: name=apache2 state=restarted 我们平时启动可能使用systemctl restart httpd这种，但是在state中需要使用加-ed的方式，如： stsrted stoped restarted； notify 与 handlersnotify这个action可用于在每个play的最后被触发，这样可以避免多次有改变发生时每次都执行指定的操作，在notify中列出的操作称为handler，也即notify中调用handler中定义的操作。Handlers 也是一些 task 的列表,通过名字来引用,它们和一般的 task 并没有什么区别，Handlers 是由通知者进行 notify, 如果没有被 notify,handlers 不会执行。不管有多少个通知者进行了 notify,等到 play 中的所有 task 执行完成之后,handlers 也只会被执行一次。Handlers 最佳的应用场景是用来重启服务,或者触发系统重启操作。 12345678910- hosts: test remote_user: root tasks: - name: "test notify" shell: ls notify: - restart apache2 handlers: - name: restart apache2 service: name=apache2 state=restarted vars在playbook中定义变量1234567- hosts: test remote_user: root vars: config_path: &quot;/root/application/sise.conf&quot; tasks: - name: &quot;test notify&quot; command: touch &#123;&#123;config_path&#125;&#125; Ansible允许你使用Jinja2模板系统在playbook中引用变量，加上引号 “，在执行ansible脚本的时候赋值：例如：1234567- hosts: &#123;&#123;hosts&#125;&#125; remote_user: root vars: config_path: "/root/application/sise.conf" tasks: - name: "test notify" command: touch &#123;&#123;config_path&#125;&#125; 执行脚本：123ansible-playbook main.yml --extra-vars hosts=test#如果有多个参数：ansible-playbook release.yml --extra-vars "version=1.23.45 other_variable=foo" Roles、includeRoles是ansible自1.2版本引入的新特性，用于层次性，结构化地组织playbook，roles能够根据层次型结构自动自动装在变量文件、tasks以及handlers等。要使用roles只需要在playbook中使用include指令即可。roles就是通过分别将变量、文件、任务、模板及处理器放置于单独的目录中。role构建的项目目录：12345678910111213141516171819site.ymlcmd.ymlroles/ common/ files/ templates/ tasks/ handlers/ vars/ defaults/ meta/ web/ files/ templates/ tasks/ handlers/ vars/ defaults/ meta/ Role内各目录可用的文件：123456789101112131415tasks目录：至少创建一个名为main.yml的文件，其定义了此角色的任务列表：此文件可以使用 include包含其他的位于此目录中的tasks文件：files目录：存放由copy或者script等模块调用的文件：templates目录：templates模块会自动在此目录中寻找Jinjia2模板文件：handlers目录：此目录中应当包含一个main。yml文件：用于定义此角色用到的各handler：在handler中使用include包含的其他的handler文件也应该位于此目录中：vars目录：应当包含一个main.yml文件，用于定义此角色用到的变量meta目录：应当包含一个main.yml文件，用于定义此角色的特殊设定及其依赖关系：ansible 1.3及其以后的版本才支持default目录：为当前角色定义默认变量时使用此目录，应该包含一个main.yml文件 而在playbook（site.yml）中可以这样使用roles： 12345---- hosts: test roles: - common - web 也可以向roles传递参数，例如： 12345---- hosts: test roles: - common - &#123; role: foo_app_instance , dir: '/opt/a', port: 8080 &#125; 可以给roles指定tags，使用ansible-playbook -t指定此roles的tags，使用roles都应该定义tags： 12345---- hosts: test roles: - &#123; role: common , tags: "common"&#125; - web 只执行common的角色：1ansible-playbook -t common -i /etc/ansible/hosts site.yml -vv include使用语法：1- include: cmd.yml 补充 查看任务所指定的host列表 1$ ansible-playbook main.yml --list-hosts –ask-pass、–ask-sudo-pass普通用户执行命令需要输入密码 1$ ansible-playbook main.ym --ask-sudo-pass --ask-pass]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>使用</tag>
+        <tag>ansible</tag>
+        <tag>总结</tag>
+        <tag>playbook</tag>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[YAML语言介绍]]></title>
     <url>%2F2018%2F12%2F30%2F%E5%BC%80%E5%8F%91%E8%80%85%E6%89%8B%E5%86%8C%2FYAML%E8%AF%AD%E8%A8%80%E4%BB%8B%E7%BB%8D%2F</url>
     <content type="text"><![CDATA[原文： http://limingming.org/index.php/2018/12/yaml-intro 介绍YAML（/ˈjæməl/，尾音类似camel骆驼）是一个可读性高，用来表达数据序列的格式。YAML参考了其他多种语言，包括：C语言、Python、Perl，并从XML、邮箱的数据格式（RFC 2822）中获得灵感。Clark Evans在2001年首次发表了这种语言，另外Ingy döt Net与Oren Ben-Kiki也是这语言的共同设计者。当前已经有数种编程语言或脚本语言支持（或者说解析）这种语言。 YAML是”YAML Ain’t a Markup Language”（YAML不是一种标记语言）的递归缩写。在开发的这种语言时，YAML 的意思其实是：”Yet Another Markup Language”（仍是一种标记语言）但为了强调这种语言以数据做为中心，而不是以标记语言为重点，而用反向缩略语重命名。– 维基百科 上面我们也看到了YAML Ain’t a Markup Language，这个让我想起了，GNU对UNIX来说不，YAML是对XML说不，所以YAML应该是试图用一种比XML更敏捷的方式，来完成XML所完成的任务，在我们编程过程中很多时候会用到YAML文件编写配置文件，如果使用java的话可能用的比较多的是properties的配置文件居多，但是很多时候也会用到YAML文件，比如我经常使用的HEXO，修改比较多的就是YAML文件。 概括YAML的语法和其他高级语言类似，并且可以简单表达清单、散列表，标量等数据形态，下面主要针对于YAML文件相关语法做简要的记录，我平时用的比较多的是JAVA，所以针对于java也有很多YAML的实现，如果按照语法来说的话YAML文件几乎可以总结成： Structure通过空格来展示。Sequence里的项用”-“来代表，Map里的键值对用”:”分隔. 抽象出来的的对象,java里面Map、Hash这种 Collection相关的List、Set这种 单一的int这种 Structure通过空格来展示，可以组合成javabean这种对象，Sequence可以实现Arrays等，：分割实现对象、Map类的数据结构，外加其他的数据类型，可以涵盖所有的我们常用的数据类型。1234YAML大小写敏感；使用缩进代表层级关系；缩进只能使用空格，不能使用TAB，不要求空格个数，只需要相同层级左对齐（一般2个或4个空格）使用#注释 语法对象数据类型使用冒号，冒号后面跟一个空格，缩紧表示层级关系 12345keyFirst: valuekey: key1: value1 key2:value2 还可以支持行内语法表示对象： 1key: &#123;key1: value, key2: value2&#125; 数组使用一个短横线加一个空格代表一个数组项： 123- value1- value2- value3 数据结构的子成员是一个数组，则可以在该项下面缩进一个空格。12345678910- - value1 - valu2 - value3# 如果上面作为作为value的话就是：key:- - value1 - valu2 - value3 数组也同样可以使用行内：1key: [value1, value2] 举一个复杂的例子： 123456789key: - key1: value key2: value key3: value - key4: value key5: value key6: value 上面这种写法也是可以的，可以对应的是一个list的value，list中包含两个map对象； 单一常量YAML中提供了多种常量结构，包括：整数，浮点数，字符串，NULL，日期，布尔，时间，常量是最基本的、不可再分的值。 12345678910111213141516171819boolean: - TRUE #true,True都可以 - FALSE #false，False都可以float: - 3.14 - 6.8523015e+5 #可以使用科学计数法int: - 123 - 0b1010_0111_0100_1010_1110 #二进制表示null: nodeName: &apos;node&apos; parent: ~ #使用~表示nullstring: - 你好 - &apos;Hello&apos; #可以使用双引号或者单引号包裹特殊字符date: - 2018-02-17 #日期必须使用ISO 8601格式，即yyyy-MM-dddatetime: - 2018-02-17T15:02:31+08:00 #时间使用ISO 8601格式，时间和日期之间使用T连接，最后使用+代表时区 其他 引用使用锚点：&amp;别名：* 重复的内容在YAML中可以使用&amp;来完成锚点定义，使用*来完成锚点引用，例如：123456key:- value1 - &amp;mark1 value2key2:- *mark1 - value3 上面中使用*mark1相当于替代了value2，那么key2的第一个元素应该是value2； 还可以：定义复杂的：1234key1: &amp;mark2 - value3 - value4key2: *mark2 上面的*mark2相当于定义了key1中的数组内容，但要注意的是需要和key2写在一行还有不能单独定义锚点，如：&amp;mark value1，这种形式是不可以的 补充：和锚点配合使用的还可能是合并内容，例如： 12345key1: - &amp;mark1 &#123; key2: value2, key3: value3 &#125;key11: &lt;&lt;: *mark1 key4: value4 那么上面通过 &lt;&lt;: *mark1 这种方式就将key11变成了：1234key11: key2: value2 key3: value3 key4: value4 通过合并内容可以有效的共用相同的配置。 三个短横线 YAML文件中，可以使用— 表示文档的开始，Springboot中profile的定义就是如此，可以一个YAML文件中，包含多个profile，每个—都是一个profile的开始，例如：12345678910111213server: address: 192.168.1.100---spring: profiles: development server: address: 127.0.0.1 ---spring: profiles: production server: address: 192.168.1.120 …和—配合使用来表示配置文件中一个文件的结束 类型转换!! 表示强制的类型转换： 12string: - !!str 54321 折叠换行与保留换行在字符串中折叠换行，| 保留换行符 例如： 123456key1: &gt; 1 2 3 4 5 6key2: | 7 8 9 10 11 12 那么key1=1 2 3 4 5 6，就是没有保留换行符，将黄换行符转换成了空格； 而key2 12key2=7 8 9 10 11 12 key2 保留的换行符。 注释 使用”#”来表示注释]]></content>
@@ -9,9 +24,9 @@
       </categories>
       <tags>
         <tag>介绍</tag>
+        <tag>语法</tag>
         <tag>YAML</tag>
         <tag>语言</tag>
-        <tag>语法</tag>
       </tags>
   </entry>
   <entry>
@@ -232,9 +247,9 @@
       </categories>
       <tags>
         <tag>mysql</tag>
+        <tag>解决</tag>
         <tag>警告</tag>
         <tag>ssl</tag>
-        <tag>解决</tag>
       </tags>
   </entry>
   <entry>
@@ -246,11 +261,11 @@
       </categories>
       <tags>
         <tag>mysql</tag>
-        <tag>解决</tag>
         <tag>安装</tag>
         <tag>迁移</tag>
         <tag>数据</tag>
         <tag>问题</tag>
+        <tag>解决</tag>
       </tags>
   </entry>
   <entry>
@@ -517,8 +532,8 @@
         <category>Maven</category>
       </categories>
       <tags>
-        <tag>tomcat</tag>
         <tag>插件</tag>
+        <tag>tomcat</tag>
         <tag>内嵌</tag>
         <tag>可执行</tag>
         <tag>war</tag>
@@ -548,10 +563,10 @@
       </categories>
       <tags>
         <tag>Maven</tag>
-        <tag>插件</tag>
         <tag>构建</tag>
         <tag>执行</tag>
         <tag>WEB</tag>
+        <tag>插件</tag>
       </tags>
   </entry>
   <entry>
@@ -593,8 +608,8 @@
       </categories>
       <tags>
         <tag>介绍</tag>
-        <tag>语法</tag>
         <tag>markdown</tag>
+        <tag>语法</tag>
         <tag>怎么</tag>
         <tag>如何</tag>
       </tags>
@@ -632,7 +647,7 @@
   <entry>
     <title><![CDATA[Mac OS下搭建Vue开发环境]]></title>
     <url>%2F2018%2F11%2F23%2FVue%2FMac-OS%E4%B8%8B%E6%90%AD%E5%BB%BAVue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%2F</url>
-    <content type="text"><![CDATA[前言原来一直学习使用React，现在因为工作的需要，对Vue进行学习和使用，现在比较流行的框架React,angular,vue，正好对于vue也进行些了解。 环境搭建 打开终端,安装brew 1usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot; 安装成功后，使用查看版本，验证是否安装成功1brew -v 安装node.js1brew install nodejs 也可以下载安装下载地址安装成功后，使用验证123node -v``` * 给nodejs目录赋权限 sudo chmod -R 777 /usr/local/lib/node_modules/1* 安装 淘宝镜像 （npm） npm install -g cnpm –registry=https://registry.npm.taobao.org12* 安装webpack cnpm install webpack -g12* 安装vue脚手架 npm install vue-cli -g12# 开始Vue 创建一个基于 webpack 模板的新项目$ vue init webpack my-project 这里需要进行一些配置，默认回车即可This will install Vue 2.x version of the template. For Vue 1.x use: vue init webpack#1.0 my-project ? Project name my-project? Project description A Vue.js project? Author runoob &#x74;&#101;&#115;&#116;&#x40;&#114;&#x75;&#x6e;&#111;&#x6f;&#98;&#46;&#x63;&#111;&#x6d;? Vue build standalone? Use ESLint to lint your code? Yes? Pick an ESLint preset Standard? Setup unit tests with Karma + Mocha? Yes? Setup e2e tests with Nightwatch? Yes vue-cli · Generated “my-project”. To get started: cd my-project npm install npm run dev Documentation can be found at https://vuejs-templates.github.io/webpack1进入项目，安装并运行： $ cd my-project$ cnpm install$ cnpm run dev DONE Compiled successfully in 4388ms Listening at http://localhost:8080`]]></content>
+    <content type="text"><![CDATA[前言原来一直学习使用React，现在因为工作的需要，对Vue进行学习和使用，现在比较流行的框架React,angular,vue，正好对于vue也进行些了解。 环境搭建 打开终端,安装brew 1usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot; 安装成功后，使用查看版本，验证是否安装成功1brew -v 安装node.js1brew install nodejs 也可以下载安装下载地址安装成功后，使用验证123node -v``` * 给nodejs目录赋权限 sudo chmod -R 777 /usr/local/lib/node_modules/1* 安装 淘宝镜像 （npm） npm install -g cnpm –registry=https://registry.npm.taobao.org12* 安装webpack cnpm install webpack -g12* 安装vue脚手架 npm install vue-cli -g12# 开始Vue 创建一个基于 webpack 模板的新项目$ vue init webpack my-project 这里需要进行一些配置，默认回车即可This will install Vue 2.x version of the template. For Vue 1.x use: vue init webpack#1.0 my-project ? Project name my-project? Project description A Vue.js project? Author runoob &#x74;&#x65;&#x73;&#x74;&#x40;&#x72;&#117;&#110;&#x6f;&#x6f;&#x62;&#x2e;&#x63;&#x6f;&#x6d;? Vue build standalone? Use ESLint to lint your code? Yes? Pick an ESLint preset Standard? Setup unit tests with Karma + Mocha? Yes? Setup e2e tests with Nightwatch? Yes vue-cli · Generated “my-project”. To get started: cd my-project npm install npm run dev Documentation can be found at https://vuejs-templates.github.io/webpack1进入项目，安装并运行： $ cd my-project$ cnpm install$ cnpm run dev DONE Compiled successfully in 4388ms Listening at http://localhost:8080`]]></content>
       <categories>
         <category>Vue</category>
       </categories>

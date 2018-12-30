@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/my-favicon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/my-favicon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/my-favicon.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/my-favicon.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="使用,ansible,总结,playbook,学习,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="李明明的博客" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="原文 http://limingming.org/index.php/2018/12/ansible-playbook-use-summ/      SSH免密钥登录设置使用ssh-keygen生成key-pair： 123456789101112131415161718192021ssh-keygen -t rsa -P &apos;&apos;# 以下为系统输出内容：Generating public/priva">
+<meta name="keywords" content="使用,ansible,总结,playbook,学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ansible使用playbook总结">
+<meta property="og:url" content="http://www.limingming.org/2018/12/30/Linux/ansible使用playbook总结/index.html">
+<meta property="og:site_name" content="李明明的博客">
+<meta property="og:description" content="原文 http://limingming.org/index.php/2018/12/ansible-playbook-use-summ/      SSH免密钥登录设置使用ssh-keygen生成key-pair： 123456789101112131415161718192021ssh-keygen -t rsa -P &apos;&apos;# 以下为系统输出内容：Generating public/priva">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-12-30T08:57:59.131Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ansible使用playbook总结">
+<meta name="twitter:description" content="原文 http://limingming.org/index.php/2018/12/ansible-playbook-use-summ/      SSH免密钥登录设置使用ssh-keygen生成key-pair： 123456789101112131415161718192021ssh-keygen -t rsa -P &apos;&apos;# 以下为系统输出内容：Generating public/priva">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.limingming.org/2018/12/30/Linux/ansible使用playbook总结/">
+
+
+
+
+
+  <title>ansible使用playbook总结 | 李明明的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">李明明的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Li MingMing's blog site</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+   <!-- <a href="https://github.com/limm33"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://blog.limingming.org/source/images/forkme_left_darkblue_121621.png" alt="Fork me on GitHub"></a> -->
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.limingming.org/2018/12/30/Linux/ansible使用playbook总结/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="李明明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/my-photo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="李明明的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">ansible使用playbook总结</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-30T16:57:09+08:00">
+                2018-12-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="http://limingming.org/index.php/2018/12/ansible-playbook-use-summ/" target="_blank" rel="noopener">原文 http://limingming.org/index.php/2018/12/ansible-playbook-use-summ/</a>     </p>
+<h1 id="SSH免密钥登录设置"><a href="#SSH免密钥登录设置" class="headerlink" title="SSH免密钥登录设置"></a>SSH免密钥登录设置</h1><p>使用ssh-keygen生成key-pair：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -P ''</span><br><span class="line"><span class="meta">#</span> 以下为系统输出内容：</span><br><span class="line">Generating public/private rsa key pair.</span><br><span class="line">Enter file in which to save the key (/root/.ssh/id_rsa): </span><br><span class="line">Created directory '/root/.ssh'.</span><br><span class="line">Your identification has been saved in /root/.ssh/id_rsa.</span><br><span class="line">Your public key has been saved in /root/.ssh/id_rsa.pub.</span><br><span class="line">The key fingerprint is:</span><br><span class="line">03:4a:1c:e1:7b:ca:84:11:2e:4e:4a:d7:d0:a3:83:d2 root@localhost.localdomain</span><br><span class="line">The key's randomart image is:</span><br><span class="line">+--[ RSA 2048]----+</span><br><span class="line">|  ..+.           |</span><br><span class="line">| . +o+           |</span><br><span class="line">|.++.=.o          |</span><br><span class="line">|*oE* o .         |</span><br><span class="line">|o.. = . S        |</span><br><span class="line">|   o o   .       |</span><br><span class="line">|    o            |</span><br><span class="line">|                 |</span><br><span class="line">|                 |</span><br><span class="line">+-----------------+</span><br></pre></td></tr></table></figure>
+<p>从上面就可以看到密钥存储在了/root/.ssh/id_rsa,将该文件夹下的id_rsa.pub内容配置到被控制的机子的/root/.ssh/authorized_keys文件中。</p>
+<p>重新ssh连接一次，就不需要密码了：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost .ssh]# ssh root@10.111.24.67</span><br><span class="line">The authenticity of host '10.111.24.67 (10.111.24.67)' can't be established.</span><br><span class="line">ECDSA key fingerprint is ee:87:55:3a:d4:96:9e:c7:78:0e:a8:c1:8b:26:d3:75.</span><br><span class="line">Are you sure you want to continue connecting (yes/no)? yes</span><br><span class="line">Warning: Permanently added '10.111.24.67' (ECDSA) to the list of known hosts.</span><br><span class="line">Last login: Tue Dec 25 11:08:54 2018 from 10.9.11.40</span><br><span class="line">[root@localhost ~]#</span><br></pre></td></tr></table></figure></p>
+<h1 id="配置Ansible"><a href="#配置Ansible" class="headerlink" title="配置Ansible"></a>配置Ansible</h1><p>使用Ansible需要配置/etc/anisble/路径下的hosts和ansible.cfg文件，需要使用root权限修改，默认安装成功后应该不存在这两个文件，所以需要创建：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /etc/ansible  </span><br><span class="line">vi /etc/ansible/ansible.cfg</span><br><span class="line"><span class="meta">#</span> 写入内容</span><br><span class="line"><span class="meta">#</span> remote_port 这个设置是你系统默认的远程SSH端口,如果不指定,默认为22号端口</span><br><span class="line">[defaults]</span><br><span class="line">remote_port = 22</span><br><span class="line">private_key_file = /root/.ssh/id_rsa</span><br></pre></td></tr></table></figure>
+<p>以上配置文件修改可以参考<a href="https://ansible-tran.readthedocs.io/en/latest/docs/intro_configuration.html#config-values-by-section" target="_blank" rel="noopener">地址</a>    </p>
+<p>Ansibleke可以操作属于同一个组的多个主机，组和主机之间的关系通过 inventory 文件(INI 格式)配置，默认的文件路径为 /etc/ansible/hosts，一个系统可以属于不同的组，比如一台服务器可以同时属于A组和B组，还有C组，所以修改host文件：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/ansible/hosts</span><br><span class="line"><span class="meta">#</span> 写入内容</span><br><span class="line">[test]</span><br><span class="line">10.111.24.67</span><br></pre></td></tr></table></figure>
+<p>除了配置以上的host文件之外，还可以配置环境变量引用文件路径：   </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export ANSIBLE_HOSTS=~/test/qiuyi_ansible/test_hosts</span><br></pre></td></tr></table></figure>
+<h1 id="playbook"><a href="#playbook" class="headerlink" title="playbook"></a>playbook</h1><p>一个playbook中可以包含多个play。每个play都至少包含有tasks和hosts这两项，还可以包含其他非必须项，如vars,vars_files,remote_user等。tasks中可以通过模块调用定义一系列的action。只不过，绝大多数时候，一个playbook都只定义一个play。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">playbook: [play1,play2,play3]</span><br><span class="line">play: [hosts,tasks,vars,remote_user...]</span><br><span class="line">tasks: [module1,module2,...]</span><br></pre></td></tr></table></figure></p>
+<p>需要注意，有些时候play中使用了role，可能看上去没有tasks，这是因为role本身就是整合playbook的，所以没有也没关系。但没有使用role的时候，必须得包含hosts和tasks。<br>ansilbe提供了2种方式去执行完成任务，一个是playbook，一个是ad-hoc,ad-hoc只可以做一些简单的操作，如果要部署的话最好采用playbook来做，即是：ansible-palybook命令；<br>通过上面的配置，我们现在可以放心的看一下ansible-playbook有哪些参数：    </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# ansible-playbook --help</span><br><span class="line">Usage: ansible-playbook [options] playbook.yml [playbook2 ...]</span><br><span class="line"></span><br><span class="line">Runs Ansible playbooks, executing the defined tasks on the targeted hosts.</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line">  --ask-vault-pass      ask for vault password</span><br><span class="line">  -C, --check           don&apos;t make any changes; instead, try to predict some</span><br><span class="line"></span><br><span class="line"># 等等···</span><br></pre></td></tr></table></figure>
+<p>Playbooks适合部署复杂的应用，能用在声明配置，可以编排有序的执行过程，本文主要是记录并整理部署应用的过程，我要部署的应用大约包含部署tomcat及web应用，还有执行安装相关的python应用等</p>
+<h2 id="基础语法"><a href="#基础语法" class="headerlink" title="基础语法"></a>基础语法</h2><p>playbook使用了YAML格式的语法，编程少不了使用配置文件，yaml文件也是作为配置文件格式的一个主要方式，比如我经常用的使用markdown编写博客的HEXO，就是经常改动yaml文件，所以说，YAML是专门用来写配置文件的语言，非常简洁和强大，远比 JSON 格式方便。 如果感兴趣可以参考<a href="http://limingming.org/index.php/2018/12/yaml-intro" target="_blank" rel="noopener">YAML语言介绍</a>       </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">大小写敏感   </span><br><span class="line">使用缩进表示层级关系  </span><br><span class="line">缩进时不允许使用Tab键，只允许使用空格    </span><br><span class="line">缩进的空格数目不重要，只要相同层级的元素左侧对齐即可   </span><br><span class="line"># 表示注释，从这个字符一直到行尾，都会被解析器忽略</span><br></pre></td></tr></table></figure>
+<p>在test组（我们上面说到的配置/etc/ansible/hosts）使用root用户执行安装wget命令，如下：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">- hosts:</span> <span class="string">test</span></span><br><span class="line"><span class="attr">  remote_user:</span> <span class="string">root</span></span><br><span class="line"><span class="attr">  gather_facts:</span> <span class="literal">True</span></span><br><span class="line"><span class="attr">  tasks:</span></span><br><span class="line"><span class="attr">   - name:</span> <span class="string">"安装wget命令"</span></span><br><span class="line"><span class="attr">     command:</span> <span class="string">yum</span> <span class="bullet">-y</span> <span class="string">insatll</span> <span class="string">wget</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>hosts也可以使用ip的方式，每个ip用逗号隔开     </p>
+</blockquote>
+<p>语法注意：”-“以及”:”后面都需要一个空格，从上面可以看出，有两个基本的属性，一个是hosts，一个是remote_user,他们可以定位到我们需啊哟执行命令的主机，定义tasks就可以执行task的一些命令了，上面的例子中是执行安装wget的命令，playbook执行任务需要通过不同的模块进行控制。<br>从上面的实例可以看出有两个必须的属性，那就是服务器主机hosts以及远程用户remote_user，有了它们就可以干点其它事了tasks，自然而然在playbook执行任务是需要通过模块的来操控的。<br>使用命令检查yaml的语法:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">ansible-playbook</span> <span class="string">main.yml</span> <span class="bullet">--syntax-check</span></span><br></pre></td></tr></table></figure>
+<h2 id="command"><a href="#command" class="headerlink" title="command"></a>command</h2><p>在上面举例中也是使用command执行安装wget命令：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">- hosts:</span> <span class="string">test</span></span><br><span class="line"><span class="attr">  remote_user:</span> <span class="string">root</span></span><br><span class="line"><span class="attr">  gather_facts:</span> <span class="literal">True</span></span><br><span class="line"><span class="attr">  tasks:</span></span><br><span class="line"><span class="attr">   - name:</span> <span class="string">"安装wget命令"</span></span><br><span class="line"><span class="attr">     command:</span> <span class="string">yum</span> <span class="bullet">-y</span> <span class="string">insatll</span> <span class="string">wget</span></span><br></pre></td></tr></table></figure>
+<h2 id="shell"><a href="#shell" class="headerlink" title="shell"></a>shell</h2><p>我们也可以使用shell替换到command：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">- hosts:</span> <span class="string">test</span></span><br><span class="line"><span class="attr">  remote_user:</span> <span class="string">root</span></span><br><span class="line"><span class="attr">  gather_facts:</span> <span class="literal">True</span></span><br><span class="line"><span class="attr">  tasks:</span></span><br><span class="line"><span class="attr">     - name:</span> <span class="string">"安装wget命令"</span></span><br><span class="line"><span class="attr">     shell:</span> <span class="string">yum</span> <span class="bullet">-y</span> <span class="string">insatll</span> <span class="string">wget</span></span><br></pre></td></tr></table></figure>
+<h2 id="script"><a href="#script" class="headerlink" title="script"></a>script</h2><p>执行shell脚本：  </p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">- hosts:</span> <span class="string">test</span></span><br><span class="line"><span class="attr">  remote_user:</span> <span class="string">root</span></span><br><span class="line"><span class="attr">  gather_facts:</span> <span class="literal">True</span></span><br><span class="line"><span class="attr">  tasks:</span></span><br><span class="line"><span class="attr">   - name:</span> <span class="string">"被控节点执行控制节点的shell脚本"</span></span><br><span class="line"><span class="attr">     script:</span> <span class="string">/home/limm/test.sh</span></span><br></pre></td></tr></table></figure>
+<h2 id="copy"><a href="#copy" class="headerlink" title="copy"></a>copy</h2><p>将控制节点的文件上传到test服务器【被控节点】上:<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">- hosts:</span> <span class="string">test</span></span><br><span class="line"><span class="attr">  remote_user:</span> <span class="string">root</span></span><br><span class="line"><span class="attr">  gather_facts:</span> <span class="literal">True</span></span><br><span class="line"><span class="attr">  tasks:</span></span><br><span class="line"><span class="attr">   - name:</span> <span class="string">"控节点文件复制到到被控制节点服务器"</span></span><br><span class="line"><span class="attr">     copy:</span></span><br><span class="line">       <span class="string">src=/home/limm/dialog.war</span></span><br><span class="line">       <span class="string">dest=/opt/limm/apache-tomcat/webapps/</span></span><br><span class="line">       <span class="string">owner=root</span> </span><br><span class="line">       <span class="string">group=root</span> </span><br><span class="line">       <span class="string">mode=0644</span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>src代表控制节点路径，dest代表被控节点路径，其它的为可选项目</p>
+</blockquote>
+<h2 id="yum"><a href="#yum" class="headerlink" title="yum"></a>yum</h2><p>使用yum安装vim,yum该模块仅仅适合contOS相似的发行版：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">- hosts: test</span><br><span class="line">  remote_user: root</span><br><span class="line">  gather_facts: True</span><br><span class="line">  tasks:</span><br><span class="line">   - name: &quot;安装vim&quot;</span><br><span class="line">     yum: name=vim state=latest</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>name为安装软件的名称<br>state为安装的版本    </p>
+</blockquote>
+<h2 id="service"><a href="#service" class="headerlink" title="service"></a>service</h2><p>test用户组以root用户重启apache2服务：<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">- hosts:</span> <span class="string">test</span></span><br><span class="line"><span class="attr">  remote_user:</span> <span class="string">root</span></span><br><span class="line"><span class="attr">  gather_facts:</span> <span class="literal">True</span></span><br><span class="line"><span class="attr">  tasks:</span></span><br><span class="line"><span class="attr">   - name:</span> <span class="string">"重启apache2服务"</span></span><br><span class="line"><span class="attr">     service:</span> <span class="string">name=apache2</span> <span class="string">state=restarted</span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>我们平时启动可能使用systemctl restart httpd这种，但是在state中需要使用加-ed的方式，如： stsrted stoped restarted；</p>
+</blockquote>
+<h2 id="notify-与-handlers"><a href="#notify-与-handlers" class="headerlink" title="notify 与 handlers"></a>notify 与 handlers</h2><p>notify这个action可用于在每个play的最后被触发，这样可以避免多次有改变发生时每次都执行指定的操作，在notify中列出的操作称为handler，也即notify中调用handler中定义的操作。<br>Handlers 也是一些 task 的列表,通过名字来引用,它们和一般的 task 并没有什么区别，Handlers 是由通知者进行 notify, 如果没有被 notify,handlers 不会执行。不管有多少个通知者进行了 notify,等到 play 中的所有 task 执行完成之后,handlers 也只会被执行一次。Handlers 最佳的应用场景是用来重启服务,或者触发系统重启操作。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">- hosts:</span> <span class="string">test</span></span><br><span class="line"><span class="attr">  remote_user:</span> <span class="string">root</span></span><br><span class="line"><span class="attr">  tasks:</span></span><br><span class="line"><span class="attr">    - name:</span> <span class="string">"test notify"</span></span><br><span class="line"><span class="attr">      shell:</span> <span class="string">ls</span></span><br><span class="line"><span class="attr">      notify:</span> </span><br><span class="line"><span class="bullet">        -</span> <span class="string">restart</span> <span class="string">apache2</span></span><br><span class="line"><span class="attr">  handlers:</span></span><br><span class="line"><span class="attr">    - name:</span> <span class="string">restart</span> <span class="string">apache2</span></span><br><span class="line"><span class="attr">      service:</span> <span class="string">name=apache2</span> <span class="string">state=restarted</span></span><br></pre></td></tr></table></figure>
+<h1 id="vars"><a href="#vars" class="headerlink" title="vars"></a>vars</h1><p>在playbook中定义变量<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">- hosts: test</span><br><span class="line">  remote_user: root</span><br><span class="line">  vars: </span><br><span class="line">     config_path: &quot;/root/application/sise.conf&quot;</span><br><span class="line">  tasks:</span><br><span class="line">    - name: &quot;test notify&quot;</span><br><span class="line">      command: touch &#123;&#123;config_path&#125;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Ansible允许你使用Jinja2模板系统在playbook中引用变量，加上引号 “，在执行ansible脚本的时候赋值：<br>例如：<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">- hosts:</span> <span class="string">&#123;&#123;hosts&#125;&#125;</span></span><br><span class="line"><span class="attr">  remote_user:</span> <span class="string">root</span></span><br><span class="line"><span class="attr">  vars:</span> </span><br><span class="line"><span class="attr">     config_path:</span> <span class="string">"/root/application/sise.conf"</span></span><br><span class="line"><span class="attr">  tasks:</span></span><br><span class="line"><span class="attr">    - name:</span> <span class="string">"test notify"</span></span><br><span class="line"><span class="attr">      command:</span> <span class="string">touch</span> <span class="string">&#123;&#123;config_path&#125;&#125;</span></span><br></pre></td></tr></table></figure></p>
+<p>执行脚本：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ansible-playbook main.yml --extra-vars hosts=test</span><br><span class="line"><span class="meta">#</span>如果有多个参数：</span><br><span class="line">ansible-playbook release.yml --extra-vars "version=1.23.45 other_variable=foo"</span><br></pre></td></tr></table></figure></p>
+<h1 id="Roles、include"><a href="#Roles、include" class="headerlink" title="Roles、include"></a>Roles、include</h1><p>Roles是ansible自1.2版本引入的新特性，用于层次性，结构化地组织playbook，roles能够根据层次型结构自动自动装在变量文件、tasks以及handlers等。要使用roles只需要在playbook中使用include指令即可。roles就是通过分别将变量、文件、任务、模板及处理器放置于单独的目录中。<br>role构建的项目目录：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">site.yml</span><br><span class="line">cmd.yml</span><br><span class="line">roles/</span><br><span class="line">   common/</span><br><span class="line">     files/</span><br><span class="line">     templates/</span><br><span class="line">     tasks/</span><br><span class="line">     handlers/</span><br><span class="line">     vars/</span><br><span class="line">     defaults/</span><br><span class="line">     meta/</span><br><span class="line">   web/</span><br><span class="line">     files/</span><br><span class="line">     templates/</span><br><span class="line">     tasks/</span><br><span class="line">     handlers/</span><br><span class="line">     vars/</span><br><span class="line">     defaults/</span><br><span class="line">     meta/</span><br></pre></td></tr></table></figure></p>
+<p>Role内各目录可用的文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">tasks目录：至少创建一个名为main.yml的文件，其定义了此角色的任务列表：此文件可以使用       include包含其他的位于此目录中的tasks文件：</span><br><span class="line"></span><br><span class="line">files目录：存放由copy或者script等模块调用的文件：</span><br><span class="line"></span><br><span class="line">templates目录：templates模块会自动在此目录中寻找Jinjia2模板文件：</span><br><span class="line"></span><br><span class="line">handlers目录：此目录中应当包含一个main。</span><br><span class="line"></span><br><span class="line">yml文件：用于定义此角色用到的各handler：在handler中使用include包含的其他的handler文件也应该位于此目录中：</span><br><span class="line"></span><br><span class="line">vars目录：应当包含一个main.yml文件，用于定义此角色用到的变量</span><br><span class="line"></span><br><span class="line">meta目录：应当包含一个main.yml文件，用于定义此角色的特殊设定及其依赖关系：ansible 1.3及其以后的版本才支持</span><br><span class="line"></span><br><span class="line">default目录：为当前角色定义默认变量时使用此目录，应该包含一个main.yml文件</span><br></pre></td></tr></table></figure></p>
+<p>而在playbook（site.yml）中可以这样使用roles：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">- hosts:</span> <span class="string">test</span></span><br><span class="line"><span class="attr">  roles:</span></span><br><span class="line"><span class="bullet">     -</span> <span class="string">common</span></span><br><span class="line"><span class="bullet">     -</span> <span class="string">web</span></span><br></pre></td></tr></table></figure>
+<p>也可以向roles传递参数，例如：   </p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">- hosts:</span> <span class="string">test</span></span><br><span class="line"><span class="attr">  roles:</span></span><br><span class="line"><span class="bullet">     -</span> <span class="string">common</span></span><br><span class="line"><span class="bullet">     -</span> <span class="string">&#123;</span> <span class="attr">role:</span> <span class="string">foo_app_instance</span> <span class="string">,</span> <span class="attr">dir:</span> <span class="string">'/opt/a'</span><span class="string">,</span> <span class="attr">port:</span> <span class="number">8080</span> <span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>可以给roles指定tags，使用ansible-playbook -t指定此roles的tags，使用roles都应该定义tags：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">- hosts:</span> <span class="string">test</span></span><br><span class="line"><span class="attr">  roles:</span></span><br><span class="line"><span class="bullet">     -</span> <span class="string">&#123;</span> <span class="attr">role:</span> <span class="string">common</span> <span class="string">,</span> <span class="attr">tags:</span> <span class="string">"common"</span><span class="string">&#125;</span></span><br><span class="line"><span class="bullet">     -</span> <span class="string">web</span></span><br></pre></td></tr></table></figure>
+<p>只执行common的角色：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ansible-playbook -t common -i /etc/ansible/hosts site.yml -vv</span><br></pre></td></tr></table></figure></p>
+<p>include使用语法：<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">- include:</span> <span class="string">cmd.yml</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h1><ol>
+<li><p>查看任务所指定的host列表</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> ansible-playbook main.yml --list-hosts</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>–ask-pass、–ask-sudo-pass普通用户执行命令需要输入密码</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> ansible-playbook main.ym --ask-sudo-pass --ask-pass</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+
+      
+    </div>
+    <div>
+      
+          <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">
+                         <a href="http://www.limingming.org">李明明的个人网站:http://www.limingming.org</a>
+                         <br>
+                 ---本文结束，感谢阅读本文，如需转载，请注明原文出处---
+              
+        </div>
+    
+</div>
+
+      
+    </div>
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/使用/" rel="tag"># 使用</a>
+          
+            <a href="/tags/ansible/" rel="tag"># ansible</a>
+          
+            <a href="/tags/总结/" rel="tag"># 总结</a>
+          
+            <a href="/tags/playbook/" rel="tag"># playbook</a>
+          
+            <a href="/tags/学习/" rel="tag"># 学习</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/30/开发者手册/YAML语言介绍/" rel="next" title="YAML语言介绍">
+                <i class="fa fa-chevron-left"></i> YAML语言介绍
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/my-photo.jpg" alt="李明明">
+            
+              <p class="site-author-name" itemprop="name">李明明</p>
+              <p class="site-description motion-element" itemprop="description">Welcome to my site! My name is Li MingMing(李明明). 欢迎来到我的博客网站，我的名字是李明明</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">142</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/limm33" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://www.limingming.org" target="_blank" title="个人网站">
+                      
+                        <i class="fa fa-fw fa-crosshairs"></i>个人网站</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://blog.csdn.net/limm33" target="_blank" title="CSDN">
+                      
+                        <i class="fa fa-fw fa-book"></i>CSDN</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.jianshu.com/u/0ea8ec2aa0d1" target="_blank" title="简书">
+                      
+                        <i class="fa fa-fw fa-heartbeat"></i>简书</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://www.linkedin.com/in/李明明-kel" target="_blank" title="LinkIn">
+                      
+                        <i class="fa fa-fw fa-meh-o"></i>LinkIn</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/limm33" target="_blank" title="微博">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>微博</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.facebook.com/limm33" target="_blank" title="facebook">
+                      
+                        <i class="fa fa-fw fa-facebook"></i>facebook</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/limm333" target="_blank" title="twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>twitter</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SSH免密钥登录设置"><span class="nav-number">1.</span> <span class="nav-text">SSH免密钥登录设置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置Ansible"><span class="nav-number">2.</span> <span class="nav-text">配置Ansible</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#playbook"><span class="nav-number">3.</span> <span class="nav-text">playbook</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基础语法"><span class="nav-number">3.1.</span> <span class="nav-text">基础语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#command"><span class="nav-number">3.2.</span> <span class="nav-text">command</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#shell"><span class="nav-number">3.3.</span> <span class="nav-text">shell</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#script"><span class="nav-number">3.4.</span> <span class="nav-text">script</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#copy"><span class="nav-number">3.5.</span> <span class="nav-text">copy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#yum"><span class="nav-number">3.6.</span> <span class="nav-text">yum</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#service"><span class="nav-number">3.7.</span> <span class="nav-text">service</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#notify-与-handlers"><span class="nav-number">3.8.</span> <span class="nav-text">notify 与 handlers</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vars"><span class="nav-number">4.</span> <span class="nav-text">vars</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Roles、include"><span class="nav-number">5.</span> <span class="nav-text">Roles、include</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#补充"><span class="nav-number">6.</span> <span class="nav-text">补充</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://limm33.github.io/source/js/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">李明明</span>
+
+  
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_pv"></span>
+</span>
+</div>
+
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共42.4k字</span>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
