@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.limingming.org/"/>
-  <updated>2018-12-30T07:41:54.369Z</updated>
+  <updated>2018-12-30T07:48:42.986Z</updated>
   <id>http://www.limingming.org/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://www.limingming.org/2018/12/30/%E5%BC%80%E5%8F%91%E8%80%85%E6%89%8B%E5%86%8C/YAML%E8%AF%AD%E8%A8%80%E4%BB%8B%E7%BB%8D/"/>
     <id>http://www.limingming.org/2018/12/30/开发者手册/YAML语言介绍/</id>
     <published>2018-12-30T07:40:12.000Z</published>
-    <updated>2018-12-30T07:41:54.369Z</updated>
+    <updated>2018-12-30T07:48:42.986Z</updated>
     
     <summary type="html">
     
@@ -550,11 +550,11 @@
     
       <category term="mysql" scheme="http://www.limingming.org/tags/mysql/"/>
     
-      <category term="解决" scheme="http://www.limingming.org/tags/%E8%A7%A3%E5%86%B3/"/>
-    
       <category term="警告" scheme="http://www.limingming.org/tags/%E8%AD%A6%E5%91%8A/"/>
     
       <category term="ssl" scheme="http://www.limingming.org/tags/ssl/"/>
+    
+      <category term="解决" scheme="http://www.limingming.org/tags/%E8%A7%A3%E5%86%B3/"/>
     
   </entry>
   
@@ -582,6 +582,8 @@
     
       <category term="mysql" scheme="http://www.limingming.org/tags/mysql/"/>
     
+      <category term="解决" scheme="http://www.limingming.org/tags/%E8%A7%A3%E5%86%B3/"/>
+    
       <category term="安装" scheme="http://www.limingming.org/tags/%E5%AE%89%E8%A3%85/"/>
     
       <category term="迁移" scheme="http://www.limingming.org/tags/%E8%BF%81%E7%A7%BB/"/>
@@ -589,8 +591,6 @@
       <category term="数据" scheme="http://www.limingming.org/tags/%E6%95%B0%E6%8D%AE/"/>
     
       <category term="问题" scheme="http://www.limingming.org/tags/%E9%97%AE%E9%A2%98/"/>
-    
-      <category term="解决" scheme="http://www.limingming.org/tags/%E8%A7%A3%E5%86%B3/"/>
     
   </entry>
   
