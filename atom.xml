@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.limingming.org/"/>
-  <updated>2018-12-29T08:22:39.321Z</updated>
+  <updated>2018-12-30T07:41:54.369Z</updated>
   <id>http://www.limingming.org/</id>
   
   <author>
@@ -15,6 +15,38 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>YAML语言介绍</title>
+    <link href="http://www.limingming.org/2018/12/30/%E5%BC%80%E5%8F%91%E8%80%85%E6%89%8B%E5%86%8C/YAML%E8%AF%AD%E8%A8%80%E4%BB%8B%E7%BB%8D/"/>
+    <id>http://www.limingming.org/2018/12/30/开发者手册/YAML语言介绍/</id>
+    <published>2018-12-30T07:40:12.000Z</published>
+    <updated>2018-12-30T07:41:54.369Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="开发者手册" scheme="http://www.limingming.org/categories/%E5%BC%80%E5%8F%91%E8%80%85%E6%89%8B%E5%86%8C/"/>
+    
+    
+      <category term="介绍" scheme="http://www.limingming.org/tags/%E4%BB%8B%E7%BB%8D/"/>
+    
+      <category term="YAML" scheme="http://www.limingming.org/tags/YAML/"/>
+    
+      <category term="语言" scheme="http://www.limingming.org/tags/%E8%AF%AD%E8%A8%80/"/>
+    
+      <category term="语法" scheme="http://www.limingming.org/tags/%E8%AF%AD%E6%B3%95/"/>
+    
+  </entry>
   
   <entry>
     <title>vim编辑器使用</title>
@@ -518,11 +550,11 @@
     
       <category term="mysql" scheme="http://www.limingming.org/tags/mysql/"/>
     
+      <category term="解决" scheme="http://www.limingming.org/tags/%E8%A7%A3%E5%86%B3/"/>
+    
       <category term="警告" scheme="http://www.limingming.org/tags/%E8%AD%A6%E5%91%8A/"/>
     
       <category term="ssl" scheme="http://www.limingming.org/tags/ssl/"/>
-    
-      <category term="解决" scheme="http://www.limingming.org/tags/%E8%A7%A3%E5%86%B3/"/>
     
   </entry>
   
@@ -550,8 +582,6 @@
     
       <category term="mysql" scheme="http://www.limingming.org/tags/mysql/"/>
     
-      <category term="解决" scheme="http://www.limingming.org/tags/%E8%A7%A3%E5%86%B3/"/>
-    
       <category term="安装" scheme="http://www.limingming.org/tags/%E5%AE%89%E8%A3%85/"/>
     
       <category term="迁移" scheme="http://www.limingming.org/tags/%E8%BF%81%E7%A7%BB/"/>
@@ -559,6 +589,8 @@
       <category term="数据" scheme="http://www.limingming.org/tags/%E6%95%B0%E6%8D%AE/"/>
     
       <category term="问题" scheme="http://www.limingming.org/tags/%E9%97%AE%E9%A2%98/"/>
+    
+      <category term="解决" scheme="http://www.limingming.org/tags/%E8%A7%A3%E5%86%B3/"/>
     
   </entry>
   
@@ -629,38 +661,6 @@
       <category term="访问" scheme="http://www.limingming.org/tags/%E8%AE%BF%E9%97%AE/"/>
     
       <category term="权限" scheme="http://www.limingming.org/tags/%E6%9D%83%E9%99%90/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>nexus3配置yum源</title>
-    <link href="http://www.limingming.org/2018/12/08/Linux/nexus3%E9%85%8D%E7%BD%AEyum%E6%BA%90/"/>
-    <id>http://www.limingming.org/2018/12/08/Linux/nexus3配置yum源/</id>
-    <published>2018-12-07T16:33:57.000Z</published>
-    <updated>2018-12-20T03:07:37.776Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-      <category term="Linux" scheme="http://www.limingming.org/categories/Linux/"/>
-    
-    
-      <category term="源" scheme="http://www.limingming.org/tags/%E6%BA%90/"/>
-    
-      <category term="配置" scheme="http://www.limingming.org/tags/%E9%85%8D%E7%BD%AE/"/>
-    
-      <category term="yum" scheme="http://www.limingming.org/tags/yum/"/>
-    
-      <category term="nexus3" scheme="http://www.limingming.org/tags/nexus3/"/>
     
   </entry>
   

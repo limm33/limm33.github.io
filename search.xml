@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[YAML语言介绍]]></title>
+    <url>%2F2018%2F12%2F30%2F%E5%BC%80%E5%8F%91%E8%80%85%E6%89%8B%E5%86%8C%2FYAML%E8%AF%AD%E8%A8%80%E4%BB%8B%E7%BB%8D%2F</url>
+    <content type="text"><![CDATA[原文： http://limingming.org/index.php/2018/12/yaml-intro 介绍YAML（/ˈjæməl/，尾音类似camel骆驼）是一个可读性高，用来表达数据序列的格式。YAML参考了其他多种语言，包括：C语言、Python、Perl，并从XML、邮箱的数据格式（RFC 2822）中获得灵感。Clark Evans在2001年首次发表了这种语言，另外Ingy döt Net与Oren Ben-Kiki也是这语言的共同设计者。当前已经有数种编程语言或脚本语言支持（或者说解析）这种语言。 YAML是”YAML Ain’t a Markup Language”（YAML不是一种标记语言）的递归缩写。在开发的这种语言时，YAML 的意思其实是：”Yet Another Markup Language”（仍是一种标记语言）但为了强调这种语言以数据做为中心，而不是以标记语言为重点，而用反向缩略语重命名。– 维基百科 上面我们也看到了YAML Ain’t a Markup Language，这个让我想起了，GNU对UNIX来说不，YAML是对XML说不，所以YAML应该是试图用一种比XML更敏捷的方式，来完成XML所完成的任务，在我们编程过程中很多时候会用到YAML文件编写配置文件，如果使用java的话可能用的比较多的是properties的配置文件居多，但是很多时候也会用到YAML文件，比如我经常使用的HEXO，修改比较多的就是YAML文件。 概括YAML的语法和其他高级语言类似，并且可以简单表达清单、散列表，标量等数据形态，下面主要针对于YAML文件相关语法做简要的记录，我平时用的比较多的是JAVA，所以针对于java也有很多YAML的实现，如果按照语法来说的话YAML文件几乎可以总结成： Structure通过空格来展示。Sequence里的项用”-“来代表，Map里的键值对用”:”分隔. 抽象出来的的对象,java里面Map、Hash这种 Collection相关的List、Set这种 单一的int这种 Structure通过空格来展示，可以组合成javabean这种对象，Sequence可以实现Arrays等，：分割实现对象、Map类的数据结构，外加其他的数据类型，可以涵盖所有的我们常用的数据类型。1234YAML大小写敏感；使用缩进代表层级关系；缩进只能使用空格，不能使用TAB，不要求空格个数，只需要相同层级左对齐（一般2个或4个空格）使用#注释 语法对象数据类型使用冒号，冒号后面跟一个空格，缩紧表示层级关系 12345keyFirst: valuekey: key1: value1 key2:value2 还可以支持行内语法表示对象： 1key: &#123;key1: value, key2: value2&#125; 数组使用一个短横线加一个空格代表一个数组项： 123- value1- value2- value3 数据结构的子成员是一个数组，则可以在该项下面缩进一个空格。12345678910- - value1 - valu2 - value3# 如果上面作为作为value的话就是：key:- - value1 - valu2 - value3 数组也同样可以使用行内：1key: [value1, value2] 举一个复杂的例子： 123456789key: - key1: value key2: value key3: value - key4: value key5: value key6: value 上面这种写法也是可以的，可以对应的是一个list的value，list中包含两个map对象； 单一常量YAML中提供了多种常量结构，包括：整数，浮点数，字符串，NULL，日期，布尔，时间，常量是最基本的、不可再分的值。 12345678910111213141516171819boolean: - TRUE #true,True都可以 - FALSE #false，False都可以float: - 3.14 - 6.8523015e+5 #可以使用科学计数法int: - 123 - 0b1010_0111_0100_1010_1110 #二进制表示null: nodeName: &apos;node&apos; parent: ~ #使用~表示nullstring: - 你好 - &apos;Hello&apos; #可以使用双引号或者单引号包裹特殊字符date: - 2018-02-17 #日期必须使用ISO 8601格式，即yyyy-MM-dddatetime: - 2018-02-17T15:02:31+08:00 #时间使用ISO 8601格式，时间和日期之间使用T连接，最后使用+代表时区 其他 引用使用锚点：&amp;别名：* 重复的内容在YAML中可以使用&amp;来完成锚点定义，使用*来完成锚点引用，例如：123456key:- value1 - &amp;mark1 value2key2:- *mark1 - value3 上面中使用*mark1相当于替代了value2，那么key2的第一个元素应该是value2； 还可以：定义复杂的：1234key1: &amp;mark2 - value3 - value4key2: *mark2 上面的*mark2相当于定义了key1中的数组内容，但要注意的是需要和key2写在一行还有不能单独定义锚点，如：&amp;mark value1，这种形式是不可以的 补充：和锚点配合使用的还可能是合并内容，例如： 12345key1: - &amp;mark1 &#123; key2: value2, key3: value3 &#125;key11: &lt;&lt;: *mark1 key4: value4 那么上面通过 &lt;&lt;: *mark1 这种方式就将key11变成了：1234key11: key2: value2 key3: value3 key4: value4 通过合并内容可以有效的共用相同的配置。 三个短横线 YAML文件中，可以使用— 表示文档的开始，Springboot中profile的定义就是如此，可以一个YAML文件中，包含多个profile，每个—都是一个profile的开始，例如：12345678910111213server: address: 192.168.1.100---spring: profiles: development server: address: 127.0.0.1 ---spring: profiles: production server: address: 192.168.1.120 …和—配合使用来表示配置文件中一个文件的结束 类型转换!! 表示强制的类型转换： 12string: - !!str 54321 折叠换行与保留换行在字符串中折叠换行，| 保留换行符 例如：key1: &gt; 1 2 3 4 5 6key2: | 7 8 9 10 11 12 那么key1=1 2 3 4 5 6，就是没有保留换行符，将黄换行符转换成了空格； 而key2 12key2=7 8 9 10 11 12 key2 保留的换行符。 注释 使用”#”来表示注释]]></content>
+      <categories>
+        <category>开发者手册</category>
+      </categories>
+      <tags>
+        <tag>介绍</tag>
+        <tag>YAML</tag>
+        <tag>语言</tag>
+        <tag>语法</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[vim编辑器使用]]></title>
     <url>%2F2018%2F12%2F29%2FLinux%2Fvim%E7%BC%96%E8%BE%91%E5%99%A8%E4%BD%BF%E7%94%A8%2F</url>
     <content type="text"><![CDATA[原文 介绍平时在使用linux like系统的时候肯定接触过vim，拿“鸟哥”的话来说的话就是，文本模式来处理Linux 的系统设置，不但可以让你比较容易了解到Linux的运行状况，也比较容易了解整个设计的基本思想，基本上我们接触的类linux系统都有vim编辑器，虽然有着繁杂的命令，但是基本上都是靠键盘输入，编辑文件简单快速，虽然在大学学习的时候总感觉为什么不用word，这玩意这么难用，为什么还要用这个玩意，到了慢慢熟悉使用vi之后才知道这个才是好的编辑器。 vi使用模式vi操作有很多，此文仅记录常用的相关操作，及vi的几种模式，分别是命令模式（command mode）、插入模式（Insert mode）和命令行模式（last line mode），各模式的功能区分如下： 一般模式（command mode）控制屏幕光标的移动，字符、字或行的删除，移动复制某区段及进入Insert mode下，或者到 last line mode。 插入模式（Insert mode）只有在Insert mode下，才可以做文字输入，按「ESC」键可回到命令行模式。 命令行模式（last line mode）将文件保存或退出vi，也可以设置编辑环境，如寻找字符串、列出行号……等。 基本操作进入vi : 1vi 文件路径/文件名 进入之后处于一般模式，如果要切换到插入模式可以使用i、o、a： 按「i」切换进入插入模式「insert mode」，按“i”进入插入模式后是从光标当前位置开始输入文件；按「a」进入插入模式后，是从目前光标所在位置的下一个位置开始输入文字；按「o」进入插入模式后，是插入新的一行，从行首开始输入文字。 如果要回到命令行模式「ESC」可以帮你退回到一般模式，在「一般模式（command mode）」下，按一下「：」冒号键进入「Last line mode」，常用的进入命令行模式，一般进入命令行模式会执行一些操作，例如保存并退出“：wq”，例如设置展示行号，“：se nu” 例如查找某些单词：“：/word”等等 一般模式下按键操作 移动光标但正规的vi是用小写英文字母「h」、「j」、「k」、「l」，分别控制光标左、下、上、右移一格翻页：按「ctrl」+「b」：屏幕往“后”移动一页。按「ctrl」+「f」：屏幕往“前”移动一页。按「ctrl」+「u」：屏幕往“后”移动半页。按「ctrl」+「d」：屏幕往“前”移动半页。 常用跳到行头和行尾：按数字「0」：移到文章的开头，按「$」：移动到光标所在行的“行尾” G相关：G： 移动到这个文件最后一行nG：n为数字移动到这个文件的第n行gg： 移动到文件的第一行，相当于1GN【Enter】 ： N为数字，向下移动N行 复制粘贴 「yw」：将光标所在之处到字尾的字符。「#yw」：复制#个字到缓冲区「yy」：复制光标所在行（常用）「#yy」：例如，「6yy」表示拷贝从光标所在的该行“往下数”6行文字。(常用)「p」： 粘贴 删除 x： 删除当前光标下的字符X； 删除光标前面的字符dw； 删除从当前光标到单词结尾的字符d^; 删除从当前光标到行首的字符d$ ;删除从当前光标到行尾的字符D ;删除从当前光标到行尾的字符dd 删除当前光标所在的行(常用)ndd： n是数字，删除光标所在行向下n行 撤销、重做u： 复原前一个操作Ctrl+r，重做上一个操作. ： 小数点，重复前一个操作 命令行模式操作 列出行号set nu 定位到某行#：井号代表一个数字，在Lastline mode提示符号“：”前输入数字，再按Enter就会跳到该行了，等同于在一般模式下的#G 寻找字符串/关键字：先按/，再输入您想寻找的字(字母“n”为向下继续查找)？关键字：先按？，再输入您想寻找的字(字母“n”为向下继续查找) 取代字符串1，$s/string/replae/g：在lastline mode输入“1，$s/string/replace/g”会将全文的string字符串取代为replace字符串，其中1,$s就是指搜寻区间为文章从头至尾的意思，g则是表示全部取代不必确认%s/string/replace/c：同样会将全文的string字符串取代为replace字符串，和上面指令不同的地方是，%s和1,$s是相同的功能，c则是表示要替代之前必须再次确认是否取代1,20s/string/replace/g：将1至20行间的string替代为relpace字符串 存储w：在lastline mode提示符号“：”前按w即可将文件保存#，# wfilename：如果您想摘取文章的某一段，存成另一个文件，可用这个指令#代表行号，例如30,50 wnice，将您正在编辑文章的第30~50行存成nice这个文件。 离开q：按q就离开，有时如果无法离开vi，可搭配“！：强置离开vi，如“q！”qw：一般建议离开时，搭配w一起使用，如此离开时还可存文件]]></content>
@@ -218,9 +232,9 @@
       </categories>
       <tags>
         <tag>mysql</tag>
+        <tag>解决</tag>
         <tag>警告</tag>
         <tag>ssl</tag>
-        <tag>解决</tag>
       </tags>
   </entry>
   <entry>
@@ -232,11 +246,11 @@
       </categories>
       <tags>
         <tag>mysql</tag>
-        <tag>解决</tag>
         <tag>安装</tag>
         <tag>迁移</tag>
         <tag>数据</tag>
         <tag>问题</tag>
+        <tag>解决</tag>
       </tags>
   </entry>
   <entry>
@@ -488,10 +502,10 @@
         <category>Maven</category>
       </categories>
       <tags>
-        <tag>排除</tag>
         <tag>多模块</tag>
         <tag>web</tag>
         <tag>合并</tag>
+        <tag>排除</tag>
         <tag>冲突</tag>
       </tags>
   </entry>
@@ -503,8 +517,8 @@
         <category>Maven</category>
       </categories>
       <tags>
-        <tag>tomcat</tag>
         <tag>插件</tag>
+        <tag>tomcat</tag>
         <tag>内嵌</tag>
         <tag>可执行</tag>
         <tag>war</tag>
@@ -534,10 +548,10 @@
       </categories>
       <tags>
         <tag>Maven</tag>
-        <tag>插件</tag>
         <tag>构建</tag>
         <tag>执行</tag>
         <tag>WEB</tag>
+        <tag>插件</tag>
       </tags>
   </entry>
   <entry>
@@ -548,9 +562,9 @@
         <category>Maven</category>
       </categories>
       <tags>
+        <tag>排除</tag>
         <tag>Maven</tag>
         <tag>依赖管理</tag>
-        <tag>排除</tag>
         <tag>依赖</tag>
         <tag>方法</tag>
       </tags>
@@ -594,8 +608,8 @@
       </categories>
       <tags>
         <tag>介绍</tag>
-        <tag>markdown</tag>
         <tag>语法</tag>
+        <tag>markdown</tag>
         <tag>怎么</tag>
         <tag>如何</tag>
       </tags>
@@ -618,7 +632,7 @@
   <entry>
     <title><![CDATA[Mac OS下搭建Vue开发环境]]></title>
     <url>%2F2018%2F11%2F23%2FVue%2FMac-OS%E4%B8%8B%E6%90%AD%E5%BB%BAVue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%2F</url>
-    <content type="text"><![CDATA[前言原来一直学习使用React，现在因为工作的需要，对Vue进行学习和使用，现在比较流行的框架React,angular,vue，正好对于vue也进行些了解。 环境搭建 打开终端,安装brew 1usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot; 安装成功后，使用查看版本，验证是否安装成功1brew -v 安装node.js1brew install nodejs 也可以下载安装下载地址安装成功后，使用验证123node -v``` * 给nodejs目录赋权限 sudo chmod -R 777 /usr/local/lib/node_modules/1* 安装 淘宝镜像 （npm） npm install -g cnpm –registry=https://registry.npm.taobao.org12* 安装webpack cnpm install webpack -g12* 安装vue脚手架 npm install vue-cli -g12# 开始Vue 创建一个基于 webpack 模板的新项目$ vue init webpack my-project 这里需要进行一些配置，默认回车即可This will install Vue 2.x version of the template. For Vue 1.x use: vue init webpack#1.0 my-project ? Project name my-project? Project description A Vue.js project? Author runoob &#116;&#101;&#115;&#116;&#64;&#x72;&#117;&#110;&#111;&#x6f;&#x62;&#46;&#x63;&#111;&#x6d;? Vue build standalone? Use ESLint to lint your code? Yes? Pick an ESLint preset Standard? Setup unit tests with Karma + Mocha? Yes? Setup e2e tests with Nightwatch? Yes vue-cli · Generated “my-project”. To get started: cd my-project npm install npm run dev Documentation can be found at https://vuejs-templates.github.io/webpack1进入项目，安装并运行： $ cd my-project$ cnpm install$ cnpm run dev DONE Compiled successfully in 4388ms Listening at http://localhost:8080`]]></content>
+    <content type="text"><![CDATA[前言原来一直学习使用React，现在因为工作的需要，对Vue进行学习和使用，现在比较流行的框架React,angular,vue，正好对于vue也进行些了解。 环境搭建 打开终端,安装brew 1usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot; 安装成功后，使用查看版本，验证是否安装成功1brew -v 安装node.js1brew install nodejs 也可以下载安装下载地址安装成功后，使用验证123node -v``` * 给nodejs目录赋权限 sudo chmod -R 777 /usr/local/lib/node_modules/1* 安装 淘宝镜像 （npm） npm install -g cnpm –registry=https://registry.npm.taobao.org12* 安装webpack cnpm install webpack -g12* 安装vue脚手架 npm install vue-cli -g12# 开始Vue 创建一个基于 webpack 模板的新项目$ vue init webpack my-project 这里需要进行一些配置，默认回车即可This will install Vue 2.x version of the template. For Vue 1.x use: vue init webpack#1.0 my-project ? Project name my-project? Project description A Vue.js project? Author runoob &#x74;&#x65;&#115;&#x74;&#x40;&#x72;&#x75;&#x6e;&#x6f;&#x6f;&#x62;&#x2e;&#99;&#x6f;&#x6d;? Vue build standalone? Use ESLint to lint your code? Yes? Pick an ESLint preset Standard? Setup unit tests with Karma + Mocha? Yes? Setup e2e tests with Nightwatch? Yes vue-cli · Generated “my-project”. To get started: cd my-project npm install npm run dev Documentation can be found at https://vuejs-templates.github.io/webpack1进入项目，安装并运行： $ cd my-project$ cnpm install$ cnpm run dev DONE Compiled successfully in 4388ms Listening at http://localhost:8080`]]></content>
       <categories>
         <category>Vue</category>
       </categories>
