@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.limingming.org/"/>
-  <updated>2018-12-31T08:27:05.205Z</updated>
+  <updated>2018-12-31T08:29:46.640Z</updated>
   <id>http://www.limingming.org/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://www.limingming.org/2018/12/31/DB/Mysql%E5%B8%B8%E7%94%A8%E8%A7%84%E8%8C%83%E6%95%B4%E7%90%86%E8%AE%B0%E5%BD%95/"/>
     <id>http://www.limingming.org/2018/12/31/DB/Mysql常用规范整理记录/</id>
     <published>2018-12-31T08:26:05.000Z</published>
-    <updated>2018-12-31T08:27:05.205Z</updated>
+    <updated>2018-12-31T08:29:46.640Z</updated>
     
     <summary type="html">
     
@@ -644,11 +644,11 @@
     
       <category term="mysql" scheme="http://www.limingming.org/tags/mysql/"/>
     
+      <category term="解决" scheme="http://www.limingming.org/tags/%E8%A7%A3%E5%86%B3/"/>
+    
       <category term="警告" scheme="http://www.limingming.org/tags/%E8%AD%A6%E5%91%8A/"/>
     
       <category term="ssl" scheme="http://www.limingming.org/tags/ssl/"/>
-    
-      <category term="解决" scheme="http://www.limingming.org/tags/%E8%A7%A3%E5%86%B3/"/>
     
   </entry>
   

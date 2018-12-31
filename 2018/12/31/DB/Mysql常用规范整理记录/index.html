@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="李明明的博客">
 <meta property="og:description" content="介绍在开发过程中大家遵循一个良好的规范可以进行高效的协同开发效率，更好的维护代码，数据库设计的过程中包含表字段等命名规范同样也是其中很重要的一部分，还有数据库的设计范式，当然也有随着现在技术和架构的变化反范式的出现，还有存储引擎的选择等 三大范式我们需要范式的原因是针对于编程简单，数据量不大，更新少量的数据，减少数据存储的冗余，但是更少的冗余代表着需要更过的group、join的操作。为了建立一个">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-31T08:27:05.205Z">
+<meta property="og:updated_time" content="2018-12-31T08:29:46.640Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mysql常用规范整理记录">
 <meta name="twitter:description" content="介绍在开发过程中大家遵循一个良好的规范可以进行高效的协同开发效率，更好的维护代码，数据库设计的过程中包含表字段等命名规范同样也是其中很重要的一部分，还有数据库的设计范式，当然也有随着现在技术和架构的变化反范式的出现，还有存储引擎的选择等 三大范式我们需要范式的原因是针对于编程简单，数据量不大，更新少量的数据，减少数据存储的冗余，但是更少的冗余代表着需要更过的group、join的操作。为了建立一个">
@@ -460,7 +460,8 @@
 <li>【强制】在表查询中，一律不要使用 * 作为查询的字段列表，需要哪些字段必须明确写明。 说明:1)增加查询分析器解析成本。2)增减字段容易与 resultMap 配置不一致。3)无用字 段增加网络消耗，尤其是 text 类型的字段。</li>
 <li>【强制】POJO 类的布尔属性不能加 is，而数据库字段必须加 is_，要求在 resultMap 中进行 字段与属性之间的映射。<br>说明:参见定义 POJO 类以及数据库字段定义规定，在<resultmap>中增加映射，是必须的。 在MyBatis Generator生成的代码中，需要进行对应的修改。</resultmap></li>
 <li>【强制】不要用 resultClass 当返回参数，即使所有类属性名与数据库字段一一对应，也需 要定义;反过来，每一个表也必然有一个 POJO 类与之对应。 说明:配置映射关系，使字段与 DO 类解耦，方便维护。</li>
-<li>【强制】sql.xml 配置参数使用:#{}，#param# 不要使用${} 此种方式容易出现 SQL 注入。<br>5.【强制】iBATIS自带的queryForList(String statementName,int start,int size)不推 荐使用。<br>说明:其实现方式是在数据库取到 statementName 对应的 SQL 语句的所有记录，再通过 subList 取 start,size 的子集合。<br>正例:Map&lt;String, Object&gt; map = new HashMap&lt;&gt;(); map.put(“start”, start);<br>map.put(“size”, size);</li>
+<li>【强制】sql.xml 配置参数使用:#{}，#param# 不要使用${} 此种方式容易出现 SQL 注入。</li>
+<li>【强制】iBATIS自带的queryForList(String statementName,int start,int size)不推 荐使用。<br>说明:其实现方式是在数据库取到 statementName 对应的 SQL 语句的所有记录，再通过 subList 取 start,size 的子集合。<br>正例:Map&lt;String, Object&gt; map = new HashMap&lt;&gt;(); map.put(“start”, start);<br>map.put(“size”, size);</li>
 <li>【强制】不允许直接拿 HashMap 与 Hashtable 作为查询结果集的输出。<br>说明:resultClass=”Hashtable”，会置入字段名和属性值，但是值的类型不可控。</li>
 <li>【强制】更新数据表记录时，必须同时更新记录对应的 gmt_modified 字段值为当前时间。</li>
 <li>【推荐】不要写一个大而全的数据更新接口。传入为 POJO 类，不管是不是自己的目标更新字<br>段，都进行 update table set c1=value1,c2=value2,c3=value3; 这是不对的。执行 SQL 时，不要更新无改动的字段，一是易出错;二是效率低;三是增加 binlog 存储。</li>
