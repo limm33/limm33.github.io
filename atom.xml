@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.limingming.org/"/>
-  <updated>2018-12-31T08:29:46.640Z</updated>
+  <updated>2018-12-31T08:42:51.320Z</updated>
   <id>http://www.limingming.org/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Git 解决问题常用的操作</title>
+    <link href="http://www.limingming.org/2018/12/31/Git/Git-%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98%E5%B8%B8%E7%94%A8%E7%9A%84%E6%93%8D%E4%BD%9C/"/>
+    <id>http://www.limingming.org/2018/12/31/Git/Git-解决问题常用的操作/</id>
+    <published>2018-12-31T08:41:43.000Z</published>
+    <updated>2018-12-31T08:42:51.320Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="Git" scheme="http://www.limingming.org/categories/Git/"/>
+    
+    
+      <category term="git" scheme="http://www.limingming.org/tags/git/"/>
+    
+      <category term="常用" scheme="http://www.limingming.org/tags/%E5%B8%B8%E7%94%A8/"/>
+    
+      <category term="操作" scheme="http://www.limingming.org/tags/%E6%93%8D%E4%BD%9C/"/>
+    
+  </entry>
   
   <entry>
     <title>Mysql常用规范整理记录</title>
@@ -422,11 +452,11 @@
     
       <category term="部署" scheme="http://www.limingming.org/tags/%E9%83%A8%E7%BD%B2/"/>
     
-      <category term="tomcat" scheme="http://www.limingming.org/tags/tomcat/"/>
-    
       <category term="Spring" scheme="http://www.limingming.org/tags/Spring/"/>
     
       <category term="boot" scheme="http://www.limingming.org/tags/boot/"/>
+    
+      <category term="tomcat" scheme="http://www.limingming.org/tags/tomcat/"/>
     
   </entry>
   
@@ -580,13 +610,13 @@
       <category term="Git" scheme="http://www.limingming.org/categories/Git/"/>
     
     
-      <category term="命令" scheme="http://www.limingming.org/tags/%E5%91%BD%E4%BB%A4/"/>
-    
-      <category term="概念" scheme="http://www.limingming.org/tags/%E6%A6%82%E5%BF%B5/"/>
-    
       <category term="git" scheme="http://www.limingming.org/tags/git/"/>
     
       <category term="常用" scheme="http://www.limingming.org/tags/%E5%B8%B8%E7%94%A8/"/>
+    
+      <category term="命令" scheme="http://www.limingming.org/tags/%E5%91%BD%E4%BB%A4/"/>
+    
+      <category term="概念" scheme="http://www.limingming.org/tags/%E6%A6%82%E5%BF%B5/"/>
     
   </entry>
   
@@ -617,38 +647,6 @@
       <category term="修改防火墙配置" scheme="http://www.limingming.org/tags/%E4%BF%AE%E6%94%B9%E9%98%B2%E7%81%AB%E5%A2%99%E9%85%8D%E7%BD%AE/"/>
     
       <category term="开发端口" scheme="http://www.limingming.org/tags/%E5%BC%80%E5%8F%91%E7%AB%AF%E5%8F%A3/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Mysql连接SSL错误警告</title>
-    <link href="http://www.limingming.org/2018/12/12/DB/Mysql%E8%BF%9E%E6%8E%A5SSL%E9%94%99%E8%AF%AF%E8%AD%A6%E5%91%8A/"/>
-    <id>http://www.limingming.org/2018/12/12/DB/Mysql连接SSL错误警告/</id>
-    <published>2018-12-12T03:40:22.000Z</published>
-    <updated>2018-12-20T03:06:19.824Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-      <category term="DB" scheme="http://www.limingming.org/categories/DB/"/>
-    
-    
-      <category term="mysql" scheme="http://www.limingming.org/tags/mysql/"/>
-    
-      <category term="解决" scheme="http://www.limingming.org/tags/%E8%A7%A3%E5%86%B3/"/>
-    
-      <category term="警告" scheme="http://www.limingming.org/tags/%E8%AD%A6%E5%91%8A/"/>
-    
-      <category term="ssl" scheme="http://www.limingming.org/tags/ssl/"/>
     
   </entry>
   
