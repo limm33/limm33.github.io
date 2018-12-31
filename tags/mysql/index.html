@@ -85,7 +85,7 @@
 <meta name="keywords" content="Welcome to my site! My name is Li MingMing(李明明). You can call me Kel. I was born in 1993s.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="李明明的博客">
-<meta property="og:url" content="http://www.limingming.org/tags/mysql/index.html">
+<meta property="og:url" content="http://www.limingming.org/tags/Mysql/index.html">
 <meta property="og:site_name" content="李明明的博客">
 <meta property="og:description" content="Welcome to my site! My name is Li MingMing(李明明). 欢迎来到我的博客网站，我的名字是李明明">
 <meta property="og:locale" content="zh-Hans">
@@ -121,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://www.limingming.org/tags/mysql/">
+  <link rel="canonical" href="http://www.limingming.org/tags/Mysql/">
 
 
 
 
 
-  <title>标签: mysql | 李明明的博客</title>
+  <title>标签: Mysql | 李明明的博客</title>
   
 
 
@@ -289,7 +289,7 @@
 
     <div id="posts" class="posts-collapse">
       <div class="collection-title">
-        <h1>mysql<small>标签</small>
+        <h1>Mysql<small>标签</small>
         </h1>
       </div>
 
@@ -301,69 +301,17 @@
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2018/12/12/DB/Mysql连接SSL错误警告/" itemprop="url">
+            <a class="post-title-link" href="/2018/12/31/DB/mysql安装目录/" itemprop="url">
               
-                <span itemprop="name">Mysql连接SSL错误警告</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-12-12T11:40:22+08:00" content="2018-12-12">
-          12-12
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/12/11/DB/Linux系统Mysql数据库安装及修改存储数据位置/" itemprop="url">
-              
-                <span itemprop="name">Linux系统Mysql数据库安装及修改存储数据位置</span>
+                <span itemprop="name">mysql安装目录</span>
               
             </a>
         
       </h2>
 
       <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-12-11T19:28:07+08:00" content="2018-12-11">
-          12-11
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/12/08/DB/mysql-数据库修改密码及更改远程访问权限/" itemprop="url">
-              
-                <span itemprop="name">mysql 数据库修改密码及更改远程访问权限</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-12-08T14:00:55+08:00" content="2018-12-08">
-          12-08
+        <time class="post-time" itemprop="dateCreated" datetime="2018-12-31T11:32:08+08:00" content="2018-12-31">
+          12-31
         </time>
       </div>
 
@@ -425,7 +373,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-count">50</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -436,7 +384,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -447,7 +395,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">142</span>
+                  <span class="site-state-item-count">145</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -564,7 +512,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共42.4k字</span>
+  <span class="post-count">博客全站共46.9k字</span>
 </div>
 
         
@@ -961,6 +909,90 @@
               resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
             } else if (resultItems.length === 0) {
               resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+5x" /></div>'
             } else {
               resultItems.sort(function (resultLeft, resultRight) {
                 if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
