@@ -1,6 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Spring多线程事务]]></title>
+    <url>%2F2019%2F01%2F15%2FSpring%2FSpring%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%BA%8B%E5%8A%A1%2F</url>
+    <content type="text"><![CDATA[原文: http://limingming.org/index.php/2019/01/spring-multithreading-transaction/ 单线程多个操作我们在平时使用spring开发的过程中有很多在一个业务方法中对多个数据库进行操作，有好多时候是第二个或者第三个调用操作的接口出现问题，我们需要回滚事务，那回滚的机制是什么呢？ 我们常用的配置是：1234567&lt;!-- Jpa 事务配置 --&gt;&lt;bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"&gt;&lt;property name="entityManagerFactory" ref="entityManagerFactory"/&gt; &lt;/bean&gt; &lt;!-- 开启注解事务 --&gt;&lt;tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true" /&gt; 在spring的配置文件中，如果数据源的defaultAutoCommit设置为True了： 方法中如果自己捕获了异常，事务是不会自己回滚 如果没有自己捕获了异常则事务会回滚 如果你发现你并没有配置，如果使用ali的com.alibaba.druid.pool.DruidDataSource，那么还是会回滚的，因为缺省的配置是True。 例子： 没有手动捕获异常 12345@Transactional(rollbackOn = &#123; Exception.class &#125;) public void test() throws Exception &#123; doOperate1(); doOperate2();//如果此方法抛出异常，那么doOperate1操作会回滚&#125; 手动捕获异常 123456789@Transactional(rollbackOn = &#123; Exception.class &#125;) public void test() throws Exception &#123; try&#123; doOperate1(); doOperate2();//如果此方法抛出异常，那么doOperate1操作“不会“回滚 &#125; catch (Exception e) &#123; e.printStackTrace(); &#125; &#125; 可以在catch中手动回滚事务,在catche中添加：1TransactionAspectSupport.currentTransactionStatus().setRollbackOnly(); 以上为单个线程对一个数据库操作事务的问题，下面看一下多线程对与事物的操作。 多线程以为线程不是spring管理的，所以在多线程中不能默认使用spring事务。 如果在一个类的方法中如上单线程中的例子，doOperate1()和doOperate2()不会被添加到多线程的事务，就算是在test方法上添加了@Transactional也不会生效。 如果要进行事务管理需要将doOperate1()和doOperate2()放到一个新的类里面去，并且在方法上添加 @Transactional 注解，就能成功的加入到事务管理中，依赖注入这个新的类，用这个类调用这两个方法。 thread的run方法，有个特别之处，它不会抛出异常，但异常会导致线程终止运行，在主线程中try cache也无法捕获到异常， 以下是网上找到的示例，供大家参考： ①处要抛出异常 ②处要捕捉异常，并且要抛出RuntimeException ③处手动处理回滚逻辑 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566@Service public class ServiceA &#123; @Autowired private ServiceB serviceB; @Transactional public void threadMethod()&#123; this.insert(); System.out.println("main insert is over"); for(int a=0 ;a&lt;3;a++)&#123; ThreadOperation threadOperation= new ThreadOperation(); Thread innerThread = new Thread(threadOperation); innerThread.setUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() &#123; public void uncaughtException(Thread t, Throwable e) &#123; try &#123; serviceB.delete();③ &#125; catch (Exception e1) &#123; e1.printStackTrace(); &#125; &#125; &#125;); innerThread.start(); &#125; &#125; public class ThreadOperation implements Runnable &#123; public ThreadOperation()&#123; &#125; @Override public void run()&#123; try &#123; serviceB.insert(); &#125;catch (Exception ex)&#123; ② System.out.println(" Exception in run "); throw new RuntimeException(); &#125; System.out.println("thread insert is over"); &#125; &#125; public void insert()&#123; //do insert...... &#125; &#125; @Service public class ServiceB &#123; @Transactional public void insert() throws Exception&#123; ① //do insert...... &#125; @Transactional public void delete() throws Exception&#123; //do delete...... &#125; &#125;]]></content>
+      <categories>
+        <category>Spring</category>
+      </categories>
+      <tags>
+        <tag>spring</tag>
+        <tag>多线程</tag>
+        <tag>事务</tag>
+        <tag>管理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Spring DI static的静态变量]]></title>
+    <url>%2F2019%2F01%2F15%2FSpring%2FSpring-DI-static%E7%9A%84%E9%9D%99%E6%80%81%E5%8F%98%E9%87%8F%2F</url>
+    <content type="text"><![CDATA[原文：http://limingming.org/index.php/2019/01/spring-di-static/ 介绍在spring中我们一般不会将一个变量依赖注入的时候声明为静态的，在最近使用spring boot过程中，因为一些原因，需要将一个依赖注入的变量声明为静态的。例如：12@Autowiredprivate static Class class; 但是使用过程中，大家可能已经能看出来了，这个class会是空，因为静态的变量构造的时候bean尚未初始化，所以依赖注入的内容为空，静态变量/类扩大了静态方法的使用范围，静态方法在spring中不推荐使用，依赖注入是spring管理对象的实例，如果声明为静态的，那某种程度上，这个方法是全局共享的，则背弃了spring的原则，所以spring并不推荐这么做。 解决虽然不推荐，但是也要找出能够这么干的办法： xml方式实现适用于存在xml配置文件的spring web项目。 123&lt;bean id="Util" class="com.*.*.Util" init-method="init"&gt; &lt;property name="class" ref="class"/&gt; &lt;/bean&gt; 123456789101112public class Util &#123; private static YClass class; private static Util classUtil; public void init() &#123; classUtil = this; classUtil.class = this.class; &#125; &#125; @PostConstruct1234567891011121314@Component public class Util &#123; @Autowired private static YClass class; private static Util classUtil; @PostConstruct public void init() &#123; classUtil = this; classUtil.class = this.class; &#125; &#125; 因为使用@postConstruct这种方式，bean已经都被完全初始化，可以使用依赖项，保证bean生命周期只调用一次此方法。 PS：如果你使用new的方式构造对象执行，那么new出来的实例将脱离spring的管理，获取不到注解的属性值，如果你要执行的类中含有注解，必须以依赖注入的方式使用，使用new的方式是无法正确获取到此类中的注入的值的。]]></content>
+      <categories>
+        <category>Spring</category>
+      </categories>
+      <tags>
+        <tag>spring</tag>
+        <tag>依赖注入</tag>
+        <tag>静态变量</tag>
+        <tag>空</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Git 解决问题常用的操作]]></title>
     <url>%2F2018%2F12%2F31%2FGit%2FGit-%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98%E5%B8%B8%E7%94%A8%E7%9A%84%E6%93%8D%E4%BD%9C%2F</url>
     <content type="text"><![CDATA[设置默认提交分支1git branch --set-upstream-to=origin/&lt;branch&gt; master 提交分支 1git push origin develop:本地分支名称 取消merge12git merge —abortgit reset 创建并提交 git init git add . git commit -am “###” #从此完成了本地提交 git remote add origin git@xx.xx.xx.xx:repos/xxx/xxx/xxx.git git push origin 本地分支:远程分支 放弃更改代码强制更新12git fetch --allgit reset--hard origin/master git fetch只是下载远程的库的内容，不做任何的合并 git reset 把HEAD指向刚刚下载的最新的版本]]></content>
@@ -160,8 +188,8 @@
         <category>Spring</category>
       </categories>
       <tags>
-        <tag>日志</tag>
         <tag>spring</tag>
+        <tag>日志</tag>
         <tag>输出</tag>
         <tag>体系</tag>
       </tags>
@@ -189,9 +217,9 @@
       </categories>
       <tags>
         <tag>部署</tag>
+        <tag>tomcat</tag>
         <tag>Spring</tag>
         <tag>boot</tag>
-        <tag>tomcat</tag>
       </tags>
   </entry>
   <entry>
@@ -286,9 +314,9 @@
       </categories>
       <tags>
         <tag>mysql</tag>
+        <tag>解决</tag>
         <tag>警告</tag>
         <tag>ssl</tag>
-        <tag>解决</tag>
       </tags>
   </entry>
   <entry>
@@ -300,11 +328,11 @@
       </categories>
       <tags>
         <tag>mysql</tag>
-        <tag>解决</tag>
         <tag>安装</tag>
         <tag>迁移</tag>
         <tag>数据</tag>
         <tag>问题</tag>
+        <tag>解决</tag>
       </tags>
   </entry>
   <entry>
@@ -541,11 +569,11 @@
       </categories>
       <tags>
         <tag>Maven</tag>
-        <tag>jar</tag>
         <tag>scope</tag>
         <tag>类型</tag>
         <tag>system</tag>
         <tag>本地</tag>
+        <tag>jar</tag>
       </tags>
   </entry>
   <entry>
@@ -586,10 +614,10 @@
         <category>Maven</category>
       </categories>
       <tags>
+        <tag>jar</tag>
         <tag>后台</tag>
         <tag>程序</tag>
         <tag>代码</tag>
-        <tag>jar</tag>
         <tag>lib</tag>
       </tags>
   </entry>
@@ -602,10 +630,10 @@
       </categories>
       <tags>
         <tag>Maven</tag>
+        <tag>插件</tag>
         <tag>构建</tag>
         <tag>执行</tag>
         <tag>WEB</tag>
-        <tag>插件</tag>
       </tags>
   </entry>
   <entry>
@@ -616,8 +644,8 @@
         <category>Maven</category>
       </categories>
       <tags>
-        <tag>Maven</tag>
         <tag>排除</tag>
+        <tag>Maven</tag>
         <tag>依赖管理</tag>
         <tag>依赖</tag>
         <tag>方法</tag>
@@ -686,7 +714,7 @@
   <entry>
     <title><![CDATA[Mac OS下搭建Vue开发环境]]></title>
     <url>%2F2018%2F11%2F23%2FVue%2FMac-OS%E4%B8%8B%E6%90%AD%E5%BB%BAVue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%2F</url>
-    <content type="text"><![CDATA[前言原来一直学习使用React，现在因为工作的需要，对Vue进行学习和使用，现在比较流行的框架React,angular,vue，正好对于vue也进行些了解。 环境搭建 打开终端,安装brew 1usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot; 安装成功后，使用查看版本，验证是否安装成功1brew -v 安装node.js1brew install nodejs 也可以下载安装下载地址安装成功后，使用验证123node -v``` * 给nodejs目录赋权限 sudo chmod -R 777 /usr/local/lib/node_modules/1* 安装 淘宝镜像 （npm） npm install -g cnpm –registry=https://registry.npm.taobao.org12* 安装webpack cnpm install webpack -g12* 安装vue脚手架 npm install vue-cli -g12# 开始Vue 创建一个基于 webpack 模板的新项目$ vue init webpack my-project 这里需要进行一些配置，默认回车即可This will install Vue 2.x version of the template. For Vue 1.x use: vue init webpack#1.0 my-project ? Project name my-project? Project description A Vue.js project? Author runoob &#x74;&#101;&#115;&#x74;&#64;&#114;&#x75;&#110;&#x6f;&#x6f;&#x62;&#46;&#x63;&#x6f;&#x6d;? Vue build standalone? Use ESLint to lint your code? Yes? Pick an ESLint preset Standard? Setup unit tests with Karma + Mocha? Yes? Setup e2e tests with Nightwatch? Yes vue-cli · Generated “my-project”. To get started: cd my-project npm install npm run dev Documentation can be found at https://vuejs-templates.github.io/webpack1进入项目，安装并运行： $ cd my-project$ cnpm install$ cnpm run dev DONE Compiled successfully in 4388ms Listening at http://localhost:8080`]]></content>
+    <content type="text"><![CDATA[前言原来一直学习使用React，现在因为工作的需要，对Vue进行学习和使用，现在比较流行的框架React,angular,vue，正好对于vue也进行些了解。 环境搭建 打开终端,安装brew 1usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot; 安装成功后，使用查看版本，验证是否安装成功1brew -v 安装node.js1brew install nodejs 也可以下载安装下载地址安装成功后，使用验证123node -v``` * 给nodejs目录赋权限 sudo chmod -R 777 /usr/local/lib/node_modules/1* 安装 淘宝镜像 （npm） npm install -g cnpm –registry=https://registry.npm.taobao.org12* 安装webpack cnpm install webpack -g12* 安装vue脚手架 npm install vue-cli -g12# 开始Vue 创建一个基于 webpack 模板的新项目$ vue init webpack my-project 这里需要进行一些配置，默认回车即可This will install Vue 2.x version of the template. For Vue 1.x use: vue init webpack#1.0 my-project ? Project name my-project? Project description A Vue.js project? Author runoob &#116;&#x65;&#x73;&#116;&#x40;&#x72;&#117;&#110;&#111;&#x6f;&#98;&#x2e;&#99;&#111;&#x6d;? Vue build standalone? Use ESLint to lint your code? Yes? Pick an ESLint preset Standard? Setup unit tests with Karma + Mocha? Yes? Setup e2e tests with Nightwatch? Yes vue-cli · Generated “my-project”. To get started: cd my-project npm install npm run dev Documentation can be found at https://vuejs-templates.github.io/webpack1进入项目，安装并运行： $ cd my-project$ cnpm install$ cnpm run dev DONE Compiled successfully in 4388ms Listening at http://localhost:8080`]]></content>
       <categories>
         <category>Vue</category>
       </categories>

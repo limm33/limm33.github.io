@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.limingming.org/"/>
-  <updated>2018-12-31T08:42:51.320Z</updated>
+  <updated>2019-01-15T08:20:18.463Z</updated>
   <id>http://www.limingming.org/</id>
   
   <author>
@@ -15,6 +15,70 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Spring多线程事务</title>
+    <link href="http://www.limingming.org/2019/01/15/Spring/Spring%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%BA%8B%E5%8A%A1/"/>
+    <id>http://www.limingming.org/2019/01/15/Spring/Spring多线程事务/</id>
+    <published>2019-01-15T08:19:23.000Z</published>
+    <updated>2019-01-15T08:20:18.463Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="Spring" scheme="http://www.limingming.org/categories/Spring/"/>
+    
+    
+      <category term="spring" scheme="http://www.limingming.org/tags/spring/"/>
+    
+      <category term="多线程" scheme="http://www.limingming.org/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+    
+      <category term="事务" scheme="http://www.limingming.org/tags/%E4%BA%8B%E5%8A%A1/"/>
+    
+      <category term="管理" scheme="http://www.limingming.org/tags/%E7%AE%A1%E7%90%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Spring DI static的静态变量</title>
+    <link href="http://www.limingming.org/2019/01/15/Spring/Spring-DI-static%E7%9A%84%E9%9D%99%E6%80%81%E5%8F%98%E9%87%8F/"/>
+    <id>http://www.limingming.org/2019/01/15/Spring/Spring-DI-static的静态变量/</id>
+    <published>2019-01-15T07:09:38.000Z</published>
+    <updated>2019-01-15T08:10:41.537Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="Spring" scheme="http://www.limingming.org/categories/Spring/"/>
+    
+    
+      <category term="spring" scheme="http://www.limingming.org/tags/spring/"/>
+    
+      <category term="依赖注入" scheme="http://www.limingming.org/tags/%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/"/>
+    
+      <category term="静态变量" scheme="http://www.limingming.org/tags/%E9%9D%99%E6%80%81%E5%8F%98%E9%87%8F/"/>
+    
+      <category term="空" scheme="http://www.limingming.org/tags/%E7%A9%BA/"/>
+    
+  </entry>
   
   <entry>
     <title>Git 解决问题常用的操作</title>
@@ -386,9 +450,9 @@
       <category term="Spring" scheme="http://www.limingming.org/categories/Spring/"/>
     
     
-      <category term="日志" scheme="http://www.limingming.org/tags/%E6%97%A5%E5%BF%97/"/>
-    
       <category term="spring" scheme="http://www.limingming.org/tags/spring/"/>
+    
+      <category term="日志" scheme="http://www.limingming.org/tags/%E6%97%A5%E5%BF%97/"/>
     
       <category term="输出" scheme="http://www.limingming.org/tags/%E8%BE%93%E5%87%BA/"/>
     
@@ -452,11 +516,11 @@
     
       <category term="部署" scheme="http://www.limingming.org/tags/%E9%83%A8%E7%BD%B2/"/>
     
+      <category term="tomcat" scheme="http://www.limingming.org/tags/tomcat/"/>
+    
       <category term="Spring" scheme="http://www.limingming.org/tags/Spring/"/>
     
       <category term="boot" scheme="http://www.limingming.org/tags/boot/"/>
-    
-      <category term="tomcat" scheme="http://www.limingming.org/tags/tomcat/"/>
     
   </entry>
   
@@ -585,68 +649,6 @@
       <category term="无法" scheme="http://www.limingming.org/tags/%E6%97%A0%E6%B3%95/"/>
     
       <category term="切换" scheme="http://www.limingming.org/tags/%E5%88%87%E6%8D%A2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Git常用命令</title>
-    <link href="http://www.limingming.org/2018/12/13/Git/Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
-    <id>http://www.limingming.org/2018/12/13/Git/Git常用命令/</id>
-    <published>2018-12-13T12:06:24.000Z</published>
-    <updated>2018-12-20T03:06:57.014Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-      <category term="Git" scheme="http://www.limingming.org/categories/Git/"/>
-    
-    
-      <category term="git" scheme="http://www.limingming.org/tags/git/"/>
-    
-      <category term="常用" scheme="http://www.limingming.org/tags/%E5%B8%B8%E7%94%A8/"/>
-    
-      <category term="命令" scheme="http://www.limingming.org/tags/%E5%91%BD%E4%BB%A4/"/>
-    
-      <category term="概念" scheme="http://www.limingming.org/tags/%E6%A6%82%E5%BF%B5/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>CentOS7修改防火墙配置开放端口</title>
-    <link href="http://www.limingming.org/2018/12/12/Linux/CentOS7%E4%BF%AE%E6%94%B9%E9%98%B2%E7%81%AB%E5%A2%99%E9%85%8D%E7%BD%AE%E5%BC%80%E6%94%BE%E7%AB%AF%E5%8F%A3/"/>
-    <id>http://www.limingming.org/2018/12/12/Linux/CentOS7修改防火墙配置开放端口/</id>
-    <published>2018-12-12T07:31:07.000Z</published>
-    <updated>2018-12-20T03:07:18.592Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-      <category term="Linux" scheme="http://www.limingming.org/categories/Linux/"/>
-    
-    
-      <category term="centos 7" scheme="http://www.limingming.org/tags/centos-7/"/>
-    
-      <category term="修改防火墙配置" scheme="http://www.limingming.org/tags/%E4%BF%AE%E6%94%B9%E9%98%B2%E7%81%AB%E5%A2%99%E9%85%8D%E7%BD%AE/"/>
-    
-      <category term="开发端口" scheme="http://www.limingming.org/tags/%E5%BC%80%E5%8F%91%E7%AB%AF%E5%8F%A3/"/>
     
   </entry>
   

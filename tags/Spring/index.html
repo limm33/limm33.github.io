@@ -85,7 +85,7 @@
 <meta name="keywords" content="Welcome to my site! My name is Li MingMing(李明明). You can call me Kel. I was born in 1993s.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="李明明的博客">
-<meta property="og:url" content="http://www.limingming.org/tags/spring/index.html">
+<meta property="og:url" content="http://www.limingming.org/tags/Spring/index.html">
 <meta property="og:site_name" content="李明明的博客">
 <meta property="og:description" content="Welcome to my site! My name is Li MingMing(李明明). 欢迎来到我的博客网站，我的名字是李明明">
 <meta property="og:locale" content="zh-Hans">
@@ -121,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://www.limingming.org/tags/spring/">
+  <link rel="canonical" href="http://www.limingming.org/tags/Spring/">
 
 
 
 
 
-  <title>标签: spring | 李明明的博客</title>
+  <title>标签: Spring | 李明明的博客</title>
   
 
 
@@ -289,7 +289,7 @@
 
     <div id="posts" class="posts-collapse">
       <div class="collection-title">
-        <h1>spring<small>标签</small>
+        <h1>Spring<small>标签</small>
         </h1>
       </div>
 
@@ -301,17 +301,17 @@
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2018/12/21/Spring/spring-boot2-x日志体系问题/" itemprop="url">
+            <a class="post-title-link" href="/2018/12/18/Spring/Spring-boot-部署到tomcat中注意事项/" itemprop="url">
               
-                <span itemprop="name">spring boot2.x日志体系问题</span>
+                <span itemprop="name">Spring boot 部署到tomcat中注意事项</span>
               
             </a>
         
       </h2>
 
       <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-12-21T10:08:41+08:00" content="2018-12-21">
-          12-21
+        <time class="post-time" itemprop="dateCreated" datetime="2018-12-18T22:43:46+08:00" content="2018-12-18">
+          12-18
         </time>
       </div>
 
@@ -373,7 +373,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">51</span>
+                  <span class="site-state-item-count">53</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -395,7 +395,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">146</span>
+                  <span class="site-state-item-count">152</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -492,7 +492,7 @@
     <footer id="footer" class="footer">
       <div class="footer-inner">
         <script async src="https://limm33.github.io/source/js/busuanzi.pure.mini.js"></script>
-<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -512,7 +512,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共47.1k字</span>
+  <span class="post-count">博客全站共48.3k字</span>
 </div>
 
         
@@ -992,6 +992,70 @@
 
 </body>
 </html>
+L = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
   
 
 </body>
