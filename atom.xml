@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.limingming.org/"/>
-  <updated>2019-01-25T03:56:19.636Z</updated>
+  <updated>2019-01-30T00:49:09.066Z</updated>
   <id>http://www.limingming.org/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Eclipse异常：Plugin execution not covered by lifecycle configuration</title>
+    <link href="http://www.limingming.org/2019/01/30/%E5%BC%80%E5%8F%91%E8%80%85%E6%89%8B%E5%86%8C/Eclipse%E5%BC%82%E5%B8%B8%EF%BC%9APlugin-execution-not-covered-by-lifecycle-configuration/"/>
+    <id>http://www.limingming.org/2019/01/30/开发者手册/Eclipse异常：Plugin-execution-not-covered-by-lifecycle-configuration/</id>
+    <published>2019-01-30T00:47:27.000Z</published>
+    <updated>2019-01-30T00:49:09.066Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="开发者手册" scheme="http://www.limingming.org/categories/%E5%BC%80%E5%8F%91%E8%80%85%E6%89%8B%E5%86%8C/"/>
+    
+    
+      <category term="eclipse" scheme="http://www.limingming.org/tags/eclipse/"/>
+    
+      <category term="插件异常" scheme="http://www.limingming.org/tags/%E6%8F%92%E4%BB%B6%E5%BC%82%E5%B8%B8/"/>
+    
+  </entry>
   
   <entry>
     <title>Spring Boot 中自定义Filter</title>
@@ -619,38 +647,6 @@
       <category term="centos" scheme="http://www.limingming.org/tags/centos/"/>
     
       <category term="pip" scheme="http://www.limingming.org/tags/pip/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>jenkins中SSH remote hosts配置</title>
-    <link href="http://www.limingming.org/2018/12/15/%E5%BC%80%E5%8F%91%E8%80%85%E6%89%8B%E5%86%8C/jenkins%E4%B8%ADSSH-remote-hosts%E9%85%8D%E7%BD%AE/"/>
-    <id>http://www.limingming.org/2018/12/15/开发者手册/jenkins中SSH-remote-hosts配置/</id>
-    <published>2018-12-15T08:11:07.000Z</published>
-    <updated>2018-12-29T08:44:03.522Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-      <category term="开发者手册" scheme="http://www.limingming.org/categories/%E5%BC%80%E5%8F%91%E8%80%85%E6%89%8B%E5%86%8C/"/>
-    
-    
-      <category term="远程" scheme="http://www.limingming.org/tags/%E8%BF%9C%E7%A8%8B/"/>
-    
-      <category term="ssh" scheme="http://www.limingming.org/tags/ssh/"/>
-    
-      <category term="jenkins" scheme="http://www.limingming.org/tags/jenkins/"/>
-    
-      <category term="连接" scheme="http://www.limingming.org/tags/%E8%BF%9E%E6%8E%A5/"/>
     
   </entry>
   
