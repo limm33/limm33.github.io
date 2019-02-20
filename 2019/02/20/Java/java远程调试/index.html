@@ -81,20 +81,20 @@
 
 
 
-<meta name="description" content="[原文: http://limingming.org/index.php/2019/02/java-remote-debugging/]（ http://limingming.org/index.php/2019/02/java-remote-debugging/） 简介Eclipse远程调试已经不是新鲜事情了，在工作过程中一般用到远程调试都是在部署到远程的虚拟机或者服务器上出现了问题，但是在本地">
+<meta name="description" content="原文: http://limingming.org/index.php/2019/02/java-remote-debugging/ 简介Eclipse远程调试已经不是新鲜事情了，在工作过程中一般用到远程调试都是在部署到远程的虚拟机或者服务器上出现了问题，但是在本地复现的过程中始终无法复现，所以一边在这种情况下会用到远程调试。 操作修改tomcat容器修改catalina.sh文件：1CATALI">
 <meta name="keywords" content="远程,调试,java,eclipse">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java远程调试">
 <meta property="og:url" content="http://www.limingming.org/2019/02/20/Java/java远程调试/index.html">
 <meta property="og:site_name" content="李明明的博客">
-<meta property="og:description" content="[原文: http://limingming.org/index.php/2019/02/java-remote-debugging/]（ http://limingming.org/index.php/2019/02/java-remote-debugging/） 简介Eclipse远程调试已经不是新鲜事情了，在工作过程中一般用到远程调试都是在部署到远程的虚拟机或者服务器上出现了问题，但是在本地">
+<meta property="og:description" content="原文: http://limingming.org/index.php/2019/02/java-remote-debugging/ 简介Eclipse远程调试已经不是新鲜事情了，在工作过程中一般用到远程调试都是在部署到远程的虚拟机或者服务器上出现了问题，但是在本地复现的过程中始终无法复现，所以一边在这种情况下会用到远程调试。 操作修改tomcat容器修改catalina.sh文件：1CATALI">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://limingming.org/wp-content/uploads/2019/02/1.png">
 <meta property="og:image" content="http://limingming.org/wp-content/uploads/2019/02/2.png">
-<meta property="og:updated_time" content="2019-02-20T03:31:07.344Z">
+<meta property="og:updated_time" content="2019-02-20T03:32:18.272Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java远程调试">
-<meta name="twitter:description" content="[原文: http://limingming.org/index.php/2019/02/java-remote-debugging/]（ http://limingming.org/index.php/2019/02/java-remote-debugging/） 简介Eclipse远程调试已经不是新鲜事情了，在工作过程中一般用到远程调试都是在部署到远程的虚拟机或者服务器上出现了问题，但是在本地">
+<meta name="twitter:description" content="原文: http://limingming.org/index.php/2019/02/java-remote-debugging/ 简介Eclipse远程调试已经不是新鲜事情了，在工作过程中一般用到远程调试都是在部署到远程的虚拟机或者服务器上出现了问题，但是在本地复现的过程中始终无法复现，所以一边在这种情况下会用到远程调试。 操作修改tomcat容器修改catalina.sh文件：1CATALI">
 <meta name="twitter:image" content="http://limingming.org/wp-content/uploads/2019/02/1.png">
 
 
@@ -389,7 +389,7 @@
       
 
       
-        <p>[原文: <a href="http://limingming.org/index.php/2019/02/java-remote-debugging/]（" target="_blank" rel="noopener">http://limingming.org/index.php/2019/02/java-remote-debugging/]（</a> <a href="http://limingming.org/index.php/2019/02/java-remote-debugging/）" target="_blank" rel="noopener">http://limingming.org/index.php/2019/02/java-remote-debugging/）</a></p>
+        <p><a href="http://limingming.org/index.php/2019/02/java-remote-debugging/" target="_blank" rel="noopener">原文: http://limingming.org/index.php/2019/02/java-remote-debugging/</a></p>
 <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>Eclipse远程调试已经不是新鲜事情了，在工作过程中一般用到远程调试都是在部署到远程的虚拟机或者服务器上出现了问题，但是在本地复现的过程中始终无法复现，所以一边在这种情况下会用到远程调试。</p>
 <h1 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h1><h2 id="修改tomcat容器"><a href="#修改tomcat容器" class="headerlink" title="修改tomcat容器"></a>修改tomcat容器</h2><p>修改catalina.sh文件：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CATALINA_OPTS="-Xdebug -Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=n"</span><br></pre></td></tr></table></figure></p>
 <p>前一段时间看同事需要更改oozie的源码，因为关联大数据组件及其他种种原因没有办法在本地部署调试，导致开发过程中遇到的问题无法及时调试，我看oozie部署的容器是tomcat，所以我想远程调试应该会生效，所以也决定记录一下远程调试的过程，但是部署oozie的catalina.sh和正常的tomcat的有稍微的区别<br>正常情况下我们需要添加到cygwin=false上面就行了，能使CATALINA_OPTS生效就可以了：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> OS specific support.  $var _must_ be set to either true or false.</span><br><span class="line">cygwin=false</span><br></pre></td></tr></table></figure></p>
