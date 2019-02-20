@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.limingming.org/"/>
-  <updated>2019-01-30T00:49:09.066Z</updated>
+  <updated>2019-02-20T03:31:07.344Z</updated>
   <id>http://www.limingming.org/</id>
   
   <author>
@@ -15,6 +15,38 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>java远程调试</title>
+    <link href="http://www.limingming.org/2019/02/20/Java/java%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/"/>
+    <id>http://www.limingming.org/2019/02/20/Java/java远程调试/</id>
+    <published>2019-02-20T03:26:29.000Z</published>
+    <updated>2019-02-20T03:31:07.344Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="Java" scheme="http://www.limingming.org/categories/Java/"/>
+    
+    
+      <category term="远程" scheme="http://www.limingming.org/tags/%E8%BF%9C%E7%A8%8B/"/>
+    
+      <category term="调试" scheme="http://www.limingming.org/tags/%E8%B0%83%E8%AF%95/"/>
+    
+      <category term="java" scheme="http://www.limingming.org/tags/java/"/>
+    
+      <category term="eclipse" scheme="http://www.limingming.org/tags/eclipse/"/>
+    
+  </entry>
   
   <entry>
     <title>Eclipse异常：Plugin execution not covered by lifecycle configuration</title>
@@ -617,36 +649,6 @@
       <category term="配置" scheme="http://www.limingming.org/tags/%E9%85%8D%E7%BD%AE/"/>
     
       <category term="yum" scheme="http://www.limingming.org/tags/yum/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>CentOS7 安装pip</title>
-    <link href="http://www.limingming.org/2018/12/17/Linux/CentOS7-%E5%AE%89%E8%A3%85pip/"/>
-    <id>http://www.limingming.org/2018/12/17/Linux/CentOS7-安装pip/</id>
-    <published>2018-12-17T06:27:41.000Z</published>
-    <updated>2018-12-20T03:07:10.591Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-      <category term="Linux" scheme="http://www.limingming.org/categories/Linux/"/>
-    
-    
-      <category term="安装" scheme="http://www.limingming.org/tags/%E5%AE%89%E8%A3%85/"/>
-    
-      <category term="centos" scheme="http://www.limingming.org/tags/centos/"/>
-    
-      <category term="pip" scheme="http://www.limingming.org/tags/pip/"/>
     
   </entry>
   
