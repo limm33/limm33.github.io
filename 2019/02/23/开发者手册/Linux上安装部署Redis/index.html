@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/my-favicon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/my-favicon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/my-favicon.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/my-favicon.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="安装,部署,redis,linux,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="李明明的博客" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="原文: http://limingming.org/index.php/2019/02/linux-redis-install/ 介绍Redis是一个使用ANSI C编写的开源、支持网络、基于内存、可选持久性的键值对存储数据库。从2015年6月开始，Redis的开发由Redis Labs赞助，而2013年5月至2015年6月期间，其开发由Pivotal赞助。在2013年5月之前，其开发由VMwar">
+<meta name="keywords" content="安装,部署,redis,linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux上安装部署Redis">
+<meta property="og:url" content="http://www.limingming.org/2019/02/23/开发者手册/Linux上安装部署Redis/index.html">
+<meta property="og:site_name" content="李明明的博客">
+<meta property="og:description" content="原文: http://limingming.org/index.php/2019/02/linux-redis-install/ 介绍Redis是一个使用ANSI C编写的开源、支持网络、基于内存、可选持久性的键值对存储数据库。从2015年6月开始，Redis的开发由Redis Labs赞助，而2013年5月至2015年6月期间，其开发由Pivotal赞助。在2013年5月之前，其开发由VMwar">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-02-23T08:26:16.887Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux上安装部署Redis">
+<meta name="twitter:description" content="原文: http://limingming.org/index.php/2019/02/linux-redis-install/ 介绍Redis是一个使用ANSI C编写的开源、支持网络、基于内存、可选持久性的键值对存储数据库。从2015年6月开始，Redis的开发由Redis Labs赞助，而2013年5月至2015年6月期间，其开发由Pivotal赞助。在2013年5月之前，其开发由VMwar">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.limingming.org/2019/02/23/开发者手册/Linux上安装部署Redis/">
+
+
+
+
+
+  <title>Linux上安装部署Redis | 李明明的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">李明明的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Li MingMing's blog site</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+   <!-- <a href="https://github.com/limm33"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://blog.limingming.org/source/images/forkme_left_darkblue_121621.png" alt="Fork me on GitHub"></a> -->
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.limingming.org/2019/02/23/开发者手册/Linux上安装部署Redis/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="李明明">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/my-photo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="李明明的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Linux上安装部署Redis</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-23T15:42:43+08:00">
+                2019-02-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/开发者手册/" itemprop="url" rel="index">
+                    <span itemprop="name">开发者手册</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="http://limingming.org/index.php/2019/02/linux-redis-install/" target="_blank" rel="noopener">原文: http://limingming.org/index.php/2019/02/linux-redis-install/</a></p>
+<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>Redis是一个使用ANSI C编写的开源、支持网络、基于内存、可选持久性的键值对存储数据库。从2015年6月开始，Redis的开发由Redis Labs赞助，而2013年5月至2015年6月期间，其开发由Pivotal赞助。在2013年5月之前，其开发由VMware赞助。根据月度排行网站DB-Engines.com的数据显示，Redis是最流行的键值对存储数据库。       –维基百科</p>
+<h1 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h1><ol>
+<li>下载<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://download.redis.io/releases/redis-3.0.0.tar.gz</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>安装到/usr/local下:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cp redis-3.0.0.rar.gz /usr/local</span><br><span class="line">tar -zxvf redis-3.0.0.tar.gz </span><br><span class="line">cd /usr/local/redis-3.0.0</span><br></pre></td></tr></table></figure>
+<p>指定安装目录/usr/local/redis：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make PREFIX=/usr/local/redis install</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li><p>配置文件<br>redis.conf是redis的配置文件，将安装目录下的redis.conf拷贝到安装目录下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/redis</span><br><span class="line">mkdir conf</span><br><span class="line">cp /usr/local/redis-3.0.0/redis.conf  /usr/local/redis/conf</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看bin目录下内容</p>
+</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">~ pwd</span><br><span class="line">/usr/local/redis/bin</span><br><span class="line">~ ls</span><br><span class="line">dump.rdb         redis-check-aof   redis-cli       redis-server</span><br><span class="line">redis-benchmark  redis-check-dump  redis-sentinel</span><br><span class="line">~</span><br></pre></td></tr></table></figure>
+<ul>
+<li>redis-check-aof     AOF文件修复工具</li>
+<li>redis-cli      redis命令行客户端</li>
+<li>redis-server  redis服务进程</li>
+<li>redis-benchmark   redis性能测试工具</li>
+<li>redis-sentinal   redis集群管理工具</li>
+</ul>
+<ol start="4">
+<li>修改环境变量</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/profile</span><br></pre></td></tr></table></figure>
+<p>添加：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export REDIS_HOME=/usr/local/redis</span><br><span class="line">export PATH=$REDIS_HOME/bin:$PATH</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source /etc/profile</span><br></pre></td></tr></table></figure>
+<p>这样redis/bin下的命令就可以随处使用了。</p>
+<ol start="5">
+<li>启动reids<br>直接执行redis-server，会前台启动，终端关闭后就直接关闭了，所以我们可以修改redis.conf文件改为后台启动：<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /usr/local/redis/conf/redis.conf</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>修改</p>
+<blockquote>
+<p>By default Redis does not run as a daemon. Use ‘yes’ if you need it.<br>Note that Redis will write a pid file in /var/run/redis.pid when daemonized.<br>daemonize yes  </p>
+</blockquote>
+<p>将daemonize no改为daemonize yes<br>启动：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">~ cd /usr/local/redis/conf</span><br><span class="line">~ pwd</span><br><span class="line">/usr/local/redis/conf    </span><br><span class="line">~ redis-server redis.conf</span><br></pre></td></tr></table></figure></p>
+<ol start="6">
+<li><p>redis-cli 测试</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">~ redis-cli </span><br><span class="line">127.0.0.1:6379&gt; set name 123</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; get name</span><br><span class="line">&quot;123&quot;</span><br><span class="line">127.0.0.1:6379&gt; set key1 value1</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; key*</span><br><span class="line">(error) ERR unknown command &apos;key*&apos;</span><br><span class="line">127.0.0.1:6379&gt; keys *</span><br><span class="line">1) &quot;key1&quot;</span><br><span class="line">2) &quot;name&quot;</span><br><span class="line">127.0.0.1:6379&gt; exit</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>关闭redis<br>强制关闭redis会让redis数据丢失，正常关闭redis流程是：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-cli shutdown</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>强制关闭redis：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pkill redis-server</span><br></pre></td></tr></table></figure></p>
+<p>设置redis开机自启动：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/rc.local</span><br></pre></td></tr></table></figure></p>
+<p>添加:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-server /usr/local/redis/conf/redis-conf</span><br></pre></td></tr></table></figure></p>
+<h1 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h1><h2 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">~ redis-cli </span><br><span class="line">127.0.0.1:6379&gt; CONFIG GET daemonize</span><br><span class="line">1) "daemonize"</span><br><span class="line">2) "yes"</span><br></pre></td></tr></table></figure>
+<p>可以通过redis-cli来看redis的配置，那所有的配置项：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; CONFIG GET *</span><br><span class="line">  1) "dbfilename"</span><br><span class="line">  2) "dump.rdb"</span><br><span class="line">  3) "requirepass"</span><br><span class="line">  4) ""</span><br><span class="line">  5) "masterauth"</span><br><span class="line">  6) ""</span><br><span class="line">  7) "unixsocket"</span><br><span class="line">  8) ""</span><br><span class="line">  9) "logfile"</span><br><span class="line"> 10) ""</span><br><span class="line"> 11) "pidfile"</span><br><span class="line"> 12) "/var/run/redis.pid"</span><br><span class="line"> 13) "maxmemory"</span><br><span class="line"> 14) "0"</span><br><span class="line"> 15) "maxmemory-samples"</span><br><span class="line"> 16) "5"</span><br><span class="line"> 17) "timeout"</span><br><span class="line"> 18) "0"</span><br><span class="line"> 19) "tcp-keepalive"</span><br><span class="line"> 20) "0"</span><br><span class="line"> 21) "auto-aof-rewrite-percentage"</span><br><span class="line"> 22) "100"</span><br><span class="line"> 23) "auto-aof-rewrite-min-size"</span><br><span class="line"> 24) "67108864"</span><br><span class="line"> 25) "hash-max-ziplist-entries"</span><br><span class="line"> 26) "512"</span><br><span class="line"> 27) "hash-max-ziplist-value"</span><br><span class="line"> 28) "64"</span><br><span class="line"> 29) "list-max-ziplist-entries"</span><br><span class="line"> 30) "512"</span><br><span class="line"> 31) "list-max-ziplist-value"</span><br><span class="line"> 32) "64"</span><br><span class="line"> 33) "set-max-intset-entries"</span><br><span class="line"> 34) "512"</span><br><span class="line"> 35) "zset-max-ziplist-entries"</span><br><span class="line"> 36) "128"</span><br><span class="line"> 37) "zset-max-ziplist-value"</span><br><span class="line"> 38) "64"</span><br><span class="line"> 39) "hll-sparse-max-bytes"</span><br><span class="line"> 40) "3000"</span><br><span class="line"> 41) "lua-time-limit"</span><br><span class="line"> 42) "5000"</span><br><span class="line"> 43) "slowlog-log-slower-than"</span><br><span class="line"> 44) "10000"</span><br><span class="line"> 45) "latency-monitor-threshold"</span><br><span class="line"> 46) "0"</span><br><span class="line"> 47) "slowlog-max-len"</span><br><span class="line"> 48) "128"</span><br><span class="line"> 49) "port"</span><br><span class="line"> 50) "6379"</span><br><span class="line"> 51) "tcp-backlog"</span><br><span class="line"> 52) "511"</span><br><span class="line"> 53) "databases"</span><br><span class="line"> 54) "16"</span><br><span class="line"> 55) "repl-ping-slave-period"</span><br><span class="line"> 56) "10"</span><br><span class="line"> 57) "repl-timeout"</span><br><span class="line"> 58) "60"</span><br><span class="line"> 59) "repl-backlog-size"</span><br><span class="line"> 60) "1048576"</span><br><span class="line"> 61) "repl-backlog-ttl"</span><br><span class="line"> 62) "3600"</span><br><span class="line"> 63) "maxclients"</span><br><span class="line"> 64) "10000"</span><br><span class="line"> 65) "watchdog-period"</span><br><span class="line"> 66) "0"</span><br><span class="line"> 67) "slave-priority"</span><br><span class="line"> 68) "100"</span><br><span class="line"> 69) "min-slaves-to-write"</span><br><span class="line"> 70) "0"</span><br><span class="line"> 71) "min-slaves-max-lag"</span><br><span class="line"> 72) "10"</span><br><span class="line"> 73) "hz"</span><br><span class="line"> 74) "10"</span><br><span class="line"> 75) "cluster-node-timeout"</span><br><span class="line"> 76) "15000"</span><br><span class="line"> 77) "cluster-migration-barrier"</span><br><span class="line"> 78) "1"</span><br><span class="line"> 79) "cluster-slave-validity-factor"</span><br><span class="line"> 80) "10"</span><br><span class="line"> 81) "repl-diskless-sync-delay"</span><br><span class="line"> 82) "5"</span><br><span class="line"> 83) "cluster-require-full-coverage"</span><br><span class="line"> 84) "yes"</span><br><span class="line"> 85) "no-appendfsync-on-rewrite"</span><br><span class="line"> 86) "no"</span><br><span class="line"> 87) "slave-serve-stale-data"</span><br><span class="line"> 88) "yes"</span><br><span class="line"> 89) "slave-read-only"</span><br><span class="line"> 90) "yes"</span><br><span class="line"> 91) "stop-writes-on-bgsave-error"</span><br><span class="line"> 92) "yes"</span><br><span class="line"> 93) "daemonize"</span><br><span class="line"> 94) "yes"</span><br><span class="line"> 95) "rdbcompression"</span><br><span class="line"> 96) "yes"</span><br><span class="line"> 97) "rdbchecksum"</span><br><span class="line"> 98) "yes"</span><br><span class="line"> 99) "activerehashing"</span><br><span class="line">100) "yes"</span><br><span class="line">101) "repl-disable-tcp-nodelay"</span><br><span class="line">102) "no"</span><br><span class="line">103) "repl-diskless-sync"</span><br><span class="line">104) "no"</span><br><span class="line">105) "aof-rewrite-incremental-fsync"</span><br><span class="line">106) "yes"</span><br><span class="line">107) "aof-load-truncated"</span><br><span class="line">108) "yes"</span><br><span class="line">109) "appendonly"</span><br><span class="line">110) "no"</span><br><span class="line">111) "dir"</span><br><span class="line">112) "/usr/local/redis/conf"</span><br><span class="line">113) "maxmemory-policy"</span><br><span class="line">114) "noeviction"</span><br><span class="line">115) "appendfsync"</span><br><span class="line">116) "everysec"</span><br><span class="line">117) "save"</span><br><span class="line">118) "900 1 300 10 60 10000"</span><br><span class="line">119) "loglevel"</span><br><span class="line">120) "notice"</span><br><span class="line">121) "client-output-buffer-limit"</span><br><span class="line">122) "normal 0 0 0 slave 268435456 67108864 60 pubsub 33554432 8388608 60"</span><br><span class="line">123) "unixsocketperm"</span><br><span class="line">124) "0"</span><br><span class="line">125) "slaveof"</span><br><span class="line">126) ""</span><br><span class="line">127) "notify-keyspace-events"</span><br><span class="line">128) ""</span><br><span class="line">129) "bind"</span><br><span class="line">130) ""</span><br></pre></td></tr></table></figure></p>
+<h2 id="参数说明（来自菜鸟教程）"><a href="#参数说明（来自菜鸟教程）" class="headerlink" title="参数说明（来自菜鸟教程）"></a>参数说明（来自菜鸟教程）</h2><p>redis.conf 配置项说明如下：</p>
+<ol>
+<li><p>Redis默认不是以守护进程的方式运行，可以通过该配置项修改，使用yes启用守护进程</p>
+<p> daemonize no</p>
+</li>
+<li><p>当Redis以守护进程方式运行时，Redis默认会把pid写入/var/run/redis.pid文件，可以通过pidfile指定</p>
+<p> pidfile /var/run/redis.pid</p>
+</li>
+<li><p>指定Redis监听端口，默认端口为6379，作者在自己的一篇博文中解释了为什么选用6379作为默认端口，因为6379在手机按键上MERZ对应的号码，而MERZ取自意大利歌女Alessia Merz的名字</p>
+<p> port 6379</p>
+</li>
+<li><p>绑定的主机地址</p>
+<p> bind 127.0.0.1</p>
+</li>
+</ol>
+<p>5.当 客户端闲置多长时间后关闭连接，如果指定为0，表示关闭该功能</p>
+<pre><code>timeout 300
+</code></pre><ol start="6">
+<li><p>指定日志记录级别，Redis总共支持四个级别：debug、verbose、notice、warning，默认为verbose</p>
+<p> loglevel verbose</p>
+</li>
+<li><p>日志记录方式，默认为标准输出，如果配置Redis为守护进程方式运行，而这里又配置为日志记录方式为标准输出，则日志将会发送给/dev/null</p>
+<p> logfile stdout</p>
+</li>
+<li><p>设置数据库的数量，默认数据库为0，可以使用SELECT <dbid>命令在连接上指定数据库id</dbid></p>
+<p> databases 16</p>
+</li>
+<li><p>指定在多长时间内，有多少次更新操作，就将数据同步到数据文件，可以多个条件配合</p>
+<p> save <seconds> <changes></changes></seconds></p>
+<p> Redis默认配置文件中提供了三个条件：</p>
+<p> save 900 1</p>
+<p> save 300 10</p>
+<p> save 60 10000</p>
+<p> 分别表示900秒（15分钟）内有1个更改，300秒（5分钟）内有10个更改以及60秒内有10000个更改。</p>
+</li>
+</ol>
+<ol start="10">
+<li><p>指定存储至本地数据库时是否压缩数据，默认为yes，Redis采用LZF压缩，如果为了节省CPU时间，可以关闭该选项，但会导致数据库文件变的巨大</p>
+<p>rdbcompression yes</p>
+</li>
+<li><p>指定本地数据库文件名，默认值为dump.rdb</p>
+<p>dbfilename dump.rdb</p>
+</li>
+<li><p>指定本地数据库存放目录</p>
+<p>dir ./</p>
+</li>
+<li><p>设置当本机为slav服务时，设置master服务的IP地址及端口，在Redis启动时，它会自动从master进行数据同步</p>
+<p>slaveof <masterip> <masterport></masterport></masterip></p>
+</li>
+<li><p>当master服务设置了密码保护时，slav服务连接master的密码</p>
+<p>masterauth <master-password></master-password></p>
+</li>
+<li><p>设置Redis连接密码，如果配置了连接密码，客户端在连接Redis时需要通过AUTH <password>命令提供密码，默认关闭</password></p>
+<p>requirepass foobared</p>
+</li>
+<li><p>设置同一时间最大客户端连接数，默认无限制，Redis可以同时打开的客户端连接数为Redis进程可以打开的最大文件描述符数，如果设置 maxclients 0，表示不作限制。当客户端连接数到达限制时，Redis会关闭新的连接并向客户端返回max number of clients reached错误信息</p>
+<p>maxclients 128</p>
+</li>
+<li><p>指定Redis最大内存限制，Redis在启动时会把数据加载到内存中，达到最大内存后，Redis会先尝试清除已到期或即将到期的Key，当此方法处理 后，仍然到达最大内存设置，将无法再进行写入操作，但仍然可以进行读取操作。Redis新的vm机制，会把Key存放内存，Value会存放在swap区</p>
+<p>maxmemory <bytes></bytes></p>
+</li>
+<li><p>指定是否在每次更新操作后进行日志记录，Redis在默认情况下是异步的把数据写入磁盘，如果不开启，可能会在断电时导致一段时间内的数据丢失。因为 redis本身同步数据文件是按上面save条件来同步的，所以有的数据会在一段时间内只存在于内存中。默认为no</p>
+<p>appendonly no</p>
+</li>
+<li><p>指定更新日志文件名，默认为appendonly.aof</p>
+<p> appendfilename appendonly.aof</p>
+</li>
+<li><p>指定更新日志条件，共有3个可选值：<br>no：表示等操作系统进行数据缓存同步到磁盘（快）<br>always：表示每次更新操作后手动调用fsync()将数据写到磁盘（慢，安全）<br>everysec：表示每秒同步一次（折中，默认值）</p>
+<p>appendfsync everysec</p>
+</li>
+</ol>
+<ol start="21">
+<li><p>指定是否启用虚拟内存机制，默认值为no，简单的介绍一下，VM机制将数据分页存放，由Redis将访问量较少的页即冷数据swap到磁盘上，访问多的页面由磁盘自动换出到内存中（在后面的文章我会仔细分析Redis的VM机制）</p>
+<p> vm-enabled no</p>
+</li>
+<li><p>虚拟内存文件路径，默认值为/tmp/redis.swap，不可多个Redis实例共享</p>
+<p> vm-swap-file /tmp/redis.swap</p>
+</li>
+<li><p>将所有大于vm-max-memory的数据存入虚拟内存,无论vm-max-memory设置多小,所有索引数据都是内存存储的(Redis的索引数据 就是keys),也就是说,当vm-max-memory设置为0的时候,其实是所有value都存在于磁盘。默认值为0</p>
+<p> vm-max-memory 0</p>
+</li>
+<li><p>Redis swap文件分成了很多的page，一个对象可以保存在多个page上面，但一个page上不能被多个对象共享，vm-page-size是要根据存储的 数据大小来设定的，作者建议如果存储很多小对象，page大小最好设置为32或者64bytes；如果存储很大大对象，则可以使用更大的page，如果不 确定，就使用默认值</p>
+<p> vm-page-size 32</p>
+</li>
+<li><p>设置swap文件中的page数量，由于页表（一种表示页面空闲或使用的bitmap）是在放在内存中的，，在磁盘上每8个pages将消耗1byte的内存。</p>
+<p> vm-pages 134217728</p>
+</li>
+<li><p>设置访问swap文件的线程数,最好不要超过机器的核数,如果设置为0,那么所有对swap文件的操作都是串行的，可能会造成比较长时间的延迟。默认值为4</p>
+<p> vm-max-threads 4</p>
+</li>
+<li><p>设置在向客户端应答时，是否把较小的包合并为一个包发送，默认为开启</p>
+<p>glueoutputbuf yes</p>
+</li>
+<li><p>指定在超过一定的数量或者最大的元素超过某一临界值时，采用一种特殊的哈希算法</p>
+<p>hash-max-zipmap-entries 64</p>
+<p>hash-max-zipmap-value 512</p>
+</li>
+<li><p>指定是否激活重置哈希，默认为开启（后面在介绍Redis的哈希算法时具体介绍）</p>
+<p>activerehashing yes</p>
+</li>
+<li><p>指定包含其它的配置文件，可以在同一主机上多个Redis实例之间使用同一份配置文件，而同时各个实例又拥有自己的特定配置文件</p>
+<p>include /path/to/local.conf</p>
+</li>
+</ol>
+
+      
+    </div>
+    <div>
+      
+          <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">
+                         <a href="http://www.limingming.org">李明明的个人网站:http://www.limingming.org</a>
+                         <br>
+                 ---本文结束，感谢阅读本文，如需转载，请注明原文出处---
+              
+        </div>
+    
+</div>
+
+      
+    </div>
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/安装/" rel="tag"># 安装</a>
+          
+            <a href="/tags/部署/" rel="tag"># 部署</a>
+          
+            <a href="/tags/redis/" rel="tag"># redis</a>
+          
+            <a href="/tags/linux/" rel="tag"># linux</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/20/Java/java远程调试/" rel="next" title="java远程调试">
+                <i class="fa fa-chevron-left"></i> java远程调试
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/my-photo.jpg" alt="李明明">
+            
+              <p class="site-author-name" itemprop="name">李明明</p>
+              <p class="site-description motion-element" itemprop="description">Welcome to my site! My name is Li MingMing(李明明). 欢迎来到我的博客网站，我的名字是李明明</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">162</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/limm33" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://www.limingming.org" target="_blank" title="个人网站">
+                      
+                        <i class="fa fa-fw fa-crosshairs"></i>个人网站</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://blog.csdn.net/limm33" target="_blank" title="CSDN">
+                      
+                        <i class="fa fa-fw fa-book"></i>CSDN</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.jianshu.com/u/0ea8ec2aa0d1" target="_blank" title="简书">
+                      
+                        <i class="fa fa-fw fa-heartbeat"></i>简书</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://www.linkedin.com/in/李明明-kel" target="_blank" title="LinkIn">
+                      
+                        <i class="fa fa-fw fa-meh-o"></i>LinkIn</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/limm33" target="_blank" title="微博">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>微博</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.facebook.com/limm33" target="_blank" title="facebook">
+                      
+                        <i class="fa fa-fw fa-facebook"></i>facebook</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/limm333" target="_blank" title="twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>twitter</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#介绍"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装步骤"><span class="nav-number">2.</span> <span class="nav-text">安装步骤</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置文件"><span class="nav-number">3.</span> <span class="nav-text">配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#参数"><span class="nav-number">3.1.</span> <span class="nav-text">参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参数说明（来自菜鸟教程）"><span class="nav-number">3.2.</span> <span class="nav-text">参数说明（来自菜鸟教程）</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://limm33.github.io/source/js/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">李明明</span>
+
+  
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_pv"></span>
+</span>
+</div>
+
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共53.2k字</span>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

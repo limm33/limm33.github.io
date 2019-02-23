@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.limingming.org/"/>
-  <updated>2019-02-20T03:32:18.272Z</updated>
+  <updated>2019-02-23T08:26:16.887Z</updated>
   <id>http://www.limingming.org/</id>
   
   <author>
@@ -15,6 +15,38 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Linux上安装部署Redis</title>
+    <link href="http://www.limingming.org/2019/02/23/%E5%BC%80%E5%8F%91%E8%80%85%E6%89%8B%E5%86%8C/Linux%E4%B8%8A%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2Redis/"/>
+    <id>http://www.limingming.org/2019/02/23/开发者手册/Linux上安装部署Redis/</id>
+    <published>2019-02-23T07:42:43.000Z</published>
+    <updated>2019-02-23T08:26:16.887Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="开发者手册" scheme="http://www.limingming.org/categories/%E5%BC%80%E5%8F%91%E8%80%85%E6%89%8B%E5%86%8C/"/>
+    
+    
+      <category term="安装" scheme="http://www.limingming.org/tags/%E5%AE%89%E8%A3%85/"/>
+    
+      <category term="部署" scheme="http://www.limingming.org/tags/%E9%83%A8%E7%BD%B2/"/>
+    
+      <category term="redis" scheme="http://www.limingming.org/tags/redis/"/>
+    
+      <category term="linux" scheme="http://www.limingming.org/tags/linux/"/>
+    
+  </entry>
   
   <entry>
     <title>java远程调试</title>
@@ -610,45 +642,11 @@
     
       <category term="部署" scheme="http://www.limingming.org/tags/%E9%83%A8%E7%BD%B2/"/>
     
-      <category term="tomcat" scheme="http://www.limingming.org/tags/tomcat/"/>
-    
       <category term="Spring" scheme="http://www.limingming.org/tags/Spring/"/>
     
+      <category term="tomcat" scheme="http://www.limingming.org/tags/tomcat/"/>
+    
       <category term="boot" scheme="http://www.limingming.org/tags/boot/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>centos下各种源的配置方式</title>
-    <link href="http://www.limingming.org/2018/12/17/Linux/centos%E4%B8%8B%E5%90%84%E7%A7%8D%E6%BA%90%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%B9%E5%BC%8F/"/>
-    <id>http://www.limingming.org/2018/12/17/Linux/centos下各种源的配置方式/</id>
-    <published>2018-12-17T06:27:52.000Z</published>
-    <updated>2018-12-20T03:07:25.613Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-      <category term="Linux" scheme="http://www.limingming.org/categories/Linux/"/>
-    
-    
-      <category term="centos" scheme="http://www.limingming.org/tags/centos/"/>
-    
-      <category term="pip" scheme="http://www.limingming.org/tags/pip/"/>
-    
-      <category term="源" scheme="http://www.limingming.org/tags/%E6%BA%90/"/>
-    
-      <category term="配置" scheme="http://www.limingming.org/tags/%E9%85%8D%E7%BD%AE/"/>
-    
-      <category term="yum" scheme="http://www.limingming.org/tags/yum/"/>
     
   </entry>
   
