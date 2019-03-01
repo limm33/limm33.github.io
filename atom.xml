@@ -642,9 +642,9 @@
     
       <category term="部署" scheme="http://www.limingming.org/tags/%E9%83%A8%E7%BD%B2/"/>
     
-      <category term="Spring" scheme="http://www.limingming.org/tags/Spring/"/>
-    
       <category term="tomcat" scheme="http://www.limingming.org/tags/tomcat/"/>
+    
+      <category term="Spring" scheme="http://www.limingming.org/tags/Spring/"/>
     
       <category term="boot" scheme="http://www.limingming.org/tags/boot/"/>
     

@@ -272,8 +272,8 @@
       </categories>
       <tags>
         <tag>部署</tag>
-        <tag>Spring</tag>
         <tag>tomcat</tag>
+        <tag>Spring</tag>
         <tag>boot</tag>
       </tags>
   </entry>
@@ -654,8 +654,8 @@
         <category>Maven</category>
       </categories>
       <tags>
-        <tag>插件</tag>
         <tag>tomcat</tag>
+        <tag>插件</tag>
         <tag>内嵌</tag>
         <tag>可执行</tag>
         <tag>war</tag>
@@ -685,10 +685,10 @@
       </categories>
       <tags>
         <tag>Maven</tag>
+        <tag>插件</tag>
         <tag>构建</tag>
         <tag>执行</tag>
         <tag>WEB</tag>
-        <tag>插件</tag>
       </tags>
   </entry>
   <entry>
@@ -722,21 +722,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Markdown语法]]></title>
-    <url>%2F2018%2F11%2F27%2F%E5%BC%80%E5%8F%91%E8%80%85%E6%89%8B%E5%86%8C%2FMarkdown%E8%AF%AD%E6%B3%95%2F</url>
-    <content type="text"><![CDATA[作者 李明明转载请注明出处： http://limingming.org/index.php/2018/11/28/markdown-grammar/ 介绍 Markdown 是一种轻量级标记语言，它允许人们使用易读易写的纯文本格式编写文档，然后转换成格式丰富的HTML页面。 —— 维基百科;Markdown 是一种轻量级标记语言，让写作者专注于写作而不用关注样式。很多有编程基础的程序员比较喜欢使用Markdown进行编写，github项目中README.md都是markdown编写的；以下我讲述通用的语法，保留各个编辑器通用的，还有很多markdown语法是各个编辑器独有的，大家使用过程中可以注意一下，平时使用mac上的编辑器,也为大家分享一下。 语法介绍标题123# 一级标题## 二级标题### 三级标题 演示图效果： 强调 在Markdown中，可以使用 * 或 _ 来表示斜体和加粗。 使用一个*或者_来表示斜体，两个来表示加粗。1234A： *我是斜体*B: _我也是斜体_C：**我是粗体**D: __我也是粗体__ 演示图效果： 例子（摘抄于马克飞象“案例，马克飞象是一个很不错的markdown编辑器，为markdown各种类型的语法提供了一个良好的支持）12345**马克飞象**是一款专为印象笔记（Evernote）打造的Markdown编辑器，通过精心的设计与技术实现，配合印象笔记强大的存储和同步功能，带来前所未有的书写体验。特点概述： - **功能丰富** ：支持高亮代码块、*LaTeX* 公式、流程图，本地图片以及附件上传，甚至截图粘贴，工作学习好帮手；- **得心应手** ：简洁高效的编辑器，提供[桌面客户端][1]以及[离线Chrome App][2]，支持移动端 Web；- **深度整合** ：支持选择笔记本和添加标签，支持从印象笔记跳转编辑，轻松管理。 锚点markdown会针对每个标题，在解析时都会添加锚点 id，例如： 123# 介绍# 介绍1那我们就可以使用“[访问介绍标题的锚点](#介绍)”,来定义锚点 测试： 访问介绍标题的锚点; 引用Markdown 标记区块引用和 email 中用 &gt; 的引用方式类似，只需要在整个段落的第一行最前面加上 &gt; ： 演示： 列表标记通常放在句子最左边，项目标记后面要接一个字符的空格。 无序列表：使用星号、加号或是减号作为列表标记123* 我是无序列表A + 我是无序列表B - 我是无序列表C 有序列表：使用数字接着一个英文句点1231. 我是无序列表12. 我是无序列表2 3. 我是无序列表3 3.代办列表(简书暂不支持此方式）12- [ ] 不勾选- [x] 勾选 补充如果在列表中使用引用,需要换行缩进，一般为四个空格：12345* 演示内容： &gt; 引用部分1 &gt; 引用部分2 &gt; 引用部分3 &gt; 引用部分4 代码块使用`包裹代码块，并声明代码块的语言，一般会带有相关的解析插件，对代码进行高亮处理，对代码进行着色。 超链接方括号显示说明，圆括号内显示网址， Markdown 编辑器会自动把它转成链接；123[我的博客](https://blog.csdn.net/limm33)[编程者联盟](https://github.com/limm33/ProgrammerLeague/blob/master/ProgrammerLeague.jpg)[个人博客](http://www.limingming.org) 演示： 图片图片和超连接语法比较像，可以在方括号前面加一个！就变成了引用图片了；1234![编程者联盟](url) 或者：![卡卡西](/Users/limm/Pictures/火影忍者/30381-106.jpg) 相对路径也可以(./path/*.jpg)这种形式 分割线使用 3 个以上 - 符号制作分割线：123分割线以上内容------------------分割线以下内容 演示： 表格markdown可以制作表格，方法也很简单例如：1233 | 3 | 3-|-|-3| 3| 3 以上为最基本的结构，‘3’代表你编辑的内容，第一行为表头，但是有的编辑器 - 需要多个，有的需要至少三个，所以布局可以尽量美观：123一列 | 第二列 | 第三列---------|---------------|---------- 值1 | 值2 | 值3 演示： 可以设置对齐方式,使用 ：添加在列的左边左对齐，右边为右对齐，两边都添加就是中间对齐：1234一列 | 第二列 | 第三列:---------|---------------:|:----------: 值1 | 值2 | 值3 值3 | 值4 | 值5 演示： 以上为总结的markdown的语法，希望对你的编写有所帮助。 联系我原来一直在CSDN编写博客我的博客我的微信公众号:编程者联盟我的 个人博客我的QQ群：115402375]]></content>
-      <categories>
-        <category>开发者手册</category>
-      </categories>
-      <tags>
-        <tag>介绍</tag>
-        <tag>markdown</tag>
-        <tag>语法</tag>
-        <tag>怎么</tag>
-        <tag>如何</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[mac下npm安装命令不生效]]></title>
     <url>%2F2018%2F11%2F27%2F%E5%BC%80%E5%8F%91%E8%80%85%E6%89%8B%E5%86%8C%2Fmac%E4%B8%8Bnpm%E5%AE%89%E8%A3%85%E5%91%BD%E4%BB%A4%E4%B8%8D%E7%94%9F%E6%95%88%2F</url>
     <content type="text"><![CDATA[介绍如果我们平时使用node进行开发的话，经常会使用node安装一些其他的命令，比如安装淘宝的cnpm（npm install -g cnpm –registry=https://registry.npm.taobao.org），安装vue（npm install vue）命令等等，按道理应该是命令可以直接使用的。 我们在mac上安装完成nodejs，node的命令是在/usr/local/bin下面，可以直接使用，但是我们通过node命令安装的其他工具是在/usr/local/Cellar/node/10.8.0/lib/node_modules/vue-cli/bin/vue,我使用的10.8.0的版本，如果使用其他版本会在其他版本号路径下面，这个安装的路径一般都会统一创建链接到/usr/local/Cellar/node/10.8.0/bin下，所以我们把这个路径添加到我们的环境变量里面就可以了。 解决办法添加到环境变量的一个方式，比如修改~/.bash_profile文件，添加： 12#node安装包下的相关命令cnpm、node等命令export PATH="$PATH:/usr/local/Cellar/node/10.8.0/bin" 执行: 1source ~/.bash_profile 就可以使用cnpm等命令了。]]></content>
@@ -749,6 +734,21 @@
         <tag>Mac</tag>
         <tag>npm</tag>
         <tag>不生效</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Markdown语法]]></title>
+    <url>%2F2018%2F11%2F27%2F%E5%BC%80%E5%8F%91%E8%80%85%E6%89%8B%E5%86%8C%2FMarkdown%E8%AF%AD%E6%B3%95%2F</url>
+    <content type="text"><![CDATA[作者 李明明转载请注明出处： http://limingming.org/index.php/2018/11/28/markdown-grammar/ 介绍 Markdown 是一种轻量级标记语言，它允许人们使用易读易写的纯文本格式编写文档，然后转换成格式丰富的HTML页面。 —— 维基百科;Markdown 是一种轻量级标记语言，让写作者专注于写作而不用关注样式。很多有编程基础的程序员比较喜欢使用Markdown进行编写，github项目中README.md都是markdown编写的；以下我讲述通用的语法，保留各个编辑器通用的，还有很多markdown语法是各个编辑器独有的，大家使用过程中可以注意一下，平时使用mac上的编辑器,也为大家分享一下。 语法介绍标题123# 一级标题## 二级标题### 三级标题 演示图效果： 强调 在Markdown中，可以使用 * 或 _ 来表示斜体和加粗。 使用一个*或者_来表示斜体，两个来表示加粗。1234A： *我是斜体*B: _我也是斜体_C：**我是粗体**D: __我也是粗体__ 演示图效果： 例子（摘抄于马克飞象“案例，马克飞象是一个很不错的markdown编辑器，为markdown各种类型的语法提供了一个良好的支持）12345**马克飞象**是一款专为印象笔记（Evernote）打造的Markdown编辑器，通过精心的设计与技术实现，配合印象笔记强大的存储和同步功能，带来前所未有的书写体验。特点概述： - **功能丰富** ：支持高亮代码块、*LaTeX* 公式、流程图，本地图片以及附件上传，甚至截图粘贴，工作学习好帮手；- **得心应手** ：简洁高效的编辑器，提供[桌面客户端][1]以及[离线Chrome App][2]，支持移动端 Web；- **深度整合** ：支持选择笔记本和添加标签，支持从印象笔记跳转编辑，轻松管理。 锚点markdown会针对每个标题，在解析时都会添加锚点 id，例如： 123# 介绍# 介绍1那我们就可以使用“[访问介绍标题的锚点](#介绍)”,来定义锚点 测试： 访问介绍标题的锚点; 引用Markdown 标记区块引用和 email 中用 &gt; 的引用方式类似，只需要在整个段落的第一行最前面加上 &gt; ： 演示： 列表标记通常放在句子最左边，项目标记后面要接一个字符的空格。 无序列表：使用星号、加号或是减号作为列表标记123* 我是无序列表A + 我是无序列表B - 我是无序列表C 有序列表：使用数字接着一个英文句点1231. 我是无序列表12. 我是无序列表2 3. 我是无序列表3 3.代办列表(简书暂不支持此方式）12- [ ] 不勾选- [x] 勾选 补充如果在列表中使用引用,需要换行缩进，一般为四个空格：12345* 演示内容： &gt; 引用部分1 &gt; 引用部分2 &gt; 引用部分3 &gt; 引用部分4 代码块使用`包裹代码块，并声明代码块的语言，一般会带有相关的解析插件，对代码进行高亮处理，对代码进行着色。 超链接方括号显示说明，圆括号内显示网址， Markdown 编辑器会自动把它转成链接；123[我的博客](https://blog.csdn.net/limm33)[编程者联盟](https://github.com/limm33/ProgrammerLeague/blob/master/ProgrammerLeague.jpg)[个人博客](http://www.limingming.org) 演示： 图片图片和超连接语法比较像，可以在方括号前面加一个！就变成了引用图片了；1234![编程者联盟](url) 或者：![卡卡西](/Users/limm/Pictures/火影忍者/30381-106.jpg) 相对路径也可以(./path/*.jpg)这种形式 分割线使用 3 个以上 - 符号制作分割线：123分割线以上内容------------------分割线以下内容 演示： 表格markdown可以制作表格，方法也很简单例如：1233 | 3 | 3-|-|-3| 3| 3 以上为最基本的结构，‘3’代表你编辑的内容，第一行为表头，但是有的编辑器 - 需要多个，有的需要至少三个，所以布局可以尽量美观：123一列 | 第二列 | 第三列---------|---------------|---------- 值1 | 值2 | 值3 演示： 可以设置对齐方式,使用 ：添加在列的左边左对齐，右边为右对齐，两边都添加就是中间对齐：1234一列 | 第二列 | 第三列:---------|---------------:|:----------: 值1 | 值2 | 值3 值3 | 值4 | 值5 演示： 以上为总结的markdown的语法，希望对你的编写有所帮助。 联系我原来一直在CSDN编写博客我的博客我的微信公众号:编程者联盟我的 个人博客我的QQ群：115402375]]></content>
+      <categories>
+        <category>开发者手册</category>
+      </categories>
+      <tags>
+        <tag>介绍</tag>
+        <tag>markdown</tag>
+        <tag>语法</tag>
+        <tag>怎么</tag>
+        <tag>如何</tag>
       </tags>
   </entry>
   <entry>
@@ -769,7 +769,7 @@
   <entry>
     <title><![CDATA[Mac OS下搭建Vue开发环境]]></title>
     <url>%2F2018%2F11%2F23%2FVue%2FMac-OS%E4%B8%8B%E6%90%AD%E5%BB%BAVue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%2F</url>
-    <content type="text"><![CDATA[前言原来一直学习使用React，现在因为工作的需要，对Vue进行学习和使用，现在比较流行的框架React,angular,vue，正好对于vue也进行些了解。 环境搭建 打开终端,安装brew 1usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot; 安装成功后，使用查看版本，验证是否安装成功1brew -v 安装node.js1brew install nodejs 也可以下载安装下载地址安装成功后，使用验证123node -v``` * 给nodejs目录赋权限 sudo chmod -R 777 /usr/local/lib/node_modules/1* 安装 淘宝镜像 （npm） npm install -g cnpm –registry=https://registry.npm.taobao.org12* 安装webpack cnpm install webpack -g12* 安装vue脚手架 npm install vue-cli -g12# 开始Vue 创建一个基于 webpack 模板的新项目$ vue init webpack my-project 这里需要进行一些配置，默认回车即可This will install Vue 2.x version of the template. For Vue 1.x use: vue init webpack#1.0 my-project ? Project name my-project? Project description A Vue.js project? Author runoob &#116;&#x65;&#x73;&#x74;&#x40;&#114;&#x75;&#110;&#111;&#111;&#x62;&#46;&#99;&#111;&#x6d;? Vue build standalone? Use ESLint to lint your code? Yes? Pick an ESLint preset Standard? Setup unit tests with Karma + Mocha? Yes? Setup e2e tests with Nightwatch? Yes vue-cli · Generated “my-project”. To get started: cd my-project npm install npm run dev Documentation can be found at https://vuejs-templates.github.io/webpack1进入项目，安装并运行： $ cd my-project$ cnpm install$ cnpm run dev DONE Compiled successfully in 4388ms Listening at http://localhost:8080`]]></content>
+    <content type="text"><![CDATA[前言原来一直学习使用React，现在因为工作的需要，对Vue进行学习和使用，现在比较流行的框架React,angular,vue，正好对于vue也进行些了解。 环境搭建 打开终端,安装brew 1usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot; 安装成功后，使用查看版本，验证是否安装成功1brew -v 安装node.js1brew install nodejs 也可以下载安装下载地址安装成功后，使用验证123node -v``` * 给nodejs目录赋权限 sudo chmod -R 777 /usr/local/lib/node_modules/1* 安装 淘宝镜像 （npm） npm install -g cnpm –registry=https://registry.npm.taobao.org12* 安装webpack cnpm install webpack -g12* 安装vue脚手架 npm install vue-cli -g12# 开始Vue 创建一个基于 webpack 模板的新项目$ vue init webpack my-project 这里需要进行一些配置，默认回车即可This will install Vue 2.x version of the template. For Vue 1.x use: vue init webpack#1.0 my-project ? Project name my-project? Project description A Vue.js project? Author runoob &#116;&#101;&#x73;&#x74;&#64;&#x72;&#x75;&#110;&#111;&#111;&#x62;&#x2e;&#x63;&#111;&#109;? Vue build standalone? Use ESLint to lint your code? Yes? Pick an ESLint preset Standard? Setup unit tests with Karma + Mocha? Yes? Setup e2e tests with Nightwatch? Yes vue-cli · Generated “my-project”. To get started: cd my-project npm install npm run dev Documentation can be found at https://vuejs-templates.github.io/webpack1进入项目，安装并运行： $ cd my-project$ cnpm install$ cnpm run dev DONE Compiled successfully in 4388ms Listening at http://localhost:8080`]]></content>
       <categories>
         <category>Vue</category>
       </categories>
