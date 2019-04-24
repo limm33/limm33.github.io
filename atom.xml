@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.limingming.org/"/>
-  <updated>2019-02-23T08:26:16.887Z</updated>
+  <updated>2019-04-24T03:24:50.656Z</updated>
   <id>http://www.limingming.org/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>名词缩写及其相关概念</title>
+    <link href="http://www.limingming.org/2019/04/24/%E5%BC%80%E5%8F%91%E8%80%85%E6%89%8B%E5%86%8C/%E5%90%8D%E8%AF%8D%E7%BC%A9%E5%86%99%E5%8F%8A%E5%85%B6%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5/"/>
+    <id>http://www.limingming.org/2019/04/24/开发者手册/名词缩写及其相关概念/</id>
+    <published>2019-04-24T03:23:27.000Z</published>
+    <updated>2019-04-24T03:24:50.656Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="开发者手册" scheme="http://www.limingming.org/categories/%E5%BC%80%E5%8F%91%E8%80%85%E6%89%8B%E5%86%8C/"/>
+    
+    
+      <category term="概念" scheme="http://www.limingming.org/tags/%E6%A6%82%E5%BF%B5/"/>
+    
+      <category term="名词" scheme="http://www.limingming.org/tags/%E5%90%8D%E8%AF%8D/"/>
+    
+      <category term="缩写" scheme="http://www.limingming.org/tags/%E7%BC%A9%E5%86%99/"/>
+    
+  </entry>
   
   <entry>
     <title>Linux上安装部署Redis</title>
@@ -615,38 +645,6 @@
       <category term="log4j" scheme="http://www.limingming.org/tags/log4j/"/>
     
       <category term="日志" scheme="http://www.limingming.org/tags/%E6%97%A5%E5%BF%97/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Spring boot 部署到tomcat中注意事项</title>
-    <link href="http://www.limingming.org/2018/12/18/Spring/Spring-boot-%E9%83%A8%E7%BD%B2%E5%88%B0tomcat%E4%B8%AD%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/"/>
-    <id>http://www.limingming.org/2018/12/18/Spring/Spring-boot-部署到tomcat中注意事项/</id>
-    <published>2018-12-18T14:43:46.000Z</published>
-    <updated>2018-12-20T03:13:21.295Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-      <category term="Spring" scheme="http://www.limingming.org/categories/Spring/"/>
-    
-    
-      <category term="部署" scheme="http://www.limingming.org/tags/%E9%83%A8%E7%BD%B2/"/>
-    
-      <category term="tomcat" scheme="http://www.limingming.org/tags/tomcat/"/>
-    
-      <category term="Spring" scheme="http://www.limingming.org/tags/Spring/"/>
-    
-      <category term="boot" scheme="http://www.limingming.org/tags/boot/"/>
     
   </entry>
   
