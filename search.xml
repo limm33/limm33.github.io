@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[名词缩写及其相关概念]]></title>
     <url>%2F2019%2F04%2F24%2F%E5%BC%80%E5%8F%91%E8%80%85%E6%89%8B%E5%86%8C%2F%E5%90%8D%E8%AF%8D%E7%BC%A9%E5%86%99%E5%8F%8A%E5%85%B6%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5%2F</url>
-    <content type="text"><![CDATA[最近更换了些工作内容，接触了一些乱七八糟的工作和很多的异样的名词，这个算是我梳理这些名词的笔记吧，很多这些都是在学校的时候学习过，但是大多都已经模糊了 LAMPLAMP是指一组通常一起使用来运行动态网站或者服务器的自由软件名称首字母缩写： L指的是Linux A指的是Apache网页服务器 M指的是MariaDB或MySQL，数据库管理系统（或者数据库服务器） P指的是PHP、Perl或Python，脚本语言 变种：LAPP（以PostgreSQL替代MySQL）LAMP（最后两个字母意味着Middleware和PostgreSQL）LNMP[1]或LEMP[2]（以Nginx替代Apache）WAMP（以Microsoft Windows替代Linux）MAMP（以Macintosh替代Linux）LAMJ（以JSP/servlet替代PHP）BAMP（以BSD替代Linux）WIMP（指Microsoft Windows, Microsoft IIS，MySQL, PHP）AMP（单指Apache, MySQL和PHP）XAMP（以XML替代Linux）[3] 数据库四种语言SQL四种语言：DDL,DML,DCL,TCL DDL（Data Definition Language）数据库定义语言statements are used to define the database structure or schema.123456CREATEALTERDROPTRUNCATECOMMENTRENAME DML（Data Manipulation Language）数据操纵语言statements are used for managing data within schema objects. 12345678SELECTINSERTUPDATEDELETEMERGECALLEXPLAIN PLANLOCK TABLE DCL（Data Control Language）数据库控制语言 授权，角色控制等12GRANT 授权REVOKE 取消授权 TCL（Transaction Control Language）事务控制语言123SAVEPOINT 设置保存点ROLLBACK 回滚SET TRANSACTION （1）数据定义。（SQL DDL）用于定义SQL模式、基本表、视图和索引的创建和撤消操作。（2）数据操纵。（SQL DML）数据操纵分成数据查询和数据更新两类。数据更新又分成插入、删除、和修改三种操作。（3）数据控制。包括对基本表和视图的授权，完整性规则的描述，事务控制等内容。（4）嵌入式SQL的使用规定。涉及到SQL语句嵌入在宿主语言程序中使用的规则。 MPPMPP即大规模并行处理（Massively Parallel Processor ）。 在数据库非共享集群中，每个节点都有独立的磁盘存储系统和内存系统，业务数据根据数据库模型和应用特点划分到各个节点上，每台数据节点通过专用网络或者商业通用网络互相连接，彼此协同计算，作为整体提供数据 库服务。非共享数据库集群有完全的可伸缩性、高可用、高性能、优秀的性价比、资源共享等优势。 Greenplum是一种基于PostgreSQL的分布式数据库elasticsearch也是一种MPP架构的数据库，Presto、Impala等都是MPP engine，各节点不共享资源，每个executor可以独自完成数据的读取和计算，缺点在于怕stragglers，遇到后整个engine的性能下降到该straggler的能力，所谓木桶的短板，这也是为什么MPP架构不适合异构的机器，要求各节点配置一样。 Spark SQL应该还是算做Batching Processing, 中间计算结果需要落地到磁盘，所以查询效率没有MPP架构的引擎（如Impala）高]]></content>
+    <content type="text"><![CDATA[最近更换了些工作内容，接触了一些乱七八糟的工作和很多的异样的名词，这个算是我梳理这些名词的笔记吧，很多这些都是在学校的时候学习过，但是大多都已经模糊了 LAMPLAMP是指一组通常一起使用来运行动态网站或者服务器的自由软件名称首字母缩写： L指的是Linux A指的是Apache网页服务器 M指的是MariaDB或MySQL，数据库管理系统（或者数据库服务器） P指的是PHP、Perl或Python，脚本语言 变种：LAPP（以PostgreSQL替代MySQL）LAMP（最后两个字母意味着Middleware和PostgreSQL）LNMP[1]或LEMP[2]（以Nginx替代Apache）WAMP（以Microsoft Windows替代Linux）MAMP（以Macintosh替代Linux）LAMJ（以JSP/servlet替代PHP）BAMP（以BSD替代Linux）WIMP（指Microsoft Windows, Microsoft IIS，MySQL, PHP）AMP（单指Apache, MySQL和PHP）XAMP（以XML替代Linux）[3] 数据库四种语言SQL四种语言：DDL,DML,DCL,TCL DDL（Data Definition Language）数据库定义语言statements are used to define the database structure or schema.123456CREATEALTERDROPTRUNCATECOMMENTRENAME DML（Data Manipulation Language）数据操纵语言statements are used for managing data within schema objects. 12345678SELECTINSERTUPDATEDELETEMERGECALLEXPLAIN PLANLOCK TABLE DCL（Data Control Language）数据库控制语言 授权，角色控制等12GRANT 授权REVOKE 取消授权 TCL（Transaction Control Language）事务控制语言123SAVEPOINT 设置保存点ROLLBACK 回滚SET TRANSACTION （1）数据定义。（SQL DDL）用于定义SQL模式、基本表、视图和索引的创建和撤消操作。（2）数据操纵。（SQL DML）数据操纵分成数据查询和数据更新两类。数据更新又分成插入、删除、和修改三种操作。（3）数据控制。包括对基本表和视图的授权，完整性规则的描述，事务控制等内容。（4）嵌入式SQL的使用规定。涉及到SQL语句嵌入在宿主语言程序中使用的规则。 MPPMPP即大规模并行处理（Massively Parallel Processor ）。 在数据库非共享集群中，每个节点都有独立的磁盘存储系统和内存系统，业务数据根据数据库模型和应用特点划分到各个节点上，每台数据节点通过专用网络或者商业通用网络互相连接，彼此协同计算，作为整体提供数据 库服务。非共享数据库集群有完全的可伸缩性、高可用、高性能、优秀的性价比、资源共享等优势。 Greenplum是一种基于PostgreSQL的分布式数据库elasticsearch也是一种MPP架构的数据库，Presto、Impala等都是MPP engine，各节点不共享资源，每个executor可以独自完成数据的读取和计算，缺点在于怕stragglers，遇到后整个engine的性能下降到该straggler的能力，所谓木桶的短板，这也是为什么MPP架构不适合异构的机器，要求各节点配置一样。 Spark SQL应该还是算做Batching Processing, 中间计算结果需要落地到磁盘，所以查询效率没有MPP架构的引擎（如Impala）高 OLTP、OLAP数据处理大致可以分成两大类：联机事务处理OLTP（on-line transaction processing）、联机分析处理OLAP（On-Line Analytical Processing）。OLTP是传统的关系型数据库的主要应用，主要是基本的、日常的事务处理，例如银行交易。OLAP是数据仓库系统的主要应用，支持复杂的分析操作，侧重决策支持，并且提供直观易懂的查询结果。 SOA面向服务的体系结构（英语：service-oriented architecture）并不特指一种技术，而是一种分布式运算的软件设计方法。软件的部分组件(调用者)，可以透过网络上的通用协议调用另一个应用软件组件运行、运作，让调用者获得服务。SOA原则上采用开放标准、与软件资源进行交互并采用表示的标准方式。因此应能跨越厂商、产品与技术。一项服务应视为一个独立的功能单元，可以远程访问并独立运行与更新，例如在线查询信用卡账单。 SOA中的一项服务应有以下四个特性： 针对某特定要求的输出，该服务就是运作一项商业逻辑 具有完备的特性(self-contained) 消费者并不需要了解此服务的运作过程 可能由底层其他服务组成]]></content>
       <categories>
         <category>开发者手册</category>
       </categories>
@@ -652,10 +652,10 @@
         <category>Maven</category>
       </categories>
       <tags>
-        <tag>排除</tag>
         <tag>多模块</tag>
         <tag>web</tag>
         <tag>合并</tag>
+        <tag>排除</tag>
         <tag>冲突</tag>
       </tags>
   </entry>
@@ -712,9 +712,9 @@
         <category>Maven</category>
       </categories>
       <tags>
+        <tag>排除</tag>
         <tag>Maven</tag>
         <tag>依赖管理</tag>
-        <tag>排除</tag>
         <tag>依赖</tag>
         <tag>方法</tag>
       </tags>
@@ -782,7 +782,7 @@
   <entry>
     <title><![CDATA[Mac OS下搭建Vue开发环境]]></title>
     <url>%2F2018%2F11%2F23%2FVue%2FMac-OS%E4%B8%8B%E6%90%AD%E5%BB%BAVue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%2F</url>
-    <content type="text"><![CDATA[前言原来一直学习使用React，现在因为工作的需要，对Vue进行学习和使用，现在比较流行的框架React,angular,vue，正好对于vue也进行些了解。 环境搭建 打开终端,安装brew 1usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot; 安装成功后，使用查看版本，验证是否安装成功1brew -v 安装node.js1brew install nodejs 也可以下载安装下载地址安装成功后，使用验证123node -v``` * 给nodejs目录赋权限 sudo chmod -R 777 /usr/local/lib/node_modules/1* 安装 淘宝镜像 （npm） npm install -g cnpm –registry=https://registry.npm.taobao.org12* 安装webpack cnpm install webpack -g12* 安装vue脚手架 npm install vue-cli -g12# 开始Vue 创建一个基于 webpack 模板的新项目$ vue init webpack my-project 这里需要进行一些配置，默认回车即可This will install Vue 2.x version of the template. For Vue 1.x use: vue init webpack#1.0 my-project ? Project name my-project? Project description A Vue.js project? Author runoob &#x74;&#x65;&#x73;&#116;&#x40;&#x72;&#x75;&#x6e;&#x6f;&#111;&#x62;&#x2e;&#x63;&#111;&#x6d;? Vue build standalone? Use ESLint to lint your code? Yes? Pick an ESLint preset Standard? Setup unit tests with Karma + Mocha? Yes? Setup e2e tests with Nightwatch? Yes vue-cli · Generated “my-project”. To get started: cd my-project npm install npm run dev Documentation can be found at https://vuejs-templates.github.io/webpack1进入项目，安装并运行： $ cd my-project$ cnpm install$ cnpm run dev DONE Compiled successfully in 4388ms Listening at http://localhost:8080`]]></content>
+    <content type="text"><![CDATA[前言原来一直学习使用React，现在因为工作的需要，对Vue进行学习和使用，现在比较流行的框架React,angular,vue，正好对于vue也进行些了解。 环境搭建 打开终端,安装brew 1usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot; 安装成功后，使用查看版本，验证是否安装成功1brew -v 安装node.js1brew install nodejs 也可以下载安装下载地址安装成功后，使用验证123node -v``` * 给nodejs目录赋权限 sudo chmod -R 777 /usr/local/lib/node_modules/1* 安装 淘宝镜像 （npm） npm install -g cnpm –registry=https://registry.npm.taobao.org12* 安装webpack cnpm install webpack -g12* 安装vue脚手架 npm install vue-cli -g12# 开始Vue 创建一个基于 webpack 模板的新项目$ vue init webpack my-project 这里需要进行一些配置，默认回车即可This will install Vue 2.x version of the template. For Vue 1.x use: vue init webpack#1.0 my-project ? Project name my-project? Project description A Vue.js project? Author runoob &#116;&#101;&#115;&#116;&#64;&#114;&#117;&#110;&#x6f;&#x6f;&#x62;&#46;&#99;&#111;&#x6d;? Vue build standalone? Use ESLint to lint your code? Yes? Pick an ESLint preset Standard? Setup unit tests with Karma + Mocha? Yes? Setup e2e tests with Nightwatch? Yes vue-cli · Generated “my-project”. To get started: cd my-project npm install npm run dev Documentation can be found at https://vuejs-templates.github.io/webpack1进入项目，安装并运行： $ cd my-project$ cnpm install$ cnpm run dev DONE Compiled successfully in 4388ms Listening at http://localhost:8080`]]></content>
       <categories>
         <category>Vue</category>
       </categories>

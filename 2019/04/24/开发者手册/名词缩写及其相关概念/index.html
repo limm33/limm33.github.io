@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="李明明的博客">
 <meta property="og:description" content="最近更换了些工作内容，接触了一些乱七八糟的工作和很多的异样的名词，这个算是我梳理这些名词的笔记吧，很多这些都是在学校的时候学习过，但是大多都已经模糊了 LAMPLAMP是指一组通常一起使用来运行动态网站或者服务器的自由软件名称首字母缩写：  L指的是Linux A指的是Apache网页服务器 M指的是MariaDB或MySQL，数据库管理系统（或者数据库服务器） P指的是PHP、Perl或Pyth">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-24T03:24:50.656Z">
+<meta property="og:updated_time" content="2019-05-07T06:04:42.566Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="名词缩写及其相关概念">
 <meta name="twitter:description" content="最近更换了些工作内容，接触了一些乱七八糟的工作和很多的异样的名词，这个算是我梳理这些名词的笔记吧，很多这些都是在学校的时候学习过，但是大多都已经模糊了 LAMPLAMP是指一组通常一起使用来运行动态网站或者服务器的自由软件名称首字母缩写：  L指的是Linux A指的是Apache网页服务器 M指的是MariaDB或MySQL，数据库管理系统（或者数据库服务器） P指的是PHP、Perl或Pyth">
@@ -405,6 +405,15 @@
 <h1 id="MPP"><a href="#MPP" class="headerlink" title="MPP"></a>MPP</h1><p>MPP即大规模并行处理（Massively Parallel Processor ）。 在数据库非共享集群中，每个节点都有独立的磁盘存储系统和内存系统，业务数据根据数据库模型和应用特点划分到各个节点上，每台数据节点通过专用网络或者商业通用网络互相连接，彼此协同计算，作为整体提供数据 库服务。非共享数据库集群有完全的可伸缩性、高可用、高性能、优秀的性价比、资源共享等优势。</p>
 <p>Greenplum是一种基于PostgreSQL的分布式数据库<br>elasticsearch也是一种MPP架构的数据库，Presto、Impala等都是MPP engine，各节点不共享资源，每个executor可以独自完成数据的读取和计算，缺点在于怕stragglers，遇到后整个engine的性能下降到该straggler的能力，所谓木桶的短板，这也是为什么MPP架构不适合异构的机器，要求各节点配置一样。    </p>
 <p>Spark SQL应该还是算做Batching Processing, 中间计算结果需要落地到磁盘，所以查询效率没有MPP架构的引擎（如Impala）高</p>
+<h1 id="OLTP、OLAP"><a href="#OLTP、OLAP" class="headerlink" title="OLTP、OLAP"></a>OLTP、OLAP</h1><p>数据处理大致可以分成两大类：联机事务处理OLTP（on-line transaction processing）、联机分析处理OLAP（On-Line Analytical Processing）。OLTP是传统的关系型数据库的主要应用，主要是基本的、日常的事务处理，例如银行交易。OLAP是数据仓库系统的主要应用，支持复杂的分析操作，侧重决策支持，并且提供直观易懂的查询结果。</p>
+<h1 id="SOA"><a href="#SOA" class="headerlink" title="SOA"></a>SOA</h1><p>面向服务的体系结构（英语：service-oriented architecture）并不特指一种技术，而是一种分布式运算的软件设计方法。软件的部分组件(调用者)，可以透过网络上的通用协议调用另一个应用软件组件运行、运作，让调用者获得服务。SOA原则上采用开放标准、与软件资源进行交互并采用表示的标准方式。因此应能跨越厂商、产品与技术。一项服务应视为一个独立的功能单元，可以远程访问并独立运行与更新，例如在线查询信用卡账单。</p>
+<p>SOA中的一项服务应有以下四个特性：</p>
+<ul>
+<li>针对某特定要求的输出，该服务就是运作一项商业逻辑</li>
+<li>具有完备的特性(self-contained)</li>
+<li>消费者并不需要了解此服务的运作过程</li>
+<li>可能由底层其他服务组成</li>
+</ul>
 
       
     </div>
@@ -656,7 +665,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#LAMP"><span class="nav-number">1.</span> <span class="nav-text">LAMP</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库四种语言"><span class="nav-number">2.</span> <span class="nav-text">数据库四种语言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MPP"><span class="nav-number">3.</span> <span class="nav-text">MPP</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#LAMP"><span class="nav-number">1.</span> <span class="nav-text">LAMP</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库四种语言"><span class="nav-number">2.</span> <span class="nav-text">数据库四种语言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MPP"><span class="nav-number">3.</span> <span class="nav-text">MPP</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#OLTP、OLAP"><span class="nav-number">4.</span> <span class="nav-text">OLTP、OLAP</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SOA"><span class="nav-number">5.</span> <span class="nav-text">SOA</span></a></li></ol></div>
             
 
           </div>
@@ -697,7 +706,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共53.9k字</span>
+  <span class="post-count">博客全站共54.3k字</span>
 </div>
 
         
