@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.limingming.org/"/>
-  <updated>2019-05-07T06:04:42.566Z</updated>
+  <updated>2019-05-09T12:08:35.000Z</updated>
   <id>http://www.limingming.org/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://www.limingming.org/2019/04/24/%E5%BC%80%E5%8F%91%E8%80%85%E6%89%8B%E5%86%8C/%E5%90%8D%E8%AF%8D%E7%BC%A9%E5%86%99%E5%8F%8A%E5%85%B6%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5/"/>
     <id>http://www.limingming.org/2019/04/24/开发者手册/名词缩写及其相关概念/</id>
     <published>2019-04-24T03:23:27.000Z</published>
-    <updated>2019-05-07T06:04:42.566Z</updated>
+    <updated>2019-05-09T12:08:35.000Z</updated>
     
     <summary type="html">
     
@@ -51,7 +51,7 @@
     <link href="http://www.limingming.org/2019/02/23/%E5%BC%80%E5%8F%91%E8%80%85%E6%89%8B%E5%86%8C/Linux%E4%B8%8A%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2Redis/"/>
     <id>http://www.limingming.org/2019/02/23/开发者手册/Linux上安装部署Redis/</id>
     <published>2019-02-23T07:42:43.000Z</published>
-    <updated>2019-02-23T08:26:16.887Z</updated>
+    <updated>2019-05-09T12:08:35.000Z</updated>
     
     <summary type="html">
     
@@ -83,7 +83,7 @@
     <link href="http://www.limingming.org/2019/02/20/Java/java%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/"/>
     <id>http://www.limingming.org/2019/02/20/Java/java远程调试/</id>
     <published>2019-02-20T03:26:29.000Z</published>
-    <updated>2019-02-20T03:32:18.272Z</updated>
+    <updated>2019-05-09T12:08:35.000Z</updated>
     
     <summary type="html">
     
@@ -115,7 +115,7 @@
     <link href="http://www.limingming.org/2019/01/30/%E5%BC%80%E5%8F%91%E8%80%85%E6%89%8B%E5%86%8C/Eclipse%E5%BC%82%E5%B8%B8%EF%BC%9APlugin-execution-not-covered-by-lifecycle-configuration/"/>
     <id>http://www.limingming.org/2019/01/30/开发者手册/Eclipse异常：Plugin-execution-not-covered-by-lifecycle-configuration/</id>
     <published>2019-01-30T00:47:27.000Z</published>
-    <updated>2019-01-30T00:49:09.066Z</updated>
+    <updated>2019-05-09T12:08:35.000Z</updated>
     
     <summary type="html">
     
@@ -143,7 +143,7 @@
     <link href="http://www.limingming.org/2019/01/25/Spring/Spring-Boot-%E4%B8%AD%E8%87%AA%E5%AE%9A%E4%B9%89Filter/"/>
     <id>http://www.limingming.org/2019/01/25/Spring/Spring-Boot-中自定义Filter/</id>
     <published>2019-01-25T03:52:49.000Z</published>
-    <updated>2019-01-25T03:56:19.636Z</updated>
+    <updated>2019-05-09T12:08:35.000Z</updated>
     
     <summary type="html">
     
@@ -177,7 +177,7 @@
     <link href="http://www.limingming.org/2019/01/15/Spring/Spring%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%BA%8B%E5%8A%A1/"/>
     <id>http://www.limingming.org/2019/01/15/Spring/Spring多线程事务/</id>
     <published>2019-01-15T08:19:23.000Z</published>
-    <updated>2019-01-15T08:20:18.463Z</updated>
+    <updated>2019-05-09T12:08:35.000Z</updated>
     
     <summary type="html">
     
@@ -209,7 +209,7 @@
     <link href="http://www.limingming.org/2019/01/15/Spring/Spring-DI-static%E7%9A%84%E9%9D%99%E6%80%81%E5%8F%98%E9%87%8F/"/>
     <id>http://www.limingming.org/2019/01/15/Spring/Spring-DI-static的静态变量/</id>
     <published>2019-01-15T07:09:38.000Z</published>
-    <updated>2019-01-15T08:10:41.537Z</updated>
+    <updated>2019-05-09T12:08:35.000Z</updated>
     
     <summary type="html">
     
@@ -241,7 +241,7 @@
     <link href="http://www.limingming.org/2018/12/31/Git/Git-%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98%E5%B8%B8%E7%94%A8%E7%9A%84%E6%93%8D%E4%BD%9C/"/>
     <id>http://www.limingming.org/2018/12/31/Git/Git-解决问题常用的操作/</id>
     <published>2018-12-31T08:41:43.000Z</published>
-    <updated>2018-12-31T08:42:51.320Z</updated>
+    <updated>2019-05-09T12:08:35.000Z</updated>
     
     <summary type="html">
     
@@ -271,7 +271,7 @@
     <link href="http://www.limingming.org/2018/12/31/DB/Mysql%E5%B8%B8%E7%94%A8%E8%A7%84%E8%8C%83%E6%95%B4%E7%90%86%E8%AE%B0%E5%BD%95/"/>
     <id>http://www.limingming.org/2018/12/31/DB/Mysql常用规范整理记录/</id>
     <published>2018-12-31T08:26:05.000Z</published>
-    <updated>2018-12-31T08:29:46.640Z</updated>
+    <updated>2019-05-09T12:08:35.000Z</updated>
     
     <summary type="html">
     
@@ -301,7 +301,7 @@
     <link href="http://www.limingming.org/2018/12/31/DB/mysql%E5%AE%89%E8%A3%85%E7%9B%AE%E5%BD%95/"/>
     <id>http://www.limingming.org/2018/12/31/DB/mysql安装目录/</id>
     <published>2018-12-31T03:32:08.000Z</published>
-    <updated>2018-12-31T03:33:14.333Z</updated>
+    <updated>2019-05-09T12:08:35.000Z</updated>
     
     <summary type="html">
     
@@ -331,7 +331,7 @@
     <link href="http://www.limingming.org/2018/12/30/Linux/ansible%E4%BD%BF%E7%94%A8playbook%E6%80%BB%E7%BB%93/"/>
     <id>http://www.limingming.org/2018/12/30/Linux/ansible使用playbook总结/</id>
     <published>2018-12-30T08:57:09.000Z</published>
-    <updated>2018-12-30T09:00:50.016Z</updated>
+    <updated>2019-05-09T12:08:35.000Z</updated>
     
     <summary type="html">
     
@@ -352,11 +352,11 @@
     
       <category term="ansible" scheme="http://www.limingming.org/tags/ansible/"/>
     
-      <category term="总结" scheme="http://www.limingming.org/tags/%E6%80%BB%E7%BB%93/"/>
-    
       <category term="playbook" scheme="http://www.limingming.org/tags/playbook/"/>
     
       <category term="学习" scheme="http://www.limingming.org/tags/%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="总结" scheme="http://www.limingming.org/tags/%E6%80%BB%E7%BB%93/"/>
     
   </entry>
   
@@ -365,7 +365,7 @@
     <link href="http://www.limingming.org/2018/12/30/%E5%BC%80%E5%8F%91%E8%80%85%E6%89%8B%E5%86%8C/YAML%E8%AF%AD%E8%A8%80%E4%BB%8B%E7%BB%8D/"/>
     <id>http://www.limingming.org/2018/12/30/开发者手册/YAML语言介绍/</id>
     <published>2018-12-30T07:40:12.000Z</published>
-    <updated>2018-12-30T07:48:42.986Z</updated>
+    <updated>2019-05-09T12:08:35.000Z</updated>
     
     <summary type="html">
     
@@ -397,7 +397,7 @@
     <link href="http://www.limingming.org/2018/12/29/Linux/vim%E7%BC%96%E8%BE%91%E5%99%A8%E4%BD%BF%E7%94%A8/"/>
     <id>http://www.limingming.org/2018/12/29/Linux/vim编辑器使用/</id>
     <published>2018-12-28T16:29:56.000Z</published>
-    <updated>2018-12-29T08:22:39.321Z</updated>
+    <updated>2019-05-09T12:08:35.000Z</updated>
     
     <summary type="html">
     
@@ -414,13 +414,13 @@
       <category term="Linux" scheme="http://www.limingming.org/categories/Linux/"/>
     
     
+      <category term="使用" scheme="http://www.limingming.org/tags/%E4%BD%BF%E7%94%A8/"/>
+    
       <category term="vim" scheme="http://www.limingming.org/tags/vim/"/>
     
       <category term="vi" scheme="http://www.limingming.org/tags/vi/"/>
     
       <category term="编辑器" scheme="http://www.limingming.org/tags/%E7%BC%96%E8%BE%91%E5%99%A8/"/>
-    
-      <category term="使用" scheme="http://www.limingming.org/tags/%E4%BD%BF%E7%94%A8/"/>
     
   </entry>
   
@@ -429,7 +429,7 @@
     <link href="http://www.limingming.org/2018/12/26/Linux/centos%E5%B8%B8%E8%A7%81%E9%85%8D%E7%BD%AE%E4%BF%AE%E6%94%B9/"/>
     <id>http://www.limingming.org/2018/12/26/Linux/centos常见配置修改/</id>
     <published>2018-12-26T13:19:02.000Z</published>
-    <updated>2018-12-26T13:19:54.056Z</updated>
+    <updated>2019-05-09T12:08:35.000Z</updated>
     
     <summary type="html">
     
@@ -463,7 +463,7 @@
     <link href="http://www.limingming.org/2018/12/25/Maven/maven%E6%97%A0%E6%B3%95%E4%B8%8B%E8%BD%BD%E6%9E%84%E4%BB%B6/"/>
     <id>http://www.limingming.org/2018/12/25/Maven/maven无法下载构件/</id>
     <published>2018-12-25T07:25:10.000Z</published>
-    <updated>2018-12-25T07:26:03.389Z</updated>
+    <updated>2019-05-09T12:08:35.000Z</updated>
     
     <summary type="html">
     
@@ -495,7 +495,7 @@
     <link href="http://www.limingming.org/2018/12/22/Linux/syntax-error-near-unexpected-token-do-r%E6%8A%A5%E9%94%99%E9%97%AE%E9%A2%98/"/>
     <id>http://www.limingming.org/2018/12/22/Linux/syntax-error-near-unexpected-token-do-r报错问题/</id>
     <published>2018-12-22T10:06:53.000Z</published>
-    <updated>2018-12-31T03:06:32.711Z</updated>
+    <updated>2019-05-09T12:08:35.000Z</updated>
     
     <summary type="html">
     
@@ -525,7 +525,7 @@
     <link href="http://www.limingming.org/2018/12/22/%E8%AE%A1%E7%AE%97%E6%9C%BA/macOS%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/"/>
     <id>http://www.limingming.org/2018/12/22/计算机/macOS常见问题记录/</id>
     <published>2018-12-22T09:49:31.000Z</published>
-    <updated>2018-12-29T08:38:52.501Z</updated>
+    <updated>2019-05-09T12:08:35.000Z</updated>
     
     <summary type="html">
     
@@ -557,7 +557,7 @@
     <link href="http://www.limingming.org/2018/12/22/Java/log4j2%E4%BD%BF%E7%94%A8/"/>
     <id>http://www.limingming.org/2018/12/22/Java/log4j2使用/</id>
     <published>2018-12-22T08:22:09.000Z</published>
-    <updated>2018-12-24T01:48:27.788Z</updated>
+    <updated>2019-05-09T12:08:35.000Z</updated>
     
     <summary type="html">
     
@@ -574,13 +574,13 @@
       <category term="Java" scheme="http://www.limingming.org/categories/Java/"/>
     
     
-      <category term="配置" scheme="http://www.limingming.org/tags/%E9%85%8D%E7%BD%AE/"/>
-    
-      <category term="使用" scheme="http://www.limingming.org/tags/%E4%BD%BF%E7%94%A8/"/>
+      <category term="log4j2" scheme="http://www.limingming.org/tags/log4j2/"/>
     
       <category term="介绍" scheme="http://www.limingming.org/tags/%E4%BB%8B%E7%BB%8D/"/>
     
-      <category term="log4j2" scheme="http://www.limingming.org/tags/log4j2/"/>
+      <category term="配置" scheme="http://www.limingming.org/tags/%E9%85%8D%E7%BD%AE/"/>
+    
+      <category term="使用" scheme="http://www.limingming.org/tags/%E4%BD%BF%E7%94%A8/"/>
     
   </entry>
   
@@ -589,7 +589,7 @@
     <link href="http://www.limingming.org/2018/12/21/Spring/spring-boot2-x%E6%97%A5%E5%BF%97%E4%BD%93%E7%B3%BB%E9%97%AE%E9%A2%98/"/>
     <id>http://www.limingming.org/2018/12/21/Spring/spring-boot2-x日志体系问题/</id>
     <published>2018-12-21T02:08:41.000Z</published>
-    <updated>2018-12-21T02:38:30.395Z</updated>
+    <updated>2019-05-09T12:08:35.000Z</updated>
     
     <summary type="html">
     
@@ -606,9 +606,9 @@
       <category term="Spring" scheme="http://www.limingming.org/categories/Spring/"/>
     
     
-      <category term="spring" scheme="http://www.limingming.org/tags/spring/"/>
-    
       <category term="日志" scheme="http://www.limingming.org/tags/%E6%97%A5%E5%BF%97/"/>
+    
+      <category term="spring" scheme="http://www.limingming.org/tags/spring/"/>
     
       <category term="输出" scheme="http://www.limingming.org/tags/%E8%BE%93%E5%87%BA/"/>
     
@@ -621,7 +621,7 @@
     <link href="http://www.limingming.org/2018/12/19/Java/log4j%E4%BD%BF%E7%94%A8/"/>
     <id>http://www.limingming.org/2018/12/19/Java/log4j使用/</id>
     <published>2018-12-19T12:39:07.000Z</published>
-    <updated>2018-12-22T08:28:39.845Z</updated>
+    <updated>2019-05-09T12:08:35.000Z</updated>
     
     <summary type="html">
     
