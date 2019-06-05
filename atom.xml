@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.limingming.org/"/>
-  <updated>2019-05-09T12:08:35.000Z</updated>
+  <updated>2019-06-05T07:35:07.912Z</updated>
   <id>http://www.limingming.org/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Git 常用操作</title>
+    <link href="http://www.limingming.org/2019/06/05/Git/Git-%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/"/>
+    <id>http://www.limingming.org/2019/06/05/Git/Git-常用操作/</id>
+    <published>2019-06-05T07:33:58.000Z</published>
+    <updated>2019-06-05T07:35:07.912Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="Git" scheme="http://www.limingming.org/categories/Git/"/>
+    
+    
+      <category term="Git" scheme="http://www.limingming.org/tags/Git/"/>
+    
+      <category term="操作" scheme="http://www.limingming.org/tags/%E6%93%8D%E4%BD%9C/"/>
+    
+      <category term="常用" scheme="http://www.limingming.org/tags/%E5%B8%B8%E7%94%A8/"/>
+    
+  </entry>
   
   <entry>
     <title>名词缩写及其相关概念</title>
@@ -258,11 +288,11 @@
       <category term="Git" scheme="http://www.limingming.org/categories/Git/"/>
     
     
-      <category term="git" scheme="http://www.limingming.org/tags/git/"/>
+      <category term="操作" scheme="http://www.limingming.org/tags/%E6%93%8D%E4%BD%9C/"/>
     
       <category term="常用" scheme="http://www.limingming.org/tags/%E5%B8%B8%E7%94%A8/"/>
     
-      <category term="操作" scheme="http://www.limingming.org/tags/%E6%93%8D%E4%BD%9C/"/>
+      <category term="git" scheme="http://www.limingming.org/tags/git/"/>
     
   </entry>
   
@@ -384,11 +414,11 @@
     
       <category term="介绍" scheme="http://www.limingming.org/tags/%E4%BB%8B%E7%BB%8D/"/>
     
-      <category term="语法" scheme="http://www.limingming.org/tags/%E8%AF%AD%E6%B3%95/"/>
-    
       <category term="YAML" scheme="http://www.limingming.org/tags/YAML/"/>
     
       <category term="语言" scheme="http://www.limingming.org/tags/%E8%AF%AD%E8%A8%80/"/>
+    
+      <category term="语法" scheme="http://www.limingming.org/tags/%E8%AF%AD%E6%B3%95/"/>
     
   </entry>
   
@@ -613,38 +643,6 @@
       <category term="输出" scheme="http://www.limingming.org/tags/%E8%BE%93%E5%87%BA/"/>
     
       <category term="体系" scheme="http://www.limingming.org/tags/%E4%BD%93%E7%B3%BB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>log4j使用</title>
-    <link href="http://www.limingming.org/2018/12/19/Java/log4j%E4%BD%BF%E7%94%A8/"/>
-    <id>http://www.limingming.org/2018/12/19/Java/log4j使用/</id>
-    <published>2018-12-19T12:39:07.000Z</published>
-    <updated>2019-05-09T12:08:35.000Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-      <category term="Java" scheme="http://www.limingming.org/categories/Java/"/>
-    
-    
-      <category term="配置" scheme="http://www.limingming.org/tags/%E9%85%8D%E7%BD%AE/"/>
-    
-      <category term="使用" scheme="http://www.limingming.org/tags/%E4%BD%BF%E7%94%A8/"/>
-    
-      <category term="log4j" scheme="http://www.limingming.org/tags/log4j/"/>
-    
-      <category term="日志" scheme="http://www.limingming.org/tags/%E6%97%A5%E5%BF%97/"/>
     
   </entry>
   

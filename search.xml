@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Git 常用操作]]></title>
+    <url>%2F2019%2F06%2F05%2FGit%2FGit-%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%2F</url>
+    <content type="text"><![CDATA[基本操作 初始化一个仓库：git init 添加到暂存区git add &lt;文件名&gt; 从暂存区移除git rm –cache 文件 提交到版本库git commit -m “chore: 提交理由” 查看仓库状态git status 查看提交历史git log 工作区&amp;暂存区 工作区、版本库 Git的版本库里存了很多东西，其中最重要的就是称为stage（或者叫index）的暂存区，还有Git为我们自动创建的第一个分支master，以及指向master的一个指针叫HEAD 第一步是用git add把文件添加进去，实际上就是把文件修改添加到暂存区；第二步是用git commit提交更改，实际上就是把暂存区的所有内容提交到当前分支。 版本回退 git中用HEAD表示当前版本，HEAD^表示上一个版本，HEAD^^表示上上个版本，往上100个版本就是HEAD～100 回退：git reset –hard HEAD^ 回退到上一个版本 修改git管理的是修改，而不是文件，比如：第一次修改 ，git add ，再次修改，git commit ，第二次“再次修改”是无法被提交的。 撤销修改 如果只修改了，但是没有执行git add,执行git checkout – 可以撤销修改 如果执行了git add ,可以git reset HEAD 撤销git add 操作，重复1步骤就可以撤销修改了 如果commit了，可以进行版本回退 git reset –hard HEAD~2 删除文件 删除文件 git add/rm git commit 远程仓库添加远程库 git remote add origin git@github.com:limm/test.git git push -u origin master 由于远程库是空的，我们第一次推送master分支时，加上了-u参数 从远程克隆git clone 地址 分支管理创建于合并分支在版本回退里，每次提交，Git都把它们串成一条时间线，这条时间线就是一个分支。HEAD严格来说不是指向提交，而是指向master、其他，master才是指向提交的，所以，HEAD指向的就是当前分支。或者是当前分支的某个commitid12345# 命令加上-b参数表示创建并切换git checkout -b dev# 等于git branch dev git checkout dev 在dev中修改文件后，切换到master：git merge devUpdating d46f35e..b17d20eFast-forward readme.txt | 1 + 1 file changed, 1 insertion(+)Fast-forward代表“快进模式”，直接吧msater指向dev当前的提交，所以合并速度很快。删除分支：git branch -d dev常用命令总结： 查看分支： git branch 创建分支： git branch 切换分支： git checkout 创建加切换分支 git checkout -b 合并某分支到当前分支： git merge 删除分支： git branch -d 解决冲突当git merge后发生冲突的时候，执行git merge –abort可以撤销mergeGit用&lt;&lt;&lt;&lt;&lt;&lt;&lt;，=======，&gt;&gt;&gt;&gt;&gt;&gt;&gt;标记出不同分支的内容。&lt;&lt;&lt;&lt;&lt;&lt;&lt;HEAD 和=====之间的内容是我们本地的修改。 git log –graph 可以查看合并的图 分支管理策略合并的时候Git会用到Fast forward模式，删除分支会丢掉分支信息，如果禁用Fastforwar模式，会merge时生成一个commit，从分支上就可以看出分支信息git merge –no-ff -m “merge with no-ff” dev因为本次合并要创建一个新的commit，所以加上-m参数，把commit描述写进去。master分支应该是非常稳定的，也就是仅用来发布新版本，平时不能在上面干活； stash当在dev分支上开发的时候突然后bug，我们执行了很多git add ，但是我们没有完成一个功能，不能commit的时候，我们可以使用：git stash 会将文件放到“工作现场”保存起来，当我们切换到其他的分支解决完成所有的bug的时候，我们可以回到当前分支，执行：git stash 可以查看工作现场git stash apply 恢复所有的add提交git stash drop 删除工作现场或者直接使用git stash pop，恢复并删除工作现场PS: 新增文件不是git管理范围，如果在一个分支上创建了新文件，并没有add，那切换分支的时候还会有这个文件 Feature分支添加一个分支,添加一个新功能的时候，试验性的代码会把主分支搞乱，所以每添加一个新功能，最好新建一个feature分支，开发完成后合并，最后删除feature分支git checkout -b &lt;分支名称&gt; 多人协作当从远程仓库clone时，Git自动把本地的master分支和远程master 分支对应起来，并且远程仓库默认名称是origin要查看远程库的信息，用git remotegit remote -v推送分支：git push origin &lt;分支名称&gt; 推送新建的分支到远程分支：git push –set-upstream origin &lt;远程分支名称&gt;删除远程分支命令git push origin –delete &lt;分支名称&gt; 查看分支合并历史图：git log –graph –pretty=oneline –abbrev-commit 更新代码：git pullgit pull”操作等于“git fetch + git merge refs/remotes/origin/master“git fetch 不会合并代码，git pull会合并代码 Rebase标签管理发布一个版本时，我们通常先在版本库中打一个标签（tag），这样，就唯一确定了打标签时刻的版本。将来无论什么时候，取某个标签的版本，就是把那个打标签的时刻的历史版本取出来。所以，标签也是版本库的一个快照。Git的标签虽然是版本库的快照，但其实它就是指向某个commit的指针（跟分支很像对不对？但是分支可以移动，标签不能移动），所以，创建和删除标签都是瞬间完成的。tag就是一个让人容易记住的有意义的名字，它跟某个commit绑在一起。 创建标签git tag v1.0 git tag 查看所有的taggit tag v0.9 f52c633 将标记打到某个commitid上git show v0.9 操作标签删除：git tag -d V0.1创建的标签只存在本地，不会推送到远程，如果需要推送到远程：git push origin 全部推送：git push origin –tags 删除远程tag，先从本地删除，然后从远程删除git tag -d git push origin :refs/tags/v1.0 自定义Git让Git显示颜色，会让命令输出看起来更醒目：$ git config –global color.ui true .gitignore检查App.class在忽略文件中添加了：git check-ignore -v App.class 别名git config –global alias.st status （st将代替status）]]></content>
+      <categories>
+        <category>Git</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
+        <tag>操作</tag>
+        <tag>常用</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[名词缩写及其相关概念]]></title>
     <url>%2F2019%2F04%2F24%2F%E5%BC%80%E5%8F%91%E8%80%85%E6%89%8B%E5%86%8C%2F%E5%90%8D%E8%AF%8D%E7%BC%A9%E5%86%99%E5%8F%8A%E5%85%B6%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5%2F</url>
     <content type="text"><![CDATA[最近更换了些工作内容，接触了一些乱七八糟的工作和很多的异样的名词，这个算是我梳理这些名词的笔记吧，很多这些都是在学校的时候学习过，但是大多都已经模糊了 LAMPLAMP是指一组通常一起使用来运行动态网站或者服务器的自由软件名称首字母缩写： L指的是Linux A指的是Apache网页服务器 M指的是MariaDB或MySQL，数据库管理系统（或者数据库服务器） P指的是PHP、Perl或Python，脚本语言 变种：LAPP（以PostgreSQL替代MySQL）LAMP（最后两个字母意味着Middleware和PostgreSQL）LNMP[1]或LEMP[2]（以Nginx替代Apache）WAMP（以Microsoft Windows替代Linux）MAMP（以Macintosh替代Linux）LAMJ（以JSP/servlet替代PHP）BAMP（以BSD替代Linux）WIMP（指Microsoft Windows, Microsoft IIS，MySQL, PHP）AMP（单指Apache, MySQL和PHP）XAMP（以XML替代Linux）[3] 数据库四种语言SQL四种语言：DDL,DML,DCL,TCL DDL（Data Definition Language）数据库定义语言statements are used to define the database structure or schema.123456CREATEALTERDROPTRUNCATECOMMENTRENAME DML（Data Manipulation Language）数据操纵语言statements are used for managing data within schema objects. 12345678SELECTINSERTUPDATEDELETEMERGECALLEXPLAIN PLANLOCK TABLE DCL（Data Control Language）数据库控制语言 授权，角色控制等12GRANT 授权REVOKE 取消授权 TCL（Transaction Control Language）事务控制语言123SAVEPOINT 设置保存点ROLLBACK 回滚SET TRANSACTION （1）数据定义。（SQL DDL）用于定义SQL模式、基本表、视图和索引的创建和撤消操作。（2）数据操纵。（SQL DML）数据操纵分成数据查询和数据更新两类。数据更新又分成插入、删除、和修改三种操作。（3）数据控制。包括对基本表和视图的授权，完整性规则的描述，事务控制等内容。（4）嵌入式SQL的使用规定。涉及到SQL语句嵌入在宿主语言程序中使用的规则。 MPPMPP即大规模并行处理（Massively Parallel Processor ）。 在数据库非共享集群中，每个节点都有独立的磁盘存储系统和内存系统，业务数据根据数据库模型和应用特点划分到各个节点上，每台数据节点通过专用网络或者商业通用网络互相连接，彼此协同计算，作为整体提供数据 库服务。非共享数据库集群有完全的可伸缩性、高可用、高性能、优秀的性价比、资源共享等优势。 Greenplum是一种基于PostgreSQL的分布式数据库elasticsearch也是一种MPP架构的数据库，Presto、Impala等都是MPP engine，各节点不共享资源，每个executor可以独自完成数据的读取和计算，缺点在于怕stragglers，遇到后整个engine的性能下降到该straggler的能力，所谓木桶的短板，这也是为什么MPP架构不适合异构的机器，要求各节点配置一样。 Spark SQL应该还是算做Batching Processing, 中间计算结果需要落地到磁盘，所以查询效率没有MPP架构的引擎（如Impala）高 OLTP、OLAP数据处理大致可以分成两大类：联机事务处理OLTP（on-line transaction processing）、联机分析处理OLAP（On-Line Analytical Processing）。OLTP是传统的关系型数据库的主要应用，主要是基本的、日常的事务处理，例如银行交易。OLAP是数据仓库系统的主要应用，支持复杂的分析操作，侧重决策支持，并且提供直观易懂的查询结果。 SOA面向服务的体系结构（英语：service-oriented architecture）并不特指一种技术，而是一种分布式运算的软件设计方法。软件的部分组件(调用者)，可以透过网络上的通用协议调用另一个应用软件组件运行、运作，让调用者获得服务。SOA原则上采用开放标准、与软件资源进行交互并采用表示的标准方式。因此应能跨越厂商、产品与技术。一项服务应视为一个独立的功能单元，可以远程访问并独立运行与更新，例如在线查询信用卡账单。 SOA中的一项服务应有以下四个特性： 针对某特定要求的输出，该服务就是运作一项商业逻辑 具有完备的特性(self-contained) 消费者并不需要了解此服务的运作过程 可能由底层其他服务组成]]></content>
@@ -104,9 +117,9 @@
         <category>Git</category>
       </categories>
       <tags>
-        <tag>git</tag>
-        <tag>常用</tag>
         <tag>操作</tag>
+        <tag>常用</tag>
+        <tag>git</tag>
       </tags>
   </entry>
   <entry>
@@ -159,9 +172,9 @@
       </categories>
       <tags>
         <tag>介绍</tag>
-        <tag>语法</tag>
         <tag>YAML</tag>
         <tag>语言</tag>
+        <tag>语法</tag>
       </tags>
   </entry>
   <entry>
@@ -354,8 +367,8 @@
         <category>Git</category>
       </categories>
       <tags>
-        <tag>git</tag>
         <tag>常用</tag>
+        <tag>git</tag>
         <tag>命令</tag>
         <tag>概念</tag>
       </tags>
@@ -607,9 +620,9 @@
         <category>Maven</category>
       </categories>
       <tags>
+        <tag>安装</tag>
         <tag>命令</tag>
         <tag>仓库</tag>
-        <tag>安装</tag>
         <tag>Maven</tag>
       </tags>
   </entry>
@@ -743,8 +756,8 @@
       </categories>
       <tags>
         <tag>介绍</tag>
-        <tag>markdown</tag>
         <tag>语法</tag>
+        <tag>markdown</tag>
         <tag>怎么</tag>
         <tag>如何</tag>
       </tags>
@@ -757,8 +770,8 @@
         <category>开发者手册</category>
       </categories>
       <tags>
-        <tag>命令</tag>
         <tag>安装</tag>
+        <tag>命令</tag>
         <tag>Mac</tag>
         <tag>npm</tag>
         <tag>不生效</tag>
@@ -782,7 +795,7 @@
   <entry>
     <title><![CDATA[Mac OS下搭建Vue开发环境]]></title>
     <url>%2F2018%2F11%2F23%2FVue%2FMac-OS%E4%B8%8B%E6%90%AD%E5%BB%BAVue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%2F</url>
-    <content type="text"><![CDATA[前言原来一直学习使用React，现在因为工作的需要，对Vue进行学习和使用，现在比较流行的框架React,angular,vue，正好对于vue也进行些了解。 环境搭建 打开终端,安装brew 1usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot; 安装成功后，使用查看版本，验证是否安装成功1brew -v 安装node.js1brew install nodejs 也可以下载安装下载地址安装成功后，使用验证123node -v``` * 给nodejs目录赋权限 sudo chmod -R 777 /usr/local/lib/node_modules/1* 安装 淘宝镜像 （npm） npm install -g cnpm –registry=https://registry.npm.taobao.org12* 安装webpack cnpm install webpack -g12* 安装vue脚手架 npm install vue-cli -g12# 开始Vue 创建一个基于 webpack 模板的新项目$ vue init webpack my-project 这里需要进行一些配置，默认回车即可This will install Vue 2.x version of the template. For Vue 1.x use: vue init webpack#1.0 my-project ? Project name my-project? Project description A Vue.js project? Author runoob &#x74;&#101;&#x73;&#x74;&#x40;&#x72;&#117;&#x6e;&#x6f;&#111;&#98;&#x2e;&#x63;&#111;&#x6d;? Vue build standalone? Use ESLint to lint your code? Yes? Pick an ESLint preset Standard? Setup unit tests with Karma + Mocha? Yes? Setup e2e tests with Nightwatch? Yes vue-cli · Generated “my-project”. To get started: cd my-project npm install npm run dev Documentation can be found at https://vuejs-templates.github.io/webpack1进入项目，安装并运行： $ cd my-project$ cnpm install$ cnpm run dev DONE Compiled successfully in 4388ms Listening at http://localhost:8080`]]></content>
+    <content type="text"><![CDATA[前言原来一直学习使用React，现在因为工作的需要，对Vue进行学习和使用，现在比较流行的框架React,angular,vue，正好对于vue也进行些了解。 环境搭建 打开终端,安装brew 1usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot; 安装成功后，使用查看版本，验证是否安装成功1brew -v 安装node.js1brew install nodejs 也可以下载安装下载地址安装成功后，使用验证123node -v``` * 给nodejs目录赋权限 sudo chmod -R 777 /usr/local/lib/node_modules/1* 安装 淘宝镜像 （npm） npm install -g cnpm –registry=https://registry.npm.taobao.org12* 安装webpack cnpm install webpack -g12* 安装vue脚手架 npm install vue-cli -g12# 开始Vue 创建一个基于 webpack 模板的新项目$ vue init webpack my-project 这里需要进行一些配置，默认回车即可This will install Vue 2.x version of the template. For Vue 1.x use: vue init webpack#1.0 my-project ? Project name my-project? Project description A Vue.js project? Author runoob &#116;&#x65;&#115;&#x74;&#x40;&#114;&#117;&#110;&#111;&#x6f;&#x62;&#x2e;&#x63;&#111;&#x6d;? Vue build standalone? Use ESLint to lint your code? Yes? Pick an ESLint preset Standard? Setup unit tests with Karma + Mocha? Yes? Setup e2e tests with Nightwatch? Yes vue-cli · Generated “my-project”. To get started: cd my-project npm install npm run dev Documentation can be found at https://vuejs-templates.github.io/webpack1进入项目，安装并运行： $ cd my-project$ cnpm install$ cnpm run dev DONE Compiled successfully in 4388ms Listening at http://localhost:8080`]]></content>
       <categories>
         <category>Vue</category>
       </categories>
