@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.limingming.org/"/>
-  <updated>2019-06-05T07:35:07.912Z</updated>
+  <updated>2019-11-13T00:59:19.374Z</updated>
   <id>http://www.limingming.org/</id>
   
   <author>
@@ -17,11 +17,39 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>mysql数据库1067错误</title>
+    <link href="http://www.limingming.org/2019/11/13/FAQ/mysql%E6%95%B0%E6%8D%AE%E5%BA%931067%E9%94%99%E8%AF%AF/"/>
+    <id>http://www.limingming.org/2019/11/13/FAQ/mysql数据库1067错误/</id>
+    <published>2019-11-13T00:49:35.000Z</published>
+    <updated>2019-11-13T00:59:19.374Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="FAQ" scheme="http://www.limingming.org/categories/FAQ/"/>
+    
+    
+      <category term="1067" scheme="http://www.limingming.org/tags/1067/"/>
+    
+      <category term="ERROR" scheme="http://www.limingming.org/tags/ERROR/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Git 常用操作</title>
     <link href="http://www.limingming.org/2019/06/05/Git/Git-%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/"/>
     <id>http://www.limingming.org/2019/06/05/Git/Git-常用操作/</id>
     <published>2019-06-05T07:33:58.000Z</published>
-    <updated>2019-06-05T07:35:07.912Z</updated>
+    <updated>2019-06-05T07:35:07.000Z</updated>
     
     <summary type="html">
     
@@ -611,38 +639,6 @@
       <category term="配置" scheme="http://www.limingming.org/tags/%E9%85%8D%E7%BD%AE/"/>
     
       <category term="使用" scheme="http://www.limingming.org/tags/%E4%BD%BF%E7%94%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>spring boot2.x日志体系问题</title>
-    <link href="http://www.limingming.org/2018/12/21/Spring/spring-boot2-x%E6%97%A5%E5%BF%97%E4%BD%93%E7%B3%BB%E9%97%AE%E9%A2%98/"/>
-    <id>http://www.limingming.org/2018/12/21/Spring/spring-boot2-x日志体系问题/</id>
-    <published>2018-12-21T02:08:41.000Z</published>
-    <updated>2019-05-09T12:08:35.000Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-      <category term="Spring" scheme="http://www.limingming.org/categories/Spring/"/>
-    
-    
-      <category term="日志" scheme="http://www.limingming.org/tags/%E6%97%A5%E5%BF%97/"/>
-    
-      <category term="spring" scheme="http://www.limingming.org/tags/spring/"/>
-    
-      <category term="输出" scheme="http://www.limingming.org/tags/%E8%BE%93%E5%87%BA/"/>
-    
-      <category term="体系" scheme="http://www.limingming.org/tags/%E4%BD%93%E7%B3%BB/"/>
     
   </entry>
   
