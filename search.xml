@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[wikibase安装部署]]></title>
+    <url>%2F2020%2F02%2F22%2FKG%2Fwikibase%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2%2F</url>
+    <content type="text"><![CDATA[在2017年最先接触到wikibase的时候是因为于工作需要的缘故，需要了解wikibase的数据结构，以至于阅读了很长时间的php源码，了解了它的运行机制等，但是脑子毕竟是一个容易遗忘的存储部件，虽然当时经过了那么漫长学习时至今日还是会遗忘，所以现在针对于wikibase相关的内容做一下记录，此篇记录主要是针对于搭建wikibase进行记录，文章最后提供了简便的方式进行部署。 前提安装MediaWikiWikibase 是 MediaWiki 的扩展扩展插件，包含两个两个扩展，所以需要先安装部署 MediaWiki。安装部署MediaWiki需要注意兼容的PHP版本，此篇文章适宜MediaWiki-1.33.0版本为例，我在Centos上安装了PHP7.0版本，但是运行MediaWiki的时候提示必须使用PHP7.3版本及以上版本，所以又重新安装了PHP7.4版本，Mysql数据库使用5.5.8+。另外Wikibase并不能兼容老版本MediaWiki，当然旧版本的Wikibase也很大可能无法与最新的MediaWiki版本兼容。所以安装部署完成MediaWiki后最后使用相应版本的Wikibase。 下载mediawiki可以下载mediawiki-1.33.0.tar.gz，如果以上的连接因为网络原因无法下载的话可以，从Git库获取： 12345git clone https://gerrit.wikimedia.org/r/mediawiki/core.git --branch REL1_33 mediawiki#发行版分支中有很多 Git 子模块，用于常用的扩展和皮肤(主分支没有这些)。 要更新子模块，请运行:cd mediawikigit submodule update --init 运行环境 1234[root@localhost ~]# php -vPHP 7.4.3 (cli) (built: Feb 18 2020 11:53:05) ( NTS )Copyright (c) The PHP GroupZend Engine v3.4.0, Copyright (c) Zend Technologies 配置apache http支持php，这里面如果没有接触过php的话安装部署可能会遇到一系列的问题，建议使用 Apache/2.4.6 (CentOS) + PHP 7.4.3 (cli)进行部署，遇到最大的问题可能就是phplib.so不生成的问题，通过yum安装php和源码编辑都会遇到这个问题，可以自行搜索一下。 部署运行环境没有问题的话就可以进行部署了,将mediawiki-1.33.0解压放到http服务站点下就可以访问了，跟着界面引导的步骤就可以安装部署了。 填写完成所有的信息后会生成LocalSettings.php文件，将文件放到mediawiki-1.33.0部署的路径下就可以了。这时候对应的Mysql数据库中已经有mediawiki运行初始化的所有的表，但是还不包含Wikibase的表（以wb_开头的表） 安装Composer使用Composer可以简单的将依赖进行全部安装，安装Composer有很多中方式不同的操作系统安装方式不同，可以自行搜索。 Mac OS x 上的用户，你可以使用 Homebrew 安装 composer: 1wget https://getcomposer.org/composer.phar Window用户可以访问网址 安装Wikibase成功安装完成MediaWiki及Composer之后，下面就是安装Wikibase了，分为四个步骤： 下载Wikibase扩展 获取依赖项 修改 LocalSettings.php 配置文件 运行维护脚本 下载Wikibase扩展为了获取和mediawiki相应的版本，建议使用git进行下载：从部署的mediawiki-1.33.0中进入 extensions 目录下：12345cd extensionsgit clone -b REL1_33 https://github.com/wikimedia/mediawiki-extensions-Wikibase.git Wikibase#注意保证git下来的项目名称为Wikibasecd Wikibasegit submodule update --init --recursive # get the dependencies using submodules 获取依赖项 拷贝mediawiki-1.33.0目录下的composer.local.json-sample并更名为composer.local.json，写入：123456789&#123; &quot;extra&quot;: &#123; &quot;merge-plugin&quot;: &#123; &quot;include&quot;: [ &quot;extensions/Wikibase/composer.json&quot; ] &#125; &#125;&#125; 从 mediawiki-1.33.0 安装的根目录选择以下三种方法中的一种方法运行：12345composer install --no-dev# if you downloaded composer.pharphp composer.phar install --no-dev# Or use dockerized version (does not require PHP or composer installed)docker run -it --rm --user $(id -u):$(id -g) -v ~/.composer:/tmp -v $(pwd):/app docker.io/composer install --no-dev 修改 LocalSettings.php 配置文件修改mediawiki-1.33.0 安装的根目录下LocalSettings.php配置文件，以下三种配置取决于你是否想启用维基库存储库、维基库客户端或者想同时启用它们。 只启用维基资源库 1234$wgEnableWikibaseRepo = true;$wgEnableWikibaseClient = false;require_once &quot;$IP/extensions/Wikibase/repo/Wikibase.php&quot;;require_once &quot;$IP/extensions/Wikibase/repo/ExampleSettings.php&quot;; 只启用维基客户端 1234$wgEnableWikibaseRepo = false;$wgEnableWikibaseClient = true;require_once &quot;$IP/extensions/Wikibase/client/WikibaseClient.php&quot;;require_once &quot;$IP/extensions/Wikibase/client/ExampleSettings.php&quot;; 同时启用维基资源库和维基客户端 123456$wgEnableWikibaseRepo = true;$wgEnableWikibaseClient = true;require_once &quot;$IP/extensions/Wikibase/repo/Wikibase.php&quot;;require_once &quot;$IP/extensions/Wikibase/repo/ExampleSettings.php&quot;;require_once &quot;$IP/extensions/Wikibase/client/WikibaseClient.php&quot;;require_once &quot;$IP/extensions/Wikibase/client/ExampleSettings.php&quot;; 运行脚本 在mediawiki-1.33.0下123php maintenance/update.phpcd extensions/Wikibasephp lib/maintenance/populateSitesTable.php 运行完这一步就会在数据库中生成相应的wb_前缀的表，这些就是wikibase需要用到的关键表。 For Wikibase Repository only 12cd extensions/Wikibasephp repo/maintenance/rebuildItemsPerSite.php For Wikibase Client only 12cd extensions/Wikibasephp client/maintenance/populateInterwiki.php For Wikibase Repository and Wikibase Client 123cd extensions/Wikibasephp repo/maintenance/rebuildItemsPerSite.phpphp client/maintenance/populateInterwiki.php 检查最终成 访问mediawiki-1.33.0部署的应用 如果安装成功的话首页上左侧会出现添加链接的按钮（启用client），在特殊页面中会有wikibase的选项 简单部署 下载完整安装包_ 解压运行sql到mysql数据库 修改LocalSettings.php配置文件中配置为自己的配置123456789$wgServer = &quot;http://127.0.0.1:8083&quot;;$wgEmergencyContact = &quot;apache@127.0.0.1&quot;;$wgPasswordSender = &quot;apache@127.0.0.1&quot;;## Database settings$wgDBtype = &quot;mysql&quot;;$wgDBserver = &quot;127.0.0.1&quot;;$wgDBname = &quot;mediawiki-test1&quot;;$wgDBuser = &quot;root&quot;;$wgDBpassword = &quot;pw&quot;; 参考 Wikibase/Installation Composer Manual:Installation guide]]></content>
+      <categories>
+        <category>KG</category>
+      </categories>
+      <tags>
+        <tag>安装</tag>
+        <tag>wikibase</tag>
+        <tag>部署</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[MacOS 下安装openJDK]]></title>
     <url>%2F2019%2F12%2F11%2F%E5%BC%80%E5%8F%91%E8%80%85%E6%89%8B%E5%86%8C%2FMacOS-%E4%B8%8B%E5%AE%89%E8%A3%85openJDK%2F</url>
     <content type="text"><![CDATA[安装123brew tap AdoptOpenJDK/openjdk# &lt;&lt;XXX&gt;&gt;可以选择adoptopenjdk-openjdk8、adoptopenjdk-openjdk9、adoptopenjdk-openjdk10brew install &lt;XXX&gt; 安装包 下载链接 安装会默认安装到 /Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk 配置配置到环境变量设置中： 1234#java_home配置export JAVA_8_HOME=`/usr/libexec/java_home -v 1.8`export JAVA_7_HOME=`/usr/libexec/java_home -v 1.7`export JAVA_HOME=$JAVA_8_HOME]]></content>
@@ -294,10 +307,10 @@
         <category>Java</category>
       </categories>
       <tags>
-        <tag>配置</tag>
-        <tag>使用</tag>
         <tag>log4j2</tag>
         <tag>介绍</tag>
+        <tag>配置</tag>
+        <tag>使用</tag>
       </tags>
   </entry>
   <entry>
@@ -322,9 +335,9 @@
         <category>Java</category>
       </categories>
       <tags>
-        <tag>log4j</tag>
         <tag>配置</tag>
         <tag>使用</tag>
+        <tag>log4j</tag>
         <tag>日志</tag>
       </tags>
   </entry>
@@ -351,8 +364,8 @@
       </categories>
       <tags>
         <tag>centos</tag>
-        <tag>pip</tag>
         <tag>配置</tag>
+        <tag>pip</tag>
         <tag>源</tag>
         <tag>yum</tag>
       </tags>
@@ -464,9 +477,9 @@
       </categories>
       <tags>
         <tag>安装</tag>
+        <tag>部署</tag>
         <tag>ansible</tag>
         <tag>yum</tag>
-        <tag>部署</tag>
       </tags>
   </entry>
   <entry>
@@ -660,8 +673,8 @@
       </categories>
       <tags>
         <tag>安装</tag>
-        <tag>仓库</tag>
         <tag>命令</tag>
+        <tag>仓库</tag>
         <tag>Maven</tag>
       </tags>
   </entry>
@@ -704,10 +717,10 @@
         <category>Maven</category>
       </categories>
       <tags>
-        <tag>排除</tag>
         <tag>多模块</tag>
         <tag>web</tag>
         <tag>合并</tag>
+        <tag>排除</tag>
         <tag>冲突</tag>
       </tags>
   </entry>
@@ -764,9 +777,9 @@
         <category>Maven</category>
       </categories>
       <tags>
+        <tag>排除</tag>
         <tag>Maven</tag>
         <tag>依赖管理</tag>
-        <tag>排除</tag>
         <tag>依赖</tag>
         <tag>方法</tag>
       </tags>
@@ -834,7 +847,7 @@
   <entry>
     <title><![CDATA[Mac OS下搭建Vue开发环境]]></title>
     <url>%2F2018%2F11%2F23%2F%E5%BC%80%E5%8F%91%E8%80%85%E6%89%8B%E5%86%8C%2FMac-OS%E4%B8%8B%E6%90%AD%E5%BB%BAVue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%2F</url>
-    <content type="text"><![CDATA[前言原来一直学习使用React，现在因为工作的需要，对Vue进行学习和使用，现在比较流行的框架React,angular,vue，正好对于vue也进行些了解。 环境搭建 打开终端,安装brew 1usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot; 安装成功后，使用查看版本，验证是否安装成功1brew -v 安装node.js1brew install nodejs 也可以下载安装下载地址安装成功后，使用验证123node -v``` * 给nodejs目录赋权限 sudo chmod -R 777 /usr/local/lib/node_modules/1* 安装 淘宝镜像 （npm） npm install -g cnpm –registry=https://registry.npm.taobao.org12* 安装webpack cnpm install webpack -g12* 安装vue脚手架 npm install vue-cli -g12# 开始Vue 创建一个基于 webpack 模板的新项目$ vue init webpack my-project 这里需要进行一些配置，默认回车即可This will install Vue 2.x version of the template. For Vue 1.x use: vue init webpack#1.0 my-project ? Project name my-project? Project description A Vue.js project? Author runoob &#x74;&#x65;&#x73;&#x74;&#64;&#114;&#117;&#110;&#111;&#111;&#98;&#46;&#x63;&#111;&#109;? Vue build standalone? Use ESLint to lint your code? Yes? Pick an ESLint preset Standard? Setup unit tests with Karma + Mocha? Yes? Setup e2e tests with Nightwatch? Yes vue-cli · Generated “my-project”. To get started: cd my-project npm install npm run dev Documentation can be found at https://vuejs-templates.github.io/webpack1进入项目，安装并运行： $ cd my-project$ cnpm install$ cnpm run dev DONE Compiled successfully in 4388ms Listening at http://localhost:8080`]]></content>
+    <content type="text"><![CDATA[前言原来一直学习使用React，现在因为工作的需要，对Vue进行学习和使用，现在比较流行的框架React,angular,vue，正好对于vue也进行些了解。 环境搭建 打开终端,安装brew 1usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot; 安装成功后，使用查看版本，验证是否安装成功1brew -v 安装node.js1brew install nodejs 也可以下载安装下载地址安装成功后，使用验证123node -v``` * 给nodejs目录赋权限 sudo chmod -R 777 /usr/local/lib/node_modules/1* 安装 淘宝镜像 （npm） npm install -g cnpm –registry=https://registry.npm.taobao.org12* 安装webpack cnpm install webpack -g12* 安装vue脚手架 npm install vue-cli -g12# 开始Vue 创建一个基于 webpack 模板的新项目$ vue init webpack my-project 这里需要进行一些配置，默认回车即可This will install Vue 2.x version of the template. For Vue 1.x use: vue init webpack#1.0 my-project ? Project name my-project? Project description A Vue.js project? Author runoob &#x74;&#101;&#x73;&#116;&#x40;&#x72;&#x75;&#x6e;&#111;&#x6f;&#98;&#x2e;&#99;&#111;&#x6d;? Vue build standalone? Use ESLint to lint your code? Yes? Pick an ESLint preset Standard? Setup unit tests with Karma + Mocha? Yes? Setup e2e tests with Nightwatch? Yes vue-cli · Generated “my-project”. To get started: cd my-project npm install npm run dev Documentation can be found at https://vuejs-templates.github.io/webpack1进入项目，安装并运行： $ cd my-project$ cnpm install$ cnpm run dev DONE Compiled successfully in 4388ms Listening at http://localhost:8080`]]></content>
       <categories>
         <category>开发者手册</category>
       </categories>

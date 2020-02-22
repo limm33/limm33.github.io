@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.limingming.org/"/>
-  <updated>2019-12-11T06:36:47.468Z</updated>
+  <updated>2020-02-22T09:05:31.768Z</updated>
   <id>http://www.limingming.org/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>wikibase安装部署</title>
+    <link href="http://www.limingming.org/2020/02/22/KG/wikibase%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/"/>
+    <id>http://www.limingming.org/2020/02/22/KG/wikibase安装部署/</id>
+    <published>2020-02-22T08:55:05.000Z</published>
+    <updated>2020-02-22T09:05:31.768Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="KG" scheme="http://www.limingming.org/categories/KG/"/>
+    
+    
+      <category term="安装" scheme="http://www.limingming.org/tags/%E5%AE%89%E8%A3%85/"/>
+    
+      <category term="wikibase" scheme="http://www.limingming.org/tags/wikibase/"/>
+    
+      <category term="部署" scheme="http://www.limingming.org/tags/%E9%83%A8%E7%BD%B2/"/>
+    
+  </entry>
   
   <entry>
     <title>MacOS 下安装openJDK</title>
@@ -607,36 +637,6 @@
       <category term="下载" scheme="http://www.limingming.org/tags/%E4%B8%8B%E8%BD%BD/"/>
     
       <category term="构件" scheme="http://www.limingming.org/tags/%E6%9E%84%E4%BB%B6/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>syntax error near unexpected token $ do报错问题</title>
-    <link href="http://www.limingming.org/2018/12/22/Linux/syntax-error-near-unexpected-token-do-r%E6%8A%A5%E9%94%99%E9%97%AE%E9%A2%98/"/>
-    <id>http://www.limingming.org/2018/12/22/Linux/syntax-error-near-unexpected-token-do-r报错问题/</id>
-    <published>2018-12-22T10:06:53.000Z</published>
-    <updated>2019-05-09T12:08:35.000Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-      <category term="Linux" scheme="http://www.limingming.org/categories/Linux/"/>
-    
-    
-      <category term="问题" scheme="http://www.limingming.org/tags/%E9%97%AE%E9%A2%98/"/>
-    
-      <category term="do\r" scheme="http://www.limingming.org/tags/do-r/"/>
-    
-      <category term="字符" scheme="http://www.limingming.org/tags/%E5%AD%97%E7%AC%A6/"/>
     
   </entry>
   
