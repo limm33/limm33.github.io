@@ -1317,9 +1317,8 @@ mysql修改密码
       
         
           
-          原文：http://limingming.org/index.php/2018/12/nexus3-yum-repo/       
-使用在生产环境中，或者在隔离外网的服务器环境中，不能在线更新下载RPM包，所以借助有一台Linux服务器可以连接外网，剩余的服务器通过这台YUM服务器更新就可以了。
-
+          使用在生产环境中，或者在隔离外网的服务器环境中，不能在线更新下载RPM包，所以借助有一台Linux服务器可以连接外网，剩余的服务器通过这台YUM服务器更新就可以了。
+开篇以前的做法是先把包下载到内网中的YUM服务器上，然后通过createrepo命令生成本地仓库，其余服务器通过HTTP访问这个链接，
           ...
           <!--noindex-->
           <div class="post-button text-center">

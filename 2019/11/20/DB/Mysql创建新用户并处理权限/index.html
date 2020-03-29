@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="李明明的博客">
 <meta property="og:description" content="创建用户12[root@localhost ~]# mysql -uroot -pEnter password: 输入密码后 1CREATE USER &amp;apos;用户名&amp;apos;@&amp;apos;host&amp;apos; IDENTIFIED BY &amp;apos;password&amp;apos;; 用户名：创建的用户名host：制定可以登录的主机host，如果需要任意的主机都可以登录可以使用%替代host如">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-11-20T11:52:43.933Z">
+<meta property="og:updated_time" content="2020-03-21T02:59:45.230Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mysql创建新用户并处理权限">
 <meta name="twitter:description" content="创建用户12[root@localhost ~]# mysql -uroot -pEnter password: 输入密码后 1CREATE USER &amp;apos;用户名&amp;apos;@&amp;apos;host&amp;apos; IDENTIFIED BY &amp;apos;password&amp;apos;; 用户名：创建的用户名host：制定可以登录的主机host，如果需要任意的主机都可以登录可以使用%替代host如">
@@ -389,7 +389,7 @@
         <h1 id="创建用户"><a href="#创建用户" class="headerlink" title="创建用户"></a>创建用户</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# mysql -uroot -p</span><br><span class="line">Enter password:</span><br></pre></td></tr></table></figure>
 <p>输入密码后</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE USER &apos;用户名&apos;@&apos;host&apos; IDENTIFIED BY &apos;password&apos;;</span><br></pre></td></tr></table></figure>
-<p><strong>用户名</strong>：创建的用户名<br><strong>host</strong>：制定可以登录的主机host，如果需要任意的主机都可以登录可以使用%替代host如“CREATE USER ‘用户名‘@’%’ IDENTIFIED BY ‘password’;”<br><strong>password</strong>：创建的用户的登录密码，可以设置空</p>
+<p><strong>用户名</strong>：创建的用户名<br><strong>host</strong>：制定可以登录的主机host，如果需要任意的主机都可以登录可以使用%替代host如“CREATE USER ‘用户名‘@’%’ IDENTIFIED BY ‘password’;”<br><strong>password</strong>：创建的用户的登录密码，可以设置空<br><strong>%</strong> : 匹配所有主机,host可以替换为%，或如：192.168.0.% </p>
 <h1 id="权限"><a href="#权限" class="headerlink" title="权限"></a>权限</h1><h2 id="设置权限"><a href="#设置权限" class="headerlink" title="设置权限"></a>设置权限</h2><p>创建用户后需要设置对某些数据库某些表的权限：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GRANT 权限 ON 数据库名.表名 TO &apos;username&apos;@&apos;host&apos;</span><br></pre></td></tr></table></figure></p>
 <p><strong>权限</strong>：可以为SELECT，INSERT，UPDATE等，所有的权限使用ALL替代<br><strong>数据库名</strong>：数据库名称<br><strong>表名</strong>：表名，全部的表用星花表示，如”数据库名.*”<br>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GRANT ALL ON *.* TO &apos;tom&apos;@&apos;%&apos;;</span><br></pre></td></tr></table></figure></p>
 <p>tom想和个用户无法给其他的用户进行授权操作如果想让tom可以对其他的用户进行授权可以使用：</p>
