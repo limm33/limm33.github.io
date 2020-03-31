@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.limingming.org/"/>
-  <updated>2020-03-28T05:24:42.438Z</updated>
+  <updated>2020-03-31T13:09:45.455Z</updated>
   <id>http://www.limingming.org/</id>
   
   <author>
@@ -15,6 +15,38 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用Maven常见问题</title>
+    <link href="http://www.limingming.org/2020/03/31/Maven/%E4%BD%BF%E7%94%A8Maven%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/"/>
+    <id>http://www.limingming.org/2020/03/31/Maven/使用Maven常见问题/</id>
+    <published>2020-03-31T13:08:15.000Z</published>
+    <updated>2020-03-31T13:09:45.455Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="Maven" scheme="http://www.limingming.org/categories/Maven/"/>
+    
+    
+      <category term="问题" scheme="http://www.limingming.org/tags/%E9%97%AE%E9%A2%98/"/>
+    
+      <category term="Maven" scheme="http://www.limingming.org/tags/Maven/"/>
+    
+      <category term="常见" scheme="http://www.limingming.org/tags/%E5%B8%B8%E8%A7%81/"/>
+    
+      <category term="汇总" scheme="http://www.limingming.org/tags/%E6%B1%87%E6%80%BB/"/>
+    
+  </entry>
   
   <entry>
     <title>wikibase安装部署</title>
@@ -605,38 +637,6 @@
       <category term="字符集" scheme="http://www.limingming.org/tags/%E5%AD%97%E7%AC%A6%E9%9B%86/"/>
     
       <category term="乱码" scheme="http://www.limingming.org/tags/%E4%B9%B1%E7%A0%81/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>maven无法下载构件 </title>
-    <link href="http://www.limingming.org/2018/12/25/Maven/maven%E6%97%A0%E6%B3%95%E4%B8%8B%E8%BD%BD%E6%9E%84%E4%BB%B6/"/>
-    <id>http://www.limingming.org/2018/12/25/Maven/maven无法下载构件/</id>
-    <published>2018-12-25T07:25:10.000Z</published>
-    <updated>2019-05-09T12:08:35.000Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-      <category term="Maven" scheme="http://www.limingming.org/categories/Maven/"/>
-    
-    
-      <category term="无法" scheme="http://www.limingming.org/tags/%E6%97%A0%E6%B3%95/"/>
-    
-      <category term="Maven" scheme="http://www.limingming.org/tags/Maven/"/>
-    
-      <category term="下载" scheme="http://www.limingming.org/tags/%E4%B8%8B%E8%BD%BD/"/>
-    
-      <category term="构件" scheme="http://www.limingming.org/tags/%E6%9E%84%E4%BB%B6/"/>
     
   </entry>
   
