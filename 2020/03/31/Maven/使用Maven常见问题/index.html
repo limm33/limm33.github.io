@@ -81,19 +81,19 @@
 
 
 
-<meta name="description" content="仓库存在jar包但依旧提示无法下载最近服务器的迁移，把原来服务器的地址都更改了，所以私服的地址也改动了，原来项目下载到本地仓库的包，但是重新构建过程中竟然发现依然要提示下载，本地仓库里面明明有包，为什么还要下载？ 解决办法：去maven仓库包下面你会发现有_remote.repositories文件，下载不下来问题就是因为这个文件导致的。你可能会发现nexus=的信息在这个文件中，这个文件中已经连">
+<meta name="description" content="仓库存在jar包但依旧提示无法下载 最近服务器的迁移，把原来服务器的地址都更改了，所以私服的地址也改动了，原来项目下载到本地仓库的包，但是重新构建过程中竟然发现依然要提示下载，本地仓库里面明明有包，为什么还要下载？ 解决办法：去maven仓库包下面你会发现有_remote.repositories文件，下载不下来问题就是因为这个文件导致的。你可能会发现nexus=的信息在这个文件中，这个文件中已经">
 <meta name="keywords" content="问题,Maven,常见,汇总">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用Maven常见问题">
 <meta property="og:url" content="http://www.limingming.org/2020/03/31/Maven/使用Maven常见问题/index.html">
 <meta property="og:site_name" content="李明明的博客">
-<meta property="og:description" content="仓库存在jar包但依旧提示无法下载最近服务器的迁移，把原来服务器的地址都更改了，所以私服的地址也改动了，原来项目下载到本地仓库的包，但是重新构建过程中竟然发现依然要提示下载，本地仓库里面明明有包，为什么还要下载？ 解决办法：去maven仓库包下面你会发现有_remote.repositories文件，下载不下来问题就是因为这个文件导致的。你可能会发现nexus=的信息在这个文件中，这个文件中已经连">
+<meta property="og:description" content="仓库存在jar包但依旧提示无法下载 最近服务器的迁移，把原来服务器的地址都更改了，所以私服的地址也改动了，原来项目下载到本地仓库的包，但是重新构建过程中竟然发现依然要提示下载，本地仓库里面明明有包，为什么还要下载？ 解决办法：去maven仓库包下面你会发现有_remote.repositories文件，下载不下来问题就是因为这个文件导致的。你可能会发现nexus=的信息在这个文件中，这个文件中已经">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://www.limingming.org/imgs/logo/wechat-search.png">
-<meta property="og:updated_time" content="2020-03-31T13:09:45.455Z">
+<meta property="og:updated_time" content="2020-04-01T09:35:46.390Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用Maven常见问题">
-<meta name="twitter:description" content="仓库存在jar包但依旧提示无法下载最近服务器的迁移，把原来服务器的地址都更改了，所以私服的地址也改动了，原来项目下载到本地仓库的包，但是重新构建过程中竟然发现依然要提示下载，本地仓库里面明明有包，为什么还要下载？ 解决办法：去maven仓库包下面你会发现有_remote.repositories文件，下载不下来问题就是因为这个文件导致的。你可能会发现nexus=的信息在这个文件中，这个文件中已经连">
+<meta name="twitter:description" content="仓库存在jar包但依旧提示无法下载 最近服务器的迁移，把原来服务器的地址都更改了，所以私服的地址也改动了，原来项目下载到本地仓库的包，但是重新构建过程中竟然发现依然要提示下载，本地仓库里面明明有包，为什么还要下载？ 解决办法：去maven仓库包下面你会发现有_remote.repositories文件，下载不下来问题就是因为这个文件导致的。你可能会发现nexus=的信息在这个文件中，这个文件中已经">
 <meta name="twitter:image" content="http://www.limingming.org/imgs/logo/wechat-search.png">
 
 
@@ -388,47 +388,73 @@
       
 
       
-        <h1 id="仓库存在jar包但依旧提示无法下载"><a href="#仓库存在jar包但依旧提示无法下载" class="headerlink" title="仓库存在jar包但依旧提示无法下载"></a>仓库存在jar包但依旧提示无法下载</h1><p>最近服务器的迁移，把原来服务器的地址都更改了，所以私服的地址也改动了，原来项目下载到本地仓库的包，但是重新构建过程中竟然发现依然要提示下载，本地仓库里面明明有包，为什么还要下载？</p>
+        <p>仓库存在jar包但依旧提示无法下载</p>
+<p>最近服务器的迁移，把原来服务器的地址都更改了，所以私服的地址也改动了，原来项目下载到本地仓库的包，但是重新构建过程中竟然发现依然要提示下载，本地仓库里面明明有包，为什么还要下载？</p>
 <p>解决办法：<br>去maven仓库包下面你会发现有_remote.repositories文件，下载不下来问题就是因为这个文件导致的。你可能会发现nexus=的信息在这个文件中，这个文件中已经连接不上原来的nexus私服了，所有会报错依然会生成lastUpdatedw文件，如果你可以从新的服务地址中下载，你可以选择删除掉这个包，重新下载，如果不能的话可以选择改掉nexus=的信息，改成可以连接的地址，那它就不会重新下载了，例如改成 central=，这代表从远程中央仓</p>
-<h1 id="下载异常导致的错误"><a href="#下载异常导致的错误" class="headerlink" title="下载异常导致的错误"></a>下载异常导致的错误</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">was cached in the local repository, resolution will not be reattempted until the update interval of central has elapsed or updates are forced -&gt; [Help 1]</span><br><span class="line">[ERROR]</span><br></pre></td></tr></table></figure>
-<p>或许你遇到过这个错误，我看到这个错误的时候以为我配置的私服无法连接网络，其实并不是私服的问题，我删除LastUpdate文件，但是有时候好使有时候不好使，可能是因为开着eclipse的原因吧，刚删除可能它自己有请求有生成了一个。</p>
+<p>下载异常导致的错误</p>
+<p>was cached in the local repository, resolution will not be reattempted until the update interval of central has elapsed or updates are forced -&gt; [Help 1]<br>[ERROR]<br>或许你遇到过这个错误，我看到这个错误的时候以为我配置的私服无法连接网络，其实并不是私服的问题，我删除LastUpdate文件，但是有时候好使有时候不好使，可能是因为开着eclipse的原因吧，刚删除可能它自己有请求有生成了一个。</p>
 <p>所以采取了一个简单的方法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn -U clean install</span><br></pre></td></tr></table></figure>
-<p>就会重新下载了，或者也可以修改配置使用私服的地方：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;profiles&gt;</span><br><span class="line">    &lt;profile&gt;</span><br><span class="line">      ...</span><br><span class="line">      &lt;repositories&gt;</span><br><span class="line">        &lt;repository&gt;</span><br><span class="line">          &lt;id&gt;myRepo&lt;/id&gt;</span><br><span class="line">          &lt;name&gt;My Repository&lt;/name&gt;</span><br><span class="line">          &lt;releases&gt;</span><br><span class="line">            &lt;enabled&gt;false&lt;/enabled&gt;</span><br><span class="line">            &lt;updatePolicy&gt;always&lt;/updatePolicy&gt;</span><br><span class="line">            &lt;checksumPolicy&gt;warn&lt;/checksumPolicy&gt;</span><br><span class="line">          &lt;/releases&gt;</span><br><span class="line">         &lt;/repository&gt;</span><br><span class="line">      &lt;/repositories&gt;</span><br><span class="line">      ...</span><br><span class="line">    &lt;/profile&gt;</span><br><span class="line">  &lt;/profiles&gt;</span><br></pre></td></tr></table></figure>
-<h1 id="清除LastUpdated脚本"><a href="#清除LastUpdated脚本" class="headerlink" title="清除LastUpdated脚本"></a>清除LastUpdated脚本</h1><p>上面提到如果因为网络或者其他的原因，没有下载成功或者下载被中断，将会出现一个LastUpdated的文件，这个时候，就算网络好了，也不能正常使用这个构件。可以使用脚本进行批量清除：</p>
-<ol>
-<li>在linux系统上可以切换到仓库的目录下执行：</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find ./  -name &quot;*.lastUpdated&quot; -exec grep -q &quot;Could not transfer&quot; &#123;&#125; \; -print -exec rm &#123;&#125; \;</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>在windows系统下可以保存到后缀为bat的文件中修改仓库的目录执行：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">rem 这里写你的仓库路径</span><br><span class="line">set REPOSITORY_PATH=E:\storage\maven\repository</span><br><span class="line">rem 正在搜索...</span><br><span class="line">for /f &quot;delims=&quot; %%i in (&apos;dir /b /s &quot;%REPOSITORY_PATH%\*lastUpdated*&quot;&apos;) do (</span><br><span class="line">    del /s /q %%i</span><br><span class="line">)</span><br><span class="line">rem 搜索完毕</span><br><span class="line">pause</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>执行上面的命令后删掉本地仓库的.lastupdate文件，重新构建，必要的情况可以开vpn下载。<br>某些一直报错的jar包，校验MD5，不对的请删掉重新构建</p>
-<h4 id="错误总结"><a href="#错误总结" class="headerlink" title="错误总结"></a>错误总结</h4><p>Maven项目导入eclipse中很多时候都出现报错的情况，出错的原因大致可以分为下列几种：</p>
-<ol>
-<li>JDK版本不一致</li>
-<li>网络问题无法下载，可以尝试开vpn下载</li>
-<li>私有jar包</li>
-</ol>
-<h1 id="多个WEB模块打包实现问题"><a href="#多个WEB模块打包实现问题" class="headerlink" title="多个WEB模块打包实现问题"></a>多个WEB模块打包实现问题</h1><p>在项目开发中可能会遇到这种那种的maven问题，尤其是在企业原有的开发模式转换到mavne方式进行开发的时候，以下就列出在企业项目拆分的过程中总结的maven多个子web模块的整合遇到的问题。</p>
+<p>mvn -U clean install<br>就会重新下载了，或者也可以修改配置使用私服的地方：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;profiles&gt;</span><br><span class="line">    &lt;profile&gt;</span><br><span class="line">      ...</span><br><span class="line">      &lt;repositories&gt;</span><br><span class="line">        &lt;repository&gt;</span><br><span class="line">          &lt;id&gt;myRepo&lt;/id&gt;</span><br><span class="line">          &lt;name&gt;My Repository&lt;/name&gt;</span><br><span class="line">          &lt;releases&gt;</span><br><span class="line">            &lt;enabled&gt;false&lt;/enabled&gt;</span><br><span class="line">            &lt;updatePolicy&gt;always&lt;/updatePolicy&gt;</span><br><span class="line">            &lt;checksumPolicy&gt;warn&lt;/checksumPolicy&gt;</span><br><span class="line">          &lt;/releases&gt;</span><br><span class="line">         &lt;/repository&gt;</span><br><span class="line">      &lt;/repositories&gt;</span><br><span class="line">      ...</span><br><span class="line">    &lt;/profile&gt;</span><br><span class="line">  &lt;/profiles&gt;</span><br></pre></td></tr></table></figure></p>
+<p>清除LastUpdated脚本</p>
+<p>上面提到如果因为网络或者其他的原因，没有下载成功或者下载被中断，将会出现一个LastUpdated的文件，这个时候，就算网络好了，也不能正常使用这个构件。可以使用脚本进行批量清除：</p>
+<p>在linux系统上可以切换到仓库的目录下执行：<br>find ./  -name “<em>.lastUpdated” -exec grep -q “Could not transfer” {} \; -print -exec rm {} \;<br>在windows系统下可以保存到后缀为bat的文件中修改仓库的目录执行：<br>rem 这里写你的仓库路径<br>set REPOSITORY_PATH=E:\storage\maven\repository<br>rem 正在搜索…<br>for /f “delims=” %%i in (‘dir /b /s “%REPOSITORY_PATH%\</em>lastUpdated*”‘) do (<br>    del /s /q %%i<br>)<br>rem 搜索完毕<br>pause<br>执行上面的命令后删掉本地仓库的.lastupdate文件，重新构建，必要的情况可以开vpn下载。<br>某些一直报错的jar包，校验MD5，不对的请删掉重新构建</p>
+<p>错误总结</p>
+<p>Maven项目导入eclipse中很多时候都出现报错的情况，出错的原因大致可以分为下列几种：</p>
+<p>JDK版本不一致<br>网络问题无法下载，可以尝试开vpn下载<br>私有jar包<br>多个WEB模块打包实现问题</p>
+<p>在项目开发中可能会遇到这种那种的maven问题，尤其是在企业原有的开发模式转换到mavne方式进行开发的时候，以下就列出在企业项目拆分的过程中总结的maven多个子web模块的整合遇到的问题。</p>
 <p>在各个子模块中可以添加，注意relativePath，在子模块中设置，可以在项目构建时先在本地项目中查找，使用<relativepath>../..</relativepath> ，然后在去仓库和私服查找父pom:</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">parent</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.founder.fix.fixflow<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>fixflow-root<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>5.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;<span class="name">relativePath</span>&gt;</span>../..<span class="tag">&lt;/<span class="name">relativePath</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">parent</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>在依赖中添加对另一个web模块打成jar包的依赖，使用<type>war</type>，如下：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.loushang.framework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>loushang-framework<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;loushang-framework.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">type</span>&gt;</span>war<span class="tag">&lt;/<span class="name">type</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>可以声明多个依赖；</p>
-<p>build中添加相关设置，如果不添加的话可以设置是否：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;<span class="name">finalName</span>&gt;</span>lousing<span class="tag">&lt;/<span class="name">finalName</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;<span class="name">plugins</span>&gt;</span> </span><br><span class="line">		<span class="comment">&lt;!-- 合并多个war --&gt;</span> </span><br><span class="line">		<span class="tag">&lt;<span class="name">plugin</span>&gt;</span> </span><br><span class="line">			<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span> </span><br><span class="line">			<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-war-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span> </span><br><span class="line">			<span class="tag">&lt;<span class="name">configuration</span>&gt;</span> </span><br><span class="line">				<span class="tag">&lt;<span class="name">packagingExcludes</span>&gt;</span>WEB-INF/web.xml<span class="tag">&lt;/<span class="name">packagingExcludes</span>&gt;</span> <span class="tag">&lt;</span></span><br><span class="line"><span class="tag">				<span class="attr">overlays</span>&gt;</span> </span><br><span class="line">				<span class="comment">&lt;!-- 声明合并war --&gt;</span> </span><br><span class="line">				<span class="tag">&lt;<span class="name">overlay</span>&gt;</span> </span><br><span class="line">					<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.founder.fix.fixflow<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span> </span><br><span class="line">					<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>fixflow-webapp-taskcenter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span> </span><br><span class="line">					<span class="tag">&lt;<span class="name">excludes</span>&gt;</span></span><br><span class="line">						<span class="comment">&lt;!-- 声明排除war包中的部分 --&gt;</span> </span><br><span class="line">						<span class="tag">&lt;<span class="name">exclude</span>&gt;</span>*/web.xml,WEB-INF/lib/*<span class="tag">&lt;/<span class="name">exclude</span>&gt;</span> </span><br><span class="line">					<span class="tag">&lt;/<span class="name">excludes</span>&gt;</span> </span><br><span class="line">				<span class="tag">&lt;/<span class="name">overlay</span>&gt;</span> </span><br><span class="line">				<span class="tag">&lt;/<span class="name">overlays</span>&gt;</span> </span><br><span class="line">			<span class="tag">&lt;/<span class="name">configuration</span>&gt;</span> </span><br><span class="line">		<span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">plugins</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>注意在被合并的子模块没有web.xml部分，要声明：  </p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-war-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">version</span>&gt;</span>2.6<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">!—－</span> 设置将其他文件打包到<span class="attr">war</span>包 <span class="attr">--</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">webResources</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">resource</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">directory</span>&gt;</span>$&#123;basedir&#125;/../commonFiles/jsp<span class="tag">&lt;/<span class="name">directory</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- &lt;directory&gt;src/main/resources&lt;/directory&gt; --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">filtering</span>&gt;</span>true<span class="tag">&lt;/<span class="name">filtering</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">targetPath</span>&gt;</span>/<span class="tag">&lt;/<span class="name">targetPath</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resource</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">webResources</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 解决web模块中没有web.xml报错的问题 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">failOnMissingWebXml</span>&gt;</span>false<span class="tag">&lt;/<span class="name">failOnMissingWebXml</span>&gt;</span> </span><br><span class="line"><span class="comment">&lt;!-- 解决打包时候排除空文件不打包 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">includeEmptyDirectories</span>&gt;</span>true<span class="tag">&lt;/<span class="name">includeEmptyDirectories</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h1 id="多WEB模块打包排除jar包建议"><a href="#多WEB模块打包排除jar包建议" class="headerlink" title="多WEB模块打包排除jar包建议"></a>多WEB模块打包排除jar包建议</h1><p>在原有的web项目基础上拆分出了多个web项目，后台代码还是在各个web模块中，现在的需求是要合并多个web模块整合到一个war中部署。</p>
-<ol>
-<li>配置建议</li>
-</ol>
-<p>新建打包的web模块用以合并多个web模块项目，在pom中声明合并打包的各个模块，例如要合并A模块和B模块，如下：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.inspur.test<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>A<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.1-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">type</span>&gt;</span>war<span class="tag">&lt;/<span class="name">type</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.inspur.test<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>A<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.1-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">type</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">type</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.inspur.test<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>B<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.1-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">type</span>&gt;</span>war<span class="tag">&lt;/<span class="name">type</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.inspur.test<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>B<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.1-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">type</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">type</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>我们需要在合并打包的项目中依赖要合并的各个war包和各个模块的pom。 </p>
-<p>排除各个模块的lib：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">finalName</span>&gt;</span>B<span class="tag">&lt;/<span class="name">finalName</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">plugins</span>&gt;</span> <span class="comment">&lt;!-- 合并多个war --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-war-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">version</span>&gt;</span>2.6<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">overlays</span>&gt;</span>  <span class="comment">&lt;!-- 声明合并war --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">overlay</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.inspur.test<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>A<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">excludes</span>&gt;</span><span class="comment">&lt;!-- 声明排除war包中的部分 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">exclude</span>&gt;</span>WEB-INF/lib/*<span class="tag">&lt;/<span class="name">exclude</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">excludes</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">overlay</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">overlays</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">overlays</span>&gt;</span>  <span class="comment">&lt;!-- 声明合并war --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">overlay</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.inspur.test<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>B<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">excludes</span>&gt;</span><span class="comment">&lt;!-- 声明排除war包中的部分 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">exclude</span>&gt;</span>WEB-INF/lib/*<span class="tag">&lt;/<span class="name">exclude</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">excludes</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">overlay</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">overlays</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p><parent><br>    <groupid>com.founder.fix.fixflow</groupid><br>    <artifactid>fixflow-root</artifactid><br>    <version>5.0</version><br>    <relativepath>../..</relativepath><br></parent><br>在依赖中添加对另一个web模块打成jar包的依赖，使用<type>war</type>，如下：</p>
+<dependency><br>    <groupid>org.loushang.framework</groupid><br>    <artifactid>loushang-framework</artifactid><br>    <version>${loushang-framework.version}</version><br>    <type>war</type><br></dependency><br>可以声明多个依赖；<br><br>build中添加相关设置，如果不添加的话可以设置是否：<br><br><build><br>    <finalname>lousing</finalname><br>    <plugins><br>        <!-- 合并多个war --><br>        <plugin><br>            <groupid>org.apache.maven.plugins</groupid><br>            <artifactid>maven-war-plugin</artifactid><br>            <configuration><br>                <packagingexcludes>WEB-INF/web.xml</packagingexcludes> &lt;<br>                overlays&gt;<br>                <!-- 声明合并war --><br>                <overlay><br>                    <groupid>com.founder.fix.fixflow</groupid><br>                    <artifactid>fixflow-webapp-taskcenter</artifactid><br>                    <excludes><br>                        <!-- 声明排除war包中的部分 --><br>                        <exclude><em>/web.xml,WEB-INF/lib/</em></exclude><br>                    </excludes><br>                </overlay><br>                <br>            </configuration><br>        </plugin><br>    </plugins><br></build><br>注意在被合并的子模块没有web.xml部分，要声明：<br><br><br><plugins><br><plugin><br><groupid>org.apache.maven.plugins</groupid><br><artifactid>maven-war-plugin</artifactid><br><version>2.6</version><br><configuration><br> &lt;!—－ 设置将其他文件打包到war包 –&gt;<br><webresources><br><resource><br><directory>${basedir}/../commonFiles/jsp</directory><br><!-- <directory>src/main/resources</directory> --><br><filtering>true</filtering><br><targetpath>/</targetpath><br></resource><br></webresources><br><!-- 解决web模块中没有web.xml报错的问题 --><br><failonmissingwebxml>false</failonmissingwebxml><br><!-- 解决打包时候排除空文件不打包 --><br><includeemptydirectories>true</includeemptydirectories><br></configuration><br></plugin><br></plugins><br>多WEB模块打包排除jar包建议<br><br>在原有的web项目基础上拆分出了多个web项目，后台代码还是在各个web模块中，现在的需求是要合并多个web模块整合到一个war中部署。<br><br>配置建议<br>新建打包的web模块用以合并多个web模块项目，在pom中声明合并打包的各个模块，例如要合并A模块和B模块，如下：<br><br><dependencies><br><dependency><br><groupid>com.inspur.test</groupid><br><artifactid>A</artifactid><br><version>0.0.1-SNAPSHOT</version><br><type>war</type><br></dependency><br><dependency><br><groupid>com.inspur.test</groupid><br><artifactid>A</artifactid><br><version>0.0.1-SNAPSHOT</version><br><type>pom</type><br></dependency>
+
+<p><dependency></dependency></p>
+<p><groupid>com.inspur.test</groupid></p>
+<p><artifactid>B</artifactid></p>
+<p><version>0.0.1-SNAPSHOT</version></p>
+<p><type>war</type><br></p>
+<p><dependency></dependency></p>
+<p><groupid>com.inspur.test</groupid></p>
+<p><artifactid>B</artifactid></p>
+<p><version>0.0.1-SNAPSHOT</version></p>
+<p><type>pom</type><br><br></p></dependencies><br>我们需要在合并打包的项目中依赖要合并的各个war包和各个模块的pom。<p></p>
+<p>排除各个模块的lib：</p>
+<p><build></build></p>
+<p><finalname>B</finalname></p>
+<p><plugins> <!-- 合并多个war --></plugins></p>
+<p><plugin></plugin></p>
+<p><groupid>org.apache.maven.plugins</groupid></p>
+<p><artifactid>maven-war-plugin</artifactid></p>
+<p><version>2.6</version></p>
+<p><configuration></configuration></p>
+<p><overlays>  <!-- 声明合并war --></overlays></p>
+<p><overlay></overlay></p>
+<p><groupid>com.inspur.test</groupid></p>
+<p><artifactid>A</artifactid></p>
+<p><excludes><!-- 声明排除war包中的部分 --></excludes></p>
+<p><exclude>WEB-INF/lib/*</exclude><br><br><br></p>
+<p><overlays>  <!-- 声明合并war --></overlays></p>
+<p><overlay></overlay></p>
+<p><groupid>com.inspur.test</groupid></p>
+<p><artifactid>B</artifactid></p>
+<p><excludes><!-- 声明排除war包中的部分 --></excludes></p>
+<p><exclude>WEB-INF/lib/*</exclude><br><br><br><br><br><br><br><br>直接使用JAR包方法</p>
+<p>通过Scope使用系统本地JAR包</p>
+<p>有一次由于私服出了问题，我又不想将jar包安装到本地仓库，所以想直接引用本地的jar包，所以就使用了接下来的设置。<br>使用Dependency声明:</p>
+<p><dependency><br>    <groupid>org.ibm</groupid><br>    <artifactid>jms</artifactid><br>    <version>1.0.0</version><br>    <scope>system</scope><br>    <systempath>${project.basedir}/lib/jms.jar</systempath><br></dependency><br>我们声明了scope为system， 它使用起来和provided差不多，即此依赖由系统提供，但是与provided有点不同的是，它需要显式的使用systemPath指定lib所在的路径，如上systemPath。</p>
+<p>注：</p>
+<p>这样有个问题是我们可以声明用到此jar包进行编译构建，但是最终的结果中不会将此jar包打包到项目中，也不会将此jar包安装到仓库里，我觉得如果非要采用这种方式进行引用构建的话，将jar包放到webapp下WEBINF下的lib文件夹中引用，这样就会将jar包构建到结果项目中了。</p>
+<p>你也许注意到了scope和systemPath，如果感兴趣可以查看下面的官网对于相关类型的解释如下：</p>
+<p>Dependency scopeis used to limit the transitivity of a dependency, and also to affect theclasspath used for various build tasks.</p>
+<p>There are 6scopes available:</p>
+<p>compile<br>This is the default scope, used if none is specified. Compile dependencies are available in all classpaths of a project. Furthermore, those dependencies are propagated to dependent projects.<br>provided<br>This is much like compile, but indicates you expect the JDK or a container to provide the dependency at runtime. For example, when building a web application for the Java Enterprise Edition, you would set the dependency on the Servlet API and related Java EE APIs to scope provided because the web container provides those classes. This scope is only available on the compilation and test classpath, and is not transitive.<br>runtime<br>This scope indicates that the dependency is not required for compilation, but is for execution. It is in the runtime and test classpaths, but not the compile classpath.<br>test<br>This scope indicates that the dependency is not required for normal use of the application, and is only available for the test compilation and execution phases. This scope is not transitive.<br>system<br>This scope is similar to provided except that you have to provide the JAR which contains it explicitly. The artifact is always available and is not looked up in a repository.<br>import (only available in Maven 2.0.9 or later)<br>This scope is only used on a dependency of type pom in the <dependencymanagement> section. It indicates that the specified POM should be replaced with the dependencies in that POM’s <dependencymanagement> section. Since they are replaced, dependencies with a scope of import do not actually participate in limiting the transitivity of a dependency.<br>安装JAR包到本地仓库</dependencymanagement></dependencymanagement></p>
+<p>安装jar包到仓库可以使用命令进行安装</p>
+<p>mvn install:install-file –Dfile=loushang-home-6.0.RELEASE.jar –DgroupId=org.loushang.framework –DartifactId=loushang-home –Dversion=6.0.RELEASE –Dpackaging=jar<br>可以替换掉里面对应参数对应的值就可以通过命令安装JAR包到本地仓库了，但是这个方法仅推进为个人使用，入托团队协作的话建议使用mvn deploy的方式将开发的jar包推到远程仓库进行协作，开发中话使用-SNAPSHOT的后缀命名构件名称；<br>如果大家有一堆遗留的项目需要推送安装到仓库，那可以使用脚本：</p>
+<p>python脚本批量上传jar包到私服：<br>from xml.etree.ElementTree import Element, SubElement, tostring,ElementTree<br>import glob<br>import os</p>
+<p>def mvn_script(filename):<br>       return  “mvn deploy:deploy-file  -DrepositoryId=open2-baidu -Durl=<a href="http://10.100.10.131:8119/nexus-2.3.0-04/content/repositories/open2-baidu" target="_blank" rel="noopener">http://10.100.10.131:8119/nexus-2.3.0-04/content/repositories/open2-baidu</a>  -DgroupId=com.pzoom -DartifactId=”+filename[0:len(filename)-4]+” -Dversion=1.0 -Dpackaging=jar  -Dfile=”+filename<br>def writeDependency(filename):<br>    dependencies = Element(“dependencies”)<br>    dependency = SubElement(dependencies,”dependency”)<br>    groupId = SubElement(dependency, “groupId”)<br>    groupId.text = “com.pzoom”<br>    artifactId = SubElement(dependency, “artifactId”)<br>    artifactId.text = filename[0:len(filename)-4]<br>    version = SubElement(dependency, “version”)<br>    version.text=”1.0”<br>    ElementTree(dependencies).write(“out.xml”)</p>
+<p>files = glob.glob(‘*.jar’)<br>for file in files:<br>    writeDependency(file)<br>    print(file)<br>    os.system(mvn_script(file))<br>    print(‘upload success’)<br>    print(‘delete the file : ‘+file)<br>    os.remove(file)</p>
+<p>跳过测试</p>
+<p>在编译大型的项目的时候例如hadoop、ranger等项目的时候，如果执行测试可能会耗费很多时间，这时候需要跳过测试，<br>执行命令：</p>
+<p>mvn install -DskipTests</p>
+<p>#或者执行命令：<br>mvn install -Dmaven.test.skip=true<br>或者我们使用maven-surefire-plugin插件的方式配置跳过测试</p>
 <p><img src="/imgs/logo/wechat-search.png" alt=""></p>
 
       
@@ -492,6 +518,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2020/04/01/Maven/Maven及其核心概念/" rel="prev" title="Maven及其核心概念">
+                Maven及其核心概念 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -542,17 +572,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -569,7 +590,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">62</span>
+                  <span class="site-state-item-count">56</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -591,7 +612,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">171</span>
+                  <span class="site-state-item-count">157</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -674,22 +695,6 @@
       </section>
 
       
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#仓库存在jar包但依旧提示无法下载"><span class="nav-number">1.</span> <span class="nav-text">仓库存在jar包但依旧提示无法下载</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#下载异常导致的错误"><span class="nav-number">2.</span> <span class="nav-text">下载异常导致的错误</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#清除LastUpdated脚本"><span class="nav-number">3.</span> <span class="nav-text">清除LastUpdated脚本</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#错误总结"><span class="nav-number">3.0.0.1.</span> <span class="nav-text">错误总结</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#多个WEB模块打包实现问题"><span class="nav-number">4.</span> <span class="nav-text">多个WEB模块打包实现问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#多WEB模块打包排除jar包建议"><span class="nav-number">5.</span> <span class="nav-text">多WEB模块打包排除jar包建议</span></a></li></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
 
       
 
@@ -724,7 +729,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共58.6k字</span>
+  <span class="post-count">博客全站共56.9k字</span>
 </div>
 
         

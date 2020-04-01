@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="原文地址：http://limingming.org/index.php/2018/12/03/maven-tomcat-plugin/       环境要求Unix System\windwos\macOSJDK 1.7+Maven 3.0 or later         我测试的编译环境是：macOS10.11.6和windows10jdk1.8/jdk1.7Maven 3.3.9">
+<meta name="description" content="环境要求Unix System\windwos\macOSJDK 1.7+Maven 3.0 or later         我测试的编译环境是：macOS10.11.6和windows10jdk1.8/jdk1.7Maven 3.3.9      我的本机开发环境：MacOS 10.11.6eclipse Mars.2  在pom中配置tomcat-maven-plugin1234567891">
 <meta name="keywords" content="tomcat,插件,内嵌,可执行,war">
 <meta property="og:type" content="article">
 <meta property="og:title" content="在maven的web项目中内嵌tomcat插件执行war包">
 <meta property="og:url" content="http://www.limingming.org/2018/12/03/Maven/在maven的web项目中内嵌tomcat插件执行war包/index.html">
 <meta property="og:site_name" content="李明明的博客">
-<meta property="og:description" content="原文地址：http://limingming.org/index.php/2018/12/03/maven-tomcat-plugin/       环境要求Unix System\windwos\macOSJDK 1.7+Maven 3.0 or later         我测试的编译环境是：macOS10.11.6和windows10jdk1.8/jdk1.7Maven 3.3.9">
+<meta property="og:description" content="环境要求Unix System\windwos\macOSJDK 1.7+Maven 3.0 or later         我测试的编译环境是：macOS10.11.6和windows10jdk1.8/jdk1.7Maven 3.3.9      我的本机开发环境：MacOS 10.11.6eclipse Mars.2  在pom中配置tomcat-maven-plugin1234567891">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-09T12:08:35.000Z">
+<meta property="og:updated_time" content="2020-04-01T09:36:19.407Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在maven的web项目中内嵌tomcat插件执行war包">
-<meta name="twitter:description" content="原文地址：http://limingming.org/index.php/2018/12/03/maven-tomcat-plugin/       环境要求Unix System\windwos\macOSJDK 1.7+Maven 3.0 or later         我测试的编译环境是：macOS10.11.6和windows10jdk1.8/jdk1.7Maven 3.3.9">
+<meta name="twitter:description" content="环境要求Unix System\windwos\macOSJDK 1.7+Maven 3.0 or later         我测试的编译环境是：macOS10.11.6和windows10jdk1.8/jdk1.7Maven 3.3.9      我的本机开发环境：MacOS 10.11.6eclipse Mars.2  在pom中配置tomcat-maven-plugin1234567891">
 
 
 
@@ -386,8 +386,7 @@
       
 
       
-        <p><a href="http://limingming.org/index.php/2018/12/03/maven-tomcat-plugin/" target="_blank" rel="noopener">原文地址：http://limingming.org/index.php/2018/12/03/maven-tomcat-plugin/</a>      </p>
-<h1 id="环境要求"><a href="#环境要求" class="headerlink" title="环境要求"></a>环境要求</h1><p>Unix System\windwos\macOS<br>JDK 1.7+<br>Maven 3.0 or later       </p>
+        <h1 id="环境要求"><a href="#环境要求" class="headerlink" title="环境要求"></a>环境要求</h1><p>Unix System\windwos\macOS<br>JDK 1.7+<br>Maven 3.0 or later       </p>
 <p> 我测试的编译环境是：<br>macOS10.11.6和windows10<br>jdk1.8/jdk1.7<br>Maven 3.3.9     </p>
 <p>我的本机开发环境：<br>MacOS 10.11.6<br>eclipse Mars.2 </p>
 <h1 id="在pom中配置tomcat-maven-plugin"><a href="#在pom中配置tomcat-maven-plugin" class="headerlink" title="在pom中配置tomcat-maven-plugin"></a>在pom中配置tomcat-maven-plugin</h1><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">project</span>&gt;</span></span><br><span class="line">  ...</span><br><span class="line">  <span class="tag">&lt;<span class="name">packaging</span>&gt;</span>war<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></span><br><span class="line">  ...</span><br><span class="line">  <span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">      ...</span><br><span class="line">       <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.tomcat.maven<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>tomcat6-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.tomcat.maven<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>tomcat7-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">      ...</span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line">    ...</span><br><span class="line">  <span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br><span class="line">  ...</span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
@@ -540,7 +539,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">62</span>
+                  <span class="site-state-item-count">56</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -562,7 +561,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">171</span>
+                  <span class="site-state-item-count">157</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -695,7 +694,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共58.6k字</span>
+  <span class="post-count">博客全站共56.9k字</span>
 </div>
 
         
