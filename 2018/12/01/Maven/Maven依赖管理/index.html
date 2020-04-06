@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="排除,Maven,依赖管理,依赖,方法,">
+  <meta name="keywords" content="Maven,依赖管理,排除,依赖,方法,">
 
 
 
@@ -81,19 +81,19 @@
 
 
 
-<meta name="description" content="作者：李明明原文地址：http://limingming.org/index.php/2018/11/30/maven-manage-dependency/    直接依赖和间接依赖mane最大的好处就是能够方便的声明第三方的jar包，只需要在pom中进行简单的声明就可以将此jar包依赖到项目中，那什么是直接依赖呢？就是在项目中直接声明的这些依赖：     12345&amp;lt;dependency&amp;">
-<meta name="keywords" content="排除,Maven,依赖管理,依赖,方法">
+<meta name="description" content="直接依赖和间接依赖mane最大的好处就是能够方便的声明第三方的jar包，只需要在pom中进行简单的声明就可以将此jar包依赖到项目中，那什么是直接依赖呢？就是在项目中直接声明的这些依赖：     12345&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;org.springframework&amp;lt;/groupId&amp;gt;     &amp;lt;artifactId&amp;gt;sp">
+<meta name="keywords" content="Maven,依赖管理,排除,依赖,方法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Maven依赖管理">
 <meta property="og:url" content="http://www.limingming.org/2018/12/01/Maven/Maven依赖管理/index.html">
 <meta property="og:site_name" content="李明明的博客">
-<meta property="og:description" content="作者：李明明原文地址：http://limingming.org/index.php/2018/11/30/maven-manage-dependency/    直接依赖和间接依赖mane最大的好处就是能够方便的声明第三方的jar包，只需要在pom中进行简单的声明就可以将此jar包依赖到项目中，那什么是直接依赖呢？就是在项目中直接声明的这些依赖：     12345&amp;lt;dependency&amp;">
+<meta property="og:description" content="直接依赖和间接依赖mane最大的好处就是能够方便的声明第三方的jar包，只需要在pom中进行简单的声明就可以将此jar包依赖到项目中，那什么是直接依赖呢？就是在项目中直接声明的这些依赖：     12345&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;org.springframework&amp;lt;/groupId&amp;gt;     &amp;lt;artifactId&amp;gt;sp">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://limingming.org/wp-content/uploads/2018/12/eclipse_dependency_tool-300x128.png">
-<meta property="og:updated_time" content="2019-05-09T12:08:35.000Z">
+<meta property="og:updated_time" content="2020-04-06T02:46:08.290Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Maven依赖管理">
-<meta name="twitter:description" content="作者：李明明原文地址：http://limingming.org/index.php/2018/11/30/maven-manage-dependency/    直接依赖和间接依赖mane最大的好处就是能够方便的声明第三方的jar包，只需要在pom中进行简单的声明就可以将此jar包依赖到项目中，那什么是直接依赖呢？就是在项目中直接声明的这些依赖：     12345&amp;lt;dependency&amp;">
+<meta name="twitter:description" content="直接依赖和间接依赖mane最大的好处就是能够方便的声明第三方的jar包，只需要在pom中进行简单的声明就可以将此jar包依赖到项目中，那什么是直接依赖呢？就是在项目中直接声明的这些依赖：     12345&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;org.springframework&amp;lt;/groupId&amp;gt;     &amp;lt;artifactId&amp;gt;sp">
 <meta name="twitter:image" content="http://limingming.org/wp-content/uploads/2018/12/eclipse_dependency_tool-300x128.png">
 
 
@@ -388,8 +388,7 @@
       
 
       
-        <p>作者：李明明<br><a href="http://limingming.org/index.php/2018/11/30/maven-manage-dependency/" target="_blank" rel="noopener">原文地址：http://limingming.org/index.php/2018/11/30/maven-manage-dependency/</a>   </p>
-<h1 id="直接依赖和间接依赖"><a href="#直接依赖和间接依赖" class="headerlink" title="直接依赖和间接依赖"></a>直接依赖和间接依赖</h1><p>mane最大的好处就是能够方便的声明第三方的jar包，只需要在pom中进行简单的声明就可以将此jar包依赖到项目中，那什么是直接依赖呢？就是在项目中直接声明的这些依赖：    </p>
+        <h1 id="直接依赖和间接依赖"><a href="#直接依赖和间接依赖" class="headerlink" title="直接依赖和间接依赖"></a>直接依赖和间接依赖</h1><p>mane最大的好处就是能够方便的声明第三方的jar包，只需要在pom中进行简单的声明就可以将此jar包依赖到项目中，那什么是直接依赖呢？就是在项目中直接声明的这些依赖：    </p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.1.4.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span> </span><br><span class="line"> <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <h2 id="排除依赖"><a href="#排除依赖" class="headerlink" title="排除依赖"></a>排除依赖</h2><p>间接依赖是由直接依赖间接依赖到项目的那些jar包，当项目依赖于某一第三方Jar包，而这一第三方Jar包又给我们间接性的带来了大量的依赖,这种间接性的依赖，不仅浪费了磁盘空间，而且也可能带来潜在的冲突,因此我们需要将这些不需要的依赖从项目中排除，对项目进行一个瘦身，这时我们需要对Pom进行优化,再或者，通过间接性依赖获得的Jar包版本过低，而这些低版本的Jar包无法满足我们项目的需求，这时我们也需要将这些低版本的Jar包排除掉，也就是下面的exclusion标签</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>net.sf.spring-json<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-json<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.3.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">exclusions</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">exclusion</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">exclusion</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">exclusion</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>cglib<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>cglib-full<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">exclusion</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">exclusions</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span>    </span><br><span class="line">     <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span> </span><br><span class="line">     <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span> </span><br><span class="line">     <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.5.6<span class="tag">&lt;/<span class="name">version</span>&gt;</span>  </span><br><span class="line">      <span class="tag">&lt;<span class="name">exclusions</span>&gt;</span> </span><br><span class="line">          <span class="tag">&lt;<span class="name">exclusion</span>&gt;</span>      </span><br><span class="line">          <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>commons-logging<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">             <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>commons-logging<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span> </span><br><span class="line">          <span class="tag">&lt;/<span class="name">exclusion</span>&gt;</span>  </span><br><span class="line">     <span class="tag">&lt;/<span class="name">exclusions</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
@@ -462,11 +461,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/排除/" rel="tag"># 排除</a>
-          
             <a href="/tags/Maven/" rel="tag"># Maven</a>
           
             <a href="/tags/依赖管理/" rel="tag"># 依赖管理</a>
+          
+            <a href="/tags/排除/" rel="tag"># 排除</a>
           
             <a href="/tags/依赖/" rel="tag"># 依赖</a>
           
@@ -493,8 +492,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/12/02/Maven/构建WEB可执行的jar包/" rel="prev" title="构建WEB可执行的jar包">
-                构建WEB可执行的jar包 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/12/03/Maven/Maven多WEB模块打包排除jar包冲突的配置建议/" rel="prev" title="Maven多WEB模块打包排除jar包冲突的配置建议">
+                Maven多WEB模块打包排除jar包冲突的配置建议 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -574,7 +573,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">56</span>
+                  <span class="site-state-item-count">52</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -596,7 +595,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">157</span>
+                  <span class="site-state-item-count">150</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -729,7 +728,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共57.9k字</span>
+  <span class="post-count">博客全站共55.9k字</span>
 </div>
 
         

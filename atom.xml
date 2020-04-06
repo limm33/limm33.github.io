@@ -38,9 +38,9 @@
       <category term="Maven" scheme="http://www.limingming.org/categories/Maven/"/>
     
     
-      <category term="仓库" scheme="http://www.limingming.org/tags/%E4%BB%93%E5%BA%93/"/>
-    
       <category term="介绍" scheme="http://www.limingming.org/tags/%E4%BB%8B%E7%BB%8D/"/>
+    
+      <category term="仓库" scheme="http://www.limingming.org/tags/%E4%BB%93%E5%BA%93/"/>
     
       <category term="Maven" scheme="http://www.limingming.org/tags/Maven/"/>
     
@@ -166,11 +166,11 @@
     
       <category term="mysql" scheme="http://www.limingming.org/tags/mysql/"/>
     
-      <category term="权限" scheme="http://www.limingming.org/tags/%E6%9D%83%E9%99%90/"/>
-    
       <category term="创建" scheme="http://www.limingming.org/tags/%E5%88%9B%E5%BB%BA/"/>
     
       <category term="新用户" scheme="http://www.limingming.org/tags/%E6%96%B0%E7%94%A8%E6%88%B7/"/>
+    
+      <category term="权限" scheme="http://www.limingming.org/tags/%E6%9D%83%E9%99%90/"/>
     
   </entry>
   
@@ -199,36 +199,6 @@
       <category term="1067" scheme="http://www.limingming.org/tags/1067/"/>
     
       <category term="ERROR" scheme="http://www.limingming.org/tags/ERROR/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Git 常用操作</title>
-    <link href="http://www.limingming.org/2019/06/05/Git/Git-%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/"/>
-    <id>http://www.limingming.org/2019/06/05/Git/Git-常用操作/</id>
-    <published>2019-06-05T07:33:58.000Z</published>
-    <updated>2019-06-05T07:35:07.000Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-      <category term="Git" scheme="http://www.limingming.org/categories/Git/"/>
-    
-    
-      <category term="Git" scheme="http://www.limingming.org/tags/Git/"/>
-    
-      <category term="操作" scheme="http://www.limingming.org/tags/%E6%93%8D%E4%BD%9C/"/>
-    
-      <category term="常用" scheme="http://www.limingming.org/tags/%E5%B8%B8%E7%94%A8/"/>
     
   </entry>
   
@@ -453,36 +423,6 @@
   </entry>
   
   <entry>
-    <title>Git 解决问题常用的操作</title>
-    <link href="http://www.limingming.org/2018/12/31/Git/Git-%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98%E5%B8%B8%E7%94%A8%E7%9A%84%E6%93%8D%E4%BD%9C/"/>
-    <id>http://www.limingming.org/2018/12/31/Git/Git-解决问题常用的操作/</id>
-    <published>2018-12-31T08:41:43.000Z</published>
-    <updated>2019-05-09T12:08:35.000Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-      <category term="Git" scheme="http://www.limingming.org/categories/Git/"/>
-    
-    
-      <category term="操作" scheme="http://www.limingming.org/tags/%E6%93%8D%E4%BD%9C/"/>
-    
-      <category term="常用" scheme="http://www.limingming.org/tags/%E5%B8%B8%E7%94%A8/"/>
-    
-      <category term="git" scheme="http://www.limingming.org/tags/git/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Mysql常用规范整理记录</title>
     <link href="http://www.limingming.org/2018/12/31/DB/Mysql%E5%B8%B8%E7%94%A8%E8%A7%84%E8%8C%83%E6%95%B4%E7%90%86%E8%AE%B0%E5%BD%95/"/>
     <id>http://www.limingming.org/2018/12/31/DB/Mysql常用规范整理记录/</id>
@@ -637,6 +577,70 @@
       <category term="vi" scheme="http://www.limingming.org/tags/vi/"/>
     
       <category term="编辑器" scheme="http://www.limingming.org/tags/%E7%BC%96%E8%BE%91%E5%99%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>centos常见配置修改</title>
+    <link href="http://www.limingming.org/2018/12/26/Linux/centos%E5%B8%B8%E8%A7%81%E9%85%8D%E7%BD%AE%E4%BF%AE%E6%94%B9/"/>
+    <id>http://www.limingming.org/2018/12/26/Linux/centos常见配置修改/</id>
+    <published>2018-12-26T13:19:02.000Z</published>
+    <updated>2019-05-09T12:08:35.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="Linux" scheme="http://www.limingming.org/categories/Linux/"/>
+    
+    
+      <category term="修改" scheme="http://www.limingming.org/tags/%E4%BF%AE%E6%94%B9/"/>
+    
+      <category term="Centos" scheme="http://www.limingming.org/tags/Centos/"/>
+    
+      <category term="日期" scheme="http://www.limingming.org/tags/%E6%97%A5%E6%9C%9F/"/>
+    
+      <category term="字符集" scheme="http://www.limingming.org/tags/%E5%AD%97%E7%AC%A6%E9%9B%86/"/>
+    
+      <category term="乱码" scheme="http://www.limingming.org/tags/%E4%B9%B1%E7%A0%81/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>syntax error near unexpected token $ do报错问题</title>
+    <link href="http://www.limingming.org/2018/12/22/Linux/syntax-error-near-unexpected-token-do-r%E6%8A%A5%E9%94%99%E9%97%AE%E9%A2%98/"/>
+    <id>http://www.limingming.org/2018/12/22/Linux/syntax-error-near-unexpected-token-do-r报错问题/</id>
+    <published>2018-12-22T10:06:53.000Z</published>
+    <updated>2019-05-09T12:08:35.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="Linux" scheme="http://www.limingming.org/categories/Linux/"/>
+    
+    
+      <category term="问题" scheme="http://www.limingming.org/tags/%E9%97%AE%E9%A2%98/"/>
+    
+      <category term="do\r" scheme="http://www.limingming.org/tags/do-r/"/>
+    
+      <category term="字符" scheme="http://www.limingming.org/tags/%E5%AD%97%E7%AC%A6/"/>
     
   </entry>
   
