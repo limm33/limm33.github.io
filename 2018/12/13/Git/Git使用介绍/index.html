@@ -92,7 +92,8 @@
 <meta property="og:image" content="http://www.limingming.org/imgs/Git/git-2.png">
 <meta property="og:image" content="http://www.limingming.org/imgs/Git/git-1.png">
 <meta property="og:image" content="http://www.limingming.org/imgs/Git/git-3.png">
-<meta property="og:updated_time" content="2020-04-06T02:51:29.919Z">
+<meta property="og:image" content="http://www.limingming.org/imgs/logo/wechat-search.png">
+<meta property="og:updated_time" content="2020-04-06T10:29:16.416Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git使用介绍">
 <meta name="twitter:description" content="git是一个分布式版本控制软件，最初由林纳斯·托瓦兹创作，于2005年以GPL发布。最初目的是为更好地管理Linux内核开发而设计。应注意的是，这与GNU Interactive Tools（一个类似Norton Commander界面的文件管理器）有所不同。git最初的开发动力来自于BitKeeper和Monotone。git最初只是作为一个可以被其他前端（比如Cogito或Stgit）包装的后">
@@ -432,6 +433,7 @@
 </blockquote>
 <p>git rebase 和 git merge 一样都是用于从一个分支获取并且合并到当前分支，但是他们采取不同的工作流程。从上面你可以可能看到了git rebase是一个一个处理冲突的。<br>本质上git merge会产生一个新的commit，合并的时候是全部合并，修改完成冲突就可以提交了，记录了真实的commit情况，包括每个分支的详情，但是如果频繁的使用，就会导致commit信息比较混乱。<br>git rebase不会一次性合并，而是一个一个处理，不会有commit信息，会合并之前的commit历史，这样会让他的提交历史比较简洁，它的优点也是它的缺点，以为重写了commit历史，所以，导致提交历史不明晰。</p>
 <h4 id="四、-gitignore-忽略文件"><a href="#四、-gitignore-忽略文件" class="headerlink" title="四、.gitignore 忽略文件"></a>四、.gitignore 忽略文件</h4><p>在代码开发过程中经常使用Eclipe、IDEA等开发工具，项目开发过程中不可以将.setting、.classpath等文件提交到代码库，所以我们需要将这些添加到忽略文件中，避免代码协作过程中因为这些配置文件的问题导致冲突。</p>
+<p><img src="/imgs/logo/wechat-search.png" alt=""></p>
 
       
     </div>
